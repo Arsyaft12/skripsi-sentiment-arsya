@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pkl
+*.db
+venv/
+.env
+dataset_cache.json
+hasil_dataset_lengkap.csv
+
+# Next.js
+frontend/.next/
+frontend/node_modules/

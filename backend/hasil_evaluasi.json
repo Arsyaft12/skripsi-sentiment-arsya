@@ -1,0 +1,35 @@
+{
+  "naive_bayes": {
+    "akurasi": 87.56,
+    "precision": 87.46,
+    "recall": 87.56,
+    "f1_score": 87.48,
+    "confusion_matrix": [
+      [
+        638,
+        161
+      ],
+      [
+        121,
+        1346
+      ]
+    ]
+  },
+  "svm": {
+    "akurasi": 88.44,
+    "precision": 88.35,
+    "recall": 88.44,
+    "f1_score": 88.36,
+    "confusion_matrix": [
+      [
+        645,
+        154
+      ],
+      [
+        108,
+        1359
+      ]
+    ]
+  },
+  "model_terbaik": "svm"
+}
