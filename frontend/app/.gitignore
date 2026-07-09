@@ -1,12 +1,17 @@
-# Python
-__pycache__/
-*.pkl
-*.db
-venv/
-.env
-dataset_cache.json
-hasil_dataset_lengkap.csv
+# ── Backend (Python/FastAPI) ──────────────────────────
+backend/.env
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/sentimen.db
+backend/*.pyc
 
-# Next.js
-frontend/.next/
+# ── Frontend (Next.js) ────────────────────────────────
 frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# ── Umum ───────────────────────────────────────────────
+.DS_Store
+*.log
+*.pem

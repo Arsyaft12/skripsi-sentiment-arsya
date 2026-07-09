@@ -1,7 +1,11 @@
 # backend/dataset.py
 # File ini bertugas: mengambil dan menampilkan dataset dari Hugging Face
 
-from datasets import load_dataset
+try:
+    from datasets import load_dataset
+except ModuleNotFoundError:
+    load_dataset = None
+
 import pandas as pd
 import os
 import json
@@ -25,6 +29,9 @@ def muat_dataset(simpan_cache=True):
             data = json.load(f)
         print(f"✓ Dataset dimuat dari cache!")
     else:
+        if load_dataset is None:
+            raise RuntimeError('Paket datasets belum terinstal dan cache dataset tidak tersedia.')
+
         print(f"⟳ Mendownload dari Hugging Face: {DATASET_NAME}")
         dataset = load_dataset(DATASET_NAME)
 

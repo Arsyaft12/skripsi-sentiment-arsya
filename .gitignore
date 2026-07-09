@@ -1,0 +1,19 @@
+# Python / FastAPI
+backend/.env
+backend/venv/
+backend/__pycache__/
+backend/**/*.pyc
+backend/sentimen.db
+sentimen.db
+*.py[cod]
+
+# Next.js / Node
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Editor / OS
+.vscode/
+.DS_Store
+*.log
+*.pem
