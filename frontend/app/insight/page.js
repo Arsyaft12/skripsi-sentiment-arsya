@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import './insight.css'
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'https://backend-ten-beta-64.vercel.app'
+const API = process.env.NEXT_PUBLIC_API_URL || 'https://backend-kbf3q9v6d-arsyaft12-9212s-projects.vercel.app'
 
 export default function InsightPage() {
   const router = useRouter()
