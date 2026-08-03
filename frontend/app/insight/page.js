@@ -7,10 +7,10 @@ import './insight.css'
 const API = 'http://localhost:8000'
 
 export default function InsightPage() {
-  const router  = useRouter()
-  const [stats, setStats]   = useState(null)
-  const [eval_, setEval]    = useState(null)
-  const [rek,   setRek]     = useState(null)
+  const router = useRouter()
+  const [stats, setStats] = useState(null)
+  const [eval_, setEval] = useState(null)
+  const [rek, setRek] = useState(null)
   const [loaded, setLoaded] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
   const [error, setError] = useState('')
@@ -23,8 +23,8 @@ export default function InsightPage() {
   const section2Ref = useRef(null)
   const section3Ref = useRef(null)
   const section4Ref = useRef(null)
-  const dotRef      = useRef(null)
-  const ringRef     = useRef(null)
+  const dotRef = useRef(null)
+  const ringRef = useRef(null)
 
   useEffect(() => {
     let isMounted = true
@@ -66,13 +66,13 @@ export default function InsightPage() {
     const moveCursor = (e) => {
       if (dotRef.current) {
         dotRef.current.style.left = e.clientX + 'px'
-        dotRef.current.style.top  = e.clientY + 'px'
+        dotRef.current.style.top = e.clientY + 'px'
       }
       if (ringRef.current) {
         setTimeout(() => {
           if (ringRef.current) {
             ringRef.current.style.left = e.clientX + 'px'
-            ringRef.current.style.top  = e.clientY + 'px'
+            ringRef.current.style.top = e.clientY + 'px'
           }
         }, 80)
       }
@@ -111,9 +111,9 @@ export default function InsightPage() {
 
   const getHealth = () => {
     if (sentimentRatio >= 70) return { label: 'EXCELLENT', color: '#00ff88', desc: 'Brand sentiment sangat kuat' }
-    if (sentimentRatio >= 55) return { label: 'GOOD',      color: '#88ff00', desc: 'Brand sentiment positif' }
-    if (sentimentRatio >= 40) return { label: 'WARNING',   color: '#ffaa00', desc: 'Perlu perhatian segera' }
-    return                             { label: 'CRITICAL',  color: '#ff3344', desc: 'Brand sentiment kritis' }
+    if (sentimentRatio >= 55) return { label: 'GOOD', color: '#88ff00', desc: 'Brand sentiment positif' }
+    if (sentimentRatio >= 40) return { label: 'WARNING', color: '#ffaa00', desc: 'Perlu perhatian segera' }
+    return { label: 'CRITICAL', color: '#ff3344', desc: 'Brand sentiment kritis' }
   }
   const health = getHealth()
   const healthClass = sentimentRatio >= 70
@@ -160,11 +160,10 @@ export default function InsightPage() {
     {
       no: '01', title: 'Dominasi Sentimen',
       body: safeTotal > 0
-        ? `Dari ${safeTotal.toLocaleString()} ulasan yang dianalisis, ${sentimentRatio}% bersifat positif. ${
-            sentimentRatio >= 60
-              ? 'Pelanggan secara umum puas dengan produk dan layanan.'
-              : 'Terdapat gap kepuasan yang perlu segera ditangani.'
-          }`
+        ? `Dari ${safeTotal.toLocaleString()} ulasan yang dianalisis, ${sentimentRatio}% bersifat positif. ${sentimentRatio >= 60
+          ? 'Pelanggan secara umum puas dengan produk dan layanan.'
+          : 'Terdapat gap kepuasan yang perlu segera ditangani.'
+        }`
         : 'Memuat data...',
       action: sentimentRatio >= 60
         ? 'Pertahankan kualitas layanan dan produk yang sudah baik.'

@@ -1,5 +1,13 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: #f4f7fb;
   color: #14213d;
@@ -156,7 +164,7 @@ body {
   border-radius: 22px;
   padding: 22px;
   background: #f9fbff;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .ai-card label {
@@ -419,6 +427,7 @@ body {
 }
 
 @media (max-width: 640px) {
+
   .insight-header,
   .insight-main {
     padding-left: 16px;
