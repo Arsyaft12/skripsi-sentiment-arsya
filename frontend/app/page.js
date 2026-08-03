@@ -8,7 +8,7 @@ import {
 } from 'recharts'
 import { useRouter } from 'next/navigation'
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+const API = process.env.NEXT_PUBLIC_API_URL || 'https://backend-ten-beta-64.vercel.app'
 
 // ─── CUSTOM PIE LABEL ───────────────────────────────────
 const RADIAN = Math.PI / 180
@@ -129,7 +129,7 @@ export default function Dashboard() {
       formData.append('file', file)
       const { data } = await axios.post(
         `${API}/upload-csv?model=${modelCsv}`,
-        formData, { headers: { 'Content-Type': 'multipart/form-data' } }
+        formData
       )
       setCsvResult(data); setCsvRows(data.hasil || [])
       const stat = await axios.get(`${API}/statistik`)
@@ -203,7 +203,7 @@ export default function Dashboard() {
     { name: 'Apriyani et al.\n(2024)', 'Naive Bayes': 85.0, 'SVM': 93.0 },
     { name: 'Ali et al.\n(2024)', 'Naive Bayes': 82.2, 'SVM': 89.7 },
     { name: 'Nugroho &\nHandayani (2022)', 'Naive Bayes': 80.0, 'SVM': 82.7 },
-    { name: 'Penelitian\nIni (2025)', 'Naive Bayes': evaluasi?.naive_bayes?.akurasi || 87.56, 'SVM': evaluasi?.svm?.akurasi || 88.44 },
+    { name: 'Analisis\n2026', 'Naive Bayes': evaluasi?.naive_bayes?.akurasi || 87.56, 'SVM': evaluasi?.svm?.akurasi || 88.44 },
   ]
 
   const tabs = [
@@ -226,10 +226,10 @@ export default function Dashboard() {
     <div className="dashboard-shell">
       <header className="dashboard-header">
         <div>
-          <span className="dashboard-kicker">Sentiment Analysis Studio</span>
-          <h1>Dashboard Analisis Sentimen</h1>
+          <span className="dashboard-kicker">Sentiment Intelligence Hub</span>
+          <h1>Dashboard Analisis Sentimen 2026</h1>
           <p>
-            E-Commerce NLP — Naive Bayes vs SVM | Dataset: {infoDataset?.total_data?.toLocaleString() || '...'} data | v3.0
+            Insight operasional terkini untuk ulasan e-commerce. Visualisasi ini dipadu dengan model SVM dan Naive Bayes untuk mendukung keputusan bisnis berbasis data.
           </p>
         </div>
         <button className="dashboard-button" onClick={() => router.push('/insight')}>
@@ -262,9 +262,11 @@ export default function Dashboard() {
       <main className="dashboard-main">
         <section className="dashboard-hero">
           <div>
-            <span className="dashboard-kicker">Overview</span>
+            <span className="dashboard-kicker">Executive Summary</span>
             <h2>Ringkasan performa analisis sentimen</h2>
-            <p>.</p>
+            <p>
+              Analisis ini menggabungkan data sentiment, performa model, dan distribusi ulasan untuk memberikan gambaran prioritas perbaikan produk dan layanan.
+            </p>
           </div>
           <div className="dashboard-hero-stats">
             {overviewStats.map((item) => (
@@ -655,9 +657,9 @@ export default function Dashboard() {
             {evaluasi && evaluasi.naive_bayes && (
               <>
                 <section className="bg-white rounded-xl shadow p-6">
-                  <h2 className="text-lg font-semibold text-gray-700 mb-1">Perbandingan Model — Penelitian Ini</h2>
+                  <h2 className="text-lg font-semibold text-gray-700 mb-1">Perbandingan Model — Analisis 2026</h2>
                   <p className="text-sm text-gray-500 mb-4">
-                    Dataset: Indonesian_sentiment (Hugging Face) · 10.192 data · Model terbaik:{' '}
+                    Benchmark performa model pada dataset Indonesian_sentiment (Hugging Face) dengan 10.192 sampel. Model terpilih ditampilkan untuk rekomendasi implementasi.
                     <span className="font-bold text-blue-700 uppercase">{evaluasi.model_terbaik}</span>
                   </p>
                   <ResponsiveContainer width="100%" height={280}>
@@ -704,8 +706,8 @@ export default function Dashboard() {
 
                 {/* Perbandingan dengan jurnal */}
                 <section className="bg-white rounded-xl shadow p-6">
-                  <h2 className="text-lg font-semibold text-gray-700 mb-1">Perbandingan dengan Penelitian Terdahulu</h2>
-                  <p className="text-sm text-gray-500 mb-4">Akurasi NB dan SVM dari jurnal referensi skripsi vs penelitian ini.</p>
+                  <h2 className="text-lg font-semibold text-gray-700 mb-1">Perbandingan dengan Literatur Akademik</h2>
+                  <p className="text-sm text-gray-500 mb-4">Akurasi NB dan SVM dari jurnal referensi dibandingkan dengan hasil analisis 2026 ini.</p>
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={dataJurnalBar} margin={{ top: 20, right: 20, left: 0, bottom: 60 }}>
                       <CartesianGrid strokeDasharray="3 3" />

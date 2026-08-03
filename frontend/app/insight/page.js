@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import './insight.css'
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+const API = process.env.NEXT_PUBLIC_API_URL || 'https://backend-ten-beta-64.vercel.app'
 
 export default function InsightPage() {
   const router = useRouter()
@@ -46,7 +46,7 @@ export default function InsightPage() {
       } catch (err) {
         console.error('Gagal memuat data insight:', err)
         if (isMounted) {
-          setError('Gagal memuat data insight. Pastikan backend berjalan di http://localhost:8000.')
+          setError('Gagal memuat data insight. Pastikan koneksi backend publik aktif.')
         }
       } finally {
         if (isMounted) {
@@ -360,7 +360,7 @@ export default function InsightPage() {
         <footer className="insight-footer">
           <div>
             <strong>SentimenAI</strong>
-            <span>Powered by Naive Bayes & SVM · v3.0</span>
+            <span>Powered by Naive Bayes & SVM · Analisis 2026</span>
           </div>
           <button className="insight-back" onClick={() => router.push('/')}>
             Buka Dashboard →
