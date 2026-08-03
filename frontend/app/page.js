@@ -8,7 +8,7 @@ import {
 } from 'recharts'
 import { useRouter } from 'next/navigation'
 
-const API = 'http://localhost:8000'
+const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
 // ─── CUSTOM PIE LABEL ───────────────────────────────────
 const RADIAN = Math.PI / 180
@@ -263,8 +263,8 @@ export default function Dashboard() {
         <section className="dashboard-hero">
           <div>
             <span className="dashboard-kicker">Overview</span>
-            <h2>Ringkasan performa analisis sentimen yang lebih terarah dan konsisten</h2>
-            <p>Antarmuka ini kini mengikuti nuansa visual baru dari halaman insight agar pengalaman analisis terasa lebih profesional, modern, dan seragam.</p>
+            <h2>Ringkasan performa analisis sentimen</h2>
+            <p>.</p>
           </div>
           <div className="dashboard-hero-stats">
             {overviewStats.map((item) => (
