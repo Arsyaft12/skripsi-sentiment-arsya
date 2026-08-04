@@ -8,7 +8,7 @@ import {
 } from 'recharts'
 import { useRouter } from 'next/navigation'
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'https://backend-kbf3q9v6d-arsyaft12-9212s-projects.vercel.app'
+const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
 // ─── CUSTOM PIE LABEL ───────────────────────────────────
 const RADIAN = Math.PI / 180
