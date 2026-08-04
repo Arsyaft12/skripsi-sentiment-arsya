@@ -1,5 +1,5 @@
 # backend/database.py
-# File ini mengatur koneksi dan operasi database SQLite
+# File ini mengatur koneksi dan operasi database SQLite dan PostgreSQL (Supabase) secara dinamis
 
 import csv
 import sqlite3
@@ -35,7 +35,28 @@ def _get_db_file():
 
 
 DB_FILE = _get_db_file()
-print(f'✓ Database file path: {DB_FILE}')
+DATABASE_URL = os.environ.get("DATABASE_URL")
+IS_POSTGRES = DATABASE_URL is not None and (DATABASE_URL.startswith("postgres://") or DATABASE_URL.startswith("postgresql://"))
+
+if IS_POSTGRES:
+    print('✓ Using PostgreSQL Database (Supabase)')
+else:
+    print(f'✓ Using SQLite Database path: {DB_FILE}')
+
+
+def get_connection():
+    if IS_POSTGRES:
+        import psycopg2
+        url = DATABASE_URL
+        if url.startswith("postgres://"):
+            url = url.replace("postgres://", "postgresql://", 1)
+        return psycopg2.connect(url)
+    else:
+        return sqlite3.connect(DB_FILE)
+
+
+def get_placeholder():
+    return "%s" if IS_POSTGRES else "?"
 
 
 def _seed_db_from_csv_if_empty():
@@ -43,7 +64,7 @@ def _seed_db_from_csv_if_empty():
         print('⚠️ CSV seed source tidak ditemukan; database tidak di-seed.')
         return
 
-    conn = sqlite3.connect(DB_FILE)
+    conn = get_connection()
     cursor = conn.cursor()
     cursor.execute('SELECT COUNT(*) FROM riwayat_analisis')
     total_rows = cursor.fetchone()[0]
@@ -53,6 +74,8 @@ def _seed_db_from_csv_if_empty():
         return
 
     print('⟳ Database kosong, memulai seed dari hasil_dataset_lengkap.csv ...')
+    placeholder = get_placeholder()
+    
     with open(CSV_SOURCE_FILE, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         batch = []
@@ -77,21 +100,21 @@ def _seed_db_from_csv_if_empty():
             ))
 
             if len(batch) >= 500:
-                cursor.executemany('''
+                cursor.executemany(f'''
                     INSERT INTO riwayat_analisis
                     (teks_asli, teks_bersih, sentimen, model_digunakan,
                      step1_lower, step2_karakter, step3_stopword, step4_stemming, waktu)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    VALUES ({placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder})
                 ''', batch)
                 inserted += len(batch)
                 batch.clear()
 
         if batch:
-            cursor.executemany('''
+            cursor.executemany(f'''
                 INSERT INTO riwayat_analisis
                 (teks_asli, teks_bersih, sentimen, model_digunakan,
                  step1_lower, step2_karakter, step3_stopword, step4_stemming, waktu)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES ({placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder})
             ''', batch)
             inserted += len(batch)
 
@@ -99,43 +122,64 @@ def _seed_db_from_csv_if_empty():
     conn.close()
     print(f'✓ Seed selesai. Baris ditambahkan: {inserted}')
 
+
 def init_db():
     """Buat tabel jika belum ada"""
-    conn = sqlite3.connect(DB_FILE)
+    conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS riwayat_analisis (
-            id          INTEGER PRIMARY KEY AUTOINCREMENT,
-            teks_asli   TEXT NOT NULL,
-            teks_bersih TEXT NOT NULL,
-            sentimen    TEXT NOT NULL,
-            model_digunakan TEXT NOT NULL,
-            step1_lower TEXT,
-            step2_karakter TEXT,
-            step3_stopword TEXT,
-            step4_stemming TEXT,
-            waktu       TEXT NOT NULL,
-            created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
+    if IS_POSTGRES:
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS riwayat_analisis (
+                id          SERIAL PRIMARY KEY,
+                teks_asli   TEXT NOT NULL,
+                teks_bersih TEXT NOT NULL,
+                sentimen    TEXT NOT NULL,
+                model_digunakan TEXT NOT NULL,
+                step1_lower TEXT,
+                step2_karakter TEXT,
+                step3_stopword TEXT,
+                step4_stemming TEXT,
+                waktu       TEXT NOT NULL,
+                created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+    else:
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS riwayat_analisis (
+                id          INTEGER PRIMARY KEY AUTOINCREMENT,
+                teks_asli   TEXT NOT NULL,
+                teks_bersih TEXT NOT NULL,
+                sentimen    TEXT NOT NULL,
+                model_digunakan TEXT NOT NULL,
+                step1_lower TEXT,
+                step2_karakter TEXT,
+                step3_stopword TEXT,
+                step4_stemming TEXT,
+                waktu       TEXT NOT NULL,
+                created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
 
     conn.commit()
     conn.close()
-    print(f'✓ Database siap: {DB_FILE}')
-    _seed_db_from_csv_if_empty()
+    print('✓ Database inisialisasi selesai.')
+    if not IS_POSTGRES:
+        _seed_db_from_csv_if_empty()
+
 
 def simpan_riwayat(data: dict):
     """Simpan hasil analisis ke database"""
-    conn = sqlite3.connect(DB_FILE)
+    conn = get_connection()
     cursor = conn.cursor()
 
     prep = data.get('preprocessing', {})
-    cursor.execute('''
+    placeholder = get_placeholder()
+    cursor.execute(f'''
         INSERT INTO riwayat_analisis
         (teks_asli, teks_bersih, sentimen, model_digunakan,
          step1_lower, step2_karakter, step3_stopword, step4_stemming, waktu)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES ({placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder})
     ''', (
         data['teks_asli'],
         data['teks_bersih'],
@@ -151,26 +195,39 @@ def simpan_riwayat(data: dict):
     conn.commit()
     conn.close()
 
+
 def ambil_riwayat(limit=50):
     """Ambil riwayat analisis dari database"""
-    conn = sqlite3.connect(DB_FILE)
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
+    conn = get_connection()
+    placeholder = get_placeholder()
+    
+    if IS_POSTGRES:
+        from psycopg2.extras import RealDictCursor
+        cursor = conn.cursor(cursor_factory=RealDictCursor)
+        cursor.execute(f'''
+            SELECT * FROM riwayat_analisis
+            ORDER BY created_at DESC
+            LIMIT {placeholder}
+        ''', (limit,))
+        rows = cursor.fetchall()
+        conn.close()
+        return [dict(row) for row in rows]
+    else:
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        cursor.execute(f'''
+            SELECT * FROM riwayat_analisis
+            ORDER BY created_at DESC
+            LIMIT {placeholder}
+        ''', (limit,))
+        rows = cursor.fetchall()
+        conn.close()
+        return [dict(row) for row in rows]
 
-    cursor.execute('''
-        SELECT * FROM riwayat_analisis
-        ORDER BY created_at DESC
-        LIMIT ?
-    ''', (limit,))
-
-    rows = cursor.fetchall()
-    conn.close()
-
-    return [dict(row) for row in rows]
 
 def ambil_statistik():
     """Hitung statistik dari database"""
-    conn = sqlite3.connect(DB_FILE)
+    conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute('SELECT COUNT(*) FROM riwayat_analisis')
@@ -198,13 +255,15 @@ def ambil_statistik():
         'persen_negatif': round(negatif/total*100, 1),
     }
 
+
 def hapus_semua():
     """Hapus semua riwayat (untuk reset)"""
-    conn = sqlite3.connect(DB_FILE)
+    conn = get_connection()
     cursor = conn.cursor()
     cursor.execute('DELETE FROM riwayat_analisis')
     conn.commit()
     conn.close()
+
 
 # Test jika dijalankan langsung
 if __name__ == '__main__':
@@ -231,4 +290,4 @@ if __name__ == '__main__':
     print(f'✓ Statistik: {stat}')
 
     riw = ambil_riwayat()
-    print(f'✓ Riwayat: {len(riw)} data')
+    print(f'✓ Riwayat: {len(riw)} data')
