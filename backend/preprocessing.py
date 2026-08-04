@@ -2,11 +2,8 @@
 # Setiap langkah preprocessing dipisah agar bisa dipahami & ditampilkan
 
 import re
-import nltk
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-
-nltk.download('punkt', quiet=True)
 
 # Inisialisasi tools
 factory_stop    = StopWordRemoverFactory()

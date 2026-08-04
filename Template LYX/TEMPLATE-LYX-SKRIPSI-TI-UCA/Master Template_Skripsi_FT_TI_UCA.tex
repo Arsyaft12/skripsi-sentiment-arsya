@@ -1,0 +1,655 @@
+%% LyX 2.5.1 created this file.  For more info, see https://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,oneside,bahasa]{book}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=4cm,bmargin=3cm,lmargin=4cm,rmargin=3cm}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{setspace}
+\onehalfspacing
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\newcommand{\noun}[1]{\textsc{#1}}
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}[chapter]
+\providecommand{\algorithmname}{Algoritma}
+\floatname{algorithm}{\protect\algorithmname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+%% \renewcommand{\chapter}[1]{\chapter[#1]{\centering #1}}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\centering}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\newcommand{\Judul}{JUDUL DITULISKAN DI SINI}
+\newcommand{\JudulInggris}{JUDUL DALAM BAHASA INGGRIS}
+\newcommand{\Penulis}{Nama Mahasiswa Ditulis Disini}
+\newcommand{\NPM}{NPM Ditulis Disini}
+\newcommand{\NIRM}{-}
+\newcommand{\JenisTulisan}{Skripsi}
+\newcommand{\Gelar}{Sarjana Strata Satu}
+\newcommand{\Fakultas}{Fakultas Teknik}
+\newcommand{\ProdiTI}{Teknik Informatika}
+\newcommand{\ProdiTE}{Teknik Elektro}
+\newcommand{\Tahun}{Tahun Sidang}
+\newcommand{\Bulan}{Bulan Sidang}
+\newcommand{\Tanggal}{Tanggal Sidang}
+\newcommand{\Kota}{Tangerang}
+\newcommand{\KataKunci}{Kata Kunci ke-1, Kata Kunci ke-2,..., kata kunci ke 5 }
+\newcommand{\KeyWords}{Keyword 1, keyword 2,.., keyword 5}
+\newcommand{\PembimbingA}{Nama Pembimbing Mahasiswa FT UCA}
+\newcommand{\PembimbingB}{Nama Pembimbing Mahasiswa FT UCA}
+\newcommand{\KetuaPenguji}{Nama Ketua Penguji FT UCA}
+\newcommand{\AnggotaPengujiA}{Nama Anggota Penguji 1}
+\newcommand{\AnggotaPengujiB}{Nama Anggota Penguji 2}
+\newcommand{\AnggotaPengujiC}{Nama Anggota Penguji 3}
+\newcommand{\Ringkasan}{Tulis ringkasan skripsi, pi, atau apa dengan bahasa yang jelas, lugas dan
+menggambarkan secara singkat tulisan ini.  Sebaiknya tidak lebih dari 150 kata
+dan sudah menjelaskan dari permasalahan, pembahasan dan penutup.}
+\newcommand{\JumlahPustaka}{Jumlah Halaman Pustaka}
+\newcommand{\JumlahHalaman}{Jumlah Halaman}
+\newcommand{\JumlahHalamanDepan}{Jumlah Halaman Depan dalam Romawi}
+\newcommand{\TahunPustaka}{Tahun Pustaka dari awal sampai akhir}
+%%
+%% Keterangan administratif sidang sarjana
+%%
+\newcommand{\TanggalSidang}{Tanggal Pelaksanaan Sidang}
+\newcommand{\TanggalLulus}{Tanggal Lulus Sidang}
+\newcommand{\TanggalSah}{-}
+\newcommand{\Direktur}{-}
+\newcommand{\PejabatBagianSidang}{-}
+%% Keterangan tambahan
+\newcommand{\RektorUCA}{Dr. Muhammad Subali, S.Si,M.T.}
+\newcommand{\DekanFTUCA}{Dr. Ir. Debyo Saptono, S.T., M.T., M.I.Kom.}
+\newcommand{\KaprodiTI}{Wiranti Sri Utami, S.Kom., M.T.I.}
+\newcommand{\KaprodiTE}{Ir. Susan Siti Nurhaliza, S.T., M.T.}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{Chapter  \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}{}}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\textit{\nouppercase{\leftmark}}}
+\fancyhead[LO]{\textit{\nouppercase{\rightmark}}}
+\fancypagestyle{plain}{ %
+\fancyhf{} % remove everything
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+\renewcommand{\footrulewidth}{0pt}}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\thispagestyle{empty}
+
+\pagenumbering{roman}
+
+\vspace*{1mm}
+
+\begin{center}
+\includegraphics[width=50mm]{Gambar/UCA}
+\par\end{center}
+
+\vspace*{15mm}
+
+\begin{center}
+\LARGE \bfseries\MakeUppercase{\Judul}
+\par\end{center}
+
+\vspace*{10mm}
+
+\begin{center}
+\Large \bfseries\MakeUppercase{SKRIPSI}
+\par\end{center}
+
+\vspace*{10mm}
+
+\begin{center}
+\textbf{\Large \bfseries \MakeUppercase{\Penulis}}\\
+\textbf{\Large \bfseries NPM: \NPM}
+\par\end{center}
+
+\vspace*{10mm}
+
+\begin{center}
+\textbf{PROGRAM STUDI \MakeUppercase{\ProdiTI}}\\
+\textbf{FAKULTAS TEKNIK}
+\par\end{center}
+
+\begin{center}
+\textbf{UNIVERSITAS CENDEKIA ABDITAMA}\\
+\textbf{\Tahun}
+\par\end{center}
+
+\newpage{}
+
+\chapter*{Pernyataan orisinalitas dan publikasi}
+
+\begin{singlespace}
+\thispagestyle{empty}
+
+Saya yang bertanda tangan di bawah ini:
+
+\begin{tabular}{>{\raggedright}p{35mm}c>{\raggedright}p{0.6\textwidth}}
+Nama & : & \Penulis\tabularnewline
+NPM & : & \NPM\tabularnewline
+Judul disertasi & : & \MakeUppercase{\Judul}\tabularnewline
+Tanggal Sidang & : & \TanggalSidang\tabularnewline
+Tanggal Lulus & : & \TanggalLulus\tabularnewline
+\end{tabular}
+\end{singlespace}
+
+\begin{singlespace}
+\noindent menyatakan bahwa tulisan di atas merupakan hasil karya saya
+sendiri dan dapat dipublikasikan sepenuhnya oleh Universitas Cendekia
+Abditama. Segala kutipan dalam bentuk apapun telah mengikuti kaidah
+dan etika yang berlaku. Semua hak cipta dari logo serta produk yang
+disebut dalam buku ini adalah milik masing-masing pemegang haknya,
+kecuali disebutkan lain. Mengenai isi dan tulisan merupakan tanggung
+jawab Penulis, bukan Universitas Cendekia Abditama. 
+\end{singlespace}
+
+\begin{singlespace}
+Demikianlah pernyataan ini dibuat dengan sebenarnya dan dengan penuh
+kesadaran.
+
+\vspace*{25mm}
+
+\Kota, \  \Tanggal\ \Bulan\ \Tahun
+
+\vspace*{25mm}
+
+(\Penulis)
+\end{singlespace}
+
+\newpage\thispagestyle{empty}
+
+\pagenumbering{roman}
+
+\vspace*{10mm}
+
+\begin{center}
+\LARGE \bfseries\MakeUppercase{\Judul}
+\par\end{center}
+
+\vspace*{10mm}
+
+\begin{center}
+\Large \bfseries\MakeUppercase{SKRIPSI}
+\par\end{center}
+
+\vspace*{10mm}
+
+\begin{center}
+\textbf{\Large \bfseries \MakeUppercase{\Penulis}}\\
+\textbf{\Large \bfseries NPM: \NPM}
+\par\end{center}
+
+\vspace*{6mm}
+
+\begin{center}
+\begin{tabular}{ccc}
+\multicolumn{3}{c}{MENYETUJUI}\tabularnewline
+Pembimbing &  & Ketua Prodi Teknik Informatika\tabularnewline
+~ &  & ~\tabularnewline
+~ &  & ~\tabularnewline
+~ &  & ~\tabularnewline
+ &  & \tabularnewline
+(\PembimbingA) &  & (\KaprodiTI)\tabularnewline
+ &  & \tabularnewline
+ &  & \tabularnewline
+\multicolumn{3}{c}{Dekan Fakultas Teknik Universitas Cendekia Abditama}\tabularnewline
+ &  & \tabularnewline
+\multicolumn{3}{c}{~}\tabularnewline
+\multicolumn{3}{c}{~}\tabularnewline
+\multicolumn{3}{c}{~}\tabularnewline
+ &  & \tabularnewline
+\multicolumn{3}{c}{(\DekanFTUCA)}\tabularnewline
+\end{tabular}
+\par\end{center}
+
+\vspace*{8mm}
+
+\newpage{}
+
+\chapter*{Lembar Pengesahan}
+
+\thispagestyle{empty}
+
+\begin{flushleft}
+\begin{tabular}{lc>{\raggedright}p{10cm}}
+Judul skripsi & : & \textbf{\MakeUppercase{\Judul}}\tabularnewline
+Nama mahasiswa & : & \textbf{\Penulis}\tabularnewline
+Nomor Pokok Mahasiswa & : & \textbf{\NPM}\tabularnewline
+\end{tabular}
+\par\end{flushleft}
+
+\begin{center}
+\medskip{}
+\par\end{center}
+
+\begin{flushleft}
+\begin{tabular}{lll}
+Menyetujui: &  & \tabularnewline
+\textbf{Komisi Pembimbing} &  & \tabularnewline
+Pembimbing  & \PembimbingA & ..........................\tabularnewline
+ &  & \tabularnewline
+ &  & \tabularnewline
+ &  & \tabularnewline
+ &  & \tabularnewline
+\textbf{Komite Penguji} &  & \tabularnewline
+Ketua & \KetuaPenguji  & ..........................\tabularnewline
+Anggota & \AnggotaPengujiA & ..........................\tabularnewline
+ & \AnggotaPengujiB & ..........................\tabularnewline
+ & \AnggotaPengujiC & ..........................\tabularnewline
+\end{tabular}
+\par\end{flushleft}
+
+\medskip{}
+
+\begin{flushleft}
+Tanggal Lulus: \TanggalLulus\\
+\par\end{flushleft}
+
+\chapter*{Abstraksi}
+
+\begin{singlespace}
+\addcontentsline{toc}{chapter}{Abstraksi}
+
+\noindent\Penulis. \NPM
+
+\noindent\MakeUppercase{\Judul} \\
+Skripsi, Program Studi Teknik Informatika, Fakultas Teknik, Universitas
+Cendekia Abditama, \Tahun.
+
+\noindent Kata Kunci: \KataKunci
+
+\medskip{}
+
+\noindent (\JumlahHalamanDepan + \JumlahHalaman + lampiran)
+
+\bigskip{}
+
+\end{singlespace}
+
+Abstraksi dibatasi untuk jumlah katanya yaitu 200-250 kata. Abstraksi
+harus berisi minimal 3 bagian utama yang menjelaskan : 1. Latar belakang
+yang diambil sebagai alasan pemilihan judul dan tujuan penulisan yang
+akan dicapai untuk menjawabalasan tersebut. Jadi harus ada keterkaitan
+antara latar belakang dan tujuan penulisan. 2. Metode yang digunakan
+dalam pembahasan yang dilakukan sehingga didapatkan hasil pembahasan
+sebagai dasar untuk menjawab tujuan. Metode ini biasanya berupa langkah-langkah
+yang digunakan, atau algoritma yang dipakai, atau yang lain. 3. Mendefinisikan
+hasil dari pembahasan yang dilakukan dan sebaiknya berupa angka.
+
+\begin{singlespace}
+\bigskip{}
+
+\noindent Daftar Pustaka (\TahunPustaka)
+\end{singlespace}
+
+\chapter*{Abstract}
+
+\begin{singlespace}
+\addcontentsline{toc}{chapter}{Abstract}
+
+\noindent\Penulis. \NPM
+
+\noindent\MakeUppercase{\JudulInggris}.
+
+\noindent Thesis, Informatics Engineering Bachelor Programme, Engineering
+Faculty, Universitas Cendekia Abditama, \Tahun.
+
+\noindent Keyword: \KeyWords
+
+\medskip{}
+
+\noindent (\JumlahHalamanDepan + \JumlahHalaman + appendix)
+
+\bigskip{}
+ Tuliskan abstraksi dalam bahasa inggris disini.
+
+\bigskip{}
+
+\noindent References (\TahunPustaka)
+\end{singlespace}
+
+\chapter*{Kata Pengantar}
+
+\addcontentsline{toc}{chapter}{Kata Pengantar}
+
+\noindent\textit{Bismillahirrohmaanirrohim}\\
+\textit{Allahummma sholli 'ala Muhammad wa 'ala ali Muhammad s.a.w}\\
+\textit{Assalmu'alaikum Warrahmatullah Wabarakatuh}\\
+
+Tiada kata yang dapat diungkapkan selain pujian dan rasa syukur penulis
+kepada Allah Subhanahu Wata'ala, Tuhan yang Esa, atas ridho, karunia
+dan ampunan-Nya serta bimbinagan dan kasih sayang-Nya, hingga akhirnya
+penulis dapat menyelesaikan skripsi dengan judul: \Judul
+
+Penulisan Skripsi ini merupakan syarat untuk memperoleh gelar Sarjana
+Strata Satu Teknik Informatika di Fakultas Teknik Universitas Cendekia
+Abditama. 
+
+Bantuan moral dan material dari berbagai pihak selama tahap penyelesaian
+Skripsi sungguh sangat berarti bagi penulis. Untuk itu dengan tulus
+dan kerendahan hati penulis mengucapkan terima kasih kepada:
+\begin{enumerate}
+\item Bapak \RektorUCA, selaku Rektor Universitas Cendekia Abditama.
+\item Bapak \DekanFTUCA, selaku Dekan Fakultas Teknik Universitas Cendekia
+Abditama.
+\item Bapak \KaprodiTI ,selaku Ketua Program Studi Teknik Informatika Universitas
+Cendekia Abditama.
+\item Bapak \PembimbingA , selaku Pembimbing yang selalu memberikan informasi,
+dorongan, motivasi, tips, dan keikhlasannya menyediakan waktu, pikiran
+dalam mengarahkan, meluruskan, mengingatkan agar tetap fokus pada
+penelitian. Begitu besar jasa, tenaga, pikiran dan waktu beliau turut
+andil dalam penyelesaian skripsi ini.
+\item Keluarga Penulis, jika ingin dicantumkan.
+\item Seluruh rekan dan sahabat di Fakultas Teknik Universitas Cendekia
+Abditama yang tidak dapat disebutkan satu-persatu, jika ingin dicantumkan.
+\item (Maksimal total 10 item ucapan terima kasih. Point 1-6 WAJIB) 
+\end{enumerate}
+Semoga Allah SWT Yang Maha Pemurah dan Sebaik-baiknya Pemberi Rizki
+membalas semua keikhlasan, perhatian dan bantuan Bapak, Ibu, dan Saudara
+berikan kepada penulis karena hanya Dialah yang mampu dan kuasa membalasnya
+dengan berlipat ganda.
+
+Penulis yakin masih banyak kekurangan yang ada pada disertasi ini.
+Karenanya kritik dan saran dari pembaca sangat penulis harapkan untuk
+perbaikan di masa yang akan datang. Kesempurnaan hanya milik Allah
+SWT Dzat Yang Maha Sempurna, dan kekurangan serta kealphaan ada di
+diri penulis.\\
+
+\noindent\textit{Wassalamu'alaikum Warahmatullahi Wabarakatuh}\\
+\textit{}\\
+\Kota, \  \Tanggal\ \Bulan\ \Tahun
+
+\noindent\Penulis 
+
+\newpage{}
+
+\tableofcontents{}
+
+\listoffigures
+
+\listoftables
+
+\listof{algorithm}{Daftar Algoritma}
+
+
+\chapter{Pendahuluan}
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\section{Latar Belakang }
+
+\qquad{}Tulisan Latar Belakang pada bagian ini. Menguraikan tentang
+alasan dan motivasi dari peneliti terhadap topik permasalahan yang
+bersangkutan.
+
+\section{Rumusan Masalah}
+
+Berisi masalah apa yang terjadi dan sekaligus merumuskan masalah dalam
+penelitian yang bersangkutan. Penelitian atau penulisan ini merumuskan
+masalah sebagai berikut:
+\begin{itemize}
+\item Perumusan masalah \#1
+\item Perumusan masalah \#2
+\item Perumusan masalah \#3
+\end{itemize}
+
+\section{Batasan Masalah}
+
+Memberikan batasan yang jelas pada bagian mana dari persoalan atau
+masalah yang dikaji dan bagian mana yang tidak. 
+
+\section{Tujuan Penelitian}
+
+Menggambarkan hasil-hasil apa yang bisa dicapai dan diharapkan dari
+penelitian ini dengan memberikan jawaban terhadap masalah yang diteliti.
+(kalimat tujuan harus SMART = Spesific, Measurable, Achiveable, Realistic,
+Timebound)
+
+\section{Sistematika Penulisan}
+
+Memberikan gambaran umum dari bab ke bab isi dari Penulisan Skripsi.
+
+\chapter{Tinjauan Pustaka}
+
+Menguraikan hasil penelitian sejenis terkait tema yang dipilih, yang
+menunjang penelitian, yang bisa diperkuat dengan menunjukkan hasil
+penelitian sebelumnya.
+
+\section{Definisi ...}
+
+Berikut ini cara membuat sitasi dengan menggunakan link berikut :
+\cite{Desa2007}. 
+
+\section{Pengertian ...}
+
+\chapter{Metode Penelitian }
+
+\section{Kerangka Kerja Penelitian}
+
+\subsection*{Contoh Penggunaan Floating Figure/Image (Insert figure float)}
+
+\begin{figure}[ht!]
+\begin{centering}
+\includegraphics[scale=0.4]{Gambar/UCA}
+\par\end{centering}
+\caption{\label{fig:researchFramework} Research Framework}
+\end{figure}
+
+
+\subsection*{Contoh Penulisan Tabel dengan Floating Table (insert table float)}
+
+The research is planned to be completed within a period 2 years. The
+following is presented the research time table:
+
+\begin{table*}[h]
+\caption{Research Time Table}
+
+\centering{}%
+\begin{tabular}{|>{\raggedright}p{1.6cm}|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline 
+\multirow{2}{1.6cm}{} & \multicolumn{12}{c|}{{\scriptsize$1^{st}$ Year}} & \multicolumn{12}{c}{{\scriptsize$2^{nd}$ Year}}\tabularnewline
+\cline{2-25}
+ & {\tiny 1} & {\tiny 2} & {\tiny 3} & {\tiny 4} & {\tiny 5} & {\tiny 6} & {\tiny 7} & {\tiny 8} & {\tiny 9} & {\tiny 10} & {\tiny 11} & {\tiny 12} & {\tiny 1} & {\tiny 2} & {\tiny 3} & {\tiny 4} & {\tiny 5} & {\tiny 6} & {\tiny 7} & {\tiny 8} & {\tiny 9} & {\tiny 10} & {\tiny 11} & {\tiny 12}\tabularnewline
+\hline 
+\hline 
+{\tiny Introduction} & {\tiny x} & {\tiny x} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+{\tiny Literature Review } & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+{\tiny Methodology} &  &  &  &  &  & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+{\tiny Data Gathering} &  &  &  &  &  &  &  & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} &  &  &  &  &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+{\tiny Data Analysis} &  &  &  &  &  &  &  &  &  &  & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} &  &  &  &  &  &  &  &  & \tabularnewline
+\hline 
+{\tiny Implementation Data to System} &  &  &  &  &  &  &  &  &  &  &  & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} &  &  &  &  &  &  & \tabularnewline
+\hline 
+{\tiny Discussion } &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} & {\tiny x} &  &  & \tabularnewline
+\hline 
+{\tiny Summary and Conclusion} &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & {\tiny x} & {\tiny x} & {\tiny x}\tabularnewline
+\hline 
+\end{tabular}
+\end{table*}
+
+Contoh tabel lainnya
+
+\begin{table}[h]
+
+\caption{Tabel Lainnya}
+
+\begin{centering}
+\begin{tabular}{|c|>{\centering}p{0.2\paperwidth}|>{\centering}p{0.06\paperwidth}|c|>{\centering}p{0.06\paperwidth}|}
+\hline 
+\multicolumn{1}{|c|}{\noun{No.}} & \noun{Dokumen Gabungan Tunggal (}\textit{\noun{Snippet}}\noun{)} & TM \textsf{\textit{sesuai}} & \multicolumn{1}{>{\centering}p{0.08\paperwidth}|}{\noun{TM} \textsf{\textit{sesuai sebagian}}} & \noun{TM} \textsf{\textit{tidak sesuai}}\tabularnewline
+\hline 
+\hline 
+\multirow{1}{*}{1} & \textit{Snippet} 1 & 3 & 0 & 0\tabularnewline
+\hline 
+2 & \textit{Snippet 2} & 0 & 3 & 0\tabularnewline
+\hline 
+3 & \textit{Snippet 3} & 3 & 0 & 0\tabularnewline
+\hline 
+4 & \textit{Snippet 4} & 3 & 0 & 0\tabularnewline
+\hline 
+5 & \textit{Snippet 5} & 1 & 2 & 0\tabularnewline
+\hline 
+6 & \textit{Snippet 6} & 2 & 1 & 0\tabularnewline
+\hline 
+7 & \textit{Snippet 7 } & 1 & 2 & 0\tabularnewline
+\hline 
+8 & \textit{Snippet 8 } & 0 & 3 & 0\tabularnewline
+\hline 
+9 & \textit{Snippet 9} & 0 & 3 & 0\tabularnewline
+\hline 
+10 & \textit{Snippet 10} & 2 & 1 & 0\tabularnewline
+\hline 
+11 & \textit{Snippet 11} & 3 & 0 & 0\tabularnewline
+\hline 
+12 & \textit{Snippet 12} & 1 & 2 & 0\tabularnewline
+\hline 
+13 & \textit{Snippet 13} & 2 & 1 & 0\tabularnewline
+\hline 
+14 & \textit{Snippet 14} & 2 & 1 & 0\tabularnewline
+\hline 
+15 & \textit{Snippet 15} & 3 & 0 & 0\tabularnewline
+\hline 
+16 & \textit{Snippet 16} & 0 & 3 & 0\tabularnewline
+\hline 
+17 & \textit{Snippet 17} & 3 & 0 & 0\tabularnewline
+\hline 
+18 & \textit{Snippet 18} & 2 & 1 & 0\tabularnewline
+\hline 
+\multicolumn{1}{|c}{} & Total & 31 & 23 & 0\tabularnewline
+\hline 
+\multicolumn{1}{|c}{} & \textbf{Persentase} & \textbf{57,41\%} & \textbf{42,59\%} & \textbf{0\%}\tabularnewline
+\hline 
+\end{tabular}
+\par\end{centering}
+\end{table}
+
+
+\section{Approach }
+
+Our approach focused on three key areas:
+\begin{itemize}
+\item Access Control Definition
+\item Parameter of Organizational Culture
+\item Sustainable Document
+\end{itemize}
+Based on definition of organizational Culture in chapter 2, we can
+get several parameter to analyze the organizational culture, there
+are:
+
+\begin{center}
+$OrganizationalCulture(OC)=\{v,bl,p,a,bh,k\}$
+\par\end{center}
+
+\indent Annotation:
+\begin{itemize}
+\item $Values(v)$
+\item $Beliefs(bl)$
+\item $Policies(p)$
+\item $Attitudes(a)$
+\item $Behaviors(bh)$
+\item $Knowledge(k)$
+\end{itemize}
+Different culture in organization will affect unsustainable system,
+for instance in Beasiswa Unggulan implemented access control in its
+system. Any fitur in Beasiswa Unggulan system that only can be accessed
+by head of office, while in the fact that the head of office often
+give the right access to his subordinates. In this case, we see that
+
+\begin{center}
+$AccessControl(t_{real})<>AccessControl(t_{fact})$
+\par\end{center}
+
+$AccessControl(t_{real})$ is a circumstances where the system is
+run in accordance with applicable rules.
+
+$AccessControl(t_{fact})$ is a circumstances where the system is
+run in accordance with with the reality of the matter.
+
+\subsection*{Contoh penulisan atau penggunaan persamaan atau rumus matematis:}
+
+\begin{equation}
+w_{t,d}=tf_{t,d}\cdot log\dfrac{|\,D\,|}{|\left\{ d^{'}\epsilon\,D\,|\,\,t\epsilon d^{'}\right\} |}
+\end{equation}
+
+\begin{equation}
+p(\theta|\alpha)=\dfrac{\Gamma{\textstyle {\displaystyle (\sum^{k}_{i=1}\alpha_{i})}}}{\prod^{k}_{i=1}\Gamma(\alpha_{i})}\theta^{\alpha_{1}-1}_{1}\ldots\theta^{\alpha_{k}-1}_{k},
+\end{equation}
+
+
+\subsection*{Contoh penulisan algoritma:}
+
+\begin{algorithm}[h]
+\caption{\label{alg:Algoritma-Markov-Chain}Algoritma {\small\textit{Markov
+Chain }}}
+
+\begin{enumerate}
+\item {\small\textsf{Randomly initialize the first sampel $(x_{1},...,x_{n})$}}{\small\par}
+\item {\small\textsf{For each cycle $t$ until convergence}}
+
+\begin{enumerate}
+\item {\small\textsf{sampel $x^{t}_{1}$ form $P(x_{1}|x^{t-1}_{2},\ldots,x^{t-1}_{n})$}}{\small\par}
+\item {\small\textsf{sample $x^{t}_{2}$ form $P(x_{1}|x^{t-1}_{1},x^{t-1}_{3},\ldots,x^{t-1}_{n})$}}{\small\par}
+\item {\small\textsf{continue until you sample $x^{t}_{n}$ from $P(x_{1}|x^{t-1}_{1},\ldots,x^{t-1}_{n-1})$}}{\small\par}
+\end{enumerate}
+\end{enumerate}
+\end{algorithm}
+
+
+\chapter{Implementasi dan Pembahasan}
+
+\section{Sub bab 1}
+
+Menjelaskan cara identifikasi masalah dalam domainnya, mendefinisikan
+kebutuhan aplikasi perangkat lunaknya, mendefinsikan kebutuhan sistemnya,
+memahami kerja aplikasi PL atau system yang sedang dianalisis, mengusulkan
+solusi atas masalah yang ditemukan, melakukan perancangan dengan berbagai
+alat yang terkini, perancangan output, proses, input, basis data,
+dan perancangan laiinya yang dibutuhkan.
+
+\section{Sub bab 2}
+
+Di atas adalah contoh sub bab kedua dari Bab 4 yaitu.
+
+\subsection{Sub sub bab}
+
+Di atas adalah contoh penomoran untuk sub dari sub bab 4.2
+
+\chapter{Kesimpulan}
+
+Bab ini bisa terdiri dari Kesimpulan saja atau ditambahkan Saran.
+- Kesimpulan Berisi jawaban dari masalah yang diajukan peneliti, yang
+diperoleh dari penelitian. - Saran Pengembangan lebih lanjut dari
+apa yang telah dihasilkan dan dituliskan di bagian kesimpulan. 
+
+\bibliographystyle{apalike}
+\bibliography{bibtex}
+
+\end{document}

@@ -10,8 +10,9 @@ import pandas as pd
 import os
 import json
 
-DATASET_NAME = 'sepidmnorozy/Indonesian_sentiment'
-CACHE_FILE   = 'dataset_cache.json'
+ROOT_DIR      = os.path.dirname(__file__)
+DATASET_NAME  = 'sepidmnorozy/Indonesian_sentiment'
+CACHE_FILE    = os.path.join(ROOT_DIR, 'dataset_cache.json')
 
 def muat_dataset(simpan_cache=True):
     """

@@ -43,8 +43,12 @@ model_svm = joblib.load('model_svm.pkl')
 print('✓ Model berhasil dimuat!')
 
 print('✓ Memuat dataset...')
-DATA = muat_dataset()
-print('✓ Dataset siap!')
+try:
+    DATA = muat_dataset()
+    print('✓ Dataset siap!')
+except Exception as exc:
+    print('⚠️ Dataset tidak dapat dimuat:', exc)
+    DATA = {'train': [], 'test': []}
 
 # ─── SCHEMA ──────────────────────────────────────────────
 class InputUlasan(BaseModel):

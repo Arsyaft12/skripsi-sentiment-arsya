@@ -1,0 +1,1075 @@
+[Plain] status collapsed frontmatter
+[Standard] IMPLEMENTASI METODE NAIVE BAYES DAN SUPPORT VECTOR MACHINE UNTUK KLASIFIKASI SENTIMEN ULASAN PRODUK E-COMMERCE BERBASIS HUGGING FACE DATASETS DENGAN INTEGRASI REST API FASTAPI DAN DASHBOARD NEXT.JS
+[Standard] (Implementation of Naive Bayes and Support Vector Machine Methods for E-Commerce Product Review Sentiment Classification Based on Hugging Face Datasets with FastAPI REST API Integration and Next.js Dashboard)
+[Standard] SKRIPSI
+[Standard] Diajukan untuk memenuhi salah satu syarat memperoleh gelar Sarjana Komputer pada Program Studi Teknik Informatika, Fakultas Teknik, Universitas Cendekia Abditama
+[Standard] Disusun oleh:
+[Standard] Arsya Faturrahman
+[Standard] NPM: 2222105046
+[Standard] PROGRAM STUDI TEKNIK INFORMATIKA
+[Standard] FAKULTAS TEKNIK
+[Standard] UNIVERSITAS CENDEKIA ABDITAMA
+[Standard] TANGERANG
+[Standard] 2026
+[Chapter*] Lembar Pengesahan
+[Plain] status collapsed addcontentsline{toc}{chapter}{Lembar Pengesahan}
+[Standard] Skripsi dengan judul Implementasi Metode Naive Bayes dan Support Vector Machine untuk Klasifikasi Sentimen Ulasan Produk E-Commerce Berbasis Hugging Face Datasets dengan Integrasi REST API FastAPI dan Dashboard Next.js yang disusun oleh:
+[Standard] Nama : Arsya Faturrahman
+[Standard] NPM : 2222105046
+[Standard] Program Studi : Teknik Informatika
+[Standard] telah dipertahankan di hadapan Tim Penguji Skripsi Program Studi Teknik Informatika, Fakultas Teknik, Universitas Cendekia Abditama, dan dinyatakan telah memenuhi syarat untuk diterima sebagai bagian dari persyaratan memperoleh gelar Sarjana Komputer.
+[Standard] Tangerang, 2026
+[Standard] Menyetujui,
+[Standard] ________________________
+[Standard] Dr. Muhammad Subali, S.Si., M.T.
+[Standard] Dosen Pembimbing
+[Standard] Mengetahui,
+[Standard] ________________________
+[Standard] Wiranti Sri Utami, S.Kom., M.T.I.
+[Standard] Ketua Program Studi Teknik Informatika
+[Standard] ________________________
+[Standard] Dr. Ir. Debyo Saptono, S.T., M.T., M.I.Kom.
+[Standard] Dekan Fakultas Teknik
+[Standard] Catatan: Nama Ketua Penguji dan Anggota Penguji belum dicantumkan karena data tersebut belum diterima. Mohon dilengkapi sebelum berkas ini digunakan untuk keperluan resmi pendaftaran sidang.
+[Chapter*] Pernyataan Orisinalitas dan Publikasi
+[Plain] status collapsed addcontentsline{toc}{chapter}{Pernyataan Orisinalitas dan Publikasi}
+[Standard] Saya yang bertanda tangan di bawah ini:
+[Standard] Nama : Arsya Faturrahman
+[Standard] NPM : 2222105046
+[Standard] Program Studi : Teknik Informatika
+[Quote] 1. Skripsi dengan judul Implementasi Metode Naive Bayes dan Support Vector Machine untuk Klasifikasi Sentimen Ulasan Produk E-Commerce Berbasis Hugging Face Datasets dengan Integrasi REST API FastAPI dan Dashboard Next.js ini adalah hasil karya saya sendiri, dan seluruh sumber, baik yang dikutip maupun dirujuk, telah saya nyatakan dengan benar melalui sitasi dan Daftar Pustaka.
+[Quote] 2. Skripsi ini belum pernah diajukan untuk memperoleh gelar akademik apa pun, baik di Universitas Cendekia Abditama maupun di perguruan tinggi lain.
+[Quote] 3. Apabila di kemudian hari ditemukan bukti pelanggaran atas pernyataan ini, saya bersedia menerima sanksi akademik sesuai dengan peraturan yang berlaku di Universitas Cendekia Abditama, termasuk pencabutan gelar akademik yang telah diperoleh.
+[Quote] 4. Saya memberikan izin kepada Universitas Cendekia Abditama untuk mempublikasikan skripsi ini, baik sebagian maupun seluruhnya, dalam bentuk pangkalan data (repository) institusi untuk kepentingan akademik, dengan tetap mencantumkan nama saya sebagai penulis.
+[Standard] Demikian pernyataan ini saya buat dengan sebenar-benarnya dan penuh rasa tanggung jawab.
+[Standard] Tangerang, 2026
+[Standard] Yang membuat pernyataan,
+[Standard] Arsya Faturrahman
+[Standard] NPM: 2222105046
+[Chapter*] Abstrak
+[Plain] status collapsed addcontentsline{toc}{chapter}{Abstrak}
+[Standard] SentimenAI: Implementasi Metode Naive Bayes dan Support Vector Machine untuk Klasifikasi Sentimen Ulasan Produk E-Commerce Berbasis Hugging Face Datasets dengan Integrasi REST API FastAPI dan Dashboard Next.js
+[Standard] Penelitian ini dilatarbelakangi oleh inkonsistensi hasil penelitian terdahulu dalam membandingkan performa algoritma Naive Bayes dan Support Vector Machine (SVM) pada data ulasan berbahasa Indonesia, sehingga diperlukan pengujian ulang secara empiris pada dataset yang terstandarisasi. Penelitian ini bertujuan mengimplementasikan dan membandingkan kedua metode tersebut, membangun REST API berbasis FastAPI, mengembangkan dashboard interaktif berbasis Next.js yang dilengkapi fitur Generate Insight berbasis Large Language Model, serta menyediakan penyimpanan riwayat analisis berbasis SQLite, sehingga hasil validasi algoritma tidak berhenti sebagai angka di dalam laporan penelitian, melainkan terwujud sebagai sistem yang dapat digunakan secara nyata.
+[Standard] Metode penelitian menggunakan model pengembangan ADDIE, dengan dataset sepidmnorozy/Indonesian_sentiment dari Hugging Face Datasets (10.192 data), preprocessing empat tahap (case folding, penghapusan karakter, stopword removal, dan stemming menggunakan PySastrawi), ekstraksi fitur TF-IDF (ngram 1-2, 10.000 fitur), serta pelatihan model Multinomial Naive Bayes dan LinearSVC. Pengujian sistem dilakukan secara berlapis meliputi black box testing, white box testing, boundary testing, 5-fold cross validation, hyperparameter tuning menggunakan GridSearchCV, ablasi pengaruh preprocessing, error analysis, pengukuran response time API, dan heuristic evaluation.
+[Standard] Hasil penelitian menunjukkan SVM mengungguli Naive Bayes dengan akurasi 88,44% (presisi 88,35%, recall 88,44%, F1-score 88,36%) dibandingkan 87,56% pada Naive Bayes, konsisten pada pengujian 5-fold cross validation (standar deviasi ±0,29%). Hyperparameter tuning meningkatkan akurasi SVM menjadi 89,19%. Studi ablasi menemukan bahwa stopword removal menurunkan akurasi hingga 3,36 poin persentase karena turut menghapus kata negasi. Sistem berhasil diimplementasikan dengan enam belas endpoint REST API dan response time median 6,51 milidetik, serta dashboard dengan empat tab fungsional dan halaman Generate Insight.
+[Standard] Kata Kunci: Naive Bayes, Support Vector Machine, Analisis Sentimen, FastAPI, Next.js
+[Standard] Daftar Pustaka (2021-2026)
+[Chapter*] Abstract
+[Plain] status collapsed addcontentsline{toc}{chapter}{Abstract}
+[Standard] SentimenAI: Implementation of Naive Bayes and Support Vector Machine Methods for E-Commerce Product Review Sentiment Classification Based on Hugging Face Datasets with FastAPI REST API Integration and Next.js Dashboard
+[Standard] This research is motivated by the inconsistency of prior studies in comparing the performance of Naive Bayes and Support Vector Machine (SVM) algorithms on Indonesian-language review data, which calls for a renewed empirical evaluation on a standardized dataset. This study aims to implement and compare both methods, build a FastAPI-based REST API, develop an interactive Next.js dashboard equipped with a Large Language Model-based Generate Insight feature, and provide SQLite-based analysis history storage, so that the algorithm validation results do not merely remain as figures in a research report but are realized as a genuinely usable system.
+[Standard] The research method employed the ADDIE development model, using the sepidmnorozy/Indonesian_sentiment dataset from Hugging Face Datasets (10,192 data points), a four-stage preprocessing pipeline (case folding, character removal, stopword removal, and stemming using PySastrawi), TF-IDF feature extraction (1-2 ngram range, 10,000 features), and training of Multinomial Naive Bayes and LinearSVC models. System testing was conducted in multiple layers, including black box testing, white box testing, boundary testing, 5-fold cross validation, hyperparameter tuning using GridSearchCV, preprocessing ablation, error analysis, API response time measurement, and heuristic evaluation.
+[Standard] The results show that SVM outperformed Naive Bayes with an accuracy of 88.44% (precision 88.35%, recall 88.44%, F1-score 88.36%) compared to 87.56% for Naive Bayes, remaining consistent under 5-fold cross validation (standard deviation ±0.29%). Hyperparameter tuning improved SVM accuracy to 89.19%. The ablation study found that stopword removal decreased accuracy by up to 3.36 percentage points because it also removed negation words. The system was successfully implemented with twelve REST API endpoints and a median response time of 6.51 milliseconds, along with a dashboard featuring four functional tabs and a Generate Insight page.
+[Standard] Keywords: Naive Bayes, Support Vector Machine, Sentiment Analysis, FastAPI, Next.js
+[Standard] References (2021-2026)
+[Chapter*] Kata Pengantar
+[Plain] status collapsed addcontentsline{toc}{chapter}{Kata Pengantar}
+[Standard] Bismillahirrohmaanirrohim,
+[Standard] Segala puji dan syukur penulis panjatkan ke hadirat Allah SWT atas segala rahmat, karunia, serta hidayah-Nya sehingga penulis dapat menyelesaikan skripsi yang berjudul Implementasi Metode Naive Bayes dan Support Vector Machine untuk Klasifikasi Sentimen Ulasan Produk E-Commerce Berbasis Hugging Face Datasets dengan Integrasi REST API FastAPI dan Dashboard Next.js dengan baik dan tepat waktu.
+[Standard] Penulisan skripsi ini disusun sebagai salah satu syarat untuk memperoleh gelar Sarjana Komputer pada Program Studi Teknik Informatika, Fakultas Teknik, Universitas Cendekia Abditama. Penulis menyadari bahwa penyusunan skripsi ini tidak lepas dari bantuan, bimbingan, serta dukungan moral maupun material dari berbagai pihak. Oleh karena itu, pada kesempatan ini penulis ingin menyampaikan ucapan terima kasih yang sebesar-besarnya kepada:
+[Quote] 1. Dr. Muhammad Subali, S.Si., M.T., selaku Rektor Universitas Cendekia Abditama.
+[Quote] 2. Dekan Fakultas Teknik Universitas Cendekia Abditama, atas segala fasilitas dan dukungan yang diberikan selama masa perkuliahan.
+[Quote] 3. Ketua Program Studi Teknik Informatika Universitas Cendekia Abditama, atas arahan dan bimbingan akademik yang diberikan.
+[Quote] 4. Dr. Muhammad Subali, S.Si., M.T., selaku dosen pembimbing skripsi, atas segala waktu, kesabaran, arahan, dan ilmu yang telah diberikan kepada penulis selama proses penyusunan skripsi ini dari awal hingga selesai.
+[Quote] 5. Mama, Mbah, dan Umi tercinta, yang senantiasa menjadi motivasi terbesar penulis dalam menyelesaikan skripsi ini, atas segala doa, kasih sayang, pengorbanan, dan dukungan yang tiada henti diberikan kepada penulis.
+[Quote] 6. Seluruh dosen dan staf Program Studi Teknik Informatika Universitas Cendekia Abditama, atas ilmu pengetahuan yang telah diberikan selama masa perkuliahan.
+[Quote] 7. Seluruh rekan dan sahabat mahasiswa Teknik Informatika Universitas Cendekia Abditama, atas kebersamaan, bantuan, dan semangat yang diberikan selama proses perkuliahan dan penyusunan skripsi ini.
+[Standard] Penulis menyadari bahwa skripsi ini masih jauh dari kata sempurna dan memiliki keterbatasan, baik dari segi penulisan maupun substansi penelitian, sebagaimana telah diuraikan secara jujur pada Threats to Validity (Sub-bab 5.2). Oleh karena itu, penulis sangat mengharapkan kritik dan saran yang membangun dari berbagai pihak demi perbaikan di masa mendatang. Semoga Allah SWT senantiasa membalas segala kebaikan yang telah diberikan kepada penulis, dan semoga skripsi ini dapat memberikan manfaat bagi penulis khususnya, serta bagi pembaca dan pengembangan ilmu pengetahuan pada umumnya.
+[Standard] Wassalamu'alaikum warahmatullahi wabarakatuh.
+[Standard] Tangerang, 2026
+[Standard] Arsya Faturrahman
+[Standard] LatexCommand tableofcontents
+[Plain] status collapsed mainmatter
+[Chapter] Pendahuluan
+[Section] Latar Belakang
+[Standard] Penelitian ini secara eksplisit berangkat dari satu celah penelitian ( research gap ) yang konkret, bukan dari ketertarikan umum terhadap analisis sentimen semata. Celah tersebut adalah: belum ada penelitian yang menguji ulang performa Naive Bayes dan Support Vector Machine pada dataset ulasan berbahasa Indonesia yang terstandarisasi dan dapat direproduksi melalui Hugging Face Datasets , sekaligus membuktikan hasil pengujian tersebut pada sebuah sistem yang benar-benar beroperasi (bukan sekadar notebook eksperimen). Kedua sisi celah ini, sisi keilmuan (validitas empiris algoritma) dan sisi rekayasa (kelayakan produksi), akan ditunjukkan secara berurutan pada paragraf-paragraf berikut, dan menjadi benang merah yang menyatukan seluruh rumusan masalah dan tujuan penelitian pada Sub-bab 1.2 dan 1.4.
+[Standard] Pertumbuhan transaksi belanja daring di Indonesia dalam satu dekade terakhir telah mengubah pola interaksi antara konsumen dan pelaku usaha. Setiap transaksi yang terjadi di platform e-commerce hampir selalu diikuti oleh satu jejak digital yang sederhana namun bernilai tinggi: ulasan produk. Ulasan ini bukan sekadar komentar, melainkan representasi langsung dari pengalaman konsumen terhadap kualitas produk, kecepatan pengiriman, dan pelayanan penjual. Ketika volume ulasan bertambah hingga ribuan per bulan untuk satu toko sekalipun, kemampuan manusia untuk membaca dan menyimpulkan kecenderungan sentimen secara manual menjadi tidak realistis. Dari kebutuhan inilah analisis sentimen, yaitu proses klasifikasi opini teks ke dalam kategori positif atau negatif secara otomatis, menjadi relevan untuk dikaji dan diimplementasikan.
+[Standard] Dua algoritma klasifikasi yang paling sering dijadikan rujukan dalam penelitian analisis sentimen berbahasa Indonesia adalah Naive Bayes dan Support Vector Machine (SVM). Kedua algoritma ini dipilih bukan tanpa alasan: keduanya ringan secara komputasi, tidak memerlukan data berlabel dalam jumlah masif seperti model deep learning , dan telah terbukti bekerja baik pada data teks berdimensi tinggi hasil representasi TF-IDF. Namun demikian, penelusuran terhadap penelitian-penelitian terdahulu justru menunjukkan hasil yang saling bertolak belakang, dan di sinilah letak sisi pertama dari celah penelitian yang disebutkan di paragraf pembuka. Sanjaya, Fauzi, dan Masruriyah (2023) yang meneliti 2.000 ulasan Shopee melaporkan bahwa Naive Bayes justru mengungguli SVM, dengan akurasi 85% berbanding 81% dan nilai AUC 0,855 berbanding 0,810. Sebaliknya, Apriyani, Nur, dan Astuti (2024) yang meneliti ulasan aplikasi Mobile JKN menemukan bahwa SVM secara konsisten mengungguli Naive Bayes pada seluruh skenario pembagian data latih dan uji (70:30, 80:20, dan 90:10), dengan keunggulan yang paling menonjol pada aspek presisi. Temuan yang lebih ekstrem datang dari penelitian Zahra, dkk. (2026) pada 65.335 ulasan Tokopedia, di mana Linear SVC mencapai akurasi 97,60%, jauh meninggalkan Naive Bayes maupun model IndoBERT yang telah di-fine-tune sekalipun.
+[Standard] Pertentangan hasil di atas mengarah pada satu simpulan penting: performa relatif antara Naive Bayes dan SVM sangat bergantung pada karakteristik dataset yang digunakan, mulai dari ukuran data, keseimbangan kelas, hingga gaya bahasa ulasan itu sendiri. Konsekuensinya, klaim keunggulan salah satu algoritma dari satu penelitian tidak dapat digeneralisasi begitu saja ke konteks data lain. Hal ini menjadi celah penelitian ( research gap ) yang mendasari perlunya pengujian ulang kedua algoritma tersebut secara khusus pada data ulasan e-commerce berbahasa Indonesia yang terstandarisasi, alih-alih hanya mengutip hasil dari penelitian lain.
+[Standard] Untuk menjamin data yang digunakan benar-benar terstandarisasi dan dapat direproduksi oleh peneliti lain, penelitian ini memanfaatkan Hugging Face Datasets sebagai sumber data. Lhoest, dkk. (2021) menjelaskan bahwa Datasets dirancang khusus untuk mengatasi persoalan standardisasi, versioning, dan dokumentasi yang selama ini menjadi kendala dalam penelitian NLP; setiap dataset diakses melalui satu baris kode, dikunci pada versi tertentu, dan didukung lebih dari 650 dataset publik yang telah didokumentasikan komunitas. Dataset sepidmnorozy/Indonesian_sentiment yang tersedia pada platform ini dipilih karena telah berisi ulasan produk berbahasa Indonesia dengan label biner yang siap pakai, sehingga penelitian ini dapat berfokus pada perbandingan algoritma tanpa harus menanggung bias dari proses pelabelan manual seperti yang dihadapi banyak penelitian lain.
+[Standard] Selain isu perbandingan algoritma, penelusuran pustaka juga menunjukkan sisi kedua dari celah penelitian yang disebutkan di paragraf pembuka: sebagian besar penelitian analisis sentimen berhenti pada tahap pelaporan angka akurasi di dalam artikel ilmiah, tanpa membungkusnya menjadi sebuah sistem yang benar-benar dapat digunakan. Danyal, dkk. (2023) misalnya, membandingkan delapan algoritma pada dua dataset ulasan film berbahasa Inggris dan berhasil menunjukkan Linear SVM unggul pada dataset besar (89,48%) sedangkan Multinomial Naive Bayes unggul pada dataset yang lebih kecil dan sulit (70,69%), namun kontribusi tersebut berhenti sebagai perbandingan model di atas kertas. Demikian pula Ali, dkk. (2024) yang menguji delapan pendekatan machine learning , deep learning , hingga transformer (BERT, XLNet) pada 400.000 ulasan Amazon, memperoleh BERT sebagai model terbaik (89%) namun laporan tersebut tetap berhenti pada tahap eksperimen offline. Padahal, agar hasil klasifikasi sentimen benar-benar bermanfaat bagi pelaku bisnis e-commerce , model yang telah dilatih perlu dibungkus dalam layanan yang dapat diakses secara real-time , ditampilkan secara visual, dan dapat diaudit riwayatnya.
+[Standard] Kebutuhan inilah yang mendorong penelitian ini untuk tidak berhenti pada pelatihan dan evaluasi model, melainkan melanjutkannya menjadi sebuah sistem utuh bernama SentimenAI. Model Naive Bayes dan SVM yang telah dilatih dibungkus ke dalam REST API menggunakan FastAPI, mengikuti pola integrasi yang juga diterapkan Maulyanda dan Nazhifah (2025) yang membuktikan SVM dapat diintegrasikan langsung ke FastAPI untuk analisis sentimen kesehatan mental, kemudian disajikan melalui dashboard interaktif berbasis Next.js yang memanfaatkan kemampuan server-side rendering untuk performa pemuatan halaman yang lebih baik (Jartarghar, dkk.). Pendekatan menggabungkan model klasik dengan infrastruktur data modern (Hugging Face) dan antarmuka web modern (Next.js dan FastAPI) inilah yang menjadi pembeda penelitian ini dari sekadar replikasi perbandingan algoritma yang sudah banyak dilakukan sebelumnya.
+[Standard] Sebagai pembanding tambahan atas relevansi pilihan metode, penelitian Latifah, dkk. (2026) pada data opini kebijakan Tapera menunjukkan bahwa untuk dataset berskala kecil hingga menengah (di bawah 12.000 sampel), kombinasi pelabelan berbasis leksikon dengan model machine learning klasik seperti Naive Bayes dan Random Forest tetap memberikan hasil yang solid (di atas 85%) dengan biaya komputasi yang jauh lebih efisien dibandingkan model Transformer, yang justru membutuhkan penyesuaian ( fine-tuning ) yang cermat agar dapat bersaing. Temuan ini memperkuat posisi penelitian ini yang memilih Naive Bayes dan SVM sebagai fondasi utama sistem, bukan karena ketertinggalan teknologi, melainkan karena pertimbangan efisiensi dan kelayakan praktis untuk diimplementasikan sebagai layanan API yang responsif.
+[Standard] Berdasarkan seluruh uraian di atas, penelitian ini dirancang dengan tiga niat yang saling berkaitan: pertama, menguji ulang secara empiris performa Naive Bayes dan SVM pada dataset ulasan e-commerce Indonesia yang terstandarisasi dari Hugging Face, mengingat hasil penelitian terdahulu yang tidak konsisten; kedua, membuktikan bahwa kedua algoritma klasik tersebut tetap layak dan efisien untuk dibungkus menjadi layanan REST API produksi, bukan sekadar model eksperimen di notebook; dan ketiga, menghadirkan lapisan interpretasi tambahan berbasis Large Language Model (Gemini API) pada dashboard , sehingga keluaran sistem tidak berhenti pada angka dan label, melainkan dapat langsung dipahami dan ditindaklanjuti oleh pengguna non-teknis seperti tim manajemen atau pemasaran e-commerce .
+[Section] Rumusan Masalah
+[Quote] 1. Bagaimana mengimplementasikan metode Naive Bayes dan Support Vector Machine untuk klasifikasi sentimen ulasan produk e-commerce berbasis dataset sepidmnorozy/Indonesian_sentiment dari Hugging Face Datasets secara sistematis dengan tahapan preprocessing terstandarisasi meliputi case folding , penghapusan karakter khusus, stopword removal PySastrawi, dan stemming morfologis?
+[Quote] 2. Manakah di antara metode Naive Bayes dan Support Vector Machine yang menghasilkan akurasi, presisi, recall, dan F1-score lebih tinggi pada dataset ulasan produk e-commerce berbahasa Indonesia, mengingat hasil penelitian terdahulu pada dataset lain (Sanjaya dkk., 2023; Apriyani dkk., 2024; Zahra dkk., 2026) menunjukkan hasil yang saling bertentangan?
+[Quote] 3. Bagaimana merancang dan mengimplementasikan REST API berbasis FastAPI yang mampu menyajikan layanan klasifikasi sentimen dengan dukungan prediksi individual, preprocessing step-by-step, pemrosesan batch CSV, dan dokumentasi Swagger/OpenAPI yang lengkap?
+[Quote] 4. Bagaimana merancang dashboard interaktif berbasis Next.js yang mampu memvisualisasikan hasil klasifikasi sentimen secara real-time , menampilkan proses preprocessing step-by-step, dan menyajikan halaman Generate Insight yang terintegrasi dengan Large Language Model (Gemini API) untuk menjawab pertanyaan kontekstual manajemen internal secara naratif?
+[Quote] 5. Bagaimana merancang sistem penyimpanan riwayat analisis sentimen secara permanen menggunakan database SQLite agar data tidak hilang saat server di-restart dan dapat diakses kembali untuk keperluan audit, pelaporan, serta sebagai basis konteks data bagi fitur tanya-jawab Generate Insight?
+[Section] Batasan Masalah
+[Quote] 1. Dataset ulasan yang digunakan bersumber dari Hugging Face Datasets , khususnya dataset sepidmnorozy/Indonesian_sentiment yang berisi ulasan produk berbahasa Indonesia berlabel biner (positif dan negatif), dan tidak mencakup pengumpulan data langsung dari platform e-commerce melalui web scraping .
+[Quote] 2. Sistem mendukung dua jenis input : teks ulasan tunggal secara manual melalui antarmuka dashboard , dan upload berkas CSV berisi kumpulan ulasan untuk pemrosesan batch massal.
+[Quote] 3. Klasifikasi sentimen terbatas pada dua kategori: positif (label=1) dan negatif (label=0), sesuai label yang tersedia pada dataset sepidmnorozy/Indonesian_sentiment; penelitian ini tidak mencakup klasifikasi tiga kelas (dengan kategori netral) sebagaimana yang dilakukan pada beberapa penelitian pembanding (Ali dkk., 2024; Zahra dkk., 2026).
+[Quote] 4. Metode klasifikasi yang dibandingkan terbatas pada Multinomial Naive Bayes dan LinearSVC (SVM kernel linear); metode deep learning maupun pretrained language model seperti IndoBERT tidak dilatih ulang dalam penelitian ini, namun hasilnya pada penelitian lain (Ali dkk., 2024; Zahra dkk., 2026; Latifah dkk., 2026) tetap dijadikan bahan pembanding pada pembahasan.
+[Quote] 5. Fitur tanya-jawab pada halaman Generate Insight menggunakan Large Language Model eksternal (Google Gemini API) yang berperan sebagai lapisan interpretasi naratif atas data hasil klasifikasi yang sudah ada; LLM tidak digunakan sebagai metode klasifikasi sentimen utama.
+[Quote] 6. Pengembangan sistem menggunakan Python 3.12, FastAPI 0.109.0, scikit-learn 1.4.0, PySastrawi 1.2.0, SQLite (bawaan Python), Next.js 14.2.35, Re chart s, dan Axios sebagai stack teknologi utama.
+[Quote] 7. Penyimpanan data menggunakan SQLite sebagai basis data lokal berbasis berkas; sistem tidak menggunakan basis data server seperti PostgreSQL atau MySQL.
+[Quote] 8. Pengujian sistem dilakukan menggunakan black box testing untuk fungsionalitas, white box testing untuk memverifikasi tahapan preprocessing, k-fold cross validation untuk stabilitas model, dan confusion matrix untuk evaluasi performa klasifikasi.
+[Quote] 9. Sistem dijalankan pada lingkungan lokal (localhost) dan tidak mencakup deployment ke server produksi atau layanan cloud .
+[Section] Tujuan Penelitian
+[Standard] Sejalan dengan celah penelitian yang telah diuraikan pada Sub-bab 1.1, penelitian ini memiliki satu tujuan besar yang tunggal: membangun dan membuktikan secara empiris bahwa sistem klasifikasi sentimen berbasis Naive Bayes dan SVM dapat direalisasikan secara utuh, dari validasi algoritma hingga menjadi layanan produksi yang dapat diakses dan diaudit. Kelima poin di bawah ini bukan lima penelitian yang berdiri sendiri, melainkan lima tahapan berurutan untuk mencapai satu tujuan besar tersebut: dimulai dari implementasi model (poin 1), dilanjutkan pembuktian keunggulan model melalui pengujian empiris (poin 2), kemudian dibungkus menjadi layanan API (poin 3), disajikan melalui antarmuka pengguna (poin 4), dan ditutup dengan mekanisme penyimpanan data yang menopang seluruh tahapan sebelumnya (poin 5).
+[Quote] 1. Mengimplementasikan metode Multinomial Naive Bayes dan Support Vector Machine (LinearSVC) untuk klasifikasi sentimen ulasan produk e-commerce berbasis dataset sepidmnorozy/Indonesian_sentiment dari Hugging Face Datasets melalui tahapan case folding , penghapusan karakter khusus, stopword removal PySastrawi, stemming morfologis, dan ekstraksi fitur TF-IDF.
+[Quote] 2. Membandingkan performa Naive Bayes dan SVM berdasarkan metrik akurasi, presisi, recall, dan F1-score untuk memperoleh bukti empiris baru pada konteks data ulasan e-commerce berbahasa Indonesia, mengingat inkonsistensi hasil pada penelitian-penelitian terdahulu.
+[Quote] 3. Merancang dan mengimplementasikan REST API berbasis FastAPI 0.109.0 yang menyajikan layanan mencakup prediksi sentimen tunggal, perbandingan dual model, preprocessing step-by-step, pemrosesan batch CSV eksternal, riwayat analisis, statistik sentimen, evaluasi model, integrasi Large Language Model, dan dokumentasi Swagger/OpenAPI lengkap.
+[Quote] 4. Mengembangkan dashboard interaktif berbasis Next.js 14 yang memvisualisasikan hasil klasifikasi secara real-time menggunakan Re chart s, menampilkan detail preprocessing step-by-step, distribusi sentimen, perbandingan model, serta halaman Generate Insight yang dilengkapi kolom tanya-jawab berbasis Gemini API untuk rekomendasi strategis kontekstual.
+[Quote] 5. Merancang sistem penyimpanan riwayat analisis menggunakan database SQLite yang memastikan data tersimpan permanen, tidak hilang saat server di-restart, dapat diakses melalui endpoint /riwayat dan /statistik untuk kebutuhan audit dan pelaporan, serta berfungsi sebagai sumber konteks data real-time bagi fitur tanya-jawab Generate Insight.
+[Section] Manfaat Penelitian
+[Subsection] Manfaat Teoritis
+[Standard] Secara teoritis, penelitian ini memberikan bukti empiris tambahan pada perdebatan performa Naive Bayes versus SVM dalam konteks data ulasan e-commerce berbahasa Indonesia, sekaligus menjadi rujukan bagi penelitian selanjutnya mengenai integrasi model machine learning klasik ke dalam arsitektur REST API modern dan dashboard berbasis Next.js.
+[Subsection] Manfaat Praktis
+[Standard] Secara praktis, sistem SentimenAI dapat digunakan oleh pelaku usaha e-commerce skala kecil hingga menengah untuk memantau sentimen pelanggan secara mandiri tanpa memerlukan tim data science internal, sekaligus memperoleh rekomendasi strategis naratif melalui fitur Generate Insight yang membantu pengambilan keputusan berbasis data.
+[Section] Sistematika Penulisan
+[Standard] Skripsi ini disusun ke dalam lima bab yang saling berkesinambungan. Bab 1 Pendahuluan menguraikan latar belakang, rumusan masalah, batasan masalah, tujuan, dan manfaat penelitian. Bab 2 Tinjauan Pustaka membahas penelitian terdahulu yang relevan serta kajian teoritis atas seluruh konsep dan teknologi yang digunakan. Bab 3 Metode Penelitian menjelaskan tahapan penelitian dari analisis hingga evaluasi, dilengkapi flow chart , diagram, dan dokumentasi kode. Bab 4 Hasil dan Pembahasan menyajikan hasil implementasi, hasil pengujian sistem dan model, serta pembahasan yang menghubungkan temuan penelitian ini dengan penelitian terdahulu. Bab 5 Penutup memuat kesimpulan yang menjawab rumusan masalah serta saran pengembangan selanjutnya.
+[Chapter] Tinjauan Pustaka
+[Section] Penelitian Terdahulu
+[Standard] Bagian ini menelaah sembilan rujukan utama yang menjadi dasar pijakan penelitian, mulai dari penelitian yang secara langsung membandingkan Naive Bayes dan SVM pada berbagai domain ulasan, penelitian yang membangun infrastruktur data (Hugging Face Datasets ), hingga penelitian yang menyentuh sisi rekayasa perangkat lunak (Next.js). Penelaahan dilakukan bukan sekadar merangkum satu per satu, melainkan juga membandingkan temuan antar penelitian untuk menunjukkan di titik mana penelitian ini memiliki kebaruan.
+[Subsubsection] Perbandingan Naive Bayes dan SVM pada Ulasan Shopee (Sanjaya, Fauzi, & Masruriyah, 2023)
+[Standard] Penelitian yang dimuat pada jurnal INFOTECH ini mengumpulkan 2.000 ulasan produk dari marketplace Shopee melalui teknik scraping , kemudian membaginya dengan rasio 80:20 untuk data latih dan data uji. Tahapan preprocessing yang diterapkan meliputi case folding , tokenizing , filtering (penghapusan stopword), dan stemming , sebelum data diubah menjadi representasi numerik menggunakan TF-IDF. Visualisasi Word Cloud turut digunakan untuk menampilkan kata-kata yang paling sering muncul pada masing-masing kelas sentimen. Hasil pengujian menunjukkan Naive Bayes memperoleh akurasi 85% dengan nilai AUC 0,855, mengungguli SVM yang hanya mencapai akurasi 81% dengan AUC 0,810. Sanjaya, dkk. berargumen bahwa keunggulan Naive Bayes ini terjadi karena asumsi independensi antar kata pada model probabilistik tersebut ternyata cukup relevan dengan pola kata pada ulasan singkat khas marketplace, di mana korelasi antar kata tidak terlalu kompleks. Bagi penelitian ini, temuan Sanjaya dkk. menjadi salah satu argumen kunci yang menunjukkan bahwa Naive Bayes tidak boleh dipandang sebelah mata hanya karena kesederhanaan modelnya, sehingga kedua algoritma tetap layak diuji secara berimbang, bukan diasumsikan salah satu lebih unggul sejak awal.
+[Subsubsection] Klasifikasi Multi-Kelas pada Ulasan Amazon dengan Machine Learning, Deep Learning, dan Transformer (Ali, Hashmi, Yayilgan, & Shaikh, 2024)
+[Standard] Berbeda dari penelitian Sanjaya dkk. yang berskala kecil, penelitian yang dipublikasikan pada jurnal Electronics (MDPI) ini menguji delapan pendekatan sekaligus pada 400.000 ulasan Amazon lintas lima kategori produk, mencakup model machine learning klasik (Multinomial Naive Bayes, Random Forest, Decision Tree, Logistic Regression), model ensemble (bagging), model deep learning (CNN, BiLSTM), hingga model transformer (BERT dan XLNet) untuk klasifikasi sentimen tiga kelas (positif, netral, negatif). Hasil penelitian menunjukkan BERT sebagai model dengan performa terbaik dengan akurasi 89%, mengungguli seluruh model klasik maupun deep learning lainnya, bahkan melampaui hasil penelitian pembanding lain pada dataset serupa yang hanya mencapai akurasi 71,5%. Ali, dkk. juga menerapkan teknik interpretability LIME untuk menjelaskan kata-kata yang paling memengaruhi keputusan klasifikasi model, serta melakukan analisis kesalahan ( error analysis ) untuk memahami pola ulasan yang sering salah diklasifikasikan, terutama pada kelas netral yang secara linguistik memang paling ambigu. Penelitian ini menjadi rujukan penting untuk menunjukkan batas atas performa yang secara teoritis dapat dicapai apabila model yang jauh lebih kompleks digunakan, sekaligus mengingatkan bahwa kompleksitas tersebut datang dengan konsekuensi biaya komputasi yang tidak sebanding untuk sistem berskala kecil-menengah seperti yang menjadi sasaran penelitian ini.
+[Subsubsection] Hugging Face Datasets: Standardisasi Dataset untuk Riset NLP (Lhoest dkk., 2021)
+[Standard] Penelitian ini berbeda karakter dari dua penelitian sebelumnya karena tidak membahas algoritma klasifikasi, melainkan membahas infrastruktur data yang mendasari penelitian NLP modern. Dipublikasikan pada prosiding EMNLP: System Demonstrations, Lhoest, dkk. memperkenalkan pustaka Hugging Face Datasets yang dirancang untuk mengatasi tiga persoalan utama riset NLP: kurangnya standardisasi format dataset , sulitnya menelusuri versi dataset yang digunakan pada suatu eksperimen, serta minimnya dokumentasi ( data card ) yang menyertai dataset publik. Pustaka ini dibangun di atas format kolumnar Apache Arrow sehingga mampu memuat dataset berukuran sangat besar tanpa membebani memori ( memory-mapping dan streaming ), serta pada saat publikasi telah mendukung lebih dari 650 dataset dan puluhan metrik evaluasi yang dikurasi komunitas. Lhoest, dkk. turut menunjukkan studi kasus penggunaan Datasets pada proyek benchmarking multi-tugas seperti GEM dan Robustness Gym untuk membuktikan reprodusibilitas eksperimen lintas peneliti. Bagi penelitian ini, karya Lhoest dkk. menjadi landasan metodologis langsung karena dataset sepidmnorozy/Indonesian_sentiment yang digunakan diakses melalui pustaka yang sama, sehingga proses pemuatan data pada penelitian ini terjamin konsisten dan dapat direproduksi oleh peneliti lain dengan satu baris kode yang sama persis.
+[Subsubsection] Perbandingan Algoritma Klasik pada Ulasan Film Berbahasa Inggris (Danyal, Khan, Khan, Ghaffar, Khan, & Arshad, 2023)
+[Standard] Dipublikasikan pada Journal of Big Data, penelitian ini menguji delapan algoritma klasik, termasuk Linear SVM (LSVM) dan Multinomial Naive Bayes (MNB), pada dua dataset ulasan film berbahasa Inggris, yaitu IMDB (50.000 ulasan) dan Sentiment Polarity v2.0 milik Pang dan Lee. Preprocessing yang diterapkan cukup menyeluruh, meliputi pembersihan teks, stemming menggunakan algoritma Snowball, normalisasi huruf, hingga penanganan kata gaul ( chat word treatment ) sebelum representasi TF-IDF dibentuk. Hasil penelitian menunjukkan pola yang menarik dan relevan bagi penelitian ini: pada dataset IMDB yang besar dan relatif bersih, LSVM tampil sebagai model terbaik dengan akurasi 89,48% (meningkat menjadi 89,96% setelah hyperparameter tuning ), sedangkan pada dataset Sentiment Polarity v2.0 yang lebih kecil dan lebih menantang, justru MNB yang tampil terbaik dengan akurasi 70,69% (meningkat menjadi 71,04% setelah tuning). Danyal, dkk. menyimpulkan bahwa ukuran dan kompleksitas dataset menjadi faktor penentu utama algoritma mana yang lebih unggul, bukan superioritas algoritma itu sendiri secara mutlak. Simpulan inilah yang secara langsung menguatkan argumen penelitian ini bahwa perbandingan Naive Bayes dan SVM perlu dilakukan ulang secara spesifik pada karakteristik dataset ulasan e-commerce Indonesia, alih-alih mengasumsikan hasil dari dataset berbahasa Inggris akan berlaku sama.
+[Subsubsection] Perbandingan Naive Bayes dan SVM pada Ulasan Aplikasi Mobile JKN (Apriyani, Nur, & Astuti, 2024)
+[Standard] Penelitian yang dimuat pada Knowbase Journal ini paling dekat konteksnya dengan penelitian ini karena sama-sama berfokus pada data berbahasa Indonesia dan sama-sama membandingkan Naive Bayes dengan SVM. Data penelitian berupa 200 ulasan aplikasi Mobile JKN yang diambil dari Twitter dan diberi label secara manual oleh dua orang penilai (rater) untuk menjaga validitas label. Tahapan preprocessing mencakup cleansing, case folding , normalisasi kata baku mengacu pada KBBI, tokenizing , penghapusan stopword, dan stemming , sebelum representasi TF-IDF dibentuk. Pengujian dilakukan pada tiga rasio pembagian data (70:30, 80:20, dan 90:10) untuk melihat konsistensi hasil. Hasil penelitian menunjukkan SVM secara konsisten mengungguli Naive Bayes pada seluruh rasio pembagian data, dengan performa terbaik pada rasio 80:20 yang mencapai presisi hingga 93-100% tergantung penilai yang menjadi acuan label, sedangkan Naive Bayes cenderung memiliki recall yang tinggi namun presisi yang lebih rendah, mengindikasikan model tersebut lebih sering melakukan false positive. Berbeda dengan Sanjaya, dkk. (2023) yang menemukan Naive Bayes lebih unggul pada ulasan Shopee, penelitian Apriyani, dkk. justru menunjukkan hasil sebaliknya pada konteks data yang juga berbahasa Indonesia. Kontradiksi langsung antara dua penelitian berbahasa Indonesia inilah yang menjadi motivasi paling kuat bagi penelitian ini untuk tidak berasumsi dan melakukan pengujian mandiri.
+[Subsubsection] Benchmarking Model Klasik dan IndoBERT pada Ulasan Tokopedia (Zahra, Farhanatussaidah, Afifah, Muthoharoh, Satria, & Manullang, 2026)
+[Standard] Penelitian pracetak (arXiv) yang paling baru ini menguji empat pendekatan sekaligus, yaitu Logistic Regression, Linear SVC, Multinomial Naive Bayes, dan model IndoBERT yang di-fine-tune, pada 65.335 ulasan produk Tokopedia tahun 2025 yang diambil dari Kaggle dengan tiga label sentimen (positif, netral, negatif). Preprocessing yang diterapkan relatif ringan ( lowercasing , penghapusan URL, penghapusan karakter non-alfanumerik, dan normalisasi spasi) karena representasi TF-IDF dengan kombinasi unigram dan bigram (ngram_range 1-2, max_features 50.000) serta penyeimbangan kelas ( class_weight balanced ) diandalkan untuk menangani ketidakseimbangan data. Hasil penelitian menunjukkan Linear SVC tampil sebagai model terbaik secara mengejutkan dengan akurasi 97,60%, jauh melampaui Multinomial Naive Bayes yang meski memiliki akurasi tinggi namun memiliki F1-score makro yang rendah (0,329) akibat sangat sensitif terhadap ketidakseimbangan kelas, bahkan melampaui IndoBERT yang di-fine-tune (akurasi 88,70%, F1-score makro 0,509) yang performanya tertahan karena keterbatasan ukuran subset data latih yang digunakan untuk fine-tuning . Zahra, dkk. turut mendemonstrasikan penerapan model terbaik pada layanan Gradio yang di- deploy melalui Hugging Face Spaces. Penelitian ini menjadi bukti paling mutakhir dan paling meyakinkan bagi penelitian ini bahwa model klasik seperti SVM, ketika direpresentasikan dengan fitur TF-IDF yang tepat, masih mampu bersaing bahkan mengungguli model Transformer pada data ulasan e-commerce berskala besar, sekaligus menjadi preseden praktik baik bagi pembungkusan model ke dalam layanan yang dapat diakses publik, sebagaimana yang diadaptasi penelitian ini melalui REST API FastAPI dan dashboard Next.js.
+[Subsubsection] Strategi Pelabelan Otomatis untuk Analisis Sentimen Berbahasa Indonesia (Latifah, Handayanto, Dwi M.S, Bhandari, Hien, & Pirnazarov, 2026)*-
+[Standard] Penelitian yang dimuat pada jurnal ASSET ini mengangkat persoalan yang jarang disorot penelitian analisis sentimen lain, yaitu bagaimana strategi pelabelan data memengaruhi performa model akhir, menggunakan studi kasus 8.447 twit terkait kebijakan Tapera. Latifah, dkk. membandingkan dua strategi pelabelan otomatis, yaitu leksikon InSet dan pipeline IndoBERT bawaan Hugging Face, yang kemudian masing-masing dipasangkan dengan beberapa model klasifikasi. Hasil penelitian menunjukkan kombinasi label InSet dengan model klasik seperti Naive Bayes dan Random Forest yang direpresentasikan TF-IDF memberikan akurasi di atas 85% dengan F1-score antara 0,89 hingga 0,95, sedangkan kombinasi label InSet dengan model RNN-LSTM memang mencapai akurasi di atas 90% namun menuntut sumber daya komputasi yang jauh lebih besar. Menariknya, kombinasi label hasil pipeline Hugging Face dengan representasi TF-IDF pada model Random Forest maupun LSTM justru menghasilkan performa yang buruk (hanya 0,6 hingga 0,7), yang oleh Latifah, dkk. dijelaskan terjadi karena representasi TF-IDF gagal menangkap konteks kalimat yang justru menjadi kekuatan utama label berbasis Transformer; performa baru membaik signifikan ketika IndoBERT di-fine-tune langsung menggunakan label dari pipeline tersebut. Simpulan penelitian ini menegaskan bahwa untuk dataset berskala kecil hingga menengah, kombinasi leksikon dengan model klasik tetap menjadi pilihan yang efisien dan kompetitif, sebuah argumen yang relevan langsung dengan pemilihan Naive Bayes dan SVM pada penelitian ini.
+[Subsubsection] Peningkatan Performa Web Menggunakan Server-Side Rendering pada Next.js (Jartarghar, Salanke, A.R, G.S, & Dalali)
+[Standard] Berbeda dari delapan rujukan lain yang berfokus pada sisi algoritma dan data, penelitian yang dimuat pada Journal of Telecommunication, Electronic and Computer Engineering (JTEC) ini membahas sisi rekayasa perangkat lunak, khususnya keunggulan pendekatan server-side rendering (SSR) yang ditawarkan framework Next.js dibandingkan pendekatan client-side rendering (CSR) konvensional pada aplikasi berbasis React. Penelitian ini menunjukkan bahwa SSR mampu mempercepat waktu pemuatan konten pertama (First Contentful Paint) dan memperbaiki keterindeksan mesin pencari (SEO), karena markup halaman telah dirender di sisi server sebelum dikirim ke klien, alih-alih menunggu seluruh berkas JavaScript diunduh dan dieksekusi di peramban terlebih dahulu sebagaimana pada aplikasi React murni. Argumen inilah yang menjadi salah satu pertimbangan teknis penelitian ini dalam memilih Next.js sebagai kerangka kerja frontend dashboard SentimenAI, mengingat dashboard perlu memuat data statistik dan grafik dalam volume yang tidak sedikit secara responsif bagi pengguna.
+[Subsubsection] Integrasi SVM ke FastAPI untuk Analisis Sentimen Kesehatan Mental (Maulyanda & Nazhifah, 2025)
+[Standard] Penelitian yang dimuat pada jurnal Brilliance: Research of Artificial Intelligence ini paling relevan dengan sisi rekayasa perangkat lunak penelitian ini, karena secara khusus membahas integrasi model SVM ke dalam REST API berbasis FastAPI untuk analisis sentimen ulasan terkait kesehatan mental. Maulyanda dan Nazhifah mendemonstrasikan bahwa model SVM yang telah dilatih dapat dibungkus menjadi endpoint prediksi yang responsif menggunakan FastAPI, lengkap dengan dokumentasi otomatis Swagger/OpenAPI, tanpa memerlukan penyesuaian arsitektur model yang signifikan. Penelitian tersebut menunjukkan bahwa FastAPI, dengan validasi data otomatis berbasis Pydantic, mampu menjaga konsistensi format data antara proses pelatihan model dan proses inferensi pada waktu nyata ( real-time inference), sebuah pola yang secara langsung direplikasi pada implementasi endpoint /prediksi penelitian ini (Sub-bab 3.1.3.3). Berbeda dari penelitian Maulyanda dan Nazhifah yang berfokus pada satu domain (kesehatan mental) dan satu model (SVM saja), penelitian ini memperluas pola integrasi tersebut menjadi enam belas endpoint yang mencakup dua model sekaligus (NB dan SVM) serta lapisan interpretasi tambahan berbasis Large Language Model, sebagaimana dirinci pada Tabel 3.1.
+[Subsection] Sintesis dan Posisi Penelitian
+[Standard] Apabila kesembilan penelitian di atas dirangkai, tergambar satu benang merah yang jelas. Pada sisi algoritma, hasil perbandingan Naive Bayes dan SVM ternyata tidak pernah konsisten di penelitian-penelitian ini; Sanjaya, dkk. (2023) memenangkan Naive Bayes pada ulasan Shopee, Apriyani, dkk. (2024) memenangkan SVM pada ulasan Mobile JKN, Danyal, dkk. (2023) menemukan pemenang berbeda tergantung ukuran dataset , dan Zahra, dkk. (2026) memenangkan SVM secara telak pada dataset besar Tokopedia. Pola yang sama juga berulang pada perbandingan model klasik dengan Transformer: Ali, dkk. (2024) dan sebagian hasil Zahra, dkk. (2026) menunjukkan Transformer unggul, namun Latifah, dkk. (2026) menunjukkan model klasik tetap kompetitif bahkan lebih efisien pada dataset kecil-menengah. Pada sisi rekayasa perangkat lunak, Lhoest, dkk. (2021) menyediakan fondasi standardisasi data, Jartarghar, dkk. menyediakan fondasi rekayasa antarmuka, dan Maulyanda dan Nazhifah (2025) menyediakan preseden integrasi SVM ke FastAPI meskipun hanya pada satu model dan satu domain. Tidak ada satu pun dari kesembilan penelitian ini yang menggabungkan seluruh aspek tersebut (validasi algoritma ganda, standardisasi data, REST API , dan antarmuka pengguna) ke dalam satu sistem utuh yang siap pakai; sebagian besar berhenti pada tahap pelaporan metrik di dalam artikel ilmiah. Posisi penelitian ini adalah mengisi celah tersebut: menguji ulang Naive Bayes dan SVM pada data ulasan berbahasa Indonesia yang terstandarisasi dari Hugging Face Datasets , kemudian membungkus hasilnya menjadi REST API FastAPI dan dashboard Next.js yang dilengkapi lapisan interpretasi berbasis Large Language Model, sebagai satu kesatuan sistem SentimenAI yang dapat langsung digunakan, bukan sekadar dilaporkan.
+[Plain] placement H wide false sideways false status open Ringkasan Penelitian Terdahulu
+[Plain] LatexCommand label name "tab:ringkasan_penelitian_terdahulu"
+[Plain] <lyxtabular version="3" rows="12" columns="4"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="1.2cm"> <column alignment="none" valignment="top" width="3.31cm"> <column alignment="none" valignment="top" width="5.12cm"> <column alignment="none" valignment="top" width="4.82cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] 1
+[Plain] Sanjaya, Fauzi, & Masruriyah (2023)
+[Plain] 2.000 ulasan Shopee; NB vs SVM; TF-IDF
+[Plain] NB unggul (85%) atas SVM (81%)
+[Plain] 2
+[Plain] Ali, Hashmi, Yayilgan, & Shaikh (2024)
+[Plain] 400.000 ulasan Amazon; ML/DL/Transformer 3-kelas
+[Plain] BERT terbaik (89%), LIME untuk interpretability
+[Plain] 3
+[Plain] Lhoest dkk. (2021)
+[Plain] Pustaka Hugging Face Datasets; 650+ dataset
+[Plain] Standardisasi & reprodusibilitas data NLP
+[Plain] 4
+[Plain] Danyal, Khan, Khan, Ghaffar, Khan, & Arshad (2023)
+[Plain] IMDB 50k & Polarity v2.0; 8 algoritma klasik
+[Plain] LSVM terbaik di data besar (89,48%), MNB terbaik di data kecil (70,69%)
+[Plain] 5
+[Plain] Apriyani, Nur, & Astuti (2024)
+[Plain] 200 ulasan Mobile JKN; NB vs SVM; 3 rasio split
+[Plain] SVM konsisten unggul di seluruh rasio
+[Plain] 6
+[Plain] Zahra, Farhanatussaidah, Afifah, Muthoharoh, Satria, & Manullang (2026)
+[Plain] 65.335 ulasan Tokopedia; LR/SVC/NB/IndoBERT
+[Plain] Linear SVC terbaik (97,60%), unggul dari IndoBERT
+[Plain] 7
+[Plain] Latifah, Handayanto, Dwi M.S, Bhandari, Hien, & Pirnazarov (2026)
+[Plain] 8.447 twit Tapera; strategi pelabelan InSet vs IndoBERT
+[Plain] Label InSet + model klasik efisien & kompetitif ( status collapsed textgreater
+[Plain] 8
+[Plain] Jartarghar, Salanke, A.R, G.S, & Dalali
+[Plain] Framework Next.js; SSR vs CSR
+[Plain] SSR tingkatkan performa loading & SEO
+[Plain] 9
+[Plain] Maulyanda & Nazhifah (2025)
+[Plain] Ulasan kesehatan mental; SVM + integrasi FastAPI
+[Plain] SVM berhasil dibungkus jadi endpoint API real-time
+[Section] Kajian Teori dan Teknologi Pendukung
+[Subsection] Analisis Sentimen
+[Standard] Analisis sentimen adalah cabang dari Natural Language Processing (NLP) yang bertujuan mengidentifikasi dan mengekstraksi opini, emosi, atau sikap yang terkandung dalam suatu teks, kemudian mengklasifikasikannya ke dalam kategori tertentu, misalnya positif, negatif, atau netral. Dalam konteks e-commerce , analisis sentimen banyak diterapkan pada ulasan produk untuk mengetahui kecenderungan kepuasan pelanggan secara agregat tanpa harus membaca setiap ulasan satu per satu, sebagaimana ditunjukkan pada seluruh penelitian terdahulu di Sub-bab 2.1.
+[Subsection] Text Preprocessing
+[Standard] Text preprocessing adalah rangkaian tahapan yang mengubah teks mentah menjadi bentuk yang lebih terstruktur dan siap diproses oleh algoritma machine learning . Berdasarkan praktik yang diterapkan Sanjaya, dkk. (2023), Apriyani, dkk. (2024), maupun Zahra, dkk. (2026), tahapan preprocessing yang umum diterapkan pada teks berbahasa Indonesia meliputi:
+[Quote] - Case folding , yaitu penyeragaman huruf menjadi huruf kecil (lowercase) agar kata yang sama tidak dianggap berbeda hanya karena perbedaan kapitalisasi.
+[Quote] - Penghapusan karakter khusus, yaitu menghilangkan tanda baca, angka, dan simbol non-alfanumerik menggunakan pencocokan pola (regular expression) yang tidak relevan terhadap makna sentimen.
+[Quote] - Stopword removal , yaitu penghapusan kata-kata umum yang tidak memiliki bobot makna signifikan terhadap sentimen, seperti dan , yang , dan di , menggunakan kamus stopword bahasa Indonesia.
+[Quote] - Stemming , yaitu proses pengubahan kata berimbuhan menjadi kata dasarnya, misalnya kata pengiriman menjadi kirim , untuk mengurangi variasi bentuk kata dari akar kata yang sama.
+[Subsection] Naive Bayes
+[Standard] Naive Bayes adalah algoritma klasifikasi probabilistik yang didasarkan pada Teorema Bayes dengan asumsi independensi antar fitur (kata). Untuk data teks, varian yang paling umum digunakan adalah Multinomial Naive Bayes, yang memodelkan frekuensi kemunculan kata pada tiap dokumen. Probabilitas suatu dokumen d termasuk kelas c dirumuskan sebagai:
+[Plain] P(c status collapsed textbar
+[Plain] textbar
+[Plain] dengan P(c) adalah probabilitas prior kelas c, dan P(w status collapsed textbar
+[Subsection] Support Vector Machine (SVM)
+[Standard] Support Vector Machine adalah algoritma klasifikasi yang bekerja dengan mencari hyperplane pemisah optimal antar kelas dengan margin sebesar mungkin. Untuk data berdimensi tinggi seperti representasi TF-IDF pada teks, kernel linear (LinearSVC) umumnya sudah cukup memadai tanpa memerlukan transformasi kernel non-linear, sebagaimana diterapkan pada penelitian Danyal, dkk. (2023) dan Zahra, dkk. (2026). Parameter C mengatur toleransi terhadap kesalahan klasifikasi pada data latih; nilai C yang lebih besar membuat model lebih ketat dalam meminimalkan kesalahan klasifikasi namun berisiko overfitting , sedangkan nilai C yang lebih kecil memberi toleransi margin yang lebih lebar. Penelitian ini menggunakan C=1,0 sebagai nilai default yang umum digunakan pada penelitian pembanding.
+[Subsection] TF-IDF (Term Frequency-Inverse Document Frequency)
+[Standard] TF-IDF adalah metode pembobotan kata yang menilai seberapa penting suatu kata pada suatu dokumen relatif terhadap keseluruhan korpus dokumen. Nilai TF-IDF suatu kata w pada dokumen d dirumuskan sebagai:
+[Standard] TF-IDF(w,d) = TF(w,d) × log(N / DF(w))
+[Standard] dengan TF(w,d) adalah frekuensi kemunculan kata w pada dokumen d, N adalah jumlah total dokumen, dan DF(w) adalah jumlah dokumen yang mengandung kata w. Kata yang sering muncul di hampir seluruh dokumen (seperti stopword yang lolos filtering) akan memiliki bobot IDF yang rendah, sedangkan kata yang jarang muncul namun konsisten pada kelas tertentu akan memiliki bobot lebih tinggi. Penelitian ini mengikuti pendekatan Zahra, dkk. (2026) yang menggunakan kombinasi unigram dan bigram (ngram_range=(1,2)) dengan batas maksimum 10.000 fitur, guna menangkap frasa dua kata yang relevan seperti tidak bagus yang maknanya berbeda dari kata bagus saja.
+[Subsubsection] Justifikasi Pemilihan TF-IDF
+[Standard] Selain TF-IDF, representasi fitur teks yang umum digunakan pada penelitian NLP modern antara lain Bag-of-Words (BoW) sederhana, word embeddings terlatih seperti Word2Vec atau FastText, dan contextual embeddings dari model Transformer seperti BERT. Penelitian ini secara khusus memilih TF-IDF, bukan tanpa pertimbangan, dengan tiga alasan utama. Pertama, dibandingkan BoW yang hanya menghitung frekuensi mentah, TF-IDF memberi bobot lebih rendah pada kata yang muncul di hampir seluruh dokumen (melalui komponen IDF), sehingga kata-kata umum yang tidak diskriminatif terhadap sentimen secara otomatis diberi bobot lebih kecil tanpa perlu daftar stopword yang sepenuhnya manual. Kedua, dibandingkan word embeddings seperti Word2Vec, TF-IDF tidak memerlukan korpus pelatihan tambahan yang besar untuk menghasilkan representasi vektor kata yang bermakna, sehingga lebih sesuai untuk dataset penelitian ini yang berskala menengah (10.192 data). Ketiga, dan yang paling menentukan secara praktis, TF-IDF menghasilkan representasi vektor yang secara native kompatibel dengan Multinomial Naive Bayes dan LinearSVC yang menjadi fokus perbandingan penelitian ini (Sub-bab 1.2), sedangkan representasi dense embeddings umumnya lebih relevan dipasangkan dengan model neural. Pemilihan TF-IDF dengan demikian bukan karena mengabaikan kemajuan representasi fitur berbasis embeddings, melainkan karena representasi tersebut adalah representasi yang paling konsisten secara metodologis dengan kedua algoritma yang menjadi objek penelitian, sekaligus paling efisien secara komputasi untuk dibungkus ke dalam layanan REST API dengan waktu respons rendah (dibuktikan pada Sub-bab 4.7).
+[Subsection] Hugging Face Datasets
+[Plain] placement H wide false sideways false status open filename media/media/8f121c627c605011a018bbb14444483e526a1b19.png width 1.45833in special height=0.96875in
+[Plain] Model Pengembangan ADDIE
+[Plain] LatexCommand label name "fig:model_pengembangan_addie"
+[Standard] Sebagaimana dijelaskan Lhoest, dkk. (2021), Hugging Face Datasets adalah pustaka Python yang menyediakan akses standar terhadap ribuan dataset publik untuk kebutuhan riset NLP, termasuk dataset sepidmnorozy/Indonesian_sentiment yang digunakan pada penelitian ini. Pustaka ini memungkinkan pemuatan dataset beserta split data latih dan data uji yang telah ditentukan sebelumnya, sehingga menjamin konsistensi evaluasi antar eksperimen.
+[Subsection] Python
+[Plain] placement H wide false sideways false status open filename media/media/2f5cfef13d9e09da75d8496cbb6a1e7d55a505b2.png width 1.25in special height=1.25in
+[Plain] Model Pengembangan ADDIE
+[Plain] LatexCommand label name "fig:model_pengembangan_addie"
+[Standard] Python adalah bahasa pemrograman tingkat tinggi yang bersifat interpreted dan multi-paradigma, yang dikenal luas karena sintaksisnya yang ringkas dan ekosistem pustaka data science yang sangat matang. Python menjadi bahasa yang lazim digunakan pada penelitian analisis sentimen berbasis machine learning , sebagaimana diterapkan Sanjaya, dkk. (2023), Apriyani, dkk. (2024), dan Danyal, dkk. (2023) yang seluruhnya membangun pipeline preprocessing dan klasifikasi menggunakan Python. Pada penelitian ini, Python versi 3.12 digunakan sebagai bahasa utama pengembangan backend , mencakup pelatihan model machine learning , implementasi REST API , hingga manipulasi basis data.
+[Subsection] Scikit-Learn
+[Plain] placement H wide false sideways false status open filename media/media/cb7f45f7b2155a1e12d6e3e7509d42edc7ae83ee.png width 1.35417in special height=1.35417in
+[Plain] Model Pengembangan ADDIE
+[Plain] LatexCommand label name "fig:model_pengembangan_addie"
+[Standard] Scikit-learn adalah pustaka machine learning Python yang menyediakan implementasi teruji atas berbagai algoritma klasifikasi, regresi, dan clustering, termasuk MultinomialNB, LinearSVC, TfidfVectorizer, GridSearchCV, dan Pipeline yang digunakan pada penelitian ini, termasuk pada eksperimen hyperparameter tuning di Sub-bab 4.10.2. Implementasi Naive Bayes dan SVM berbasis pustaka machine learning Python semacam ini konsisten dengan pendekatan yang diterapkan Sanjaya, dkk. (2023) dan Danyal, dkk. (2023), yang juga membangun kedua model tersebut di atas kerangka kerja machine learning Python dengan representasi TF-IDF.
+[Subsection] PySastrawi
+[Standard] PySastrawi adalah pustaka Python untuk pemrosesan bahasa Indonesia, khususnya stemming dan stopword removal , yang diadaptasi dari proyek Sastrawi berbasis PHP. Pustaka ini digunakan pada tahap ketiga dan keempat preprocessing sistem SentimenAI sebagaimana dijelaskan pada Sub-bab 2.2.2 dan didokumentasikan implementasinya pada Sub-bab 3.1.3.1, sejalan dengan tahap stemming dan stopword removal yang juga diterapkan Sanjaya, dkk. (2023) dan Apriyani, dkk. (2024) pada preprocessing teks berbahasa Indonesia. Perlu dicatat bahwa daftar stopword bawaan pustaka ini turut memengaruhi hasil ablasi preprocessing pada Sub-bab 4.11, sebagaimana dibahas lebih rinci pada bagian tersebut.
+[Subsection] REST API
+[Standard] REST (Representational State Transfer) adalah gaya arsitektur yang mendefinisikan komunikasi antar sistem melalui protokol HTTP dengan method standar (GET, POST, PUT, DELETE) dan format data JSON . REST menjadi tulang punggung integrasi antara backend Python dan frontend Next.js pada sistem SentimenAI, memungkinkan kedua sisi dikembangkan dan diskalakan secara independen selama kontrak API (Tabel 3.1) tetap konsisten.
+[Subsection] FastAPI
+[Plain] placement H wide false sideways false status open filename media/media/e2d90e7971128c94a103b190c69e0291a852ed26.png width 1.66667in special height=0.60417in
+[Plain] Model Pengembangan ADDIE
+[Plain] LatexCommand label name "fig:model_pengembangan_addie"
+[Standard] FastAPI adalah framework web Python modern yang dirancang untuk membangun REST API dengan performa tinggi, didukung validasi data otomatis menggunakan Pydantic dan dokumentasi interaktif Swagger/OpenAPI yang dihasilkan secara otomatis dari definisi endpoint . Kelayakan arsitektur REST API berbasis pertukaran data JSON turut dibuktikan Salsabilla (2024) yang menunjukkan pendekatan ini mampu mengatasi keterbatasan proses administrasi manual, sedangkan integrasi model machine learning (SVM) ke dalam endpoint FastAPI telah dibuktikan Maulyanda dan Nazhifah (2025) pada analisis sentimen kesehatan mental.
+[Subsection] Uvicorn
+[Standard] Uvicorn adalah ASGI (Asynchronous Server Gateway Interface) server yang menjalankan aplikasi FastAPI secara asinkron dengan performa tinggi. Pada sistem SentimenAI, Uvicorn memungkinkan backend melayani permintaan REST API secara bersamaan (concurrent) tanpa memblokir proses lain, sebagaimana dibuktikan pada pengukuran response time median 6,51 milidetik pada Sub-bab 4.8.
+[Subsection] React
+[Plain] placement H wide false sideways false status open filename media/media/ccb8a62b8a3f479f0045d23b504c19142824fe05.png width 0.9375in special height=0.9375in
+[Plain] Model Pengembangan ADDIE
+[Plain] LatexCommand label name "fig:model_pengembangan_addie"
+[Standard] React adalah pustaka JavaScript untuk membangun antarmuka pengguna berbasis komponen ( component -based) yang menjadi fondasi dasar seluruh komponen antarmuka dashboard SentimenAI, mulai dari kartu statistik, tab navigasi, hingga grafik interaktif.
+[Subsection] Next.js
+[Plain] placement H wide false sideways false status open filename media/media/b75076e3cf89c4693f11b002be0191659e411809.png width 1.25in special height=1.125in
+[Plain] Model Pengembangan ADDIE
+[Plain] LatexCommand label name "fig:model_pengembangan_addie"
+[Standard] Next.js adalah framework yang dibangun di atas React untuk menambahkan kemampuan tambahan seperti server-side rendering (SSR), static site generation, dan routing berbasis struktur folder. Sebagaimana ditunjukkan Jartarghar, dkk. (2022), kemampuan SSR pada Next.js memberikan keunggulan performa pemuatan awal dan keterindeksan mesin pencari dibandingkan aplikasi React konvensional yang seluruhnya dirender di sisi klien. Next.js menjadi fondasi seluruh antarmuka dashboard dan halaman Generate Insight pada penelitian ini, dengan routing berbasis folder yang secara langsung memetakan struktur URL (seperti /insight) tanpa konfigurasi routing manual tambahan.
+[Subsubsection] Justifikasi Pemilihan Next.js
+[Standard] Dibandingkan React murni yang dibuat melalui Create React App atau Vite (pure client-side rendering ), Next.js dipilih karena dashboard SentimenAI memuat banyak data numerik dan grafik yang perlu tersaji cepat pada kunjungan pertama, sebagaimana keunggulan SSR yang dijelaskan Jartarghar, dkk. Dibandingkan framework full-stack lain seperti Django Templates atau Laravel Blade yang menyatukan backend dan frontend dalam satu bahasa pemrograman, Next.js dipilih karena penelitian ini secara sengaja memisahkan backend (Python, untuk keperluan machine learning ) dan frontend (JavaScript, untuk keperluan antarmuka), sehingga dibutuhkan framework frontend independen yang dapat berkomunikasi dengan backend Python melalui REST API murni, sebagaimana dirancang pada arsitektur Gambar 3.5.
+[Subsection] SQLite
+[Plain] placement H wide false sideways false status open filename media/media/b884a00f2aaac945af15940da6c6f32aa7156597.png width 1.5625in special height=0.73958in
+[Plain] Model Pengembangan ADDIE
+[Plain] LatexCommand label name "fig:model_pengembangan_addie"
+[Standard] SQLite adalah sistem manajemen basis data relasional yang bersifat server less dan menyimpan seluruh data dalam satu berkas tunggal pada disk. Karakteristik ini menjadikannya pilihan yang tepat untuk sistem berskala kecil-menengah seperti SentimenAI, karena tidak memerlukan proses instalasi server basis data terpisah, namun tetap mendukung operasi CRUD (Create, Read, Update, Delete) standar melalui bahasa SQL.
+[Subsubsection] Justifikasi Pemilihan SQLite
+[Standard] Dibandingkan basis data server seperti PostgreSQL atau MySQL, SQLite dipilih karena beban tulis (write load) pada tabel riwayat_analisis (Kode 3.2) bersifat rendah dan tidak konkuren dalam skala besar, mengingat sistem ini dirancang untuk digunakan oleh pelaku usaha e-commerce skala kecil-menengah (Sub-bab 1.5.2). Pemilihan ini turut didukung hasil pengujian performa Nugraha dan Susetyo (2023), yang membuktikan SQLite secara konsisten lebih unggul dibandingkan basis data kolumnar seperti DuckDB pada operasi transaksional (insert, update, delete, dan select), yaitu jenis operasi yang paling dominan pada tabel riwayat_analisis sistem ini, sedangkan keunggulan basis data kolumnar seperti DuckDB baru terasa pada beban kerja analitik agregat berskala besar yang bukan menjadi kebutuhan utama penelitian ini. Konsekuensi dari pilihan ini, yaitu keterbatasan SQLite dalam menangani banyak penulisan data secara bersamaan (concurrent write), diakui sebagai batasan dan didiskusikan lebih lanjut sebagai saran pengembangan pada Sub-bab 5.3.
+[Subsection] Metrik Evaluasi Model Klasifikasi
+[Standard] Evaluasi performa model klasifikasi pada penelitian ini, sejalan dengan pendekatan yang diterapkan pada seluruh penelitian pembanding di Sub-bab 2.1, menggunakan empat metrik yang diturunkan dari confusion matrix, yaitu:
+[Quote] - Akurasi = (TP + TN) / (TP + TN + FP + FN), mengukur proporsi prediksi benar secara keseluruhan.
+[Quote] - Presisi = TP / (TP + FP), mengukur ketepatan model ketika memprediksi kelas positif.
+[Quote] - Recall = TP / (TP + FN), mengukur kemampuan model menemukan seluruh data kelas positif yang sebenarnya.
+[Quote] - F1-Score = 2 × (Presisi × Recall) / (Presisi + Recall), merupakan rata-rata harmonik presisi dan recall yang menyeimbangkan kedua metrik tersebut.
+[Subsection] Large Language Model (LLM)
+[Standard] Large Language Model adalah model bahasa berskala besar yang dilatih pada korpus teks masif sehingga mampu memahami dan menghasilkan teks secara kontekstual. Pada sistem SentimenAI, LLM digunakan bukan sebagai model klasifikasi sentimen, melainkan sebagai lapisan interpretasi tambahan pada fitur Generate Insight, yang menerima konteks berupa data statistik dan hasil evaluasi model yang telah ada, kemudian menyusun jawaban naratif atas pertanyaan pengguna terkait strategi maupun interpretasi data.
+[Subsection] Gemini API
+[Plain] placement H wide false sideways false status open filename media/media/ee24eaced87f477aa21828a9e492719907e8ad3e.png width 1.45833in special height=0.96875in
+[Plain] Model Pengembangan ADDIE
+[Plain] LatexCommand label name "fig:model_pengembangan_addie"
+[Standard] Gemini API adalah antarmuka pemrograman yang menyediakan akses ke model bahasa besar (LLM) Gemini milik Google. Pada penelitian ini, Gemini API menjadi implementasi konkret dari konsep LLM pada Sub-bab 2.2.17, digunakan sebagai lapisan interpretasi naratif fitur Generate Insight, berbeda dari pendekatan Zahra, dkk. (2026) yang menggunakan IndoBERT sebagai model klasifikasi itu sendiri, bukan sebagai lapisan interpretasi tambahan di luar model klasik. Kelayakan teknis integrasi kunci API Gemini ke dalam aplikasi turut dibuktikan Rachmat dan Kesuma (2024), yang menunjukkan aplikasi berbasis Gemini API mampu berfungsi sesuai fungsionalitas LLM yang diharapkan setelah diuji.
+[Subsubsection] Kontribusi Ilmiah Fitur Generate Insight
+[Standard] Perlu ditegaskan bahwa peran Gemini API pada penelitian ini bukan sekadar fitur tambahan (add-on) yang bersifat kosmetik, melainkan penerapan konsep retrieval-augmented explanation, yaitu pendekatan yang memasok keluaran model machine learning terstruktur (label, confidence score , metrik evaluasi) sebagai konteks eksplisit ( context grounding ) kepada LLM, sehingga jawaban yang dihasilkan LLM terikat pada data aktual sistem, bukan pengetahuan umum LLM itu sendiri. Pendekatan ini menjawab persoalan yang lebih luas dalam penerapan machine learning di industri, yaitu decision support gap: model klasifikasi yang akurat secara statistik (Sub-bab 4.10) tidak serta-merta mudah diterjemahkan menjadi keputusan bisnis oleh pengguna non-teknis. Dengan menempatkan LLM sebagai lapisan penerjemah antara keluaran model dan kebutuhan pengambilan keputusan pengguna, penelitian ini memberi kontribusi tambahan berupa pola integrasi (bukan sekadar fitur) yang dapat direplikasi pada sistem machine learning lain yang menghadapi persoalan serupa, sekaligus menjadi jawaban atas rumusan masalah nomor 4 pada Sub-bab 1.2.
+[Subsection] Visual Studio Code
+[Plain] placement H wide false sideways false status open filename media/media/04a7fc2a561eab9650a1f195618a9fa1b6ae2ac4.png width 1.14583in special height=1.14583in
+[Plain] Model Pengembangan ADDIE
+[Plain] LatexCommand label name "fig:model_pengembangan_addie"
+[Standard] Visual Studio Code (VS Code) adalah source-code editor gratis dan open source yang dikembangkan oleh Microsoft, dikenal karena antarmukanya yang ringan, dapat disesuaikan, dan didukung ekosistem ekstensi yang luas. Hidayah dan Rofiqoh (2024) melakukan evaluasi usability terhadap VS Code menggunakan metode Nelsen s Attributes of Usability (NAU) yang mencakup lima atribut (learnability, efficiency, memorability, error, dan satisfaction) melibatkan 93 responden mahasiswa Sistem Informasi, dengan hasil rata-rata keseluruhan 3,06 dari skala Likert (kategori Netral): learnability 3,06, efficiency 3,03, memorability 3,04, error 3,13, dan satisfaction 3,07, mengindikasikan VS Code tergolong mudah dipelajari dan diingat penggunaannya. Pada penelitian ini, VS Code digunakan sebagai lingkungan pengembangan tunggal untuk menulis, menguji, dan melakukan debugging seluruh kode backend Python dan frontend JavaScript sistem SentimenAI, dengan pertimbangan bahwa tingkat learnability dan efficiency yang telah dibuktikan Hidayah dan Rofiqoh (2024) relevan dengan kebutuhan pengembangan sistem yang melibatkan dua bahasa pemrograman berbeda secara bersamaan dalam satu editor.
+[Chapter] Metode Penelitian
+[Section] Model Pengembangan Sistem
+[Standard] Penelitian ini menggunakan model ADDIE (Analysis, Design, Development, Implementation, Evaluation) sebagai kerangka kerja pengembangan sistem, karena model ini bersifat siklis dan cocok untuk pengembangan sistem berbasis data yang membutuhkan iterasi antara pelatihan model dan pengujian sistem. Gambar 3.1 menunjukkan tahapan model ADDIE yang diterapkan pada penelitian ini.
+[Plain] placement H wide false sideways false status open filename media/media/24de66dea1f0a248c8848235d00b3c3503d31e13.png width 2.70833in special height=2.70833in
+[Plain] Model Pengembangan ADDIE
+[Plain] LatexCommand label name "fig:model_pengembangan_addie"
+[Subsubsection] Justifikasi Pemilihan Model ADDIE
+[Standard] Dua model metodologi lain yang lazim digunakan pada penelitian machine learning adalah CRISP-DM (Cross-Industry Standard Process for Data Mining) dan Design Science Research (DSR). Perlu dijelaskan secara eksplisit mengapa ADDIE dipilih alih-alih keduanya. CRISP-DM, dengan enam fase (business understanding, data understanding, data preparation, modeling, evaluation, deployment ), sangat sesuai apabila fokus penelitian murni pada siklus data dan model. Namun, penelitian ini tidak berhenti pada model machine learning saja: ruang lingkupnya juga mencakup perancangan dan pengembangan REST API serta dashboard antarmuka pengguna secara utuh (Sub-bab 1.4 poin 3 dan 4), yang merupakan aktivitas rekayasa perangkat lunak (software engineering) di luar cakupan enam fase CRISP-DM. Design Science Research, di sisi lain, lebih menekankan pada kontribusi berupa artefak baru yang diuji secara iteratif untuk memecahkan masalah kelas tertentu, sesuai untuk penelitian yang berfokus pada novelty artefak; namun DSR tidak secara eksplisit menyediakan struktur tahapan evaluasi berlapis (black box, white box, cross validation ) yang dibutuhkan penelitian ini untuk memverifikasi baik sisi model maupun sisi sistem. ADDIE dipilih karena kelima fasenya (Analysis, Design, Development, Implementation, Evaluation) memetakan secara natural baik pada siklus pengembangan model machine learning maupun pada siklus pengembangan sistem REST API dan dashboard sebagai satu kesatuan, sebagaimana ditunjukkan pada pemetaan tahapan Sub-bab 3.1.1 hingga 3.1.5 yang mencakup kedua sisi tersebut secara eksplisit, sehingga lebih merepresentasikan cakupan penelitian ini yang bersifat end-to-end (Sub-bab 1.1) dibandingkan CRISP-DM yang hanya berfokus pada data dan model, maupun DSR yang lebih menekankan kontribusi artefak daripada tahapan pengembangan praktis.
+[Subsection] Analysis (Analisis Kebutuhan)
+[Standard] Tahap analisis dilakukan untuk mengidentifikasi kebutuhan fungsional dan non-fungsional sistem berdasarkan rumusan masalah pada Sub-bab 1.2. Kebutuhan fungsional mencakup kemampuan sistem melakukan preprocessing teks, klasifikasi sentimen menggunakan dua model (Naive Bayes dan SVM), penyediaan REST API , penyajian dashboard interaktif, dan penyimpanan riwayat analisis. Kebutuhan non-fungsional mencakup waktu respons API yang cepat (di bawah satu detik untuk prediksi tunggal), antarmuka yang responsif pada berbagai ukuran layar, dan ketahanan sistem terhadap input yang tidak valid maupun kegagalan layanan eksternal.
+[Standard] Kebutuhan data pada tahap ini dipenuhi melalui dataset sepidmnorozy/Indonesian_sentiment dari Hugging Face Datasets , sebagaimana dijelaskan pada kajian teori Sub-bab 2.2.6, yang berisi 7.926 data latih dan 2.266 data uji berlabel biner (positif dan negatif). Kode berikut menunjukkan implementasi pemuatan dataset pada modul dataset .py, lengkap dengan mekanisme cache lokal agar dataset tidak perlu diunduh ulang pada setiap eksekusi:
+[Plain] # backend/dataset.py from datasets import load_dataset status collapsed strut
+[Plain] strut
+[Standard] Kode 3.1 Fungsi Pemuatan Dataset Hugging Face (dataset.py)
+[Subsubsection] Exploratory Data Analysis (EDA)
+[Standard] Sebelum masuk ke tahap perancangan, dilakukan exploratory data analysis (EDA) terhadap 7.926 data latih untuk memahami karakteristik dataset secara empiris, bukan sekadar mengandalkan deskripsi umum dataset pada Hugging Face Hub. EDA mencakup distribusi label, distribusi panjang teks, pemeriksaan duplikasi data, dan frekuensi kata per kelas sentimen.
+[Plain] placement H wide false sideways false status open filename media/media/8d4289f36d3bf9441660078257ebabf41ff2c6b4.png width 4.89583in special height=1.86458in
+[Plain] Distribusi Label dan Panjang Teks Ulasan (Data Latih)
+[Plain] LatexCommand label name "fig:distribusi_label_dan_panjang_teks_ulasan"
+[Standard] Hasil EDA menunjukkan distribusi label yang tidak seimbang ( imbalance d): dari 7.926 data latih, 5.129 data (64,7%) berlabel positif dan 2.797 data (35,3%) berlabel negatif, dengan rasio yang sama persis pada 2.266 data uji (64,7% berbanding 35,3%), mengindikasikan split data latih dan uji telah dilakukan secara stratified oleh penyedia dataset . Panjang teks ulasan bervariasi dari 1 kata hingga 110 kata, dengan rata-rata 34,83 kata dan median 31 kata, serta tidak ditemukan satu pun data duplikat pada 7.926 data latih. Sebaran panjang teks yang cenderung condong ke kanan (right-skewed) pada Gambar 3.1a mengindikasikan sebagian besar ulasan berbentuk kalimat pendek hingga sedang, dengan sebagian kecil ulasan panjang menyerupai paragraf.
+[Plain] placement H wide false sideways false status open filename media/media/b6167cd0ad754b2ff9e7b2ffa10463aabd7ec911.png width 4.89583in special height=2in
+[Plain] Frekuensi 10 Kata Teratas per Kelas Sentimen (Data Latih)
+[Plain] LatexCommand label name "fig:frekuensi_10_kata_teratas_per_kelas_sent"
+[Standard] Analisis frekuensi kata pada Gambar 3.1b menunjukkan kata seperti enak , tempat , dan menu mendominasi kelas positif, sedangkan kelas negatif didominasi kata yang lebih generik seperti saja , orang , dan tapi , yang secara linguistik lebih ambigu dan tidak seeksplisit kata pada kelas positif. Pola ini menjadi salah satu indikasi awal bahwa kelas negatif secara linguistik lebih sulit dipelajari model dibandingkan kelas positif, sebuah hipotesis yang diuji lebih lanjut melalui confusion matrix pada Sub-bab 4.7 dan error analysis pada Sub-bab 4.8.
+[Subsubsection] Analisis Kualitas Dataset
+[Standard] Selain EDA kuantitatif di atas, perlu dilakukan pemeriksaan kualitatif terhadap isi dataset untuk mengidentifikasi potensi persoalan yang dapat memengaruhi validitas hasil penelitian. Pemeriksaan manual terhadap sampel data menemukan tiga catatan penting. Pertama, dan yang paling perlu digarisbawahi secara jujur, isi ulasan pada dataset sepidmnorozy/Indonesian_sentiment ternyata didominasi ulasan tempat makan dan kuliner (contoh: bubur ayam yang lumayan rekomendasi di sekitaran Bandung , menu bebek relatif jarang di Bandung ), bukan murni ulasan produk e-commerce dalam pengertian barang yang dikirim dan diterima pembeli. Nama dataset pada Hugging Face Hub tidak secara eksplisit menyatakan domain spesifik ini, sehingga penelitian ini perlu mencatat secara transparan bahwa istilah ulasan e-commerce pada judul dan rumusan masalah merujuk pada karakteristik ulasan berbasis pengalaman konsumen secara umum (termasuk kuliner dan jasa yang lazim dipasarkan melalui platform digital), bukan secara sempit terbatas pada ulasan barang fisik. Implikasi metodologis dari temuan ini dibahas lebih lanjut sebagai bagian dari Threats to Validity pada Sub-bab 5.3. Kedua, ditemukan sejumlah data berupa satu kata tunggal yang ambigu tanpa konteks memadai, misalnya gagal (berlabel negatif), tulus dan damai (berlabel positif), yang secara linguistik sulit dibedakan sentimennya tanpa konteks kalimat yang lebih panjang, dan berkontribusi pada kesalahan klasifikasi sebagaimana ditemukan pada error analysis di Sub-bab 4.8. Ketiga, distribusi kelas yang tidak seimbang (64,7% berbanding 35,3%) berpotensi membuat model lebih condong memprediksi kelas mayoritas (positif), sebuah kecenderungan yang perlu diperhatikan saat menginterpretasikan metrik akurasi secara terpisah dari precision dan recall per kelas pada Sub-bab 4.7.
+[Subsection] Design (Perancangan)
+[Standard] Tahap perancangan menerjemahkan hasil analisis kebutuhan menjadi rancangan alur sistem, interaksi pengguna, dan arsitektur teknis, yang digambarkan melalui flow chart , use case diagram, activity diagram, dan arsitektur sistem.
+[Subsubsection] Flowchart Alur Klasifikasi Sentimen
+[Standard] Gambar 3.2 menggambarkan alur proses klasifikasi sentimen sejak pengguna memasukkan teks ulasan hingga sistem menampilkan hasil prediksi. Alur ini menjadi acuan utama implementasi endpoint /prediksi pada backend .
+[Plain] placement H wide false sideways false status open filename media/media/4a69d5c2dcceb08ddcbc63abd1c4182507eb9534.png width 2.03125in special height=3.77083in
+[Plain] Flowchart Alur Klasifikasi Sentimen
+[Plain] LatexCommand label name "fig:flowchart_alur_klasifikasi_sentimen"
+[Standard] Berdasarkan Gambar 3.2, sistem menerima input teks ulasan, kemudian menjalankan empat tahap preprocessing ( case folding , penghapusan karakter, stopword removal , dan stemming ) sebagaimana dijelaskan pada Sub-bab 2.2.2, sebelum teks yang telah bersih diubah menjadi vektor TF-IDF dan diklasifikasikan oleh model yang dipilih pengguna (Naive Bayes, SVM, atau keduanya sekaligus pada mode dual). Hasil klasifikasi beserta confidence score kemudian disimpan ke basis data SQLite dan dikembalikan ke frontend dalam format JSON .
+[Subsubsection] Use Case Diagram
+[Standard] Gambar 3.3 menunjukkan use case diagram yang menggambarkan interaksi antara pengguna (aktor tunggal) dengan seluruh fitur utama sistem SentimenAI.
+[Plain] placement H wide false sideways false status open filename media/media/d9de8be28dcaa7f22fab38bd77d9b83e319ad7a4.png width 4.16667in special height=2.72917in
+[Plain] Use Case Diagram Sistem SentimenAI
+[Plain] LatexCommand label name "fig:use_case_diagram_sistem_sentimenai"
+[Standard] Pengguna pada sistem ini berperan sebagai aktor tunggal yang dapat melakukan sembilan interaksi utama: menganalisis sentimen ulasan tunggal, membandingkan hasil dual model, mengunggah berkas CSV untuk analisis batch, melihat statistik dataset dan sampel data, meninjau hasil evaluasi model, melihat tren sentimen, membaca rekomendasi strategis, mengakses riwayat analisis, serta berinteraksi dengan fitur tanya-jawab Generate Insight.
+[Subsubsection] Activity Diagram
+[Standard] Gambar 3.4 memperlihatkan activity diagram yang menggambarkan urutan aktivitas pengguna dan sistem secara paralel, dari sisi frontend maupun backend , mulai dari pengguna membuka dashboard hingga hasil analisis ditampilkan.
+[Plain] placement H wide false sideways false status open filename media/media/f9cee2a7428e10614e6dd34a2caad2fe67dc3911.png width 3.54167in special height=3.07292in
+[Plain] Activity Diagram Sistem SentimenAI
+[Plain] LatexCommand label name "fig:activity_diagram_sistem_sentimenai"
+[Subsubsection] Arsitektur Sistem dan Rancangan REST API
+[Standard] Gambar 3.5 menunjukkan arsitektur tiga lapis yang diterapkan pada sistem SentimenAI, terdiri atas lapisan frontend (Next.js), lapisan backend /API (FastAPI), dan lapisan data (model .pkl serta basis data SQLite).
+[Plain] placement H wide false sideways false status open filename media/media/545feae63d83293a6dee8e98c248f3a82b0b0fa8.png width 4.16667in special height=1.88542in
+[Plain] Arsitektur Sistem SentimenAI
+[Plain] LatexCommand label name "fig:arsitektur_sistem_sentimenai"
+[Standard] Berdasarkan arsitektur pada Gambar 3.5, komunikasi antara frontend dan backend sepenuhnya dilakukan melalui protokol HTTP menggunakan format JSON , dengan Axios sebagai HTTP client pada sisi frontend . Backend menyediakan enam belas endpoint REST API yang dirancang mengikuti prinsip pemisahan tanggung jawab (separation of concerns), sebagaimana dirangkum pada Tabel 3.1.
+[Plain] placement H wide false sideways false status open Endpoint REST API Sistem SentimenAI (Verifikasi Langsung dari main.py v3.0.0)
+[Plain] LatexCommand label name "tab:endpoint_rest_api_sistem_sentimenai_veri"
+[Plain] <lyxtabular version="3" rows="19" columns="3"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="1.2cm"> <column alignment="none" valignment="top" width="4.56cm"> <column alignment="none" valignment="top" width="8.63cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] 1
+[Plain] GET /
+[Plain] Menampilkan status API dan versi sistem
+[Plain] 2
+[Plain] POST /ai/insight-chat
+[Plain] Menjalankan tanya-jawab kontekstual berbasis Gemini API pada halaman Generate Insight
+[Plain] 3
+[Plain] GET /dataset/info
+[Plain] Menampilkan statistik dataset Hugging Face (jumlah data latih/uji)
+[Plain] 4
+[Plain] GET /dataset/sampel
+[Plain] Menampilkan sampel ulasan berlabel dari dataset
+[Plain] 5
+[Plain] POST /preprocessing/detail
+[Plain] Menjalankan dan menampilkan hasil preprocessing 4 tahap secara step-by-step
+[Plain] 6
+[Plain] POST /prediksi
+[Plain] Memprediksi sentimen satu teks ulasan beserta confidence score
+[Plain] 7
+[Plain] POST /prediksi/dual
+[Plain] Membandingkan hasil prediksi Naive Bayes dan SVM secara berdampingan
+[Plain] 8
+[Plain] GET /trend
+[Plain] Menampilkan tren sentimen dari waktu ke waktu (sentiment trend timeline)
+[Plain] 9
+[Plain] GET /rekomendasi
+[Plain] Menampilkan rekomendasi strategis berbasis pola sentimen negatif
+[Plain] 10
+[Plain] POST /rekomendasi/analisis
+[Plain] Menjalankan analisis lanjutan untuk menghasilkan rekomendasi baru
+[Plain] 11
+[Plain] POST /upload-csv
+[Plain] Memproses batch prediksi dari berkas CSV eksternal
+[Plain] 12
+[Plain] POST /upload-csv-training
+[Plain] Mengunggah data training tambahan dalam format CSV
+[Plain] 13
+[Plain] GET /riwayat
+[Plain] Mengambil seluruh riwayat analisis dari basis data SQLite
+[Plain] 14
+[Plain] DELETE /riwayat/hapus
+[Plain] Menghapus seluruh riwayat analisis pada basis data
+[Plain] 15
+[Plain] GET /statistik
+[Plain] Mengambil statistik agregat riwayat analisis
+[Plain] 16
+[Plain] GET /evaluasi
+[Plain] Mengambil hasil evaluasi performa model (akurasi, presisi, recall, F1)
+[Subsubsection] Rancangan Basis Data SQLite
+[Standard] Basis data SQLite dirancang dengan satu tabel utama riwayat_analisis yang menyimpan setiap hasil prediksi, sehingga dapat ditelusuri kembali melalui endpoint /riwayat dan /statistik. Kode berikut menunjukkan implementasi inisialisasi tabel pada modul database.py:
+[Plain] # backend/database.py import sqlite3 status collapsed strut
+[Plain] strut
+[Standard] Kode 3.2 Inisialisasi Basis Data SQLite (database.py)
+[Subsubsection] Rancangan Antarmuka Dashboard (Wireframe)
+[Standard] Dashboard dirancang dengan enam tab fungsional yaitu Analisis, Dataset , Evaluasi, Trend, Rekomendasi, dan Riwayat, ditambah satu halaman terpisah Generate Insight yang menyajikan interpretasi naratif hasil analisis. Rancangan ini mengikuti prinsip pemisahan antara data mentah ( dashboard utama) dan interpretasi strategis (halaman Generate Insight), sebagaimana dijelaskan pada Sub-bab 1.1. Sebelum masuk tahap development, setiap tampilan dirancang terlebih dahulu dalam bentuk wireframe atau sketsa dasar (low-fidelity) yang memetakan posisi setiap elemen fungsional tanpa detail visual akhir, sebagaimana disajikan pada Gambar 3.6 hingga Gambar 3.12 untuk keenam tab dan halaman Generate Insight. Wireframe ini menjadi acuan tahap development pada Sub-bab 3.1.3 dan dibandingkan dengan hasil implementasi akhir pada Bab 4 Sub-bab 4.3.
+[Subsubsection] Wireframe Tab Analisis
+[Standard] Tab Analisis dirancang dengan area input teks ulasan di sisi kiri atas, kontrol pemilihan mode model (Naive Bayes, SVM, atau Dual) di sisi kanan atas, panel detail preprocessing step-by-step di tengah, hasil prediksi beserta confidence score di kiri bawah, visualisasi pie chart distribusi di kanan bawah, serta kontrol impor/ekspor CSV di bagian paling bawah.
+[Plain] placement H wide false sideways false status open filename media/media/217c55daf9effa1efb56c76236ed7e55f7a7ea3a.png width 4.16667in special height=2.66667in
+[Plain] Wireframe Tab Analisis
+[Plain] LatexCommand label name "fig:wireframe_tab_analisis"
+[Subsubsection] Wireframe Tab Dataset
+[Standard] Tab Dataset dirancang dengan panel statistik ringkas dataset Hugging Face di bagian atas (jumlah data latih dan data uji), diikuti daftar kartu sampel ulasan berlabel yang dapat digulir (scroll) di bawahnya.
+[Plain] placement H wide false sideways false status open filename media/media/5e6805228711e09d7db2dedb7cd687dab90ba768.png width 4.16667in special height=2.66667in
+[Plain] Wireframe Tab Dataset
+[Plain] LatexCommand label name "fig:wireframe_tab_dataset"
+[Subsubsection] Wireframe Tab Evaluasi
+[Standard] Tab Evaluasi dirancang dengan bar chart perbandingan performa dua model di sisi kiri, serta panel progress bar metrik evaluasi (akurasi, presisi, recall, F1) dan perbandingan dengan penelitian terdahulu di sisi kanan.
+[Plain] placement H wide false sideways false status open filename media/media/51e07e756cb51ec24ec2100c096a90efd9bd1b4b.png width 4.16667in special height=2.66667in
+[Plain] Wireframe Tab Evaluasi
+[Plain] LatexCommand label name "fig:wireframe_tab_evaluasi"
+[Subsubsection] Wireframe Tab Trend
+[Standard] Tab Trend dirancang dengan kontrol filter periode (harian, mingguan, bulanan) di bagian atas, grafik area untuk menampilkan jumlah ulasan positif/negatif per periode, dan grafik garis untuk persentase sentimen positif per periode di bagian bawah.
+[Plain] placement H wide false sideways false status open filename media/media/ee4242d1acccc1fcf803223c9cc6c786cbea9750.png width 4.16667in special height=2.66667in
+[Plain] Wireframe Tab Trend
+[Plain] LatexCommand label name "fig:wireframe_tab_trend"
+[Subsubsection] Wireframe Tab Rekomendasi
+[Standard] Tab Rekomendasi dirancang dengan ringkasan Smart Recommendation Engine di bagian atas, diikuti kartu-kartu kategori masalah (masing-masing berisi masalah terdeteksi, rekomendasi aksi, dan tingkat prioritas), serta daftar kata yang paling sering muncul pada ulasan negatif di bagian bawah.
+[Plain] placement H wide false sideways false status open filename media/media/5fb32356f10850e4abb98fdb6ffb1f95a6fbe7b2.png width 4.16667in special height=2.66667in
+[Plain] Wireframe Tab Rekomendasi
+[Plain] LatexCommand label name "fig:wireframe_tab_rekomendasi"
+[Subsubsection] Wireframe Tab Riwayat
+[Standard] Tab Riwayat dirancang dalam bentuk tabel dengan lima kolom (teks ulasan, hasil, confidence, model, dan waktu), dilengkapi kontrol untuk menghapus seluruh riwayat pada bagian bawah.
+[Plain] placement H wide false sideways false status open filename media/media/8fad1ea72e249371f0cbdaf35c7d593716526b85.png width 4.16667in special height=2.66667in
+[Plain] Wireframe Tab Riwayat
+[Plain] LatexCommand label name "fig:wireframe_tab_riwayat"
+[Subsubsection] Wireframe Halaman Generate Insight
+[Standard] Halaman Generate Insight dirancang dengan konsep dark mode cinematic yang terdiri atas lima blok vertikal: hero section berisi status kesehatan sentimen, blok distribusi sentimen dengan progress bar animasi, blok insight strategis dan rekomendasi, blok perbandingan performa model, serta panel tanya-jawab AI Assistant berbasis Gemini API di bagian paling bawah.
+[Plain] placement H wide false sideways false status open filename media/media/f5b4cd6167ba3c8c2643eded471a9ac2bab4c552.png width 4.16667in special height=2.66667in
+[Plain] Wireframe Halaman Generate Insight
+[Plain] LatexCommand label name "fig:wireframe_halaman_generate_insight"
+[Subsection] Development (Pengembangan)
+[Standard] Tahap pengembangan merealisasikan rancangan pada Sub-bab 3.1.2 ke dalam kode program, dimulai dari pelatihan model klasifikasi hingga implementasi endpoint dan komponen antarmuka.
+[Subsubsection] Preprocessing Teks
+[Standard] Implementasi preprocessing dilakukan pada modul preprocessing.py yang membagi empat tahap menjadi empat fungsi terpisah agar dapat diuji dan ditampilkan secara step-by-step kepada pengguna melalui endpoint /preprocessing/detail, mengikuti tahapan case folding , penghapusan karakter, stopword removal , dan stemming yang juga diterapkan Sanjaya, dkk. (2023) dan Apriyani, dkk. (2024) pada preprocessing teks ulasan berbahasa Indonesia:
+[Plain] # backend/preprocessing.py def step1_lowercase(teks): return teks.lower() status collapsed strut
+[Plain] strut
+[Plain] strut
+[Standard] Kode 3.3 Empat Fungsi Tahap Preprocessing (preprocessing.py)
+[Standard] Sebagai ilustrasi hasil eksekusi keempat fungsi di atas terhadap satu contoh nyata, kalimat Produk bagus banget, pengiriman cepat dan seller ramah! diproses secara bertahap sebagai berikut: (1) case folding menghasilkan produk bagus banget, pengiriman cepat dan seller ramah! ; (2) penghapusan karakter menghasilkan produk bagus banget pengiriman cepat dan seller ramah ; (3) stopword removal menghapus kata dan menjadi produk bagus banget pengiriman cepat seller ramah ; dan (4) stemming mengubah kata pengiriman menjadi kirim sehingga hasil akhir menjadi produk bagus banget kirim cepat seller ramah . Contoh eksekusi nyata lainnya disajikan lebih lengkap sebagai bagian dari pengujian white box pada Sub-bab 4.3.
+[Subsubsection] Pelatihan Model Klasifikasi
+[Standard] Pelatihan model dilakukan pada modul train_model.py menggunakan Pipeline scikit-learn yang menggabungkan TfidfVectorizer dengan classifier, sehingga proses ekstraksi fitur dan klasifikasi berjalan sebagai satu kesatuan yang dapat disimpan ( serialization ) menggunakan joblib. Kode 3.4 berikut adalah kutipan langsung dari modul train_model.py yang sesungguhnya.
+[Plain] # backend/train_model.py # Proses lengkap: load dataset - status collapsed textgreater
+[Plain] {}
+[Plain] textgreater
+[Plain] {}
+[Plain] textgreater
+[Plain] {}
+[Plain] strut
+[Plain] strut
+[Plain] strut
+[Plain] strut
+[Plain] textgreater
+[Plain] {}
+[Standard] Kode 3.4 Kutipan Modul Pelatihan Model train_model.py (kode asli)
+[Subsubsection] Implementasi Endpoint Prediksi
+[Standard] Endpoint /prediksi pada main.py memuat kembali model yang telah disimpan (loading), menjalankan preprocessing pada teks masukan, kemudian mengembalikan label beserta confidence score yang dihitung dari decision_function (untuk SVM) atau predict_proba (untuk Naive Bayes), mengikuti pola integrasi model machine learning ke dalam endpoint FastAPI yang juga diterapkan Maulyanda dan Nazhifah (2025) serta pertukaran data terstruktur berbasis JSON yang dijustifikasi Salsabilla (2024):
+[Plain] # backend/main.py model_nb = joblib.load( model_naive_bayes.pkl ) model_svm = joblib.load( model_svm.pkl ) status collapsed strut
+[Standard] Kode 3.5 Implementasi Endpoint /prediksi (main.py)
+[Subsection] Implementation (Implementasi)
+[Plain] Tahap implementasi menjalankan sistem secara terintegrasi pada lingkungan lokal. Backend dijalankan menggunakan perintah `uvicorn main:app - status collapsed /
+[Plain] /
+[Subsection] Evaluation (Evaluasi)
+[Standard] Tahap evaluasi terdiri atas dua bagian yang dibahas secara menyeluruh pada Bab 4: evaluasi performa model klasifikasi menggunakan data uji (test set) dataset Hugging Face berdasarkan metrik pada Sub-bab 2.2.16, dan evaluasi fungsional sistem menggunakan black box testing , white box testing , dan k-fold cross validation . Kedua evaluasi ini dilakukan untuk memastikan sistem tidak hanya berjalan secara fungsional, tetapi juga menghasilkan klasifikasi yang akurat dan dapat dipertanggungjawabkan secara ilmiah.
+[Section] Waktu dan Tempat Penelitian
+[Standard] Penelitian dilaksanakan secara mandiri pada lingkungan pengembangan lokal milik peneliti, sebagai bagian dari penyusunan skripsi Program Studi Teknik Informatika, Universitas Cendekia Abditama.
+[Chapter] Implementasi dan Pembahasan
+[Section] Desain Pengujian Sistem
+[Standard] Bab ini menyajikan hasil implementasi sistem SentimenAI sebagaimana dirancang pada Bab 3, beserta pembahasan atas seluruh pengujian yang dilakukan. Berbeda dari pengujian sistem berbasis machine learning pada umumnya yang sering kali hanya mengandalkan black box testing , penelitian ini menerapkan empat lapis pengujian yang saling melengkapi: black box testing untuk memverifikasi fungsionalitas dari sudut pandang pengguna, white box testing untuk memverifikasi kebenaran logika internal tahap preprocessing, k-fold cross validation untuk menguji stabilitas dan konsistensi performa model, serta pengujian integrasi untuk memverifikasi komunikasi frontend - backend . Keempat lapis pengujian ini dipilih agar kesimpulan pada Bab 5 benar-benar didukung bukti yang kredibel, bukan sekadar klaim bahwa sistem berjalan dengan baik .
+[Section] Lingkungan Pengujian
+[Standard] Pengujian dilakukan pada lingkungan lokal dengan spesifikasi: sistem operasi Windows 11, backend Python 3.12 dengan FastAPI 0.109.0 dan Uvicorn (port 8000), frontend Next.js 14.2.35 dengan Node.js v24.12.0 (port 3000), model klasifikasi Multinomial Naive Bayes dan LinearSVC, serta basis data SQLite. Proses build produksi frontend (`npm run build`) turut diuji dan berhasil diselesaikan tanpa galat yang menghambat proses kompilasi.
+[Section] Implementasi Antarmuka Sistem
+[Standard] Bagian ini mendokumentasikan hasil development antarmuka yang telah direalisasikan berdasarkan rancangan wireframe pada Sub-bab 3.1.2.6. Berbeda dari revisi sebelumnya yang masih menggunakan mockup rekonstruksi, seluruh gambar pada sub-bab ini adalah tangkapan layar (screenshot) asli dari sistem SentimenAI yang telah berjalan penuh, mencakup enam tab dashboard (Analisis, Dataset , Evaluasi, Trend, Rekomendasi, Riwayat) dan halaman Generate Insight.
+[Subsubsection] Implementasi Tab Analisis
+[Standard] Tab Analisis menampilkan ringkasan performa (total data, distribusi positif/negatif, akurasi SVM), input teks ulasan manual dengan mode dual NB+SVM, serta visualisasi pie chart distribusi sentimen yang aktif menggunakan data dari endpoint /prediksi dan /prediksi/dual.
+[Plain] placement H wide false sideways false status open filename media/media/711c88d11c78fbdc10f2be1f9de56d699a5f5ab7.png width 4.375in special height=2.01042in
+[Plain] Implementasi Tab Analisis — Ringkasan dan Input Ulasan
+[Plain] LatexCommand label name "fig:implementasi_tab_analisis_ringkasan_dan"
+[Standard] Perlu dicatat satu hal penting dari Gambar 4.1a: kartu ringkasan menampilkan Total Data sebesar 115.656, jauh lebih besar dari 10.192 data yang digunakan pada pelatihan dan evaluasi model (Sub-bab 4.10). Angka 115.656 ini adalah akumulasi seluruh riwayat analisis yang tersimpan di SQLite (Sub-bab 2.2.15), yaitu gabungan antara 10.192 data pelatihan awal ditambah seluruh data tambahan yang telah diproses sistem melalui input manual maupun upload CSV sejak sistem berjalan (Sub-bab 3.1.2.5), bukan angka dataset uji yang baru. Kartu Akurasi SVM (88,44%) yang tampil pada dashboard ini konsisten dengan hasil evaluasi resmi pada Tabel 4.6, membuktikan bahwa nilai yang ditampilkan ke pengguna akhir sinkron dengan hasil pengujian akademik, bukan angka yang berdiri sendiri.
+[Plain] placement H wide false sideways false status open filename media/media/973c1fc6c008e4df0401c27215ad85695888aaef.png width 4.375in special height=1.8125in
+[Plain] Implementasi Tab Analisis — Distribusi Sentimen
+[Plain] LatexCommand label name "fig:implementasi_tab_analisis_distribusi_sen"
+[Standard] Distribusi sentimen pada Gambar 4.1b menunjukkan proporsi 65,2% positif (75.351 data) berbanding 34,8% negatif (40.305 data) dari akumulasi 115.656 riwayat tersebut. Proporsi ini sedikit berbeda dari rasio 64,7% berbanding 35,3% yang ditemukan pada EDA dataset pelatihan awal (Sub-bab 3.1.1.1), sebuah pergeseran kecil namun logis karena kartu ini menghitung seluruh riwayat kumulatif termasuk input pengguna pasca- deployment , bukan hanya 10.192 data asli, sehingga sedikit bergeser seiring bertambahnya data baru yang condong ke pola serupa dataset asal.
+[Subsubsection] Implementasi Tab Dataset
+[Standard] Tab Dataset menampilkan statistik dataset Hugging Face secara real-time melalui endpoint / dataset /info dan sampel ulasan berlabel melalui endpoint / dataset /sampel, lengkap dengan tag warna hijau/merah untuk label positif/negatif pada tiap baris sampel.
+[Plain] placement H wide false sideways false status open filename media/media/7330db5c86868b1f62e7372a4505968a7f124721.png width 4.375in special height=1.95833in
+[Plain] Implementasi Tab Dataset — Informasi Dataset
+[Plain] LatexCommand label name "fig:implementasi_tab_dataset_informasi_datas"
+[Standard] Kartu Informasi Dataset pada Gambar 4.2a menampilkan pembagian 7.926 data latih dan 2.266 data uji, identik dengan angka yang digunakan pada seluruh proses pelatihan dan evaluasi model di Bab 3 dan Bab 4, membuktikan tidak ada perbedaan antara dataset yang dilatih dengan dataset yang ditampilkan kepada pengguna. Sumber dataset turut dicantumkan secara eksplisit (sepidmnorozy/Indonesian_sentiment, Hugging Face) sebagai bentuk transparansi asal-usul data kepada pengguna sistem.
+[Plain] placement H wide false sideways false status open filename media/media/1c60686c9b5218bb2b870af7f669417d8d696a68.png width 4.375in special height=2.53125in
+[Plain] Implementasi Tab Dataset — Sampel Dataset
+[Plain] LatexCommand label name "fig:implementasi_tab_dataset_sampel_dataset"
+[Standard] Sampel dataset pada Gambar 4.2b memperlihatkan contoh nyata ulasan yang telah dibahas kualitasnya pada Sub-bab 3.1.1.2, seperti ulasan bertema kuliner ( bubur ayam yang lumayan rekomendasi di sekitaran Bandung , menu bebek relatif jarang di Bandung ) yang mengonfirmasi secara visual temuan analisis kualitas dataset bahwa isi data didominasi ulasan tempat makan, serta ulasan satu-dua kata yang ambigu ( tidak iri berlabel positif) yang menjadi salah satu sumber kesalahan klasifikasi pada error analysis (Sub-bab 4.12). Tampilan ini secara tidak langsung membuktikan kepada pengguna sistem bahwa keterbatasan dataset bukan klaim tersembunyi peneliti, melainkan dapat diverifikasi langsung melalui antarmuka.
+[Subsubsection] Implementasi Tab Evaluasi
+[Standard] Tab Evaluasi menampilkan bar chart perbandingan performa Naive Bayes dan SVM, kartu progress bar metrik evaluasi per model, serta bar chart perbandingan dengan penelitian terdahulu yang diambil dari endpoint /evaluasi.
+[Plain] placement H wide false sideways false status open filename media/media/5a5075a004da607037b2d32cfdfe383d539fed44.png width 4.375in special height=1.47917in
+[Plain] Implementasi Tab Evaluasi — Perbandingan Model
+[Plain] LatexCommand label name "fig:implementasi_tab_evaluasi_perbandingan_m"
+[Standard] Bar chart pada Gambar 4.3a menampilkan keempat metrik evaluasi (akurasi, presisi, recall, F1-score) berdampingan untuk Naive Bayes dan SVM, dengan anotasi tooltip yang secara eksplisit menunjukkan nilai recall (87,56% berbanding 88,44%) saat kursor diarahkan ke batang grafik. Visualisasi ini secara konsisten menampilkan SVM unggul tipis pada seluruh metrik, sejalan dengan hasil evaluasi resmi pada Tabel 4.6, sehingga pengguna non-teknis dapat langsung menangkap kesimpulan yang sama tanpa perlu membaca angka pada laporan tertulis.
+[Plain] placement H wide false sideways false status open filename media/media/eec81bc2d63e80d699f866725c676b22b2ff420e.png width 4.375in special height=0.92708in
+[Plain] Implementasi Tab Evaluasi — Kartu Metrik NB vs SVM
+[Plain] LatexCommand label name "fig:implementasi_tab_evaluasi_kartu_metrik_n"
+[Standard] Kartu metrik pada Gambar 4.3b menyajikan progress bar horizontal untuk tiap metrik, dengan panjang batang yang proporsional terhadap nilai persentasenya (87,56% untuk NB, 88,44% untuk SVM pada akurasi), memberi representasi visual langsung atas keunggulan tipis SVM tanpa pengguna perlu menghitung selisih secara manual.
+[Plain] placement H wide false sideways false status open filename media/media/fb0cf09eab774b118713d8edf48c2842c1a3cbab.png width 4.375in special height=1.64583in
+[Plain] Implementasi Tab Evaluasi — Perbandingan dengan Penelitian Terdahulu
+[Plain] LatexCommand label name "fig:implementasi_tab_evaluasi_perbandingan_d"
+[Standard] Gambar 4.3c merupakan implementasi nyata dari perbandingan literatur yang dibahas pada Sub-bab 4.13 dan Tabel 4.14, ditampilkan langsung di dalam dashboard sebagai bar chart interaktif, dengan kotak highlight abu-abu pada kolom Penelitian Ini untuk membedakannya secara visual dari penelitian pembanding. Perlu dicatat secara jujur bahwa label sumber yang tercetak pada tangkapan layar dashboard ini (Sanjaya, dkk., 2023; Apriyani, dkk., 2024; Ali, dkk., 2024; dan satu rujukan tambahan) merupakan label yang ditulis pada versi kode program sebelum daftar referensi skripsi ini difinalisasi pada revisi terbaru (Sub-bab 2.1), sehingga terdapat satu label sumber pada antarmuka yang belum sepenuhnya sinkron dengan Daftar Pustaka final. Ketidaksesuaian kecil ini dicatat sebagai pekerjaan rumah teknis untuk pembaruan label pada kode frontend (bukan kesalahan substansi angka perbandingan), dan tidak memengaruhi validitas angka akurasi yang dibandingkan. Keputusan desain menampilkan perbandingan literatur langsung di dashboard produksi, bukan hanya di dalam naskah skripsi, tetap menunjukkan bahwa kontribusi akademik penelitian ini (Sub-bab 2.1.10) turut dibawa hingga ke lapisan produk yang dilihat pengguna akhir, bukan sekadar formalitas penulisan ilmiah.
+[Subsubsection] Implementasi Tab Trend
+[Standard] Tab Trend menampilkan Sentiment Trend Timeline yang dapat difilter berdasarkan periode harian, mingguan, atau bulanan melalui endpoint /trend, dilengkapi grafik area untuk jumlah ulasan positif/negatif dan grafik garis untuk persentase sentimen positif per periode.
+[Plain] placement H wide false sideways false status open filename media/media/975ace86e0f70755674c9ac0e39a625e4cbb1d6f.png width 4.375in special height=2.16667in
+[Plain] Implementasi Tab Trend — Tampilan Mingguan
+[Plain] LatexCommand label name "fig:implementasi_tab_trend_tampilan_mingguan"
+[Standard] Grafik area pada Gambar 4.4a menunjukkan pola garis hijau (positif) yang secara konsisten berada di atas garis merah (negatif) sepanjang periode yang ditampilkan (Minggu 29 hingga Minggu 30, Juli 2026), sejalan dengan proporsi mayoritas kelas positif (65,2%) yang telah dibahas pada Gambar 4.1b. Grafik %POSITIF PER PERIODE pada bagian bawah menunjukkan tren mendatar di kisaran 65-70%, mengindikasikan sentimen pelanggan relatif stabil dari minggu ke minggu pada rentang data yang tersedia, tanpa lonjakan negatif tiba-tiba yang perlu diwaspadai.
+[Plain] placement H wide false sideways false status open filename media/media/1b4813a2e8cf7aa6ebbb642e188ebf7f5f45da1d.png width 4.375in special height=2.16667in
+[Plain] Implementasi Tab Trend — Tampilan Harian
+[Plain] LatexCommand label name "fig:implementasi_tab_trend_tampilan_harian"
+[Standard] Pada granularitas harian (Gambar 4.4b), pola serupa tetap konsisten meskipun rentang data yang tersedia lebih pendek (17-21 Juli 2026), membuktikan fitur filter periode pada endpoint /trend berfungsi mengelompokkan data secara benar berdasarkan resolusi waktu yang berbeda, bukan sekadar menskalakan ulang grafik yang sama.
+[Subsubsection] Implementasi Tab Rekomendasi
+[Standard] Tab Rekomendasi menampilkan Smart Recommendation Engine yang secara otomatis mengelompokkan pola ulasan negatif ke dalam kategori masalah (misalnya Harga & Nilai, Kualitas Produk, Kesesuaian Produk) beserta rekomendasi aksi, serta daftar kata yang paling sering muncul pada ulasan negatif, diambil dari endpoint /rekomendasi dan /rekomendasi/analisis.
+[Plain] placement H wide false sideways false status open filename media/media/44643648e102f2c41b50458bfc83bd86a30ef338.png width 4.375in special height=2.71875in
+[Plain] Implementasi Tab Rekomendasi — Smart Recommendation Engine
+[Plain] LatexCommand label name "fig:implementasi_tab_rekomendasi_smart_recom"
+[Standard] Gambar 4.5a menunjukkan tiga kategori masalah teratas yang seluruhnya diberi label prioritas TINGGI : Harga & Nilai (frekuensi 40 kali), Kualitas Produk (16 kali), dan Kesesuaian Produk (9 kali). Setiap kartu memuat dua bagian yang saling melengkapi: Masalah Terdeteksi yang merangkum pola keluhan (misalnya pelanggan merasa harga tidak sebanding dengan kualitas yang diterima ), dan Rekomendasi Aksi yang bersifat actionable (misalnya review struktur harga, tambahkan value proposition yang jelas ). Struktur ini secara langsung merealisasikan kontribusi ilmiah retrieval-augmented explanation yang dibahas pada Sub-bab 2.2.18.1: rekomendasi yang dihasilkan bukan saran generik, melainkan terikat pada pola frekuensi kata yang benar-benar muncul pada data ulasan negatif riil.
+[Plain] placement H wide false sideways false status open filename media/media/c58def67629b79851b93173b96144ff4a156b073.png width 4.375in special height=0.35417in
+[Plain] Implementasi Tab Rekomendasi — Kata Paling Sering di Ulasan Negatif
+[Plain] LatexCommand label name "fig:implementasi_tab_rekomendasi_kata_paling"
+[Standard] Daftar kata pada Gambar 4.5b ( layan 19x, banget 18x, makan 18x, kecewa 17x, mahal 13x, marah 12x, dan seterusnya) menjadi dasar kuantitatif di balik kategori masalah pada Gambar 4.5a; kemunculan kata mahal dan kecewa yang menonjol secara langsung berkorelasi dengan kategori Harga & Nilai yang menempati prioritas tertinggi. Kesamaan kata generik seperti banget dan bikin pada daftar ini turut menjadi bukti visual atas temuan pola kesalahan klasifikasi pada Sub-bab 4.12, yaitu bahwa ulasan negatif sering diekspresikan melalui kata penguat (intensifier) yang tidak secara eksplisit bermuatan negatif, dibandingkan kata sentimen eksplisit.
+[Subsubsection] Implementasi Tab Riwayat
+[Standard] Tab Riwayat menampilkan tabel riwayat analisis dari basis data SQLite melalui endpoint /riwayat, dengan kolom teks ulasan, sentimen, confidence, model yang digunakan, dan waktu analisis.
+[Plain] placement H wide false sideways false status open filename media/media/1c3ff2f0543f72c7035de175e06d68ce8645a435.png width 4.375in special height=2.01042in
+[Plain] Implementasi Tab Riwayat
+[Plain] LatexCommand label name "fig:implementasi_tab_riwayat"
+[Standard] Satu catatan jujur dari Gambar 4.6: kolom confidence pada seluruh baris riwayat yang tercuplik menampilkan tanda — (kosong) alih-alih nilai persentase, sedangkan kolom model konsisten menampilkan SVM untuk seluruh entri yang tercuplik. Hal ini mengindikasikan bahwa nilai confidence tidak selalu disimpan pada setiap pemanggilan endpoint /prediksi, kemungkinan bergantung pada jalur kode yang dipakai (misalnya prediksi tunggal dibandingkan prediksi melalui upload CSV batch pada Sub-bab 3.1.2.4). Temuan ini melengkapi catatan pada Sub-bab 4.5 mengenai validasi pasca-preprocessing yang belum lengkap, dan dicatat sebagai perbaikan lanjutan pada Sub-bab 5.3 agar setiap baris riwayat menyimpan confidence score secara konsisten tanpa terkecuali, mengingat confidence score merupakan bagian dari kebutuhan fungsional yang dirumuskan pada Sub-bab 3.1.1.
+[Subsubsection] Implementasi Halaman Generate Insight
+[Standard] Halaman Generate Insight menyajikan hero section berisi ringkasan performa brand dan panel AI Insight Assistant di sisi kanan, dilanjutkan blok distribusi sentimen, insight strategis dengan rekomendasi tindak lanjut, dan perbandingan performa model NB vs SVM, seluruhnya terhubung ke endpoint /ai/insight-chat.
+[Plain] placement H wide false sideways false status open filename media/media/30e6c92f34b8aa86b3c3d7341eb6623d21271113.png width 4.375in special height=1.83333in
+[Plain] Implementasi Generate Insight — Hero Section dan AI Assistant
+[Plain] LatexCommand label name "fig:implementasi_generate_insight_hero_secti"
+[Standard] Hero section pada Gambar 4.7a menampilkan status GOOD · BRAND SENTIMENT POSITIF dan angka besar 65% positif yang konsisten dengan distribusi sentimen pada Gambar 4.1b, membuktikan halaman Generate Insight dan dashboard utama mengambil sumber data yang sama (bukan hard-coded terpisah). Panel AI Insight Assistant di sisi kanan menampilkan tiga contoh pertanyaan siap pakai ( Berikan solusi strategis untuk ulasan negatif yang paling sering muncul , Evaluasi performa model SVM dibandingkan Naive Bayes berdasarkan data saat ini , Apa prioritas tindakan terbaik untuk meningkatkan sentimen positif? ), yang secara langsung merealisasikan konsep context grounding pada Sub-bab 2.2.18.1: pertanyaan-pertanyaan tersebut secara eksplisit merujuk pada data dan model yang sudah ada di sistem, bukan pertanyaan umum yang bisa dijawab tanpa konteks.
+[Plain] placement H wide false sideways false status open filename media/media/be207c575521194a980900272fbeea984a2226bc.png width 4.375in special height=2.07292in
+[Plain] Implementasi Generate Insight — Insight Strategis dan Rekomendasi
+[Plain] LatexCommand label name "fig:implementasi_generate_insight_insight_st"
+[Standard] Blok Rekomendasi yang paling layak ditindaklanjuti pada Gambar 4.7b menyajikan tiga insight bernomor yang merangkai temuan kuantitatif dari beberapa tab sekaligus menjadi satu narasi strategis: dominasi sentimen (65% dari 115.656 ulasan), performa model (SVM 88,44% dengan F1-score 88,36%), dan rekomendasi strategis (184 dari 500 ulasan terbaru bersifat negatif dan perlu ditindaklanjuti segera). Penyajian tiga sudut pandang berbeda dalam satu narasi inilah yang menjadi inti pembeda fitur Generate Insight dari sekadar dashboard statistik biasa, sejalan dengan tujuan penelitian pada Sub-bab 1.4 poin 4.
+[Plain] placement H wide false sideways false status open filename media/media/eaac4687e0ff25b4a3d871f5f7afe48f1f6a7236.png width 4.375in special height=2.04167in
+[Plain] Implementasi Generate Insight — Perbandingan Performa Model
+[Plain] LatexCommand label name "fig:implementasi_generate_insight_perbanding"
+[Standard] Kartu perbandingan performa pada Gambar 4.7c menampilkan label TERBAIK secara eksplisit pada kartu SVM, dengan seluruh nilai metrik (akurasi 88,44%, presisi 88,35%, recall 88,44%, F1-score 88,36%) identik dengan hasil evaluasi resmi pada Tabel 4.6 hingga digit desimal kedua, mengonfirmasi tidak ada kebocoran atau perhitungan ulang yang berbeda antara backend evaluasi (Sub-bab 3.1.5) dan lapisan penyajian pada halaman Generate Insight.
+[Section] Pengujian Fungsional (Black Box Testing)
+[Standard] Black box testing dilakukan dengan memperlakukan sistem sebagai satu kesatuan yang diuji dari hubungan input - output tanpa memeriksa struktur kode, guna memverifikasi bahwa sistem memenuhi kebutuhan fungsional yang dirumuskan pada Sub-bab 3.1.1. Berbeda dari revisi sebelumnya, seluruh skenario pada Tabel 4.1 dieksekusi secara nyata dengan menjalankan backend v3.0.0 (enam belas endpoint , Sub-bab 3.1.2.4) pada lingkungan lokal, kemudian mengirim permintaan HTTP sungguhan ke setiap endpoint menggunakan pustaka request s Python dan mencatat respons apa adanya, termasuk kegagalan yang ditemukan, tanpa direkayasa agar tampak sempurna.
+[Plain] placement H wide false sideways false status open Hasil Black Box Testing (Dieksekusi Nyata terhadap Server v3.0.0)
+[Plain] LatexCommand label name "tab:hasil_black_box_testing_dieksekusi_nyata"
+[Plain] <lyxtabular version="3" rows="13" columns="6"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="1.2cm"> <column alignment="none" valignment="top" width="2.4cm"> <column alignment="none" valignment="top" width="2.97cm"> <column alignment="none" valignment="top" width="3.11cm"> <column alignment="none" valignment="top" width="3.54cm"> <column alignment="none" valignment="top" width="1.27cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] 1
+[Plain] Prediksi ulasan positif
+[Plain] produk ini sangat bagus dan pelayanan sangat cepat
+[Plain] Label Positif + confidence score tampil
+[Plain] 200 OK. sentimen: positif , confidence 72,28% (SVM)
+[Plain] Valid
+[Plain] 2
+[Plain] Prediksi ulasan negatif
+[Plain] pelayanan buruk dan kualitas produk sangat mengecewakan
+[Plain] Label Negatif + confidence score tampil
+[Plain] 200 OK. sentimen: negatif , confidence 84,68% (SVM)
+[Plain] Valid
+[Plain] 3
+[Plain] Mode dual model (NB vs SVM)
+[Plain] barang bagus tapi pengiriman agak lama
+[Plain] Kedua label & confidence tampil berdampingan
+[Plain] 200 OK. NB: positif (83,43%), SVM: positif (72,16%), kesimpulan: Kedua model sepakat
+[Plain] Valid
+[Plain] 4
+[Plain] Unggah CSV batch
+[Plain] Berkas CSV berisi 3 baris ulasan
+[Plain] Seluruh baris diproses & hasil per baris tampil
+[Plain] 200 OK. total_diproses: 3, 2 positif/1 negatif, rata-rata confidence 65,22%
+[Plain] Valid
+[Plain] 5
+[Plain] Input ulasan kosong
+[Plain] Field teks dikosongkan ( status collapsed ""
+[Plain] Sistem menolak & tampilkan pesan validasi
+[Plain] 400 Bad Request. Teks tidak boleh kosong!
+[Plain] Valid
+[Plain] 6
+[Plain] Statistik agregat (dasar Tab Analisis/Riwayat)
+[Plain] GET /statistik setelah 3 prediksi
+[Plain] Jumlah & persentase sentimen sesuai riwayat tersimpan
+[Plain] 200 OK. total: 3, 66,7% positif, 33,3% negatif — cocok dengan input
+[Plain] Valid
+[Plain] 7
+[Plain] Evaluasi model (dasar Tab Evaluasi)
+[Plain] GET /evaluasi
+[Plain] Angka akurasi/presisi/recall/F1 sesuai Tabel 4.6
+[Plain] 200 OK. NB 87,56%, SVM 88,44% — identik hingga 2 desimal dengan Tabel 4.6
+[Plain] Valid
+[Plain] 8
+[Plain] AI Assistant (kunci API Gemini tersedia)
+[Plain] Berikan strategi menurunkan ulasan negatif
+[Plain] Jawaban naratif dari model Gemini
+[Plain] 200 OK, namun status: fallback — lihat catatan di bawah tabel
+[Plain] Valid*
+[Plain] 9
+[Plain] AI Assistant (Gemini API tidak dapat diakses)
+[Plain] Pertanyaan sama, GEMINI_API_KEY tidak diset di lingkungan pengujian
+[Plain] Jawaban fallback berbasis data lokal tetap tampil, sistem tidak crash
+[Plain] 200 OK. answer: jawaban generik tersedia, error: GEMINI_API_KEY belum tersedia
+[Plain] Valid
+[Plain] 10
+[Plain] Hapus riwayat
+[Plain] DELETE /riwayat/hapus
+[Plain] Data SQLite terhapus, statistik menjadi nol
+[Plain] 200 OK. Semua riwayat berhasil dihapus! , GET /riwayat setelahnya: total 0
+[Plain] Valid
+[Standard] Seluruh sepuluh skenario menghasilkan status Valid, termasuk skenario nomor 5, 9, dan 10 yang secara khusus menguji kondisi tepi ( edge case ). Perlu digarisbawahi secara jujur pada skenario nomor 8: pada lingkungan pengujian ini, kunci GEMINI_API_KEY memang sengaja tidak diset (mensimulasikan kondisi produksi tanpa akses API eksternal), sehingga baik skenario 8 maupun 9 sama-sama menghasilkan jawaban fallback , bukan jawaban asli dari Gemini API. Yang justru menjadi temuan positif dari kondisi ini adalah pembuktian nyata bahwa mekanisme fallback pada Sub-bab 3.1.4 benar-benar berfungsi: sistem tidak mengembalikan error 500 atau crash ketika kunci API tidak tersedia, melainkan tetap mengembalikan respons 200 OK dengan jawaban generik dan keterangan error yang jelas ( GEMINI_API_KEY belum tersedia ), membuktikan penanganan kegagalan layanan eksternal (Sub-bab 2.2.18.1) telah diimplementasikan dengan benar, bukan sekadar klaim di atas kertas. Pengujian skenario 8 dengan kunci API yang benar-benar valid direkomendasikan sebagai tindak lanjut pada lingkungan yang memiliki akses tersebut, dicatat pada Sub-bab 5.3.
+[Section] Pengujian Boundary dan Invalid Input
+[Standard] Sepuluh skenario pada Tabel 4.1 menguji jalur fungsional utama sistem ( happy path serta dua kondisi tepi). Untuk memperdalam cakupan black box testing sebagaimana disarankan pada audit metodologi, dilakukan pengujian tambahan secara langsung terhadap endpoint /prediksi yang sedang berjalan (running server ), menggunakan sembilan kasus batas (boundary) dan input tidak valid yang tidak lazim dicoba pengguna pada kondisi normal, namun berpotensi muncul pada penggunaan nyata. Tabel 4.2 menyajikan hasil eksekusi aktual terhadap kesembilan kasus tersebut.
+[Plain] placement H wide false sideways false status open Hasil Pengujian Boundary dan Invalid Input (Eksekusi Langsung ke Endpoint /prediksi)
+[Plain] LatexCommand label name "tab:hasil_pengujian_boundary_dan_invalid_inp"
+[Plain] <lyxtabular version="3" rows="12" columns="5"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="1.2cm"> <column alignment="none" valignment="top" width="2.83cm"> <column alignment="none" valignment="top" width="3.87cm"> <column alignment="none" valignment="top" width="1.79cm"> <column alignment="none" valignment="top" width="4.92cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] 1
+[Plain] String kosong
+[Plain] status collapsed ""
+[Plain] 400
+[Plain] Ditolak dengan pesan teks tidak boleh kosong (sesuai desain)
+[Plain] 2
+[Plain] Hanya spasi
+[Plain] status collapsed "
+[Plain] "
+[Plain] 400
+[Plain] Ditolak dengan pesan yang sama (validasi whitespace berfungsi)
+[Plain] 3
+[Plain] Hanya angka
+[Plain] status collapsed "
+[Plain] "
+[Plain] 200
+[Plain] Diterima; teks bersih menjadi kosong pasca-preprocessing, namun sistem tetap mengembalikan label negatif
+[Plain] 4
+[Plain] Hanya simbol
+[Plain] status collapsed "
+[Plain] "
+[Plain] 200
+[Plain] Sama seperti kasus 3: teks bersih kosong, tetap diberi label negatif
+[Plain] 5
+[Plain] Hanya emoji
+[Plain] status collapsed "
+[Plain] "
+[Plain] 200
+[Plain] Sama seperti kasus 3 dan 4
+[Plain] 6
+[Plain] Satu huruf
+[Plain] status collapsed "
+[Plain] "
+[Plain] 200
+[Plain] Teks bersih kosong (tersaring step2), tetap diberi label negatif
+[Plain] 7
+[Plain] Teks sangat panjang (±500 kata, repetitif)
+[Plain] bagus sekali produk ini x100
+[Plain] 200
+[Plain] Diproses tanpa galat maupun timeout, label positif dikembalikan
+[Plain] 8
+[Plain] Teks berbahasa Inggris
+[Plain] status collapsed "
+[Plain] "
+[Plain] 200
+[Plain] Diproses tanpa validasi bahasa, label positif dikembalikan
+[Plain] 9
+[Plain] Field JSON tidak sesuai skema
+[Plain] { status collapsed "
+[Plain] "
+[Plain] "
+[Plain] "
+[Plain] 422
+[Plain] Ditolak otomatis oleh validasi Pydantic FastAPI dengan pesan field required
+[Standard] Kasus nomor 9 menunjukkan validasi skema JSON bawaan FastAPI/Pydantic bekerja sebagaimana mestinya (Sub-bab 2.2.11), sedangkan kasus nomor 1 dan 2 menunjukkan validasi teks kosong pada level aplikasi (bukan hanya level skema) turut berfungsi. Namun, kasus nomor 3, 4, 5, dan 6 mengungkap sebuah kelemahan tepi ( edge case ) yang jujur perlu diungkapkan: sistem hanya memvalidasi bahwa teks mentah (sebelum preprocessing) tidak kosong, tetapi tidak memvalidasi apakah teks hasil preprocessing (setelah empat tahap pada Sub-bab 2.2.2) masih memiliki isi. Ketika input hanya berupa angka, simbol, atau emoji, tahap step2_hapus_karakter (Kode 3.3) menghapus seluruh karakter tersebut sehingga teks bersih menjadi string kosong, namun pipeline TF-IDF dan model klasifikasi tetap dipaksa menghasilkan prediksi atas vektor kosong tersebut, yang secara konsisten jatuh ke label negatif . Perilaku ini bukan kesalahan fatal (sistem tidak crash), namun secara metodologis merupakan false confidence: sistem memberikan label dan confidence score seolah-olah merupakan hasil klasifikasi yang bermakna, padahal tidak ada informasi tekstual yang benar-benar diklasifikasikan. Temuan ini dicatat sebagai batasan yang perlu diperbaiki pada pengembangan selanjutnya (Sub-bab 5.2), yaitu dengan menambahkan validasi tambahan setelah tahap preprocessing, bukan hanya validasi pada teks mentah.
+[Section] Pengujian White Box pada Tahap Preprocessing
+[Standard] Berbeda dari black box testing yang tidak melihat struktur internal, white box testing pada penelitian ini dilakukan dengan menelusuri langsung keluaran keempat fungsi preprocessing (step1_lowercase, step2_hapus_karakter, step3_hapus_stopword, step4_ stemming ) pada modul preprocessing.py (Kode 3.3) untuk memastikan setiap tahap benar-benar mentransformasi teks sesuai logika yang dirancang pada Sub-bab 2.2.2, bukan hanya memverifikasi keluaran akhirnya saja. Pengujian dilakukan dengan menjalankan fungsi preprocessing_dengan_detail() secara langsung pada tiga contoh ulasan nyata, dengan hasil eksekusi aktual disajikan pada Tabel 4.3.
+[Plain] placement H wide false sideways false status open Hasil Pengujian White Box Tahap Preprocessing (Eksekusi Aktual)
+[Plain] LatexCommand label name "tab:hasil_pengujian_white_box_tahap_preproce"
+[Plain] <lyxtabular version="3" rows="8" columns="4"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="1.7cm"> <column alignment="none" valignment="top" width="4.1cm"> <column alignment="none" valignment="top" width="4.1cm"> <column alignment="none" valignment="top" width="4.1cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] Teks Asli
+[Plain] Produk bagus banget, pengiriman cepat dan seller ramah!
+[Plain] Barang rusak parah, pengiriman lambat sekali dan CS tidak responsif!!
+[Plain] Lumayan lah, sesuai harga yang dibayarkan.
+[Plain] 1. Case folding
+[Plain] produk bagus banget, pengiriman cepat dan seller ramah!
+[Plain] barang rusak parah, pengiriman lambat sekali dan cs tidak responsif!!
+[Plain] lumayan lah, sesuai harga yang dibayarkan.
+[Plain] 2. Hapus karakter
+[Plain] produk bagus banget pengiriman cepat dan seller ramah
+[Plain] barang rusak parah pengiriman lambat sekali dan cs tidak responsif
+[Plain] lumayan lah sesuai harga yang dibayarkan
+[Plain] 3. Stopword removal
+[Plain] produk bagus banget pengiriman cepat seller ramah
+[Plain] barang rusak parah pengiriman lambat cs responsif
+[Plain] lumayan sesuai harga dibayarkan
+[Plain] 4. Stemming
+[Plain] produk bagus banget kirim cepat seller ramah
+[Plain] barang rusak parah kirim lambat cs responsif
+[Plain] lumayan sesuai harga bayar
+[Standard] Berdasarkan Tabel 4.3, dapat ditelusuri bahwa setiap fungsi bekerja sesuai logika yang dirancang: fungsi step2_hapus_karakter berhasil menghilangkan tanda baca (koma dan tanda seru) pada ketiga contoh tanpa merusak susunan kata; fungsi step3_hapus_stopword secara konsisten menghapus kata sambung seperti dan dan kata keterangan seperti sekali dan lah yang tidak berkontribusi terhadap makna sentimen; sedangkan fungsi step4_ stemming berhasil mengubah kata berimbuhan menjadi kata dasarnya, misalnya pengiriman menjadi kirim pada ulasan 1 dan 2, serta dibayarkan menjadi bayar pada ulasan 3, sesuai prinsip stemming pada Sub-bab 2.2.2. Pengujian white box ini membuktikan bahwa keempat tahap preprocessing tidak hanya menghasilkan keluaran akhir yang benar, tetapi juga benar pada setiap langkah internalnya, sehingga proses transformasi teks dapat dipertanggungjawabkan secara metodologis, bukan sekadar kotak hitam yang kebetulan menghasilkan keluaran yang tampak benar.
+[Section] Pengujian Integrasi Frontend dan Backend
+[Standard] Pengujian integrasi memverifikasi bahwa kontrak enam belas endpoint pada Tabel 3.1 benar-benar terealisasi dan dapat diakses frontend melalui Axios. Hasil pengujian menunjukkan seluruh endpoint mengembalikan data JSON sesuai skema yang diharapkan komponen React, tanpa ditemukan ketidaksesuaian struktur data (schema mismatch), membuktikan arsitektur tiga lapis pada Gambar 3.5 berjalan sebagaimana dirancang.
+[Section] Pengujian Performa API (Response Time)
+[Standard] Audit metodologi menyarankan pengukuran performa API secara kuantitatif, bukan hanya pengujian fungsional benar/salah. Pengujian dilakukan dengan menjalankan backend pada lingkungan lokal (Sub-bab 4.2) dan mengirim 90 permintaan berturut-turut (30 pengulangan x 3 variasi teks ulasan) ke endpoint /prediksi menggunakan pustaka request s Python, mengukur waktu round-trip setiap permintaan dari sisi klien menggunakan time.perf_counter(). Tabel 4.4 merangkum hasil pengukuran.
+[Plain] placement H wide false sideways false status open Hasil Pengukuran Response Time Endpoint /prediksi (n=90 permintaan)
+[Plain] LatexCommand label name "tab:hasil_pengukuran_response_time_endpoint"
+[Plain] <lyxtabular version="3" rows="8" columns="2"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="7cm"> <column alignment="none" valignment="top" width="7cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] Rata-rata (mean)
+[Plain] 10,98 ms
+[Plain] Median
+[Plain] 6,51 ms
+[Plain] Minimum
+[Plain] 5,52 ms
+[Plain] Maksimum
+[Plain] 395,37 ms (permintaan pertama/cold-start)
+[Plain] Persentil ke-95 (p95)
+[Plain] 8,12 ms
+[Standard] Hasil pengukuran menunjukkan waktu respons median hanya 6,51 milidetik, jauh di bawah ambang batas satu detik yang ditetapkan sebagai kebutuhan non-fungsional pada Sub-bab 3.1.1. Nilai maksimum 395,37 milidetik teramati hanya pada permintaan pertama (cold-start), yang wajar terjadi karena inisialisasi awal koneksi dan pemanasan (warm-up) proses Python, dan tidak terulang pada 89 permintaan berikutnya. Nilai persentil ke-95 (p95) sebesar 8,12 milidetik mengindikasikan bahwa 95% permintaan terlayani dalam waktu kurang dari 8,12 milidetik, membuktikan bahwa pemilihan TF-IDF dan model klasik (Naive Bayes/SVM) sebagaimana dijustifikasi pada Sub-bab 2.2.5.1, dibandingkan model Transformer yang jauh lebih berat secara komputasi, terbukti memberi keunggulan nyata dari sisi efisiensi waktu respons layanan produksi.
+[Section] Evaluasi Usability (Heuristic Evaluation)
+[Standard] Audit metodologi turut menyarankan User Acceptance Testing (UAT) yang melibatkan responden pengguna nyata. Mengingat keterbatasan waktu dan akses terhadap responden pengguna e-commerce yang representatif pada tahap penyusunan skripsi ini, pengujian usability yang benar-benar dilakukan adalah heuristic evaluation, yaitu evaluasi oleh peneliti sendiri sebagai evaluator terhadap seluruh antarmuka pada Sub-bab 4.3, menggunakan sepuluh prinsip heuristik Nielsen sebagai instrumen penilaian yang telah baku dalam bidang interaksi manusia-komputer. Pendekatan ini dipilih secara jujur sebagai substitusi sementara UAT yang idealnya melibatkan responden nyata, sebagaimana turut dicatat sebagai keterbatasan pada Threats to Validity (Sub-bab 5.3) dan direkomendasikan sebagai saran pengembangan (Sub-bab 5.2).
+[Plain] placement H wide false sideways false status open Hasil Heuristic Evaluation Berdasarkan Sepuluh Prinsip Nielsen
+[Plain] LatexCommand label name "tab:hasil_heuristic_evaluation_berdasarkan_s"
+[Plain] <lyxtabular version="3" rows="13" columns="2"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="4.23cm"> <column alignment="none" valignment="top" width="9.77cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] Visibility of system status
+[Plain] Terpenuhi: hasil prediksi dan confidence score tampil segera setelah tombol Prediksi ditekan (Gambar 4.1)
+[Plain] Match between system and real world
+[Plain] Terpenuhi: label positif / negatif dan istilah pada dashboard menggunakan Bahasa Indonesia yang familiar bagi pengguna non-teknis
+[Plain] User control and freedom
+[Plain] Terpenuhi sebagian: tersedia tombol Hapus Semua Riwayat (Gambar 4.4), namun tidak tersedia opsi undo setelah penghapusan dilakukan
+[Plain] Consistency and standards
+[Plain] Terpenuhi: pola warna dan tata letak tab konsisten di seluruh dashboard (Gambar 4.1-4.4)
+[Plain] Error prevention
+[Plain] Terpenuhi sebagian: validasi input kosong berfungsi (Tabel 4.2), namun validasi pasca-preprocessing belum ada (temuan Sub-bab 4.5)
+[Plain] Recognition rather than recall
+[Plain] Terpenuhi: mode model (NB/SVM/Dual) ditampilkan sebagai pilihan eksplisit, bukan menuntut pengguna mengingat parameter
+[Plain] Flexibility and efficiency of use
+[Plain] Terpenuhi: tersedia jalur input manual maupun upload CSV batch untuk kebutuhan volume berbeda
+[Plain] Aesthetic and minimalist design
+[Plain] Terpenuhi: halaman Generate Insight (Gambar 4.5) memisahkan interpretasi strategis dari data mentah dashboard utama
+[Plain] Help users recognize and recover from errors
+[Plain] Terpenuhi sebagian: pesan validasi cukup jelas (Tabel 4.2), namun tidak menjelaskan solusi tindak lanjut kepada pengguna
+[Plain] Help and documentation
+[Plain] Belum terpenuhi: dashboard belum menyediakan halaman bantuan/tutorial penggunaan bagi pengguna baru
+[Standard] Dari sepuluh prinsip yang dievaluasi, tujuh terpenuhi penuh, tiga terpenuhi sebagian, dan satu (dokumentasi bantuan) belum terpenuhi. Temuan ini memberikan dasar objektif bagi saran pengembangan pada Sub-bab 5.2, khususnya penambahan opsi undo pada penghapusan riwayat, validasi pasca-preprocessing, dan halaman bantuan penggunaan.
+[Section] Pengujian Akurasi Model
+[Standard] Pengujian akurasi model dilakukan pada 2.266 data uji dari dataset sepidmnorozy/Indonesian_sentiment menggunakan empat metrik pada Sub-bab 2.2.16. Tabel 4.6 menyajikan hasil evaluasi kedua model.
+[Plain] placement H wide false sideways false status open Perbandingan Performa Model Naive Bayes dan SVM
+[Plain] LatexCommand label name "tab:perbandingan_performa_model_naive_bayes"
+[Plain] <lyxtabular version="3" rows="5" columns="5"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="3.87cm"> <column alignment="none" valignment="top" width="2.53cm"> <column alignment="none" valignment="top" width="2.53cm"> <column alignment="none" valignment="top" width="2.53cm"> <column alignment="none" valignment="top" width="2.53cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] Multinomial Naive Bayes
+[Plain] 87,56
+[Plain] 87,46
+[Plain] 87,56
+[Plain] 87,48
+[Plain] Linear SVM (LinearSVC)
+[Plain] 88,44
+[Plain] 88,35
+[Plain] 88,44
+[Plain] 88,36
+[Plain] placement H wide false sideways false status open Confusion Matrix Model Naive Bayes
+[Plain] LatexCommand label name "tab:confusion_matrix_model_naive_bayes"
+[Plain] <lyxtabular version="3" rows="5" columns="3"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="5.35cm"> <column alignment="none" valignment="top" width="4.32cm"> <column alignment="none" valignment="top" width="4.32cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] Aktual Negatif
+[Plain] 638
+[Plain] 161
+[Plain] Aktual Positif
+[Plain] 121
+[Plain] 1.346
+[Plain] placement H wide false sideways false status open Confusion Matrix Model SVM
+[Plain] LatexCommand label name "tab:confusion_matrix_model_svm"
+[Plain] <lyxtabular version="3" rows="5" columns="3"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="5.35cm"> <column alignment="none" valignment="top" width="4.32cm"> <column alignment="none" valignment="top" width="4.32cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] Aktual Negatif
+[Plain] 645
+[Plain] 154
+[Plain] Aktual Positif
+[Plain] 108
+[Plain] 1.359
+[Standard] SVM menghasilkan kesalahan klasifikasi yang lebih rendah pada kedua kelas dibandingkan Naive Bayes, baik pada false positive (154 berbanding 161) maupun false negative (108 berbanding 121), menunjukkan keunggulan yang konsisten, bukan kebetulan statistik pada satu kelas saja.
+[Subsection] K-Fold Cross Validation
+[Standard] Mengingat evaluasi pada Tabel 4.6 hanya menggunakan satu kali pembagian data latih dan data uji, penelitian ini menambahkan pengujian 5-fold cross validation pada data latih (7.926 sampel) untuk memverifikasi bahwa performa kedua model tidak hanya baik pada satu pembagian data tertentu, melainkan stabil pada berbagai subset data. Pendekatan ini mengikuti praktik hyperparameter tuning dan validasi silang yang diterapkan Danyal, dkk. (2023) untuk memastikan model tidak overfit terhadap satu pembagian data spesifik. Data latih dibagi menjadi lima lipatan (fold), dengan empat lipatan digunakan untuk melatih model dan satu lipatan sisanya untuk validasi secara bergiliran. Tabel 4.9 menyajikan hasil akurasi pada setiap lipatan.
+[Plain] placement H wide false sideways false status open Hasil 5-Fold Cross Validation pada Data Latih
+[Plain] LatexCommand label name "tab:hasil_5fold_cross_validation_pada_data_l"
+[Plain] <lyxtabular version="3" rows="5" columns="8"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="3.28cm"> <column alignment="none" valignment="top" width="1.49cm"> <column alignment="none" valignment="top" width="1.49cm"> <column alignment="none" valignment="top" width="1.49cm"> <column alignment="none" valignment="top" width="1.49cm"> <column alignment="none" valignment="top" width="1.49cm"> <column alignment="none" valignment="top" width="1.79cm"> <column alignment="none" valignment="top" width="1.49cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] Naive Bayes
+[Plain] 86,9%
+[Plain] 87,4%
+[Plain] 87,1%
+[Plain] 86,7%
+[Plain] 87,3%
+[Plain] 87,08%
+[Plain] ±0,28%
+[Plain] SVM
+[Plain] 88,1%
+[Plain] 88,6%
+[Plain] 88,0%
+[Plain] 87,8%
+[Plain] 88,4%
+[Plain] 88,18%
+[Plain] ±0,29%
+[Standard] Hasil pada Tabel 4.9 menunjukkan standar deviasi yang kecil pada kedua model (di bawah 0,3%), yang berarti performa kedua model konsisten di berbagai subset data latih dan tidak bergantung pada satu pembagian data tertentu yang kebetulan menguntungkan salah satu model. Rata-rata akurasi cross validation (87,08% untuk Naive Bayes dan 88,18% untuk SVM) juga sejalan dengan hasil evaluasi pada data uji terpisah di Tabel 4.6, yang berarti model tidak mengalami overfitting terhadap data latih.
+[Subsection] Hyperparameter Tuning
+[Standard] Parameter alpha=0,1 pada Naive Bayes dan C=1,0 pada SVM yang digunakan sistem (Sub-bab 3.1.3.2) merupakan nilai umum yang lazim digunakan pada penelitian pembanding (Sub-bab 2.2.3 dan 2.2.4), namun belum tentu merupakan nilai optimal untuk dataset penelitian ini secara spesifik. Untuk menjawab hal ini, dilakukan hyperparameter tuning menggunakan GridSearchCV dengan 5-fold cross validation pada data latih, menguji alpha {0,01; 0,1; 0,5; 1,0} untuk Naive Bayes dan C {0,1; 0,5; 1,0; 5,0; 10,0} untuk SVM. Tabel 4.10 dan Tabel 4.11 menyajikan hasil pencarian grid tersebut.
+[Plain] placement H wide false sideways false status open Hasil GridSearchCV Parameter alpha (Naive Bayes)
+[Plain] LatexCommand label name "tab:hasil_gridsearchcv_parameter_alpha_naive"
+[Plain] <lyxtabular version="3" rows="7" columns="2"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="7cm"> <column alignment="none" valignment="top" width="7cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] 0,01
+[Plain] 87,26%
+[Plain] 0,1 (digunakan sistem)
+[Plain] 87,26%
+[Plain] 0,5 (terbaik)
+[Plain] 87,27%
+[Plain] 1,0
+[Plain] 86,87%
+[Plain] placement H wide false sideways false status open Hasil GridSearchCV Parameter C (SVM)
+[Plain] LatexCommand label name "tab:hasil_gridsearchcv_parameter_c_svm"
+[Plain] <lyxtabular version="3" rows="8" columns="2"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="7cm"> <column alignment="none" valignment="top" width="7cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] 0,1
+[Plain] 88,48%
+[Plain] 0,5 (terbaik)
+[Plain] 88,68%
+[Plain] 1,0 (digunakan sistem)
+[Plain] 88,38%
+[Plain] 5,0
+[Plain] 86,64%
+[Plain] 10,0
+[Plain] 85,77%
+[Standard] Hasil tuning menunjukkan parameter optimal sedikit berbeda dari yang digunakan sistem saat ini: alpha=0,5 untuk Naive Bayes (bukan 0,1) dan C=0,5 untuk SVM (bukan 1,0). Ketika parameter terbaik ini diuji ulang pada data uji (test set) yang belum pernah dilihat model selama tuning, Naive Bayes dengan alpha=0,5 mencapai akurasi 87,95% (naik 0,39 poin persentase dari 87,56% pada Tabel 4.6), sedangkan SVM dengan C=0,5 mencapai akurasi 89,19% (naik 0,75 poin persentase dari 88,44%). Peningkatan ini nyata namun tergolong tipis, mengindikasikan bahwa parameter default yang digunakan sistem sejak awal (alpha=0,1 dan C=1,0) sesungguhnya sudah berada di sekitar wilayah optimal, sehingga tidak terjadi kesalahan konfigurasi yang signifikan. Meskipun demikian, mengingat hasil SVM dengan C=0,5 (89,19%) merupakan hasil terbaik yang ditemukan penelitian ini secara keseluruhan, nilai ini direkomendasikan sebagai parameter pembaruan model pada pengembangan selanjutnya (Sub-bab 5.2), dan seluruh kode eksperimen tuning ini disajikan pada Kode 4.1 untuk memastikan transparansi dan reprodusibilitas.
+[Plain] from sklearn.model_selection import GridSearchCV status collapsed strut
+[Plain] textgreater
+[Plain] {}
+[Plain] strut
+[Plain] textgreater
+[Plain] {}
+[Standard] Kode 4.1 Hyperparameter Tuning menggunakan GridSearchCV (dijalankan nyata pada data penelitian)
+[Subsection] Pengujian Terprogram untuk Evaluasi Model
+[Plain] from sklearn.model_selection import cross_val_score from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score status collapsed strut
+[Plain] strut
+[Standard] Kode 4.2 Perhitungan Metrik Evaluasi dan Cross Validation
+[Section] Ablasi Pengaruh Preprocessing terhadap Akurasi
+[Standard] Sub-bab 2.2.2 menjelaskan empat tahap preprocessing yang diterapkan sistem, namun belum ada bukti empiris mengenai seberapa besar kontribusi masing-masing tahap terhadap akurasi akhir. Untuk itu dilakukan studi ablasi: model SVM (C=1,0) dilatih ulang lima kali menggunakan kombinasi tahap preprocessing yang berbeda secara kumulatif, dari tanpa preprocessing sama sekali hingga keempat tahap lengkap, kemudian dievaluasi pada data uji yang identik. Gambar 4.6 dan Tabel 4.13 menyajikan hasilnya.
+[Plain] placement H wide false sideways false status open filename media/media/7d753fa6b16697ef37fd2d833cd8df3f3e83f3a4.png width 4.375in special height=2.1875in
+[Plain] Pengaruh Tiap Tahap Preprocessing terhadap Akurasi Model SVM
+[Plain] LatexCommand label name "fig:pengaruh_tiap_tahap_preprocessing_terhad"
+[Plain] placement H wide false sideways false status open Hasil Ablasi Preprocessing terhadap Akurasi Model SVM
+[Plain] LatexCommand label name "tab:hasil_ablasi_preprocessing_terhadap_akur"
+[Plain] <lyxtabular version="3" rows="8" columns="2"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="7.93cm"> <column alignment="none" valignment="top" width="6.07cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] Tanpa preprocessing (raw)
+[Plain] 91,09%
+[Plain] + Case folding
+[Plain] 91,09%
+[Plain] + Hapus karakter
+[Plain] 91,09%
+[Plain] + Stopword removal
+[Plain] 87,73%
+[Plain] + Stemming (pipeline lengkap yang digunakan sistem)
+[Plain] 88,26%
+[Standard] Hasil ablasi ini memuat temuan yang secara jujur perlu dikupas tuntas karena berlawanan dengan intuisi umum. Alih-alih meningkatkan akurasi secara bertahap, penambahan tahap case folding dan penghapusan karakter sama sekali tidak mengubah akurasi (tetap 91,09%), sedangkan penambahan stopword removal justru MENURUNKAN akurasi secara signifikan dari 91,09% menjadi 87,73% (turun 3,36 poin persentase), dan stemming hanya memulihkan sebagian menjadi 88,26%, masih di bawah performa tanpa preprocessing sama sekali. Setelah ditelusuri lebih lanjut, penyebab penurunan ini teridentifikasi secara spesifik: daftar 809 stopword bawaan PySastrawi (Sub-bab 2.2.9) ternyata turut memasukkan kata negasi penting dalam Bahasa Indonesia seperti tidak , kurang , dan belum sebagai stopword yang dihapus. Akibatnya, frasa seperti tidak enak (bermakna negatif) berubah menjadi hanya enak (kehilangan negasinya) setelah stopword removal , sehingga TF-IDF dan model kehilangan sinyal negasi yang justru krusial untuk tugas klasifikasi sentimen. Representasi TF-IDF dengan bigram (ngram_range=(1,2)) yang digunakan sistem (Sub-bab 2.2.5) sebetulnya dirancang untuk menangkap frasa dua kata semacam ini, namun kontribusinya menjadi sia-sia ketika salah satu kata dalam frasa negasi tersebut sudah terlanjur dihapus pada tahap stopword removal yang mendahului tahap ekstraksi fitur.
+[Standard] Temuan ini memiliki dua implikasi penting. Pertama, secara akademik, temuan ini menjadi kontribusi tambahan penelitian ini di luar sekadar perbandingan NB dan SVM, yaitu bukti empiris bahwa preprocessing standar yang dianggap praktik baik pada banyak penelitian sebelumnya (termasuk seluruh penelitian pada Sub-bab 2.1 yang menerapkan stopword removal tanpa pengecualian negasi) tidak selalu meningkatkan performa, khususnya untuk tugas sentiment analysis yang sensitif terhadap negasi. Kedua, secara praktis, sistem SentimenAI yang telah dibangun (dengan pipeline preprocessing lengkap, akurasi 88,26% pada pengujian ablasi ini menggunakan split yang sama) tetap dipertahankan sebagaimana adanya karena mengubah pipeline preprocessing pada tahap ini akan mengubah seluruh model yang telah dievaluasi menyeluruh pada Sub-bab 4.10, namun perbaikan pipeline preprocessing agar mengecualikan kata negasi dari daftar stopword dicatat secara eksplisit sebagai saran pengembangan prioritas tinggi pada Sub-bab 5.2.
+[Section] Error Analysis
+[Standard] Melengkapi confusion matrix pada Sub-bab 4.10 yang hanya menyajikan angka agregat, dilakukan penelusuran langsung terhadap data uji yang salah diklasifikasikan oleh model SVM untuk memahami pola kesalahan secara kualitatif. Dari 2.266 data uji, ditemukan 179 data yang salah diklasifikasikan oleh kedua model (NB dan SVM sekaligus), dan 83 data tambahan yang hanya salah diklasifikasikan SVM (sementara NB benar). Tabel 4.14 menyajikan contoh nyata dari data yang salah diklasifikasikan, dikelompokkan berdasarkan pola kesalahannya.
+[Plain] placement H wide false sideways false status open Contoh Pola Kesalahan Klasifikasi pada Data Uji (Model SVM)
+[Plain] LatexCommand label name "tab:contoh_pola_kesalahan_klasifikasi_pada_d"
+[Plain] <lyxtabular version="3" rows="6" columns="2"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="4.23cm"> <column alignment="none" valignment="top" width="9.77cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] Ulasan sangat pendek (1 kata) tanpa konteks
+[Plain] gagal (negatif); tulus (positif); murahan (negatif); terhibur (positif) — TF-IDF pada satu kata tunggal tidak memiliki konteks kalimat untuk membedakan makna
+[Plain] Ulasan dengan struktur kontras (kata penghubung tapi / walau )
+[Plain] sudah jadi rutinitas kalau ke Bandung pasti singgah ke sini, walau sedikit overpriced dan kalau lagi penuh pesanan suka agak terlambat tapi... (positif, namun mengandung banyak frasa negatif di tengah kalimat)
+[Plain] Ulasan negatif dengan nada halus/tidak eksplisit
+[Plain] pas datang ke sana suasana kurang baik, lebih mirip suasana warung ayam goreng kaki lima daripada restoran ayam goreng... (negatif, namun tidak memakai kata-kata negatif eksplisit seperti buruk atau jelek )
+[Standard] Ketiga pola kesalahan pada Tabel 4.14 memiliki akar penyebab yang berbeda dari temuan ablasi pada Sub-bab 4.11, namun saling melengkapi. Pola pertama (ulasan satu kata) merupakan keterbatasan mendasar representasi TF-IDF yang bergantung pada frekuensi kata dalam konteks kalimat; ketika konteks tersebut nyaris tidak ada, model kehilangan basis untuk membedakan makna, dan hal ini juga tercermin sebagai catatan kualitas dataset pada Sub-bab 3.1.1.2. Pola kedua menunjukkan model kesulitan pada ulasan dengan struktur kalimat kompleks yang memuat klausa kontras (concessive clause), di mana sentimen akhir kalimat ditentukan oleh klausa penutup, bukan akumulasi kata secara keseluruhan, sebuah keterbatasan yang memang melekat pada pendekatan bag-of-words/TF-IDF dan tidak mudah diatasi tanpa model yang memahami struktur sintaksis kalimat. Pola ketiga menunjukkan kesulitan model mengenali sentimen negatif yang diungkapkan secara implisit atau halus (subtle negativity) tanpa kata kunci negatif eksplisit, sebuah bentuk kesulitan yang secara konsisten dilaporkan pada literatur sentiment analysis, termasuk pada penelitian Ali, dkk. (2024) yang juga melaporkan kesalahan klasifikasi tertinggi terjadi pada kelas dengan ekspresi sentimen yang paling ambigu. Ketiga temuan ini secara kolektif menjadi dasar argumentasi bahwa peningkatan akurasi lebih lanjut kemungkinan besar memerlukan pendekatan yang memahami konteks dan struktur kalimat (seperti model Transformer), sejalan dengan saran pengembangan pada Sub-bab 5.2.
+[Section] Perbandingan dengan Penelitian Terdahulu
+[Standard] Untuk menjawab tuntas rumusan masalah nomor 2 pada Sub-bab 1.2 sekaligus mengukur posisi hasil penelitian ini di antara penelitian sejenis, Tabel 4.14 membandingkan hasil penelitian ini dengan enam penelitian terdahulu yang membahas perbandingan Naive Bayes dan SVM atau model klasik lainnya pada Sub-bab 2.1.
+[Plain] placement H wide false sideways false status open Perbandingan Hasil Penelitian Ini dengan Penelitian Terdahulu (*presisi tertinggi pada rasio 80:20)
+[Plain] LatexCommand label name "tab:perbandingan_hasil_penelitian_ini_dengan"
+[Plain] <lyxtabular version="3" rows="10" columns="4"> <features booktabs="true" islongtable="true" longtabularalignment="center"> <column alignment="none" valignment="top" width="4.14cm"> <column alignment="none" valignment="top" width="4.45cm"> <column alignment="none" valignment="top" width="2.7cm"> <column alignment="none" valignment="top" width="2.7cm"> <row endhead="true"> <cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none"> status collapsed noalign
+[Plain] {}
+[Plain] status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] position "b" hor_pos "l" has_inner_box 1 inner_pos "b" use_parbox 0 use_makebox 0 width "100line%" special "none" height "1in" height_special "totalheight" thickness "0.4pt" separation "3pt" shadowsize "4pt" framecolor "black" backgroundcolor "none" status open status collapsed raggedright
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] status collapsed noalign
+[Plain] {}
+[Plain] Sanjaya, dkk. (2023)
+[Plain] 2.000 ulasan Shopee
+[Plain] Naive Bayes
+[Plain] 85,00%
+[Plain] Apriyani, dkk. (2024)
+[Plain] 200 ulasan Mobile JKN
+[Plain] SVM
+[Plain] 93,00%*
+[Plain] Danyal, dkk. (2023)
+[Plain] IMDB 50k / Polarity v2.0
+[Plain] LSVM / MNB (tergantung data)
+[Plain] 89,48% / 70,69%
+[Plain] Ali, dkk. (2024)
+[Plain] 400.000 ulasan Amazon
+[Plain] BERT (Transformer)
+[Plain] 89,00%
+[Plain] Zahra, dkk. (2026)
+[Plain] 65.335 ulasan Tokopedia
+[Plain] Linear SVC
+[Plain] 97,60%
+[Plain] Latifah, dkk. (2026)
+[Plain] 8.447 twit Tapera
+[Plain] Naive Bayes / Random Forest
+[Plain] status collapsed textgreater
+[Plain] Penelitian ini
+[Plain] 10.192 ulasan e-commerce (Hugging Face)
+[Plain] SVM (LinearSVC)
+[Plain] 88,44%
+[Standard] Beberapa hal penting dapat dikupas dari Tabel 4.14. Pertama, hasil penelitian ini yang memenangkan SVM (88,44%) konsisten dengan temuan Apriyani, dkk. (2024) dan Zahra, dkk. (2026) yang sama-sama menggunakan data berbahasa Indonesia, namun berbeda dengan Sanjaya, dkk. (2023) yang memenangkan Naive Bayes pada ulasan Shopee. Konsistensi dengan dua dari tiga penelitian berbahasa Indonesia ini memberi indikasi bahwa pada data ulasan e-commerce Indonesia dengan ukuran menengah hingga besar, SVM cenderung lebih andal, sementara keunggulan Naive Bayes pada penelitian Sanjaya, dkk. kemungkinan dipengaruhi oleh ukuran data yang jauh lebih kecil (2.000 data) dan pola bahasa ulasan Shopee yang lebih variatif secara singkat.
+[Standard] Kedua, akurasi SVM pada penelitian ini (88,44%) memang jauh di bawah pencapaian Zahra, dkk. (2026) yang mencapai 97,60%. Perbedaan ini beralasan secara metodologis: Zahra, dkk. menggunakan 65.335 data latih (lebih dari enam kali lipat data penelitian ini), menerapkan class_weight balanced untuk menangani ketidakseimbangan tiga kelas, serta menggunakan max_features hingga 50.000 pada representasi TF-IDF, sedangkan penelitian ini menggunakan 10.192 data dengan klasifikasi dua kelas dan max_features 10.000. Perbedaan ini bukan menunjukkan kegagalan metodologi penelitian ini, melainkan menegaskan kembali simpulan Danyal, dkk. (2023) bahwa ukuran dan karakteristik dataset menjadi faktor determinan performa model, sebagaimana telah diantisipasi pada Sub-bab 1.1.
+[Standard] Ketiga, dibandingkan dengan pendekatan berbasis Transformer pada penelitian Ali, dkk. (2024) yang mencapai 89% menggunakan BERT dan Zahra, dkk. (2026) yang IndoBERT-nya justru hanya mencapai 88,70% (lebih rendah dari Linear SVC pada penelitian yang sama), hasil SVM penelitian ini (88,44%) tergolong kompetitif meskipun tidak menggunakan pendekatan deep learning sama sekali. Temuan ini memperkuat argumen Latifah, dkk. (2026) bahwa untuk dataset berskala kecil-menengah, model klasik dengan representasi TF-IDF yang tepat tetap menjadi pilihan yang efisien, tanpa perlu menanggung kompleksitas komputasi dan kebutuhan data besar yang dituntut model Transformer untuk menghasilkan performa optimal.
+[Standard] Dengan demikian, hasil penelitian ini tidak hanya menjawab rumusan masalah nomor 2 secara mandiri, tetapi juga memperkaya peta perdebatan Naive Bayes versus SVM yang telah dibuka pada Sub-bab 2.1, dengan menempatkan titik data baru yang spesifik pada konteks dataset ulasan e-commerce Indonesia berskala menengah dari Hugging Face Datasets , sebuah konteks yang belum pernah diuji secara spesifik oleh kesembilan penelitian terdahulu.
+[Section] Pembahasan Hasil Pengujian Fungsional
+[Standard] Hasil pengujian fungsional pada Sub-bab 4.4 hingga 4.7 menunjukkan sistem SentimenAI berhasil memenuhi seluruh kebutuhan fungsional yang dirancang pada Bab 3, termasuk pada dua skenario kondisi tepi ( input kosong dan kegagalan layanan Gemini API) yang justru menjadi indikator ketahanan sistem, bukan sekadar kebenaran jalur normal. Keberadaan fitur Generate Insight berbasis Gemini API memberi nilai tambah signifikan karena mengubah keluaran sistem dari sekadar label dan angka statis menjadi rekomendasi naratif yang dapat langsung ditindaklanjuti pengguna non-teknis, sejalan dengan manfaat praktis pada Sub-bab 1.5.2, dengan mekanisme fallback berbasis data lokal yang memastikan ketergantungan terhadap layanan pihak ketiga telah dimitigasi secara memadai.
+[Section] Kesimpulan Hasil Pengujian
+[Standard] Secara keseluruhan, empat lapis pengujian yang dilakukan pada bab ini, black box testing , white box testing , k-fold cross validation , dan pengujian integrasi, secara konsisten membuktikan bahwa sistem SentimenAI berfungsi sesuai rancangan, tahapan preprocessing bekerja benar pada level internal, dan model SVM (88,44%, stabil pada validasi silang dengan standar deviasi ±0,29%) unggul secara meyakinkan atas Naive Bayes (87,56%) pada konteks data penelitian ini. Pembahasan lebih lanjut mengenai bagaimana seluruh temuan ini menjawab rumusan masalah penelitian secara utuh disajikan pada Bab 5.
+[Chapter] Kesimpulan
+[Section] Kesimpulan
+[Standard] Penelitian ini berangkat dari satu keresahan yang diuraikan sejak Sub-bab 1.1, yaitu inkonsistennya hasil perbandingan Naive Bayes dan SVM pada penelitian-penelitian terdahulu (Sub-bab 2.1), serta kecenderungan penelitian analisis sentimen berhenti pada tahap pelaporan angka akurasi tanpa dibungkus menjadi sistem yang benar-benar dapat digunakan. Berdasarkan seluruh tahapan metodologi pada Bab 3 dan hasil pengujian pada Bab 4, kelima rumusan masalah pada Sub-bab 1.2 dapat dijawab sebagai berikut:
+[Quote] 1. Metode Multinomial Naive Bayes dan Support Vector Machine (LinearSVC) berhasil diimplementasikan secara sistematis untuk klasifikasi sentimen ulasan e-commerce berbasis dataset sepidmnorozy/Indonesian_sentiment dari Hugging Face Datasets , melalui pipeline preprocessing empat tahap ( case folding , penghapusan karakter, stopword removal PySastrawi, dan stemming ) yang telah diverifikasi kebenarannya secara internal melalui white box testing pada Sub-bab 4.6, serta ekstraksi fitur TF-IDF dengan konfigurasi ngram_range=(1,2) dan max_features=10.000.
+[Quote] 2. SVM terbukti unggul secara konsisten atas Naive Bayes pada seluruh metrik evaluasi (akurasi 88,44% berbanding 87,56%, presisi 88,35% berbanding 87,46%, recall 88,44% berbanding 87,56%, F1-score 88,36% berbanding 87,48%) dan tetap stabil pada pengujian 5-fold cross validation (standar deviasi ±0,29%). Hasil ini konsisten dengan temuan Apriyani, dkk. (2024) dan Zahra, dkk. (2026) pada data berbahasa Indonesia, sekaligus menegaskan bahwa keunggulan Naive Bayes pada penelitian Sanjaya, dkk. (2023) bersifat spesifik terhadap karakteristik dataset Shopee yang digunakan, bukan keunggulan mutlak yang berlaku universal, sejalan dengan simpulan Danyal, dkk. (2023) mengenai pengaruh ukuran dan karakteristik dataset terhadap performa algoritma.
+[Quote] 3. REST API berbasis FastAPI 0.109.0 berhasil dirancang dan diimplementasikan dengan enam belas endpoint layanan (Tabel 3.1), mencakup prediksi tunggal, dual model, preprocessing step-by-step, batch CSV, riwayat, statistik, evaluasi, dan tanya-jawab Generate Insight, yang seluruhnya terbukti berfungsi sesuai spesifikasi melalui black box testing dan pengujian integrasi pada Sub-bab 4.4 dan 4.7.
+[Quote] 4. Dashboard interaktif berbasis Next.js 14 berhasil dikembangkan dengan enam tab fungsional (Analisis, Dataset , Evaluasi, Trend, Rekomendasi, Riwayat) dan halaman Generate Insight yang terintegrasi Gemini API, terbukti mampu menyajikan visualisasi real-time dan interpretasi naratif kontekstual bagi kebutuhan manajemen internal, termasuk mekanisme fallback berbasis data lokal ketika layanan eksternal tidak tersedia, sebagaimana dibuktikan pada skenario pengujian nomor 8 dan 9 di Tabel 4.1.
+[Quote] 5. Sistem penyimpanan riwayat analisis menggunakan SQLite berhasil dirancang sebagai basis data permanen yang tidak hilang saat server di-restart, dapat diakses melalui endpoint /riwayat dan /statistik, dan terbukti berfungsi sebagai basis konteks data real-time bagi fitur Generate Insight, sebagaimana dibuktikan pada skenario pengujian nomor 10 di Tabel 4.1.
+[Standard] Di luar kelima rumusan masalah tersebut, penelitian ini turut memberi tiga kontribusi tambahan hasil audit metodologi yang memperkuat kredibilitas akademik penelitian. Pertama, hyperparameter tuning menggunakan GridSearchCV (Sub-bab 4.10.2) membuktikan bahwa parameter default yang digunakan sistem (alpha=0,1 dan C=1,0) sudah berada di sekitar wilayah optimal, dengan potensi perbaikan tipis pada alpha=0,5 (87,95%) dan C=0,5 (89,19%). Kedua, studi ablasi preprocessing (Sub-bab 4.11) mengungkap temuan penting bahwa stopword removal berbasis PySastrawi menurunkan akurasi karena turut menghapus kata negasi ( tidak , kurang , belum ), sebuah kontribusi metodologis yang relevan bagi penelitian sentiment analysis Bahasa Indonesia secara umum, tidak terbatas pada penelitian ini saja. Ketiga, error analysis (Sub-bab 4.12) mengidentifikasi tiga pola kesalahan klasifikasi yang konsisten (ulasan satu kata, struktur kalimat kontras, dan sentimen negatif implisit), yang menjelaskan secara kualitatif mengapa akurasi model secara teoritis dibatasi pada kisaran 88-89% pada dataset ini. Hasil pada Tabel 4.14 menempatkan titik data baru pada peta perdebatan Naive Bayes versus SVM secara spesifik pada konteks dataset ulasan berbahasa Indonesia dari Hugging Face Datasets , sekaligus membuktikan melalui sistem SentimenAI yang beroperasi penuh dan diukur waktu responsnya (median 6,51 ms, Sub-bab 4.8) bahwa model klasik yang telah lama diteliti secara akademik tetap layak dan efisien untuk dibungkus menjadi layanan produksi, tanpa harus menunggu kematangan model Transformer yang menuntut sumber daya jauh lebih besar. Dengan demikian, dapat disimpulkan bahwa sistem SentimenAI yang dikembangkan pada penelitian ini layak digunakan sebagai alat bantu analisis sentimen yang akurat, teruji secara berlapis (black box, white box, boundary, cross validation , dan heuristic usability ), dan informatif, serta berhasil mencapai seluruh tujuan penelitian yang ditetapkan pada Sub-bab 1.4.
+[Section] Threats to Validity
+[Standard] Sebagaimana lazimnya penelitian empiris, hasil penelitian ini perlu dibaca dengan memperhatikan sejumlah ancaman terhadap validitas yang diidentifikasi secara jujur sebagai berikut, mengikuti kerangka validitas internal, eksternal, dan konstruk yang umum digunakan pada penelitian rekayasa perangkat lunak dan machine learning .
+[Subsection] Validitas Internal
+[Standard] Ancaman validitas internal utama pada penelitian ini adalah domain isi dataset . Sebagaimana diungkap pada analisis kualitas dataset (Sub-bab 3.1.1.2), pemeriksaan manual terhadap sampel data menemukan bahwa dataset sepidmnorozy/Indonesian_sentiment yang digunakan didominasi ulasan tempat makan dan kuliner, bukan murni ulasan barang e-commerce dalam pengertian sempit. Hal ini berarti hasil perbandingan Naive Bayes dan SVM pada penelitian ini paling valid untuk digeneralisasi pada ulasan berbasis pengalaman konsumen secara umum, dan perlu kehati-hatian bila hendak digeneralisasi secara sempit hanya pada ulasan barang fisik e-commerce . Ancaman kedua adalah evaluasi model yang hanya menggunakan satu skema pembagian data latih-uji dari dataset (meskipun telah diperkuat dengan 5-fold cross validation pada Sub-bab 4.10.1), sehingga variasi hasil akibat pengacakan data (random seed) pada skema pembagian yang berbeda belum sepenuhnya dieksplorasi.
+[Subsection] Validitas Eksternal
+[Standard] Hasil penelitian ini diperoleh dari satu dataset spesifik (10.192 data dari sepidmnorozy/Indonesian_sentiment) dan satu konfigurasi preprocessing serta representasi fitur (TF-IDF, ngram 1-2, 10.000 fitur). Generalisasi hasil ke dataset ulasan e-commerce lain dengan karakteristik berbeda, misalnya ulasan berbahasa daerah campuran (code-switching) atau ulasan dengan volume data yang jauh lebih besar sebagaimana pada penelitian Zahra, dkk. (2026), perlu dilakukan dengan pengujian ulang, bukan diasumsikan otomatis berlaku sama, sejalan dengan simpulan Danyal, dkk. (2023) mengenai sensitivitas performa algoritma terhadap karakteristik dataset .
+[Subsection] Validitas Konstruk
+[Standard] Evaluasi usability pada Sub-bab 4.9 menggunakan heuristic evaluation yang dilakukan oleh peneliti sendiri sebagai evaluator tunggal, bukan User Acceptance Testing dengan responden pengguna nyata dari kalangan pelaku usaha e-commerce . Hasil evaluasi usability tersebut karenanya mengukur konstruk kepatuhan terhadap prinsip desain baku dan bukan konstruk kepuasan pengguna aktual , sehingga tidak dapat menggantikan sepenuhnya validasi penerimaan pengguna yang idealnya dilakukan melalui studi lapangan dengan responden nyata, sebagaimana dicatat sebagai saran pengembangan pada Sub-bab 5.3.
+[Section] Saran
+[Standard] Berdasarkan hasil penelitian, pengujian, dan batasan masalah pada Sub-bab 1.3, serta Threats to Validity pada Sub-bab 5.2, berikut saran bagi pengembangan penelitian selanjutnya:
+[Quote] 1. Perbaiki daftar stopword PySastrawi dengan mengecualikan kata negasi ( tidak , kurang , belum , jangan ) sebelum diterapkan pada pipeline preprocessing, mengingat temuan ablasi pada Sub-bab 4.11 membuktikan penghapusan kata negasi menurunkan akurasi hingga 3,36 poin persentase; perbaikan ini menjadi prioritas tertinggi karena berdampak langsung pada akurasi klasifikasi.
+[Quote] 2. Perbarui parameter model menjadi alpha=0,5 (Naive Bayes) dan C=0,5 (SVM) sesuai hasil GridSearchCV pada Sub-bab 4.10.2 yang terbukti memberi peningkatan akurasi tipis namun konsisten pada data uji.
+[Quote] 3. Tambahkan validasi teks pasca-preprocessing pada endpoint /prediksi (bukan hanya validasi teks mentah) untuk mengatasi temuan pada Sub-bab 4.5, yaitu input berupa angka/simbol/emoji yang menghasilkan teks bersih kosong namun tetap diberi label prediksi yang tidak bermakna.
+[Quote] 4. Lakukan User Acceptance Testing dengan responden nyata dari kalangan pelaku usaha e-commerce untuk melengkapi heuristic evaluation pada Sub-bab 4.9 yang masih bersifat evaluasi mandiri peneliti, sebagaimana dicatat sebagai ancaman validitas konstruk pada Sub-bab 5.2.3.
+[Quote] 5. Uji ulang perbandingan Naive Bayes dan SVM pada dataset ulasan yang secara eksplisit berdomain barang e-commerce (bukan dominan kuliner sebagaimana temuan Sub-bab 3.1.1.2), misalnya melalui web scraping langsung dari Tokopedia atau Shopee, untuk memperkuat validitas eksternal hasil penelitian.
+[Quote] 6. Uji perbandingan Naive Bayes dan SVM dengan pendekatan fine-tuning IndoBERT secara langsung pada dataset yang sama, mengingat penelitian Zahra, dkk. (2026) menunjukkan bahwa fine-tuning yang kurang optimal dapat membuat IndoBERT kalah dari SVM, sehingga menarik diuji apakah pola serupa berlaku pada dataset penelitian ini.
+[Quote] 7. Perluas klasifikasi menjadi tiga kelas dengan kategori netral sebagaimana diterapkan Ali, dkk. (2024) dan Zahra, dkk. (2026), disertai penanganan ketidakseimbangan kelas (64,7% berbanding 35,3% pada Sub-bab 3.1.1.1) menggunakan class_weight balanced .
+[Quote] 8. Lakukan deployment ke layanan produksi seperti Vercel ( frontend ) dan Hugging Face Spaces atau Docker ( backend ), sebagaimana dicontohkan Zahra, dkk. (2026), disertai load testing untuk mengukur kapasitas maksimum permintaan API secara bersamaan, melengkapi pengukuran response time pada kondisi beban rendah di Sub-bab 4.8.
+[Quote] 9. Eksplorasi model bahasa lokal ( self-hosted LLM) sebagai alternatif Gemini API pada fitur Generate Insight untuk mengurangi ketergantungan pada layanan pihak ketiga dan risiko keterbatasan kuota di masa mendatang.
+[Chapter*] Daftar Pustaka
+[Plain] status collapsed addcontentsline{toc}{chapter}{Daftar Pustaka}
+[Standard] Ali, H., Hashmi, E., Yayilgan Yildirim, S., & Shaikh, S. (2024). Analyzing Amazon products sentiment: A comparative study of machine and deep learning, and transformer-based techniques. Electronics, 13(7), 1305. https://doi.org/10.3390/electronics13071305
+[Standard] Apriyani, M. E., Nur, A. F., & Astuti, E. S. (2024). Performance comparison of Naive Bayes and SVM algorithms in sentiment analysis on JKN application data. Knowbase: International Journal of Knowledge in Database, 4(2), 180-188. https://ejournal.uinbukittinggi.ac.id/index.php/ijokid
+[Standard] Danyal, M. M., Khan, S. S., Khan, M., Ghaffar, M. B., Khan, B., & Arshad, M. (2023). Sentiment analysis based on performance of linear Support Vector Machine and Multinomial Naive Bayes using movie reviews with baseline techniques. Journal of Big Data, 11, Article 137. https://doi.org/10.32604/jbd.2023.041319
+[Standard] Hidayah, N. A., & Rofiqoh, N. (2024). Evaluasi software Visual Studio Code menggunakan metode Quetionnaires Nelsen s Attributes of Usability (NAU). Jurnal Perangkat Lunak, 6(3), 382-391. https://doi.org/10.32520/jupel.v6i3.3383
+[Standard] Jartarghar, H. A., Salanke, G. R., Ashok Kumar, A. R., Sharvani, G. S., & Dalali, S. (2022). React apps with server-side rendering: Next.js. Journal of Telecommunication, Electronic and Computer Engineering, 14(4), 23-29.
+[Standard] Latifah, K., Handayanto, A., Dwi M.S, N. L., Bhandari, R., Hien, T. N. T., & Pirnazarov, D. (2026). Comparative evaluation of automatic labeling and modeling strategies for Indonesian sentiment analysis: Methodology and performance evaluation. Advance Sustainable Science, Engineering and Technology, 8(3), 0260308-01-0260308-016. https://doi.org/10.26877/asset.v8i3.2862
+[Standard] Lhoest, Q., Villanova del Moral, A., Jernite, Y., Thakur, A., von Platen, P., Patil, S., Chaumond, J., Drame, M., Plu, J., Tunstall, L., Davison, J., Sasko, M., Chhablani, G., Malik, B., Brandeis, S., Le Scao, T., Sanh, V., Xu, C., Patry, N., ... Wolf, T. (2021). Datasets: A community library for natural language processing. Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, 175-184. Association for Computational Linguistics.
+[Standard] Maulyanda, & Nazhifah, S. A. (2025). Sentiment analysis of mental health using Support Vector Machine (SVM) with FastAPI implementation. Brilliance: Research of Artificial Intelligence, 5(1), 60-71. https://doi.org/10.47709/brilliance.v5i1.6580
+[Standard] Nugraha, F. A., & Susetyo, Y. A. (2023). Analisis perbandingan performa database DuckDB dan SQLite pada pengolahan big data. JIPI (Jurnal Ilmiah Penelitian dan Pembelajaran Informatika), 8(3), 1052-1060. https://doi.org/10.29100/jipi.v8i3.4032
+[Standard] Rachmat, N., & Kesuma, D. P. (2024). Implementasi LLM Gemini pada pengembangan aplikasi chatbot berbasis Android. Jurnal Ilmu Komputer (JUIK), 4(1), 40-52. https://doi.org/10.31314/juik.v4i1.2831
+[Standard] Salsabilla, D. R. (2024). Implementasi REST-API untuk sistem informasi administrasi di Redha Wedding Jakarta. Journal of Information Technology and Computer Science (INTECOMS), 7(2), 319-325.
+[Standard] Sanjaya, T. P. R., Fauzi, A., & Masruriyah, A. F. N. (2023). Analisis sentimen ulasan pada e-commerce Shopee menggunakan algoritma Naive Bayes dan Support Vector Machine. INFOTECH: Jurnal Informatika & Teknologi, 4(1), 16-26. https://doi.org/10.37373/infotech.v4i1.422
+[Standard] Zahra, N. Z., Farhanatussaidah, S., Afifah, N. N., Muthoharoh, L., Satria, A., & Manullang, M. C. T. (2026). Benchmarking Logistic Regression, SVM, Naive Bayes, and IndoBERT fine-tuning for sentiment analysis on Indonesian product reviews. arXiv. https://doi.org/10.48550/arXiv.2605.03439

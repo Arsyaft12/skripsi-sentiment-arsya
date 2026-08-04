@@ -1,12 +1,103 @@
 # backend/database.py
 # File ini mengatur koneksi dan operasi database SQLite
 
+import csv
 import sqlite3
 import datetime
 import json
 import os
+import shutil
+import tempfile
 
-DB_FILE = 'sentimen.db'
+ROOT_DIR = os.path.dirname(__file__)
+BUNDLED_DB_FILE = os.path.join(ROOT_DIR, 'sentimen.db')
+TMP_DB_FILE = os.path.join(tempfile.gettempdir(), 'sentimen.db')
+CSV_SOURCE_FILE = os.path.join(ROOT_DIR, 'hasil_dataset_lengkap.csv')
+
+
+def _ensure_temp_dir():
+    temp_dir = os.path.dirname(TMP_DB_FILE)
+    if not os.path.exists(temp_dir):
+        os.makedirs(temp_dir, exist_ok=True)
+
+
+def _get_db_file():
+    if os.path.exists(BUNDLED_DB_FILE):
+        if os.access(ROOT_DIR, os.W_OK):
+            return BUNDLED_DB_FILE
+        _ensure_temp_dir()
+        if not os.path.exists(TMP_DB_FILE):
+            shutil.copy2(BUNDLED_DB_FILE, TMP_DB_FILE)
+        return TMP_DB_FILE
+
+    _ensure_temp_dir()
+    return TMP_DB_FILE
+
+
+DB_FILE = _get_db_file()
+print(f'✓ Database file path: {DB_FILE}')
+
+
+def _seed_db_from_csv_if_empty():
+    if not os.path.exists(CSV_SOURCE_FILE):
+        print('⚠️ CSV seed source tidak ditemukan; database tidak di-seed.')
+        return
+
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute('SELECT COUNT(*) FROM riwayat_analisis')
+    total_rows = cursor.fetchone()[0]
+    if total_rows > 0:
+        conn.close()
+        print(f'✓ Database sudah berisi {total_rows} baris; seed CSV dilewati.')
+        return
+
+    print('⟳ Database kosong, memulai seed dari hasil_dataset_lengkap.csv ...')
+    with open(CSV_SOURCE_FILE, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        batch = []
+        inserted = 0
+        for row in reader:
+            teks_asli = (row.get('text') or '').strip()
+            teks_bersih = (row.get('teks_bersih') or teks_asli).strip()
+            sentimen = (row.get('prediksi_svm') or row.get('label_asli') or '').strip().lower()
+            if sentimen not in ('positif', 'negatif') or not teks_asli:
+                continue
+
+            batch.append((
+                teks_asli,
+                teks_bersih,
+                sentimen,
+                'SVM (Imported)',
+                teks_asli,
+                teks_bersih,
+                teks_bersih,
+                teks_bersih,
+                '2025-01-01 00:00:00'
+            ))
+
+            if len(batch) >= 500:
+                cursor.executemany('''
+                    INSERT INTO riwayat_analisis
+                    (teks_asli, teks_bersih, sentimen, model_digunakan,
+                     step1_lower, step2_karakter, step3_stopword, step4_stemming, waktu)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ''', batch)
+                inserted += len(batch)
+                batch.clear()
+
+        if batch:
+            cursor.executemany('''
+                INSERT INTO riwayat_analisis
+                (teks_asli, teks_bersih, sentimen, model_digunakan,
+                 step1_lower, step2_karakter, step3_stopword, step4_stemming, waktu)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', batch)
+            inserted += len(batch)
+
+    conn.commit()
+    conn.close()
+    print(f'✓ Seed selesai. Baris ditambahkan: {inserted}')
 
 def init_db():
     """Buat tabel jika belum ada"""
@@ -32,6 +123,7 @@ def init_db():
     conn.commit()
     conn.close()
     print(f'✓ Database siap: {DB_FILE}')
+    _seed_db_from_csv_if_empty()
 
 def simpan_riwayat(data: dict):
     """Simpan hasil analisis ke database"""
