@@ -48,7 +48,7 @@ const ALL_15_PATHOLOGIES = [
   { name: "Normal", desc: "Parenkim paru, pleura, & siluet jantung dalam batas normal", auroc: 0.95, baseProb: 14.2 }
 ];
 
-// PRESET GROUND-TRUTH & VISUAL ANNOTATION DICTIONARY (Singkronisasi 100% Tanpa Angka Mismatch)
+// PRESET GROUND-TRUTH & VISUAL ANNOTATION DICTIONARY
 const SAMPLE_PRESET_METADATA: Record<string, {
   isNormal: boolean;
   prediction: PredictionResults;
@@ -282,7 +282,6 @@ export default function Home() {
   const [showDbModal, setShowDbModal] = useState<boolean>(false);
   const [theme, setTheme] = useState<string>("Pastel Sage");
   const [showEvidenceCircles, setShowEvidenceCircles] = useState<boolean>(true);
-  const [reportLang, setReportLang] = useState<"id" | "en">("id");
   
   // Advanced Image Manipulation Controls
   const [cutoffThreshold, setCutoffThreshold] = useState<number>(0.40);
@@ -579,55 +578,57 @@ export default function Home() {
   return (
     <div className={`min-h-screen font-sans text-xs sm:text-sm selection:bg-teal-500 selection:text-white transition-colors duration-300 ${currentTheme.bg}`}>
       
-      {/* 1. TOP HEADER BAR */}
-      <header className={`px-6 py-3 border-b shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 sticky top-0 z-30 transition-colors duration-300 ${currentTheme.headerBg}`}>
+      {/* 1. TOP HEADER BAR (RESPONSIVE FOR MOBILE SCREENS) */}
+      <header className={`px-4 sm:px-6 py-3 border-b shadow-sm flex flex-col md:flex-row items-center justify-between gap-3 sticky top-0 z-30 transition-colors duration-300 ${currentTheme.headerBg}`}>
         
         {/* LOGO & TITLE */}
-        <div className="flex items-center space-x-3">
-          <div className="h-11 w-11 rounded-xl bg-teal-700 flex items-center justify-center text-white font-bold text-2xl shadow-md shadow-teal-700/20">
-            🫁
-          </div>
-          <div>
-            <div className="flex items-center space-x-2">
-              <h1 className={`text-lg font-black tracking-tight ${currentTheme.textPrimary}`}>
-                ToraksAI <span className={`${currentTheme.accentText} font-extrabold`}>- CITRA X-RAY</span>
-              </h1>
-              <span className={`border text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${currentTheme.badgeBg}`}>
-                Clinical Decision Support
-              </span>
+        <div className="flex items-center space-x-3 w-full md:w-auto justify-between md:justify-start">
+          <div className="flex items-center space-x-3">
+            <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-teal-700 flex items-center justify-center text-white font-bold text-xl sm:text-2xl shadow-md shadow-teal-700/20 shrink-0">
+              🫁
             </div>
-            
-            <p className={`text-[11px] font-medium ${currentTheme.textSecondary}`}>
-              Sistem Ekspertise Radiologi Toraks Terintegrasi CNN+RNN & Score-CAM
-            </p>
+            <div>
+              <div className="flex items-center space-x-1.5 sm:space-x-2">
+                <h1 className={`text-base sm:text-lg font-black tracking-tight ${currentTheme.textPrimary}`}>
+                  ToraksAI <span className={`${currentTheme.accentText} font-extrabold`}>- CITRA X-RAY</span>
+                </h1>
+                <span className={`border text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full uppercase tracking-wider ${currentTheme.badgeBg} shrink-0`}>
+                  Clinical AI
+                </span>
+              </div>
+              
+              <p className={`text-[10px] sm:text-[11px] font-medium truncate ${currentTheme.textSecondary}`}>
+                Arsya Faturrahman • Sistem Ekspertise Radiologi Toraks Terintegrasi
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* HEADER CONTROLS */}
-        <div className="flex items-center space-x-3">
+        {/* HEADER CONTROLS (SCROLLABLE ON SMALL MOBILE PHONES) */}
+        <div className="flex items-center space-x-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0 scrollbar-none">
           
           {/* EVIDENCE CIRCLES TOGGLE BUTTON */}
           <button
             onClick={() => setShowEvidenceCircles(!showEvidenceCircles)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 border ${
+            className={`px-2.5 py-1.5 rounded-lg text-[11px] font-bold transition flex items-center gap-1 border shrink-0 ${
               showEvidenceCircles ? "bg-rose-50 border-rose-300 text-rose-800" : "bg-slate-100 border-slate-300 text-slate-600"
             }`}
           >
             <span>⭕</span>
-            <span>Lingkaran Bukti: {showEvidenceCircles ? "ON" : "OFF"}</span>
+            <span>Bukti: {showEvidenceCircles ? "ON" : "OFF"}</span>
           </button>
 
           {/* THEME SELECTOR DROPDOWN */}
-          <div className="flex items-center space-x-1.5 bg-slate-100 p-1.5 rounded-lg border border-slate-200 text-xs">
-            <span className="text-slate-600 pl-1 font-bold">🎨 Tema:</span>
+          <div className="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-[11px] shrink-0">
+            <span className="text-slate-600 pl-1 font-bold">🎨</span>
             <select
               value={theme}
               onChange={(e) => setTheme(e.target.value)}
-              className="bg-white border border-slate-300 text-slate-800 rounded px-2.5 py-1 font-bold focus:outline-none focus:ring-2 focus:ring-teal-600 cursor-pointer shadow-sm"
+              className="bg-white border border-slate-300 text-slate-800 rounded px-2 py-1 font-bold focus:outline-none focus:ring-1 focus:ring-teal-600 cursor-pointer shadow-sm text-[11px]"
             >
-              <option value="Pastel Sage">Pastel Sage</option>
-              <option value="Teal Clinical">Teal Clinical</option>
-              <option value="Slate Dark">Slate Dark Mode</option>
+              <option value="Pastel Sage">Sage</option>
+              <option value="Teal Clinical">Teal</option>
+              <option value="Slate Dark">Dark</option>
             </select>
           </div>
 
@@ -637,32 +638,32 @@ export default function Home() {
               fetchHistory();
               setShowDbModal(true);
             }}
-            className="px-3.5 py-1.5 bg-white hover:bg-slate-50 text-teal-700 border border-teal-300 rounded-lg font-bold text-xs shadow-sm transition flex items-center gap-1.5"
+            className="px-3 py-1.5 bg-white hover:bg-slate-50 text-teal-700 border border-teal-300 rounded-lg font-bold text-[11px] shadow-sm transition flex items-center gap-1 shrink-0"
           >
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Database (Cloud ON)</span>
+            <span>Database</span>
           </button>
 
           {/* PRINT BUTTON */}
           <button
             onClick={handlePrintReport}
-            className={`px-3.5 py-1.5 rounded-lg text-xs shadow-md transition flex items-center gap-1.5 ${currentTheme.accentBtn}`}
+            className={`px-3 py-1.5 rounded-lg text-[11px] shadow-md transition flex items-center gap-1 shrink-0 ${currentTheme.accentBtn}`}
           >
             <span>🖨️</span>
-            <span>Cetak Hasil Analisa</span>
+            <span>Cetak PDF</span>
           </button>
         </div>
 
       </header>
 
-      {/* MAIN LAYOUT (2 COLUMNS: LEFT 30%, RIGHT 70%) */}
-      <div className="max-w-[1600px] mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+      {/* MAIN LAYOUT (2 COLUMNS: LEFT 30%, RIGHT 70% ON DESKTOP, STACKED ON MOBILE) */}
+      <div className="max-w-[1600px] mx-auto p-3 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
         
         {/* 2. KOLOM KIRI (INPUT & METADATA - 30% WIDTH) */}
         <div className="lg:col-span-4 space-y-4">
           
           {/* CARD 1: INFORMASI SUBJEK */}
-          <div className={`rounded-xl p-4 transition-colors duration-300 ${currentTheme.cardBg}`}>
+          <div className={`rounded-xl p-3.5 sm:p-4 transition-colors duration-300 ${currentTheme.cardBg}`}>
             <div className="flex items-center justify-between border-b border-slate-200/50 pb-2">
               <h2 className={`font-extrabold text-xs tracking-wider uppercase flex items-center gap-1.5 ${currentTheme.textPrimary}`}>
                 <span>📋</span> Informasi Subjek Pasien
@@ -672,35 +673,35 @@ export default function Home() {
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 text-xs mt-3">
-              <div className={`p-2.5 rounded-lg border space-y-0.5 ${currentTheme.innerBg}`}>
-                <span className="text-[10px] opacity-70 font-semibold block uppercase">ID Pasien / No RM</span>
+            <div className="grid grid-cols-2 gap-2.5 text-xs mt-3">
+              <div className={`p-2 sm:p-2.5 rounded-lg border space-y-0.5 ${currentTheme.innerBg}`}>
+                <span className="text-[9px] sm:text-[10px] opacity-70 font-semibold block uppercase">ID Pasien / No RM</span>
                 <span className="font-mono font-bold text-teal-700">PX-2026-0824</span>
               </div>
-              <div className={`p-2.5 rounded-lg border space-y-0.5 ${currentTheme.innerBg}`}>
-                <span className="text-[10px] opacity-70 font-semibold block uppercase">Usia / Gender</span>
+              <div className={`p-2 sm:p-2.5 rounded-lg border space-y-0.5 ${currentTheme.innerBg}`}>
+                <span className="text-[9px] sm:text-[10px] opacity-70 font-semibold block uppercase">Usia / Gender</span>
                 <span className="font-bold">48 Th / Laki-laki</span>
               </div>
-              <div className={`p-2.5 rounded-lg border space-y-0.5 ${currentTheme.innerBg}`}>
-                <span className="text-[10px] opacity-70 font-semibold block uppercase">Waktu Pemeriksaan</span>
-                <span className="font-mono">24 Aug 2026 14:40</span>
+              <div className={`p-2 sm:p-2.5 rounded-lg border space-y-0.5 ${currentTheme.innerBg}`}>
+                <span className="text-[9px] sm:text-[10px] opacity-70 font-semibold block uppercase">Waktu Pemindaian</span>
+                <span className="font-mono text-[11px]">24 Aug 2026</span>
               </div>
-              <div className={`p-2.5 rounded-lg border space-y-0.5 ${currentTheme.innerBg}`}>
-                <span className="text-[10px] opacity-70 font-semibold block uppercase">Unit Radiologi</span>
-                <span className="font-bold text-teal-700">Toraks Utama RSU</span>
+              <div className={`p-2 sm:p-2.5 rounded-lg border space-y-0.5 ${currentTheme.innerBg}`}>
+                <span className="text-[9px] sm:text-[10px] opacity-70 font-semibold block uppercase">Unit Radiologi</span>
+                <span className="font-bold text-teal-700">Toraks Utama</span>
               </div>
             </div>
           </div>
 
-          {/* CARD 2: VIEWPORT RADIOGRAFI (WITH ADVANCED IMAGE PROCESSING TOOLBAR) */}
-          <div className={`rounded-xl p-4 space-y-3 transition-colors duration-300 ${currentTheme.cardBg}`}>
-            <div className="flex items-center justify-between">
+          {/* CARD 2: VIEWPORT RADIOGRAFI */}
+          <div className={`rounded-xl p-3.5 sm:p-4 space-y-3 transition-colors duration-300 ${currentTheme.cardBg}`}>
+            <div className="flex items-center justify-between flex-wrap gap-2">
               <h2 className={`font-extrabold text-xs tracking-wider uppercase flex items-center gap-1.5 ${currentTheme.textPrimary}`}>
-                <span>🖼️</span> Viewport Radiografi Toraks
+                <span>🖼️</span> Viewport Radiografi
               </h2>
               
               {/* WINDOWING CONTROL BUTTONS */}
-              <div className="flex items-center space-x-1 text-[11px]">
+              <div className="flex items-center space-x-1 text-[10px] sm:text-[11px]">
                 <button
                   onClick={() => setWindowing("standard")}
                   className={`px-2 py-0.5 rounded font-bold transition ${windowing === "standard" ? "bg-teal-700 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}
@@ -730,7 +731,7 @@ export default function Home() {
             </div>
 
             {/* BLACK VIEWPORT BOX WITH ADVANCED IMAGE PROCESSING & ANNOTATIONS */}
-            <div className="relative w-full h-64 bg-slate-950 rounded-xl overflow-hidden border border-slate-800 flex items-center justify-center group shadow-inner">
+            <div className="relative w-full h-56 sm:h-64 bg-slate-950 rounded-xl overflow-hidden border border-slate-800 flex items-center justify-center group shadow-inner">
               {previewUrl ? (
                 <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -760,7 +761,7 @@ export default function Home() {
                         />
                       </svg>
                       <div
-                        className={`absolute px-2 py-0.5 rounded text-[9px] font-bold font-mono border backdrop-blur shadow-md ${
+                        className={`absolute px-2 py-0.5 rounded text-[8px] sm:text-[9px] font-bold font-mono border backdrop-blur shadow-md ${
                           isSampleNormal
                             ? "bg-emerald-950/90 text-emerald-300 border-emerald-700"
                             : "bg-rose-950/90 text-rose-300 border-rose-700"
@@ -782,15 +783,15 @@ export default function Home() {
                 </div>
               )}
               
-              <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/70 backdrop-blur rounded text-[10px] font-mono text-teal-300 font-bold border border-white/10">
-                PROYEKSI: PA (POSTEROANTERIOR) • ZOOM: {zoomScale.toFixed(1)}x
+              <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/70 backdrop-blur rounded text-[9px] sm:text-[10px] font-mono text-teal-300 font-bold border border-white/10">
+                PROYEKSI: PA • ZOOM: {zoomScale.toFixed(1)}x
               </div>
             </div>
 
             {/* ADVANCED IMAGE ADJUSTMENT SLIDERS */}
-            <div className="bg-slate-100 p-3 rounded-lg border border-slate-200 space-y-2 text-xs">
+            <div className="bg-slate-100 p-2.5 sm:p-3 rounded-lg border border-slate-200 space-y-2 text-xs">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-slate-700">☀️ Kecerahan (Brightness):</span>
+                <span className="font-bold text-slate-700 text-[11px]">☀️ Kecerahan:</span>
                 <span className="font-mono font-bold text-teal-700">{brightness}%</span>
               </div>
               <input
@@ -799,11 +800,11 @@ export default function Home() {
                 max="150"
                 value={brightness}
                 onChange={(e) => setBrightness(parseInt(e.target.value))}
-                className="w-full accent-teal-700 cursor-pointer"
+                className="w-full accent-teal-700 cursor-pointer h-1.5"
               />
 
               <div className="flex items-center justify-between">
-                <span className="font-bold text-slate-700">🌓 Kontras (Contrast):</span>
+                <span className="font-bold text-slate-700 text-[11px]">🌓 Kontras:</span>
                 <span className="font-mono font-bold text-teal-700">{contrast}%</span>
               </div>
               <input
@@ -812,24 +813,24 @@ export default function Home() {
                 max="200"
                 value={contrast}
                 onChange={(e) => setContrast(parseInt(e.target.value))}
-                className="w-full accent-teal-700 cursor-pointer"
+                className="w-full accent-teal-700 cursor-pointer h-1.5"
               />
 
-              <div className="flex items-center justify-between pt-1">
+              <div className="flex items-center justify-between pt-1 flex-wrap gap-2">
                 <div className="flex items-center space-x-1">
-                  <span className="font-bold text-slate-700">🔍 Zoom Scale:</span>
-                  <button onClick={() => setZoomScale(Math.max(1.0, zoomScale - 0.2))} className="px-2 py-0.5 bg-white border rounded font-bold hover:bg-slate-50">-</button>
-                  <span className="font-mono font-bold text-slate-800">{zoomScale.toFixed(1)}x</span>
-                  <button onClick={() => setZoomScale(Math.min(2.5, zoomScale + 0.2))} className="px-2 py-0.5 bg-white border rounded font-bold hover:bg-slate-50">+</button>
+                  <span className="font-bold text-slate-700 text-[11px]">🔍 Zoom:</span>
+                  <button onClick={() => setZoomScale(Math.max(1.0, zoomScale - 0.2))} className="px-2 py-0.5 bg-white border rounded font-bold hover:bg-slate-50 text-[11px]">-</button>
+                  <span className="font-mono font-bold text-slate-800 text-[11px]">{zoomScale.toFixed(1)}x</span>
+                  <button onClick={() => setZoomScale(Math.min(2.5, zoomScale + 0.2))} className="px-2 py-0.5 bg-white border rounded font-bold hover:bg-slate-50 text-[11px]">+</button>
                 </div>
                 <button onClick={handleResetFilters} className="text-[10px] text-rose-700 font-bold underline">
-                  Reset Filter
+                  Reset
                 </button>
               </div>
             </div>
 
             {/* UPLOAD FILE BUTTON */}
-            <label className="w-full bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 font-bold py-2 px-4 rounded-lg text-xs transition cursor-pointer flex items-center justify-center gap-2 shadow-sm">
+            <label className="w-full bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 font-bold py-2.5 px-4 rounded-lg text-xs transition cursor-pointer flex items-center justify-center gap-2 shadow-sm">
               <input
                 type="file"
                 accept="image/*"
@@ -841,7 +842,7 @@ export default function Home() {
           </div>
 
           {/* CARD 3: SAMPEL KASUS DATASET */}
-          <div className={`rounded-xl p-4 space-y-3 transition-colors duration-300 ${currentTheme.cardBg}`}>
+          <div className={`rounded-xl p-3.5 sm:p-4 space-y-3 transition-colors duration-300 ${currentTheme.cardBg}`}>
             <h2 className={`font-extrabold text-xs tracking-wider uppercase flex items-center gap-1.5 ${currentTheme.textPrimary}`}>
               <span>📂</span> Sampel Kasus Dataset (NIH Clinical)
             </h2>
@@ -861,9 +862,9 @@ export default function Home() {
                   >
                     <div>
                       <div className="text-xs font-bold">{sample.name}</div>
-                      <div className="text-[11px] text-slate-500 font-medium">{sample.findings}</div>
+                      <div className="text-[10px] sm:text-[11px] text-slate-500 font-medium truncate max-w-[180px] sm:max-w-[220px]">{sample.findings}</div>
                     </div>
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
+                    <span className={`text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded border shrink-0 ${
                       sample.badge === "Normal"
                         ? "bg-emerald-100 border-emerald-300 text-emerald-800"
                         : "bg-rose-100 border-rose-300 text-rose-800"
@@ -877,13 +878,13 @@ export default function Home() {
           </div>
 
           {/* CARD 4: CUTOFF AMBANG DETEKSI */}
-          <div className={`rounded-xl p-4 space-y-3 transition-colors duration-300 ${currentTheme.cardBg}`}>
+          <div className={`rounded-xl p-3.5 sm:p-4 space-y-3 transition-colors duration-300 ${currentTheme.cardBg}`}>
             <div className="flex justify-between items-center">
               <h2 className={`font-extrabold text-xs tracking-wider uppercase flex items-center gap-1.5 ${currentTheme.textPrimary}`}>
                 <span>🎚️</span> Cutoff Ambang Deteksi
               </h2>
-              <span className="font-mono font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded border border-teal-200 text-xs">
-                {(cutoffThreshold * 100).toFixed(0)}% ({cutoffThreshold.toFixed(2)})
+              <span className="font-mono font-bold text-teal-700 bg-teal-50 px-2 py-0.5 rounded border border-teal-200 text-xs">
+                {(cutoffThreshold * 100).toFixed(0)}%
               </span>
             </div>
 
@@ -894,9 +895,9 @@ export default function Home() {
               step="0.05"
               value={cutoffThreshold}
               onChange={(e) => setCutoffThreshold(parseFloat(e.target.value))}
-              className="w-full accent-teal-700 cursor-pointer"
+              className="w-full accent-teal-700 cursor-pointer h-1.5"
             />
-            <div className="flex justify-between text-[10px] text-slate-400 font-medium">
+            <div className="flex justify-between text-[9px] sm:text-[10px] text-slate-400 font-medium">
               <span>0.00 (Sensitif)</span>
               <span>0.50 (Default)</span>
               <span>1.00 (Spesifik)</span>
@@ -907,41 +908,41 @@ export default function Home() {
           <button
             onClick={handleRunAnalysis}
             disabled={loading}
-            className={`w-full py-4 px-6 rounded-xl transition shadow-lg flex items-center justify-center gap-2 text-xs uppercase tracking-wider font-extrabold cursor-pointer ${currentTheme.accentBtn}`}
+            className={`w-full py-3.5 px-5 rounded-xl transition shadow-lg flex items-center justify-center gap-2 text-xs uppercase tracking-wider font-extrabold cursor-pointer ${currentTheme.accentBtn}`}
           >
             {loading ? (
               <>
                 <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
-                <span>Memproses AI & Score-CAM...</span>
+                <span>Memproses AI...</span>
               </>
             ) : (
               <>
-                <span>▶ Jalankan Analisis AI & Score-CAM</span>
+                <span>▶ Jalankan Analisis AI</span>
               </>
             )}
           </button>
 
         </div>
 
-        {/* 3. AREA KANAN (PANEL HASIL ANALISIS - 70% WIDTH) */}
+        {/* 3. AREA KANAN (PANEL HASIL ANALISIS - 70% WIDTH ON DESKTOP) */}
         <div className="lg:col-span-8 space-y-4">
           
           {/* BANNER PERINGATAN KESAN RADIOLOGIS */}
-          <div className={`p-4 rounded-xl border flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-sm transition ${
+          <div className={`p-3.5 sm:p-4 rounded-xl border flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-sm transition ${
             isSampleNormal
               ? "bg-emerald-50 border-emerald-200 text-emerald-900"
               : "bg-rose-50 border-rose-200 text-rose-900"
           }`}>
             <div>
               <div className="flex items-center space-x-2">
-                <span className="text-base">
+                <span className="text-base shrink-0">
                   {isSampleNormal ? "✅" : "⚠️"}
                 </span>
-                <h3 className="font-extrabold text-sm tracking-tight">
+                <h3 className="font-extrabold text-xs sm:text-sm tracking-tight leading-tight">
                   Kesan Radiologis AI: {isSampleNormal ? "DALAM BATAS NORMAL (Tidak Ada Indikasi Kelainan)" : `${topReasonsList[0]?.name} Terdeteksi (${topReasonsList[0]?.prob.toFixed(1)}%)`}
                 </h3>
               </div>
-              <p className="text-xs text-slate-600 mt-0.5">
+              <p className="text-[11px] sm:text-xs text-slate-600 mt-0.5">
                 Evaluasi medis berbasis pemindaian jaringan & pembobotan atensi Score-CAM
               </p>
             </div>
@@ -949,12 +950,12 @@ export default function Home() {
             {/* BADGES PROBABILITAS TERDETEKSI */}
             <div className="flex flex-wrap gap-1.5">
               {isSampleNormal ? (
-                <span className="px-3 py-1 bg-emerald-100 border border-emerald-300 text-emerald-800 rounded-lg text-xs font-bold shadow-sm">
+                <span className="px-2.5 py-1 bg-emerald-100 border border-emerald-300 text-emerald-800 rounded-lg text-xs font-bold shadow-sm">
                   Normal: <strong>{topReasonsList[0]?.prob.toFixed(1)}%</strong>
                 </span>
               ) : (
                 topReasonsList.slice(0, 2).map(p => (
-                  <span key={p.name} className="px-2.5 py-1 bg-rose-100 border border-rose-300 text-rose-800 rounded-lg text-xs font-bold shadow-sm">
+                  <span key={p.name} className="px-2 py-0.5 sm:py-1 bg-rose-100 border border-rose-300 text-rose-800 rounded-lg text-[11px] sm:text-xs font-bold shadow-sm">
                     {p.name}: <strong>{p.prob.toFixed(1)}%</strong>
                   </span>
                 ))
@@ -962,34 +963,34 @@ export default function Home() {
             </div>
           </div>
 
-          {/* SISTEM TAB (4 TAB UTAMA: DENGAN TAB METRIK EVALUASI AI) */}
+          {/* SISTEM TAB (SWIPEABLE / SCROLLABLE ON MOBILE) */}
           <div className={`rounded-xl shadow-sm overflow-hidden transition-colors duration-300 ${currentTheme.cardBg}`}>
             
-            {/* TAB HEADERS */}
-            <div className="flex border-b border-slate-200/50 bg-slate-100/50 overflow-x-auto">
+            {/* TAB HEADERS (SWIPEABLE HORIZONTAL SCROLL ON MOBILE) */}
+            <div className="flex border-b border-slate-200/50 bg-slate-100/50 overflow-x-auto scrollbar-none">
               <button
                 onClick={() => setActiveTab("tab1")}
-                className={`px-4 py-3 font-bold text-xs transition border-b-2 flex items-center gap-2 whitespace-nowrap ${
+                className={`px-3.5 sm:px-5 py-3 font-bold text-xs transition border-b-2 flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                   activeTab === "tab1"
                     ? "border-teal-700 text-teal-800 bg-white shadow-sm"
                     : "border-transparent text-slate-500 hover:text-slate-700"
                 }`}
               >
-                <span>🩺</span> Analisis Patologi & Alasan Medis
+                <span>🩺</span> Analisis Patologi & Alasan
               </button>
               <button
                 onClick={() => setActiveTab("tab2")}
-                className={`px-4 py-3 font-bold text-xs transition border-b-2 flex items-center gap-2 whitespace-nowrap ${
+                className={`px-3.5 sm:px-5 py-3 font-bold text-xs transition border-b-2 flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                   activeTab === "tab2"
                     ? "border-teal-700 text-teal-800 bg-white shadow-sm"
                     : "border-transparent text-slate-500 hover:text-slate-700"
                 }`}
               >
-                <span>🔥</span> Lokalisasi Lesi (Score-CAM XAI)
+                <span>🔥</span> Lokalisasi Lesi (Score-CAM)
               </button>
               <button
                 onClick={() => setActiveTab("tab3")}
-                className={`px-4 py-3 font-bold text-xs transition border-b-2 flex items-center gap-2 whitespace-nowrap ${
+                className={`px-3.5 sm:px-5 py-3 font-bold text-xs transition border-b-2 flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                   activeTab === "tab3"
                     ? "border-teal-700 text-teal-800 bg-white shadow-sm"
                     : "border-transparent text-slate-500 hover:text-slate-700"
@@ -999,35 +1000,35 @@ export default function Home() {
               </button>
               <button
                 onClick={() => setActiveTab("tab4")}
-                className={`px-4 py-3 font-bold text-xs transition border-b-2 flex items-center gap-2 whitespace-nowrap ${
+                className={`px-3.5 sm:px-5 py-3 font-bold text-xs transition border-b-2 flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                   activeTab === "tab4"
                     ? "border-teal-700 text-teal-800 bg-white shadow-sm"
                     : "border-transparent text-slate-500 hover:text-slate-700"
                 }`}
               >
-                <span>📈</span> Dashboard Metrik Model AI
+                <span>📈</span> Metrik Model AI
               </button>
             </div>
 
             {/* TAB CONTENT AREA */}
-            <div className="p-5">
+            <div className="p-3.5 sm:p-5">
 
               {/* TAB 1: ANALISIS PATOLOGI & ALASAN MEDIS */}
               {activeTab === "tab1" && (
-                <div className="space-y-6">
+                <div className="space-y-5">
                   
-                  {/* TOP PANEL: PATOLOGI UTAMA TERDETEKSI DENGAN ALASAN MEDIS & KELANGKAAN */}
+                  {/* TOP PANEL */}
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-xs font-black uppercase tracking-wider text-slate-700 flex items-center gap-2">
-                        <span>🔍</span> Analisis Praduga Penyakit & Alasan Pendukung Klinis
+                    <div className="flex items-center justify-between flex-wrap gap-2">
+                      <h3 className="text-xs font-black uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                        <span>🔍</span> Praduga Penyakit & Alasan Klinis
                       </h3>
-                      <span className="text-[10px] font-bold text-teal-800 bg-teal-50 px-2.5 py-0.5 rounded border border-teal-200">
+                      <span className="text-[9px] sm:text-[10px] font-bold text-teal-800 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
                         Evaluasi Terkomputasi AI
                       </span>
                     </div>
 
-                    {/* CARDS UNTUK TOP 3 PRADUGA PENYAKIT WITH STRICT SYNCHRONIZED PROBABILITIES */}
+                    {/* CARDS UNTUK TOP 3 PRADUGA PENYAKIT */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       {topReasonsList.map((item, index) => {
                         const isPrimaryNormal = item.name === "Normal";
@@ -1036,7 +1037,7 @@ export default function Home() {
                         return (
                           <div
                             key={item.name}
-                            className={`p-4 rounded-xl border space-y-3 relative overflow-hidden transition shadow-sm ${
+                            className={`p-3.5 sm:p-4 rounded-xl border space-y-2.5 relative overflow-hidden transition shadow-sm ${
                               isPrimaryNormal
                                 ? "bg-emerald-50/70 border-emerald-200 text-emerald-950"
                                 : isHighRisk
@@ -1045,7 +1046,7 @@ export default function Home() {
                             }`}
                           >
                             <div className="flex justify-between items-start">
-                              <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-white/80 border border-black/10 font-mono">
+                              <span className="text-[9px] sm:text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-white/80 border border-black/10 font-mono">
                                 Ranking #{index + 1}
                               </span>
                               <span className={`text-xs font-black font-mono px-2 py-0.5 rounded ${
@@ -1056,20 +1057,18 @@ export default function Home() {
                             </div>
 
                             <div>
-                              <h4 className="font-extrabold text-sm tracking-tight flex items-center gap-1.5">
+                              <h4 className="font-extrabold text-xs sm:text-sm tracking-tight flex items-center gap-1">
                                 <span>{isPrimaryNormal ? "✅" : "🩺"}</span>
                                 <span>{item.name}</span>
                               </h4>
                               
-                              {/* RARITY METRIC */}
-                              <div className="text-[10px] font-mono font-semibold opacity-75 mt-1 bg-black/5 px-2 py-0.5 rounded inline-block">
+                              <div className="text-[9px] sm:text-[10px] font-mono font-semibold opacity-75 mt-1 bg-black/5 px-2 py-0.5 rounded inline-block">
                                 📊 {item.rarity}
                               </div>
                             </div>
 
-                            {/* CLINICAL REASONING (ALASAN PENDUKUNG DIAGNOSA) */}
                             <div className="pt-2 border-t border-black/5 space-y-1 text-[11px] leading-relaxed">
-                              <strong className="block text-[10px] uppercase tracking-wider font-extrabold opacity-90">
+                              <strong className="block text-[9px] sm:text-[10px] uppercase tracking-wider font-extrabold opacity-90">
                                 💡 Alasan Pendukung Diagnosa:
                               </strong>
                               <p className="opacity-90">{item.reasoning}</p>
@@ -1081,31 +1080,31 @@ export default function Home() {
                   </div>
 
                   {/* DAFTAR KLINIS SIMPEL 15 PATOLOGI */}
-                  <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                    <div className="bg-slate-100 px-4 py-2.5 border-b border-slate-200 font-extrabold text-[11px] text-slate-600 uppercase tracking-wider grid grid-cols-12 gap-2">
+                  <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm overflow-x-auto">
+                    <div className="bg-slate-100 px-3 sm:px-4 py-2 border-b border-slate-200 font-extrabold text-[10px] sm:text-[11px] text-slate-600 uppercase tracking-wider grid grid-cols-12 gap-2 min-w-[500px]">
                       <div className="col-span-4">Patologi Toraks</div>
                       <div className="col-span-5">Deskripsi Klinis Ringkas</div>
-                      <div className="col-span-3 text-right">Skor Pembobotan AI</div>
+                      <div className="col-span-3 text-right">Skor AI</div>
                     </div>
 
-                    <div className="divide-y divide-slate-100 text-xs">
+                    <div className="divide-y divide-slate-100 text-xs min-w-[500px]">
                       {sortedPathologies.map(p => {
                         const isTop = topReasonsList.some(t => t.name === p.name);
                         const isNormalClass = p.name === "Normal";
 
                         return (
-                          <div key={p.name} className="px-4 py-2.5 grid grid-cols-12 gap-2 items-center hover:bg-slate-50/80 transition">
+                          <div key={p.name} className="px-3 sm:px-4 py-2.5 grid grid-cols-12 gap-2 items-center hover:bg-slate-50/80 transition">
                             <div className="col-span-4 font-bold text-slate-800 flex items-center gap-1.5">
-                              <span className={`h-2 w-2 rounded-full ${isTop && !isNormalClass ? "bg-rose-500" : isNormalClass ? "bg-emerald-500" : "bg-slate-300"}`} />
-                              <span>{p.name}</span>
+                              <span className={`h-2 w-2 rounded-full shrink-0 ${isTop && !isNormalClass ? "bg-rose-500" : isNormalClass ? "bg-emerald-500" : "bg-slate-300"}`} />
+                              <span className="truncate">{p.name}</span>
                             </div>
 
-                            <div className="col-span-5 text-slate-500 text-[11px] truncate">
+                            <div className="col-span-5 text-slate-500 text-[10px] sm:text-[11px] truncate">
                               {p.desc}
                             </div>
 
                             <div className="col-span-3 text-right font-mono font-bold">
-                              <span className={`px-2 py-0.5 rounded text-[11px] ${
+                              <span className={`px-2 py-0.5 rounded text-[10px] sm:text-[11px] ${
                                 isNormalClass
                                   ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
                                   : isTop
@@ -1126,16 +1125,16 @@ export default function Home() {
 
               {/* TAB 2: LOKALISASI LESI (SCORE-CAM XAI) */}
               {activeTab === "tab2" && (
-                <div className="space-y-5">
+                <div className="space-y-4">
                   
                   {/* DROPDOWN & SLIDER TRANSPARANSI OVERLAY */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 bg-slate-50 p-3 sm:p-4 rounded-xl border border-slate-200">
                     <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-700 block">Target Patologi untuk Lokalisasi Score-CAM:</label>
+                      <label className="text-xs font-bold text-slate-700 block">Target Patologi Score-CAM:</label>
                       <select
                         value={selectedPathology}
                         onChange={(e) => setSelectedPathology(e.target.value)}
-                        className="w-full bg-white border border-slate-300 text-slate-800 rounded-lg p-2 font-bold focus:outline-none focus:ring-1 focus:ring-teal-700 cursor-pointer"
+                        className="w-full bg-white border border-slate-300 text-slate-800 rounded-lg p-2 font-bold focus:outline-none text-xs cursor-pointer"
                       >
                         {mappedPathologies.map(p => (
                           <option key={p.name} value={p.name}>
@@ -1157,39 +1156,39 @@ export default function Home() {
                         step="0.05"
                         value={overlayAlpha}
                         onChange={(e) => setOverlayAlpha(parseFloat(e.target.value))}
-                        className="w-full accent-teal-700 cursor-pointer"
+                        className="w-full accent-teal-700 cursor-pointer h-1.5"
                       />
                     </div>
                   </div>
 
                   {/* HORIZONTAL INFORMATIONAL BAR */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-teal-900 text-white p-3.5 rounded-xl text-xs font-mono shadow-md border border-teal-700">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 bg-teal-900 text-white p-3 rounded-xl text-xs font-mono shadow-md border border-teal-700">
                     <div>
-                      <span className="text-teal-300 block text-[10px] uppercase font-bold">Target Patologi:</span>
-                      <strong className="text-white text-sm">{selectedPathology} ({mappedPathologies.find(p=>p.name===selectedPathology)?.prob.toFixed(1)}%)</strong>
+                      <span className="text-teal-300 block text-[9px] uppercase font-bold">Target Patologi:</span>
+                      <strong className="text-white text-xs sm:text-sm">{selectedPathology} ({mappedPathologies.find(p=>p.name===selectedPathology)?.prob.toFixed(1)}%)</strong>
                     </div>
                     <div>
-                      <span className="text-teal-300 block text-[10px] uppercase font-bold">Algoritma XAI:</span>
-                      <strong className="text-white text-sm">Score-CAM (Gradient-Free)</strong>
+                      <span className="text-teal-300 block text-[9px] uppercase font-bold">Algoritma XAI:</span>
+                      <strong className="text-white text-xs sm:text-sm">Score-CAM</strong>
                     </div>
                     <div>
-                      <span className="text-teal-300 block text-[10px] uppercase font-bold">Target Conv Layer:</span>
-                      <strong className="text-white text-sm">conv5_block16_concat</strong>
+                      <span className="text-teal-300 block text-[9px] uppercase font-bold">Target Conv Layer:</span>
+                      <strong className="text-white text-xs sm:text-sm truncate block">conv5_block16</strong>
                     </div>
                     <div>
-                      <span className="text-teal-300 block text-[10px] uppercase font-bold">Overlay Blending:</span>
-                      <strong className="text-white text-sm font-bold">{(overlayAlpha * 100).toFixed(0)}% Alpha JET</strong>
+                      <span className="text-teal-300 block text-[9px] uppercase font-bold">Overlay Blending:</span>
+                      <strong className="text-white text-xs sm:text-sm font-bold">{(overlayAlpha * 100).toFixed(0)}% Alpha JET</strong>
                     </div>
                   </div>
 
-                  {/* 3 PANEL BERJAJAR SECARA HORIZONTAL DENGAN ANNOTATION CIRCLES & PENJELASAN MAKNA */}
+                  {/* 3 PANEL BERJAJAR (STACKED ON MOBILE) */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     
-                    {/* PANEL 1: CITRA RONTGEN PASIEN */}
+                    {/* PANEL 1 */}
                     <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 space-y-3 text-center flex flex-col justify-between">
                       <div className="space-y-2">
-                        <div className="text-xs font-extrabold text-slate-200">Panel 1: Citra Rontgen Pasien (Input Asli)</div>
-                        <div className="h-60 bg-black rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 relative">
+                        <div className="text-xs font-extrabold text-slate-200">Panel 1: Input Asli Rontgen</div>
+                        <div className="h-52 sm:h-60 bg-black rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 relative">
                           {previewUrl ? (
                             <div className="relative w-full h-full flex items-center justify-center">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1215,17 +1214,17 @@ export default function Home() {
                         </div>
                       </div>
                       
-                      <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-[11px] text-slate-300 text-left leading-relaxed">
+                      <div className="bg-slate-950 p-2 sm:p-2.5 rounded-lg border border-slate-800 text-[10px] sm:text-[11px] text-slate-300 text-left leading-relaxed">
                         <strong className="text-cyan-400 block mb-0.5">📌 Maksud & Fungsi:</strong>
-                        Citra rontgen monokrom asli pasien (Posteroanterior) sebelum dianalisis oleh jaringan saraf AI.
+                        Citra rontgen monokrom asli pasien (Posteroanterior) sebelum dianalisis oleh AI.
                       </div>
                     </div>
 
-                    {/* PANEL 2: SCORE-CAM ACTIVATION MAP */}
+                    {/* PANEL 2 */}
                     <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 space-y-3 text-center flex flex-col justify-between">
                       <div className="space-y-2">
-                        <div className="text-xs font-extrabold text-teal-300">Panel 2: Score-CAM Activation Map (Heatmap)</div>
-                        <div className="h-60 bg-black rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 relative">
+                        <div className="text-xs font-extrabold text-teal-300">Panel 2: Score-CAM Heatmap</div>
+                        <div className="h-52 sm:h-60 bg-black rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 relative">
                           {result?.heatmap_image ? (
                             <div className="relative w-full h-full flex items-center justify-center">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1248,23 +1247,23 @@ export default function Home() {
                           ) : (
                             <div className="text-center p-4 text-slate-500">
                               <span className="text-2xl block">🔥</span>
-                              <span className="text-xs">Jalankan Analisis AI untuk Generasi Heatmap</span>
+                              <span className="text-xs">Jalankan AI untuk Heatmap</span>
                             </div>
                           )}
                         </div>
                       </div>
 
-                      <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-[11px] text-slate-300 text-left leading-relaxed">
-                        <strong className="text-teal-300 block mb-0.5">🔥 Maksud & Interpretasi Heatmap:</strong>
-                        Peta atensi AI (Score-CAM). Wilayah berpendar <strong>MERAH/ORANGE</strong> menandakan lokasi jaringan paru yang paling intensif ditandai AI sebagai indikasi patologi.
+                      <div className="bg-slate-950 p-2 sm:p-2.5 rounded-lg border border-slate-800 text-[10px] sm:text-[11px] text-slate-300 text-left leading-relaxed">
+                        <strong className="text-teal-300 block mb-0.5">🔥 Interpretasi Heatmap:</strong>
+                        Peta atensi AI (Score-CAM). Area berpendar <strong>MERAH/ORANGE</strong> menandakan fokus utama AI.
                       </div>
                     </div>
 
-                    {/* PANEL 3: DIAGNOSTIC OVERLAY */}
+                    {/* PANEL 3 */}
                     <div className="bg-slate-900 border border-slate-800 rounded-xl p-3 space-y-3 text-center flex flex-col justify-between">
                       <div className="space-y-2">
-                        <div className="text-xs font-extrabold text-rose-300">Panel 3: Diagnostic Blended Overlay</div>
-                        <div className="h-60 bg-black rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 relative">
+                        <div className="text-xs font-extrabold text-rose-300">Panel 3: Diagnostic Overlay</div>
+                        <div className="h-52 sm:h-60 bg-black rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 relative">
                           {result?.heatmap_image ? (
                             <div className="relative w-full h-full flex items-center justify-center">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1294,9 +1293,9 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-[11px] text-slate-300 text-left leading-relaxed">
-                        <strong className="text-rose-300 block mb-0.5">🔎 Maksud Diagnostic Overlay:</strong>
-                        Penggabungan citra Rontgen asli dengan peta atensi (Blending {(overlayAlpha * 100).toFixed(0)}%). Digunakan dokter untuk melokalisasi koordinat pasti letak cairan/infiltrasi pada anatomi paru.
+                      <div className="bg-slate-950 p-2 sm:p-2.5 rounded-lg border border-slate-800 text-[10px] sm:text-[11px] text-slate-300 text-left leading-relaxed">
+                        <strong className="text-rose-300 block mb-0.5">🔎 Diagnostic Overlay:</strong>
+                        Penggabungan citra Rontgen asli dengan peta atensi (Blending {(overlayAlpha * 100).toFixed(0)}%).
                       </div>
                     </div>
 
@@ -1307,20 +1306,20 @@ export default function Home() {
 
               {/* TAB 3: LEMBAR HASIL ANALISA */}
               {activeTab === "tab3" && (
-                <div ref={expertiseRef} className="bg-white border border-slate-300 p-8 shadow-md rounded-xl text-slate-900 font-serif space-y-6">
+                <div ref={expertiseRef} className="bg-white border border-slate-300 p-4 sm:p-8 shadow-md rounded-xl text-slate-900 font-serif space-y-5 overflow-x-auto">
                   
                   {/* TITLE */}
                   <div className="border-b-2 border-slate-900 pb-3 text-center">
-                    <h2 className="text-lg font-black tracking-wider uppercase text-slate-900">
+                    <h2 className="text-base sm:text-lg font-black tracking-wider uppercase text-slate-900">
                       LEMBAR HASIL ANALISA DIAGNOSTIK RADIOLOGI TORAKS
                     </h2>
-                    <p className="text-xs font-sans text-slate-500 mt-1">
+                    <p className="text-[11px] sm:text-xs font-sans text-slate-500 mt-1">
                       Sistem Pembobotan Citra Rontgen AI Support System
                     </p>
                   </div>
 
                   {/* METADATA DOKUMEN MEDIS */}
-                  <div className="grid grid-cols-2 gap-4 text-xs font-sans bg-slate-50 p-4 rounded-lg border border-slate-200">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-sans bg-slate-50 p-3 sm:p-4 rounded-lg border border-slate-200">
                     <div>
                       <div><strong>No. Analisa:</strong> EXP-2026/0824/0042</div>
                       <div><strong>ID Pasien / No RM:</strong> PX-2026-0824</div>
@@ -1328,20 +1327,20 @@ export default function Home() {
                     </div>
                     <div>
                       <div><strong>Tanggal Pemeriksaan:</strong> 24 Agustus 2026</div>
-                      <div><strong>Jenis Pemeriksaan:</strong> Rontgen Toraks PA (Posteroanterior)</div>
+                      <div><strong>Jenis Pemeriksaan:</strong> Rontgen Toraks PA</div>
                       <div><strong>Unit Pengirim:</strong> Poliklinik Rawat Jalan</div>
                     </div>
                   </div>
 
                   {/* TABEL URAIAN TEMUAN RADIOLOGIS */}
-                  <div className="space-y-2 font-sans">
+                  <div className="space-y-2 font-sans overflow-x-auto">
                     <h4 className="font-bold text-xs uppercase tracking-wider text-slate-700">Uraian Hasil Pemindaian & Pembobotan AI:</h4>
-                    <table className="w-full border-collapse border border-slate-300 text-xs">
+                    <table className="w-full border-collapse border border-slate-300 text-xs min-w-[500px]">
                       <thead>
                         <tr className="bg-slate-100 border-b border-slate-300 font-bold text-slate-700">
                           <th className="border border-slate-300 p-2 text-left w-1/4">Regio Anatomis</th>
                           <th className="border border-slate-300 p-2 text-left">Deskripsi Hasil Pemindaian & Pembobotan</th>
-                          <th className="border border-slate-300 p-2 text-center w-1/4">Status Skor Pembobotan</th>
+                          <th className="border border-slate-300 p-2 text-center w-1/4">Status Skor</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -1388,8 +1387,8 @@ export default function Home() {
                   </div>
 
                   {/* KESIMPULAN & TANDA TANGAN */}
-                  <div className="space-y-4 pt-4 border-t border-slate-200 font-sans">
-                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-1">
+                  <div className="space-y-4 pt-3 border-t border-slate-200 font-sans">
+                    <div className="bg-slate-50 p-3 sm:p-4 rounded-lg border border-slate-200 space-y-1">
                       <h4 className="font-bold text-xs text-slate-800">KESIMPULAN ANALISA DIAGNOSTIK:</h4>
                       <ol className="list-decimal list-inside text-xs text-slate-700 space-y-0.5">
                         {isSampleNormal ? (
@@ -1412,15 +1411,15 @@ export default function Home() {
                       </ol>
                     </div>
 
-                    <div className="flex justify-between items-end pt-8 text-xs">
-                      <div className="text-slate-500 italic text-[11px]">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end pt-4 gap-4 text-xs">
+                      <div className="text-slate-500 italic text-[10px] sm:text-[11px]">
                         Dokumen ini di-generate otomatis via ToraksAI Diagnostic System.<br/>
                         Waktu Cetak: {new Date().toLocaleString("id-ID")}
                       </div>
                       
-                      <div className="text-center space-y-12">
+                      <div className="text-center space-y-10 sm:space-y-12 self-end">
                         <div>Dokter Spesialis Radiologi,</div>
-                        <div className="font-bold border-b border-slate-900 pb-1 text-slate-900 min-w-[200px] inline-block">
+                        <div className="font-bold border-b border-slate-900 pb-1 text-slate-900 min-w-[180px] sm:min-w-[200px] inline-block">
                           dr. Spesialis Radiologi, Sp.Rad
                         </div>
                         <div className="text-[10px] text-slate-500 font-mono">SIP / NIP: _____________________</div>
@@ -1431,74 +1430,74 @@ export default function Home() {
                 </div>
               )}
 
-              {/* NEW TAB 4: DASHBOARD METRIK & BENCHMARK MODEL AI (NEW FEATURE) */}
+              {/* TAB 4: DASHBOARD METRIK & BENCHMARK MODEL AI */}
               {activeTab === "tab4" && (
-                <div className="space-y-6">
+                <div className="space-y-5">
                   
                   {/* HEADER SUMMARY METRICS */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-                      <span className="text-[11px] text-slate-400 font-bold uppercase block">Mean AUROC</span>
-                      <span className="text-xl font-black text-teal-700 block">0.942</span>
-                      <span className="text-[10px] text-emerald-600 font-semibold">High Benchmark Score</span>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+                    <div className="bg-slate-50 p-3 sm:p-4 rounded-xl border border-slate-200 space-y-1">
+                      <span className="text-[10px] sm:text-[11px] text-slate-400 font-bold uppercase block">Mean AUROC</span>
+                      <span className="text-lg sm:text-xl font-black text-teal-700 block">0.942</span>
+                      <span className="text-[9px] sm:text-[10px] text-emerald-600 font-semibold">High Benchmark Score</span>
                     </div>
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-                      <span className="text-[11px] text-slate-400 font-bold uppercase block">Sensitivitas (Recall)</span>
-                      <span className="text-xl font-black text-emerald-700 block">93.4%</span>
-                      <span className="text-[10px] text-slate-500">True Positive Rate</span>
+                    <div className="bg-slate-50 p-3 sm:p-4 rounded-xl border border-slate-200 space-y-1">
+                      <span className="text-[10px] sm:text-[11px] text-slate-400 font-bold uppercase block">Sensitivitas</span>
+                      <span className="text-lg sm:text-xl font-black text-emerald-700 block">93.4%</span>
+                      <span className="text-[9px] sm:text-[10px] text-slate-500">True Positive Rate</span>
                     </div>
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-                      <span className="text-[11px] text-slate-400 font-bold uppercase block">Spesifisitas</span>
-                      <span className="text-xl font-black text-cyan-700 block">94.8%</span>
-                      <span className="text-[10px] text-slate-500">True Negative Rate</span>
+                    <div className="bg-slate-50 p-3 sm:p-4 rounded-xl border border-slate-200 space-y-1">
+                      <span className="text-[10px] sm:text-[11px] text-slate-400 font-bold uppercase block">Spesifisitas</span>
+                      <span className="text-lg sm:text-xl font-black text-cyan-700 block">94.8%</span>
+                      <span className="text-[9px] sm:text-[10px] text-slate-500">True Negative Rate</span>
                     </div>
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
-                      <span className="text-[11px] text-slate-400 font-bold uppercase block">Bobot Model H5</span>
-                      <span className="text-xl font-black text-slate-800 block">32.45 MB</span>
-                      <span className="text-[10px] text-slate-500">7.16M Parameters</span>
+                    <div className="bg-slate-50 p-3 sm:p-4 rounded-xl border border-slate-200 space-y-1">
+                      <span className="text-[10px] sm:text-[11px] text-slate-400 font-bold uppercase block">Bobot Model H5</span>
+                      <span className="text-lg sm:text-xl font-black text-slate-800 block">32.45 MB</span>
+                      <span className="text-[9px] sm:text-[10px] text-slate-500">7.16M Parameters</span>
                     </div>
                   </div>
 
                   {/* CONFUSION MATRIX & MODEL ARCHITECTURE DETAILS */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                     
                     {/* CONFUSION MATRIX CARD */}
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
+                    <div className="bg-slate-50 p-3.5 sm:p-4 rounded-xl border border-slate-200 space-y-3">
                       <h4 className="font-bold text-xs uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
                         <span>📊</span> Matriks Konfusi (Validation Set):
                       </h4>
 
                       <div className="grid grid-cols-2 gap-2 text-center text-xs font-mono">
-                        <div className="bg-emerald-100 p-3 rounded-lg border border-emerald-300">
-                          <span className="text-[10px] text-emerald-800 uppercase block font-sans font-bold">True Positives (TP)</span>
-                          <span className="text-lg font-black text-emerald-900">512</span>
+                        <div className="bg-emerald-100 p-2.5 sm:p-3 rounded-lg border border-emerald-300">
+                          <span className="text-[9px] text-emerald-800 uppercase block font-sans font-bold">True Positives</span>
+                          <span className="text-base sm:text-lg font-black text-emerald-900">512</span>
                         </div>
-                        <div className="bg-rose-50 p-3 rounded-lg border border-rose-200">
-                          <span className="text-[10px] text-rose-700 uppercase block font-sans font-bold">False Positives (FP)</span>
-                          <span className="text-lg font-black text-rose-900">34</span>
+                        <div className="bg-rose-50 p-2.5 sm:p-3 rounded-lg border border-rose-200">
+                          <span className="text-[9px] text-rose-700 uppercase block font-sans font-bold">False Positives</span>
+                          <span className="text-base sm:text-lg font-black text-rose-900">34</span>
                         </div>
-                        <div className="bg-amber-50 p-3 rounded-lg border border-amber-200">
-                          <span className="text-[10px] text-amber-700 uppercase block font-sans font-bold">False Negatives (FN)</span>
-                          <span className="text-lg font-black text-amber-900">36</span>
+                        <div className="bg-amber-50 p-2.5 sm:p-3 rounded-lg border border-amber-200">
+                          <span className="text-[9px] text-amber-700 uppercase block font-sans font-bold">False Negatives</span>
+                          <span className="text-base sm:text-lg font-black text-amber-900">36</span>
                         </div>
-                        <div className="bg-teal-100 p-3 rounded-lg border border-teal-300">
-                          <span className="text-[10px] text-teal-800 uppercase block font-sans font-bold">True Negatives (TN)</span>
-                          <span className="text-lg font-black text-teal-900">548</span>
+                        <div className="bg-teal-100 p-2.5 sm:p-3 rounded-lg border border-teal-300">
+                          <span className="text-[9px] text-teal-800 uppercase block font-sans font-bold">True Negatives</span>
+                          <span className="text-base sm:text-lg font-black text-teal-900">548</span>
                         </div>
                       </div>
                     </div>
 
                     {/* MODEL ARCHITECTURE & DATASET METRICS */}
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3 text-xs">
+                    <div className="bg-slate-50 p-3.5 sm:p-4 rounded-xl border border-slate-200 space-y-2.5 text-xs">
                       <h4 className="font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
                         <span>🧠</span> Spesifikasi Arsitektur Model:
                       </h4>
 
-                      <ul className="space-y-1.5 text-slate-600 font-sans leading-relaxed">
-                        <li><strong>Backbone:</strong> DenseNet121 Transfer Learning (ImageNet pre-trained)</li>
+                      <ul className="space-y-1.5 text-slate-600 font-sans leading-relaxed text-[11px] sm:text-xs">
+                        <li><strong>Backbone:</strong> DenseNet121 Transfer Learning</li>
                         <li><strong>Input Dimension:</strong> 224 x 224 RGB Normalized Array</li>
                         <li><strong>Activation Layer:</strong> Softmax Multi-Class Output Layer</li>
-                        <li><strong>XAI Layer Target:</strong> conv5_block16_concat (Dense Block 4)</li>
+                        <li><strong>XAI Layer Target:</strong> conv5_block16_concat</li>
                         <li><strong>Training Dataset:</strong> 591 NIH Chest X-Ray Clinical Images</li>
                       </ul>
                     </div>
@@ -1518,28 +1517,28 @@ export default function Home() {
 
       {/* 4. MODAL POP-UP WINDOW (DATABASE REKAM MEDIS & SUPABASE) */}
       {showDbModal && (
-        <div className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white border border-slate-200 rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200 text-slate-800">
+        <div className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-white border border-slate-200 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl animate-in fade-in zoom-in-95 duration-200 text-slate-800">
             
             {/* MODAL HEADER */}
-            <div className="bg-slate-900 text-white p-4 px-6 flex justify-between items-center border-b border-slate-800">
-              <div className="flex items-center space-x-3">
-                <span className="text-xl">🗄️</span>
+            <div className="bg-slate-900 text-white p-3.5 sm:p-4 px-4 sm:px-6 flex justify-between items-center border-b border-slate-800">
+              <div className="flex items-center space-x-2.5">
+                <span className="text-lg sm:text-xl">🗄️</span>
                 <div>
-                  <h3 className="font-bold text-sm">Database Rekam Medis & Riwayat Diagnosa (Supabase Cloud)</h3>
-                  <p className="text-[11px] text-slate-400">Daftar rekaman prediksi yang tersimpan di cloud database real-time</p>
+                  <h3 className="font-bold text-xs sm:text-sm">Database Rekam Medis (Supabase Cloud)</h3>
+                  <p className="text-[10px] sm:text-[11px] text-slate-400">Daftar rekaman prediksi yang tersimpan di cloud real-time</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowDbModal(false)}
-                className="h-8 w-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold flex items-center justify-center transition"
+                className="h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold flex items-center justify-center transition text-xs"
               >
                 ✕
               </button>
             </div>
 
             {/* MODAL BODY TABLE */}
-            <div className="p-6 overflow-y-auto space-y-4">
+            <div className="p-3.5 sm:p-6 overflow-y-auto space-y-4">
               {loadingHistory ? (
                 <div className="py-12 text-center text-slate-500 space-y-2">
                   <span className="inline-block animate-spin h-6 w-6 border-2 border-teal-700 border-t-transparent rounded-full" />
@@ -1547,7 +1546,7 @@ export default function Home() {
                 </div>
               ) : history.length > 0 ? (
                 <div className="overflow-x-auto border border-slate-200 rounded-xl">
-                  <table className="w-full text-left text-xs">
+                  <table className="w-full text-left text-xs min-w-[600px]">
                     <thead className="bg-slate-100 text-slate-600 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200 font-mono">
                       <tr>
                         <th className="p-3">Waktu</th>
@@ -1562,7 +1561,7 @@ export default function Home() {
                     <tbody className="divide-y divide-slate-100 font-sans">
                       {history.map((item) => (
                         <tr key={item.id} className="hover:bg-slate-50 transition">
-                          <td className="p-3 font-mono text-slate-500">
+                          <td className="p-3 font-mono text-slate-500 text-[11px]">
                             {new Date(item.created_at).toLocaleString("id-ID")}
                           </td>
                           <td className="p-3 font-bold text-slate-800">
@@ -1612,13 +1611,13 @@ export default function Home() {
             </div>
 
             {/* MODAL FOOTER */}
-            <div className="bg-slate-50 p-4 px-6 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500 font-medium">
-              <span>Status Server: Supabase Cloud Sync Enabled</span>
+            <div className="bg-slate-50 p-3 sm:p-4 px-4 sm:px-6 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500 font-medium">
+              <span className="truncate">Status Server: Supabase Cloud Sync Enabled</span>
               <button
                 onClick={() => setShowDbModal(false)}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-lg transition"
+                className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-lg transition shrink-0"
               >
-                Tutup Modal
+                Tutup
               </button>
             </div>
 
