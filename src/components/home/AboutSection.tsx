@@ -1,0 +1,52 @@
+'use client';
+
+import React from 'react';
+import { Target, Zap, ShieldCheck } from 'lucide-react';
+
+export function AboutSection() {
+  return (
+    <section className="py-24 bg-neutral-100/50 dark:bg-neutral-900/30 border-t border-neutral-200/80 dark:border-neutral-800">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        {/* Left Column */}
+        <div className="lg:col-span-5 space-y-4">
+          <h2 className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">
+            About & Core Values
+          </h2>
+          <h3 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-950 dark:text-white leading-tight">
+            Analytical Mindset, Executive Communication & Strong Ownership.
+          </h3>
+        </div>
+
+        {/* Right Column: Narrative */}
+        <div className="lg:col-span-7 space-y-8 text-neutral-700 dark:text-neutral-300 text-base leading-relaxed font-normal">
+          <p className="text-lg text-neutral-900 dark:text-white font-medium">
+            IT Fresh Graduate (GPA 3.80/4.00, consistent Dean&apos;s List across 7 semesters) with hands-on experience building an end-to-end NLP system that achieved 85% classification accuracy on real business data. BNSP Certified Software Engineer and fast learner with a track record of rapid promotion, now focused on Mobile Development in the financial technology sector.
+          </p>
+          <p>
+            By combining technical discipline in software engineering (Python, Flutter, REST API design) with 5+ years of cross-industry leadership and executive stakeholder management, I deliver clean, scalable solutions built for real business impact.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
+            <div className="space-y-2">
+              <Zap className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <h4 className="text-sm font-bold text-neutral-950 dark:text-white">85% NLP Accuracy</h4>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">End-to-end sentiment classification on 1,000+ real customer reviews.</p>
+            </div>
+            <div className="space-y-2">
+              <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <h4 className="text-sm font-bold text-neutral-950 dark:text-white">FinTech Mobile Focus</h4>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">Building intuitive, high-performance Flutter & React Native applications.</p>
+            </div>
+            <div className="space-y-2">
+              <ShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <h4 className="text-sm font-bold text-neutral-950 dark:text-white">BNSP Certified</h4>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">Officially certified in Software Engineering competencies.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
