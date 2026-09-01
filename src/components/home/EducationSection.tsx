@@ -13,7 +13,7 @@ export function EducationSection({ educationList }: EducationSectionProps) {
   const formatDateRange = (startDate: string, endDate?: string | null) => {
     try {
       const startYear = new Date(startDate).getFullYear();
-      if (!endDate) return `${startYear} – Expected 2026`;
+      if (!endDate) return `${startYear} – 2026`;
       const endYear = new Date(endDate).getFullYear();
       return `${startYear} – ${endYear}`;
     } catch {

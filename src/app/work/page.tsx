@@ -19,6 +19,25 @@ export default async function WorkPage() {
     fetchSocialContent(),
   ]);
 
+  const groupedSocialContent = socialContent.reduce(
+    (acc, item) => {
+      const platform = item.platform.toLowerCase() === 'instagram' ? 'Instagram' : item.platform.toLowerCase() === 'tiktok' ? 'TikTok' : item.platform;
+      const category = item.category || 'Social Media';
+
+      if (!acc[platform]) {
+        acc[platform] = {} as Record<string, typeof socialContent>;
+      }
+
+      if (!acc[platform][category]) {
+        acc[platform][category] = [];
+      }
+
+      acc[platform][category].push(item);
+      return acc;
+    },
+    {} as Record<string, Record<string, typeof socialContent>>
+  );
+
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50 dark:bg-neutral-950 selection:bg-blue-500 selection:text-white transition-colors">
       <Navbar />
@@ -61,24 +80,28 @@ export default async function WorkPage() {
           </section>
 
           {/* Digital Presence & Social Proof Section */}
-          <section className="space-y-8 pt-12 border-t border-neutral-200/80 dark:border-neutral-800">
-            <div className="space-y-3 max-w-2xl">
+          <section className="space-y-10 pt-12 border-t border-neutral-200/80 dark:border-neutral-800">
+            <div className="space-y-3 max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-950/60 border border-purple-200/60 dark:border-purple-800/60 text-purple-600 dark:text-purple-400 text-xs font-semibold uppercase tracking-wider">
                 <Share2 className="w-3.5 h-3.5" />
-                <span>Personal Branding & Storytelling</span>
+                <span>Creative Campaign Portfolio</span>
               </div>
               <h2 className="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white">
                 Digital Presence & Social Proof
               </h2>
               <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                Demonstrating effective tech communication, developer engagement, and public audience growth.
+                Real campaign storytelling, brand visibility, and performance-driven content strategy across Instagram and TikTok.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {socialContent.map((content, idx) => (
-                <SocialContentCard key={content.id} content={content} index={idx} />
-              ))}
+            <div className="rounded-[32px] border border-neutral-200 bg-[#f5f5f5] p-3 shadow-[0_30px_80px_rgba(0,0,0,0.06)] dark:border-neutral-800 dark:bg-[#111111]">
+              <div className="flex justify-center">
+                <div className="grid w-full max-w-[980px] grid-cols-1 gap-5 sm:grid-cols-2">
+                  {socialContent.map((content, idx) => (
+                    <SocialContentCard key={content.id} content={content} index={idx} />
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
 

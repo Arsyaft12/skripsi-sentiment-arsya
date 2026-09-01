@@ -11,9 +11,9 @@ const FALLBACK_GITHUB_REPOS: GitHubRepo[] = [
     id: 101,
     name: 'skripsi-sentiment-arsya',
     full_name: `${GITHUB_USERNAME}/skripsi-sentiment-arsya`,
-    description: 'SentiSight — NLP Sentiment Analysis System with 85% Accuracy for Public Business Reviews.',
+    description: 'SentimenAI — e-commerce review sentiment analysis dashboard with NLP and model comparison.',
     html_url: `https://github.com/${GITHUB_USERNAME}/skripsi-sentiment-arsya`,
-    homepage: 'https://sentiment-arsya.vercel.app',
+    homepage: 'https://frontend-h4q65ncub-arsyaft12-9212s-projects.vercel.app/',
     language: 'Python',
     topics: ['nlp', 'machine-learning', 'sentiment-analysis', 'flask', 'pandas'],
     stargazers_count: 14,
@@ -22,29 +22,29 @@ const FALLBACK_GITHUB_REPOS: GitHubRepo[] = [
   },
   {
     id: 102,
-    name: 'Arsya-portfolio',
-    full_name: `${GITHUB_USERNAME}/Arsya-portfolio`,
-    description: 'Original interactive developer portfolio showcasing projects, certifications and technical experience.',
-    html_url: `https://github.com/${GITHUB_USERNAME}/Arsya-portfolio`,
-    homepage: null,
-    language: 'HTML',
-    topics: ['portfolio', 'html', 'css', 'javascript', 'responsive-design'],
-    stargazers_count: 5,
+    name: 'toraksai',
+    full_name: `${GITHUB_USERNAME}/toraksai`,
+    description: 'ToraksAI — thoracic X-ray clinical decision support and explainable AI diagnostic dashboard.',
+    html_url: `https://github.com/${GITHUB_USERNAME}/toraksai`,
+    homepage: 'https://frontend-sable-one-90kmisglle.vercel.app',
+    language: 'TypeScript',
+    topics: ['ai', 'dashboard', 'healthcare', 'monitoring', 'nextjs'],
+    stargazers_count: 6,
     forks_count: 1,
-    pushed_at: new Date(Date.now() - 86400000 * 7).toISOString(),
+    pushed_at: new Date(Date.now() - 86400000 * 4).toISOString(),
   },
   {
     id: 103,
-    name: 'portofolio-arsya',
-    full_name: `${GITHUB_USERNAME}/portofolio-arsya`,
-    description: 'Developer Portfolio built with Next.js, Supabase, and Framer Motion.',
-    html_url: `https://github.com/${GITHUB_USERNAME}/portofolio-arsya`,
-    homepage: null,
+    name: 'the-pitch-creative',
+    full_name: 'the-pitch-creative/the-pitch-creative-media',
+    description: 'The Pitch Creative — Digital brand & media showcase with editorial storytelling.',
+    html_url: 'https://www.thepitchcreative.media/',
+    homepage: 'https://www.thepitchcreative.media/',
     language: 'TypeScript',
-    topics: ['nextjs', 'framer-motion', 'supabase', 'typescript'],
-    stargazers_count: 8,
-    forks_count: 1,
-    pushed_at: new Date(Date.now() - 86400000 * 5).toISOString(),
+    topics: ['creative', 'media', 'editorial', 'nextjs', 'design'],
+    stargazers_count: 0,
+    forks_count: 0,
+    pushed_at: new Date(Date.now() - 86400000 * 7).toISOString(),
   }
 ];
 
@@ -109,9 +109,18 @@ export async function getCuratedProjects(): Promise<ProjectCardData[]> {
     let validatedLiveUrl: string | null = null;
 
     if (targetLiveUrl && targetLiveUrl.trim() !== '') {
-      const health = await validateLiveUrl(targetLiveUrl);
-      if (health.isLive) {
-        isLive = true;
+      try {
+        const health = await validateLiveUrl(targetLiveUrl);
+        if (health.isLive) {
+          isLive = true;
+          validatedLiveUrl = targetLiveUrl;
+        } else {
+          // Even if health check fails, still use the URL for Microlink fallback
+          validatedLiveUrl = targetLiveUrl;
+        }
+      } catch (error) {
+        console.warn(`Health check error for ${targetLiveUrl}:`, error);
+        // Always set the URL even if health check throws
         validatedLiveUrl = targetLiveUrl;
       }
     }

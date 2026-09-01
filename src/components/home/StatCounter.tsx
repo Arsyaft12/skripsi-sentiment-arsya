@@ -18,10 +18,10 @@ export function StatCounter({ achievements }: StatCounterProps) {
     if (l.includes('gpa') || l.includes('academic') || l.includes('ipk')) {
       return <Award className="w-4 h-4 text-blue-600 dark:text-blue-400" />;
     }
-    if (l.includes('nlp') || l.includes('sentisight') || l.includes('accuracy')) {
+    if (l.includes('ai') || l.includes('ml') || l.includes('nlp') || l.includes('interest')) {
       return <Brain className="w-4 h-4 text-blue-600 dark:text-blue-400" />;
     }
-    if (l.includes('reviews') || l.includes('processed') || l.includes('data')) {
+    if (l.includes('reviews') || l.includes('processed') || l.includes('business') || l.includes('impact')) {
       return <BarChart3 className="w-4 h-4 text-blue-600 dark:text-blue-400" />;
     }
     return <TrendingUp className="w-4 h-4 text-blue-600 dark:text-blue-400" />;

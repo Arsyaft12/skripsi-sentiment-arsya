@@ -27,22 +27,22 @@ export function Navbar() {
   ];
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-header py-3.5 shadow-sm' : 'bg-transparent py-5'
+    <header
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
+        scrolled ? 'glass-header py-3.5' : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        {/* Brand Logo */}
-        <Link 
-          href="/" 
-          className="group flex items-center gap-2 text-lg font-bold tracking-tight text-neutral-900 dark:text-white transition-opacity hover:opacity-80"
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        <Link
+          href="/"
+          className="group flex items-center gap-2.5 text-lg font-bold tracking-tight text-neutral-900 dark:text-white transition-all duration-200 hover:opacity-80"
         >
-          <span className="w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-blue-500 group-hover:scale-125 transition-transform" />
+          <span className="relative flex h-2.5 w-2.5 items-center justify-center rounded-full bg-blue-600 dark:bg-blue-500 transition-transform duration-200 group-hover:scale-125">
+            <span className="absolute h-5 w-5 rounded-full bg-blue-600/20 dark:bg-blue-400/20" />
+          </span>
           <span>Arsya F.</span>
         </Link>
 
-        {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
             const isActive = pathname === link.path;
@@ -50,66 +50,61 @@ export function Navbar() {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`text-sm font-medium transition-colors relative py-1 ${
-                  isActive 
-                    ? 'text-blue-600 dark:text-blue-400 font-semibold' 
+                className={`relative text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? 'text-blue-600 dark:text-blue-400 font-semibold'
                     : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                 }`}
               >
                 {link.name}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full" />
+                  <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full" />
                 )}
               </Link>
             );
           })}
         </nav>
 
-        {/* Action Controls */}
-        <div className="hidden md:flex items-center gap-4">
-          {/* Theme Toggle Button */}
+        <div className="hidden md:flex items-center gap-3">
           <button
             onClick={toggleTheme}
             aria-label="Toggle Theme"
-            className="p-2 rounded-full text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200/80 bg-white/70 text-neutral-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600 dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-blue-700 dark:hover:text-blue-400"
           >
             {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
 
-          {/* Contact CTA Button */}
           <a
             href="mailto:arsyaft12@gmail.com"
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 rounded-full transition-all duration-200 shadow-sm hover:shadow-blue-500/20 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="relative z-20 inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-lg shadow-blue-600/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             <span>Contact Me</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
         </div>
 
-        {/* Mobile Menu & Theme Toggle */}
-        <div className="flex md:hidden items-center gap-3">
+        <div className="flex items-center gap-3 md:hidden">
           <button
             onClick={toggleTheme}
             aria-label="Toggle Theme"
-            className="p-2 rounded-full text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-colors"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200/80 bg-white/80 text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-neutral-200"
           >
             {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
-          
+
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Open Mobile Menu"
-            className="p-2 text-neutral-900 dark:text-white"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200/80 bg-white/80 text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-white"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden glass-header border-b border-neutral-200 dark:border-neutral-800 px-6 py-6 space-y-4 animate-in slide-in-from-top duration-200">
-          <div className="flex flex-col space-y-3">
+        <div className="md:hidden glass-header border-b border-neutral-200/80 px-6 py-6 dark:border-neutral-800">
+          <div className="flex flex-col gap-3">
             {navLinks.map((link) => {
               const isActive = pathname === link.path;
               return (
@@ -117,10 +112,10 @@ export function Navbar() {
                   key={link.path}
                   href={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-base font-medium py-1.5 transition-colors ${
-                    isActive 
-                      ? 'text-blue-600 dark:text-blue-400 font-semibold' 
-                      : 'text-neutral-700 dark:text-neutral-300'
+                  className={`rounded-xl px-3 py-2 text-base font-medium transition-colors ${
+                    isActive
+                      ? 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300'
+                      : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-900/80'
                   }`}
                 >
                   {link.name}
@@ -130,7 +125,7 @@ export function Navbar() {
             <a
               href="mailto:arsyaft12@gmail.com"
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex items-center justify-center gap-2 w-full py-3 mt-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-4 py-3 text-sm font-semibold text-white"
             >
               <span>Contact Me</span>
               <ArrowUpRight className="w-4 h-4" />

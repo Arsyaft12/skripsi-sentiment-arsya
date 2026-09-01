@@ -86,9 +86,6 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-8 pt-6 border-t border-neutral-200/60 dark:border-neutral-800/60 text-center text-xs text-neutral-400">
-        &copy; {new Date().getFullYear()} Arsya Faturrahman. Built for Google Antigravity with Next.js & Supabase.
-      </div>
     </footer>
   );
 }
