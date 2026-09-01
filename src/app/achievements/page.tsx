@@ -1,13 +1,21 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { CertificateList } from '@/components/achievements/CertificateList';
 import { fetchCertificates } from '@/lib/supabase';
 import { ShieldCheck } from 'lucide-react';
 
-export const metadata = {
-  title: 'Certifications & Achievements — Arsya Faturrahman',
-  description: 'Verified official documentation of BNSP software engineering certifications, training, and academic credentials of Arsya Faturrahman.',
+export const metadata: Metadata = {
+  title: 'Certifications & Achievements | Arsya Faturrahman',
+  description:
+    'View verified certifications, academic credentials, and professional achievements for Arsya Faturrahman, including BNSP-backed software engineering credentials.',
+  openGraph: {
+    title: 'Certifications & Achievements | Arsya Faturrahman',
+    description:
+      'Official certifications and achievements for Arsya Faturrahman, including software engineering credentials and academic records.',
+    images: ['/assets/photos/Photo Profile.png'],
+  },
 };
 
 export default async function AchievementsPage() {

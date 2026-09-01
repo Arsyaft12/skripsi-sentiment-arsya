@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { ProjectCard } from '@/components/work/ProjectCard';
@@ -8,9 +9,16 @@ import { getCuratedProjects } from '@/lib/github';
 import { fetchSocialContent } from '@/lib/supabase';
 import { Code2, Share2 } from 'lucide-react';
 
-export const metadata = {
-  title: 'Projects & Digital Presence — Arsya Faturrahman',
-  description: 'Software engineering projects, mobile app development, and technical content creation by Arsya Faturrahman.',
+export const metadata: Metadata = {
+  title: 'Projects & Works | Arsya Faturrahman',
+  description:
+    'Explore Arsya Faturrahman’s portfolio of mobile app projects, software engineering work, and digital presence across product and technical content.',
+  openGraph: {
+    title: 'Projects & Works | Arsya Faturrahman',
+    description:
+      'Portfolio of software engineering and mobile development projects by Arsya Faturrahman.',
+    images: ['/assets/photos/Photo Profile.png'],
+  },
 };
 
 export default async function WorkPage() {

@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/home/Hero';
@@ -9,12 +10,21 @@ import { EducationSection } from '@/components/home/EducationSection';
 import { AboutSection } from '@/components/home/AboutSection';
 import { fetchAchievements, fetchSkills, fetchExperience, fetchEducation } from '@/lib/supabase';
 
-export const metadata = {
-  title: 'Arsya Faturrahman — Mobile Developer | IT Fresh Graduate',
-  description: 'Professional portfolio of Arsya Faturrahman, IT Fresh Graduate (GPA 3.80/4.00, Dean\'s List 7 Semesters) & Mobile Developer with BNSP Certification.',
+export const metadata: Metadata = {
+  title: 'Arsya Faturrahman | Mobile Developer & IT Graduate',
+  description:
+    'Mobile Developer and IT graduate focused on building useful, scalable, and business-aligned digital products. Explore portfolio, certifications, and projects.',
   openGraph: {
-    title: 'Arsya Faturrahman — Mobile Developer | IT Fresh Graduate',
-    description: 'Professional portfolio of Arsya Faturrahman, IT Fresh Graduate & Mobile Developer with real NLP projects and BNSP Certification.',
+    title: 'Arsya Faturrahman | Mobile Developer & IT Graduate',
+    description:
+      'Portfolio of Arsya Faturrahman, a mobile developer and IT graduate with hands-on experience building practical digital solutions and product-focused experiences.',
+    images: ['/assets/photos/Photo Profile.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Arsya Faturrahman | Mobile Developer & IT Graduate',
+    description:
+      'Portfolio of Arsya Faturrahman, a mobile developer and IT graduate focused on business-aligned digital products.',
     images: ['/assets/photos/Photo Profile.png'],
   },
 };

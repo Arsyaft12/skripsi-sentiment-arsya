@@ -15,18 +15,59 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio-arsya.vercel.app"),
-  title: "Arsya Faturrahman — Mobile Developer & Software Engineer",
-  description: "Portfolio profesional Arsya Faturrahman, fresh graduate IT & Mobile Developer. Membangun aplikasi mobile dan web berstandar industri.",
+  title: {
+    default: "Arsya Faturrahman | Mobile Developer & IT Graduate",
+    template: "%s | Arsya Faturrahman",
+  },
+  description:
+    "Mobile Developer and IT graduate with a product mindset, building scalable and user-centered digital solutions. Portfolio includes mobile app projects, certifications, and technical work.",
+  keywords: [
+    "Arsya Faturrahman",
+    "Mobile Developer",
+    "IT Graduate",
+    "Portfolio",
+    "Flutter",
+    "React Native",
+    "Software Engineer",
+    "BNSP Certified",
+    "Indonesia",
+  ],
+  authors: [{ name: "Arsya Faturrahman" }],
+  creator: "Arsya Faturrahman",
+  publisher: "Arsya Faturrahman",
+  alternates: {
+    canonical: "https://portfolio-arsya.vercel.app",
+  },
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Arsya Faturrahman — Mobile Developer & Software Engineer",
-    description: "Portfolio profesional Arsya Faturrahman, fresh graduate IT & Mobile Developer.",
+    title: "Arsya Faturrahman | Mobile Developer & IT Graduate",
+    description:
+      "Portfolio of Arsya Faturrahman, a Mobile Developer and IT graduate focused on building useful, scalable, and business-aligned digital products.",
     url: "https://portfolio-arsya.vercel.app",
     siteName: "Arsya Faturrahman Portfolio",
     locale: "id_ID",
     type: "website",
+    images: [
+      {
+        url: "/assets/photos/Photo Profile.png",
+        width: 1200,
+        height: 630,
+        alt: "Arsya Faturrahman",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arsya Faturrahman | Mobile Developer & IT Graduate",
+    description:
+      "Portfolio of Arsya Faturrahman, a Mobile Developer and IT graduate focused on scalable, user-centered digital solutions.",
+    images: ["/assets/photos/Photo Profile.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
