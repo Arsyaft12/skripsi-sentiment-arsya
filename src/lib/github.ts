@@ -1,4 +1,4 @@
-import { GitHubRepo, ProjectCardData, ProjectSetting } from '@/types/portfolio';
+import { GitHubRepo, ProjectCardData } from '@/types/portfolio';
 import { fetchProjectSettings } from '@/lib/supabase';
 import { validateLiveUrl } from '@/lib/healthCheck';
 
@@ -7,6 +7,19 @@ const SELF_REPO_NAME = 'portfolio-arsya'; // Self-exclusion guard for current po
 
 // Fallback GitHub repos data if GitHub API is unreachable or rate limited
 const FALLBACK_GITHUB_REPOS: GitHubRepo[] = [
+  {
+    id: 100,
+    name: 'beastindex',
+    full_name: `${GITHUB_USERNAME}/beastindex`,
+    description: 'BEASTINDEX — Empirical fitness scoring and animal-archetype mapping engine built with Next.js 16 App Router, TypeScript, and statistical normalization (DOTS & Riegel).',
+    html_url: `https://github.com/${GITHUB_USERNAME}/beastindex`,
+    homepage: 'https://beastindex.com',
+    language: 'TypeScript',
+    topics: ['nextjs-16', 'typescript', 'tailwind-css', 'data-science', 'fitness-engine', 'empirical-curves'],
+    stargazers_count: 24,
+    forks_count: 5,
+    pushed_at: new Date().toISOString(),
+  },
   {
     id: 101,
     name: 'skripsi-sentiment-arsya',
@@ -48,6 +61,25 @@ const FALLBACK_GITHUB_REPOS: GitHubRepo[] = [
   }
 ];
 
+const DEFAULT_PROJECT_TECH: Record<string, { language: string; stack: string[] }> = {
+  'beastindex': {
+    language: 'TypeScript',
+    stack: ['Next.js 16', 'TypeScript', 'Tailwind CSS v4', 'Python', 'DOTS Normalisation', 'Riegel Model']
+  },
+  'skripsi-sentiment-arsya': {
+    language: 'Python',
+    stack: ['Python', 'NLP', 'Scikit-learn', 'Flask', 'Pandas', 'Naïve Bayes', 'SVM']
+  },
+  'toraksai': {
+    language: 'TypeScript',
+    stack: ['TypeScript', 'Next.js', 'PyTorch / CNN', 'Grad-CAM Heatmaps', 'Medical AI']
+  },
+  'the-pitch-creative': {
+    language: 'TypeScript',
+    stack: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Framer Motion', 'Editorial Web']
+  }
+};
+
 export async function getGitHubRepos(): Promise<GitHubRepo[]> {
   try {
     const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`, {
@@ -85,47 +117,56 @@ export async function getCuratedProjects(): Promise<ProjectCardData[]> {
     return true;
   });
 
-  const curatedProjects: ProjectCardData[] = [];
-
-  for (const setting of featuredSettings) {
-    // Find matching GitHub repo by repo_name
+  // Build project metadata for all featured settings in parallel (no sequential await)
+  const projectMetas = featuredSettings.map((setting) => {
     const githubRepo = rawRepos.find(r => r.name.toLowerCase() === setting.repo_name.toLowerCase());
+    const fallbackMeta = DEFAULT_PROJECT_TECH[setting.repo_name.toLowerCase()];
 
     const title = setting.custom_title || (githubRepo ? githubRepo.name : setting.repo_name);
-    const description = setting.custom_description || (githubRepo ? (githubRepo.description || 'Tidak ada deskripsi.') : 'Deskripsi proyek.');
+    const description = setting.custom_description || (githubRepo ? (githubRepo.description || 'No description.') : 'Project description.');
     const github_url = githubRepo ? githubRepo.html_url : `https://github.com/${GITHUB_USERNAME}/${setting.repo_name}`;
     const targetLiveUrl = setting.live_url_override || (githubRepo ? githubRepo.homepage : null);
-    
-    const language = githubRepo?.language || null;
+
+    const language = githubRepo?.language || fallbackMeta?.language || null;
     const topics = githubRepo?.topics || [];
-    
-    // Combine primary language + topics as tech stack
+
     const techStackSet = new Set<string>();
     if (language) techStackSet.add(language);
     topics.forEach(t => techStackSet.add(t));
-
-    // Health check URL validation before trusting live status
-    let isLive = false;
-    let validatedLiveUrl: string | null = null;
-
-    if (targetLiveUrl && targetLiveUrl.trim() !== '') {
-      try {
-        const health = await validateLiveUrl(targetLiveUrl);
-        if (health.isLive) {
-          isLive = true;
-          validatedLiveUrl = targetLiveUrl;
-        } else {
-          // Even if health check fails, still use the URL for Microlink fallback
-          validatedLiveUrl = targetLiveUrl;
-        }
-      } catch (error) {
-        console.warn(`Health check error for ${targetLiveUrl}:`, error);
-        // Always set the URL even if health check throws
-        validatedLiveUrl = targetLiveUrl;
-      }
+    if (techStackSet.size <= 1 && fallbackMeta?.stack) {
+      fallbackMeta.stack.forEach(item => techStackSet.add(item));
     }
 
-    curatedProjects.push({
+    return {
+      setting,
+      githubRepo,
+      title,
+      description,
+      github_url,
+      targetLiveUrl: targetLiveUrl && targetLiveUrl.trim() !== '' ? targetLiveUrl : null,
+      techStack: Array.from(techStackSet),
+      language,
+    };
+  });
+
+  // Run all health checks concurrently (max 2s each) instead of sequentially
+  const healthResults = await Promise.all(
+    projectMetas.map(async ({ targetLiveUrl }) => {
+      if (!targetLiveUrl) return { isLive: false, validatedLiveUrl: null };
+      try {
+        const health = await validateLiveUrl(targetLiveUrl);
+        return { isLive: health.isLive, validatedLiveUrl: targetLiveUrl };
+      } catch {
+        return { isLive: false, validatedLiveUrl: targetLiveUrl };
+      }
+    })
+  );
+
+  const curatedProjects: ProjectCardData[] = projectMetas.map((meta, idx) => {
+    const { isLive, validatedLiveUrl } = healthResults[idx];
+    const { setting, githubRepo, title, description, github_url, techStack, language } = meta;
+
+    return {
       id: setting.id || setting.repo_name,
       repo_name: setting.repo_name,
       title,
@@ -134,14 +175,17 @@ export async function getCuratedProjects(): Promise<ProjectCardData[]> {
       live_url: validatedLiveUrl,
       cached_thumbnail_url: setting.cached_thumbnail_url || null,
       is_live: isLive,
-      tech_stack: Array.from(techStackSet),
+      tech_stack: techStack,
       language,
       stars: githubRepo?.stargazers_count || 0,
       pushed_at: githubRepo?.pushed_at || new Date().toISOString(),
       is_featured: setting.is_featured,
       display_order: setting.display_order,
-    });
-  }
+      category: setting.category || null,
+      badge: setting.badge || null,
+      metrics: setting.metrics || null,
+    };
+  });
 
   // Sort by display_order
   curatedProjects.sort((a, b) => a.display_order - b.display_order);

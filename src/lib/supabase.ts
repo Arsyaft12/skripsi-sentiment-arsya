@@ -16,40 +16,79 @@ export const supabase = (supabaseUrl && supabaseAnonKey && supabaseUrl.startsWit
 export const FALLBACK_PROJECT_SETTINGS: ProjectSetting[] = [
   {
     id: '1',
-    repo_name: 'skripsi-sentiment-arsya',
+    repo_name: 'beastindex',
     is_featured: true,
     display_order: 1,
-    custom_title: 'SentimenAI — Dashboard Analisis Sentimen',
-    custom_description: 'E-commerce sentiment analysis dashboard using NLP and machine learning to classify public reviews with high accuracy and actionable business insights.',
-    live_url_override: 'https://frontend-h4q65ncub-arsyaft12-9212s-projects.vercel.app/',
+    custom_title: 'BEASTINDEX — Fitness Scoring & Animal Archetypes',
+    custom_description: 'Empirical fitness scoring and animal-archetype mapping engine built with Next.js 16 App Router, TypeScript, and Tailwind CSS v4. Analyzes 2.37M+ lifts and 56k+ race splits using DOTS normalization, Riegel race equivalence, and KSPO fitness benchmarks.',
+    live_url_override: 'https://beastindex.com',
+    category: 'Full-Stack & Data Engine',
+    badge: 'New Flagship Engine',
+    metrics: [
+      { label: 'OPL Dataset', value: '2.37M+ Lifts' },
+      { label: 'NYC Splits', value: '56K+ Finishers' },
+      { label: 'Architecture', value: 'Next.js 16' },
+      { label: 'Normalisation', value: 'DOTS + Riegel' }
+    ],
     exclude_from_listing: false,
   },
   {
     id: '2',
-    repo_name: 'toraksai',
+    repo_name: 'skripsi-sentiment-arsya',
     is_featured: true,
     display_order: 2,
-    custom_title: 'ToraksAI — Sistem Deteksi Penyakit Toraks',
-    custom_description: 'Clinical decision support web app for thoracic X-ray analysis with CNN+RNN-based detection and explainable AI visualization.',
-    live_url_override: 'https://frontend-sable-one-90kmisglle.vercel.app',
+    custom_title: 'SentimenAI — Dashboard Analisis Sentimen',
+    custom_description: 'E-commerce sentiment analysis dashboard using NLP and machine learning (Naïve Bayes & SVM) to classify 1,000+ public reviews with 85% accuracy and actionable business insights.',
+    live_url_override: 'https://frontend-h4q65ncub-arsyaft12-9212s-projects.vercel.app/',
+    category: 'NLP & Machine Learning',
+    badge: 'Undergraduate Thesis',
+    metrics: [
+      { label: 'Model Accuracy', value: '85%' },
+      { label: 'Dataset', value: '1,000+ Reviews' },
+      { label: 'Algorithms', value: 'NB & SVM' }
+    ],
     exclude_from_listing: false,
   },
   {
     id: '3',
-    repo_name: 'the-pitch-creative',
+    repo_name: 'toraksai',
     is_featured: true,
     display_order: 3,
+    custom_title: 'ToraksAI — Sistem Deteksi Penyakit Toraks',
+    custom_description: 'Clinical decision support web app for thoracic X-ray analysis with Deep Learning CNN classification across 14 thoracic disease categories and explainable Grad-CAM heatmaps.',
+    live_url_override: 'https://frontend-sable-one-90kmisglle.vercel.app',
+    category: 'Computer Vision & Deep Learning',
+    badge: 'Medical AI Support',
+    metrics: [
+      { label: 'Pathologies', value: '14 Classes' },
+      { label: 'XAI Viz', value: 'Grad-CAM' },
+      { label: 'Architecture', value: 'CNN + Web' }
+    ],
+    exclude_from_listing: false,
+  },
+  {
+    id: '4',
+    repo_name: 'the-pitch-creative',
+    is_featured: true,
+    display_order: 4,
     custom_title: 'The Pitch Creative — Digital Brand & Media Showcase',
-    custom_description: 'A sleek digital brand website and editorial-style media presence where I contributed to the web build and visual storytelling for a modern creative company.',
+    custom_description: 'A sleek digital brand website and editorial-style media presence featuring visual storytelling, modern web build, and creative campaign integration.',
     live_url_override: 'https://www.thepitchcreative.media/',
+    category: 'Creative Media & Web Platform',
+    badge: 'Client Production',
+    metrics: [
+      { label: 'Performance', value: '100% On-Time' },
+      { label: 'Role', value: 'Web Build & BD' },
+      { label: 'Platform', value: 'Editorial Web' }
+    ],
     exclude_from_listing: false,
   }
 ];
 
 export const FALLBACK_ACHIEVEMENTS: Achievement[] = [
-  { id: '1', label: 'Academic Performance', value: '3.80 / 4.00', display_order: 1 },
-  { id: '2', label: 'AI Interest', value: 'ML & NLP', display_order: 2 },
-  { id: '3', label: 'Business Impact', value: '1,000+ Reviews', display_order: 3 },
+  { id: '1', label: 'Academic Performance', value: '3.90 / 4.00', display_order: 1 },
+  { id: '2', label: 'AI & Data Interest', value: 'ML & NLP', display_order: 2 },
+  { id: '3', label: 'Empirical Records', value: '2.4M+ Benchmarks', display_order: 3 },
   { id: '4', label: 'Cross-Industry Experience', value: '5+ Years', display_order: 4 },
 ];
 
@@ -61,52 +100,55 @@ export const FALLBACK_SKILLS: Skill[] = [
   { id: '4', category: 'Mobile', name: 'Mobile UI/UX Principles', display_order: 4 },
 
   // Languages
-  { id: '5', category: 'Languages', name: 'Python', display_order: 1 },
-  { id: '6', category: 'Languages', name: 'JavaScript', display_order: 2 },
-  { id: '7', category: 'Languages', name: 'C++', display_order: 3 },
-  { id: '8', category: 'Languages', name: 'C#', display_order: 4 },
-  { id: '9', category: 'Languages', name: 'HTML', display_order: 5 },
-  { id: '10', category: 'Languages', name: 'SQL', display_order: 6 },
+  { id: '5', category: 'Languages', name: 'TypeScript', display_order: 1 },
+  { id: '6', category: 'Languages', name: 'Python', display_order: 2 },
+  { id: '7', category: 'Languages', name: 'JavaScript', display_order: 3 },
+  { id: '8', category: 'Languages', name: 'SQL', display_order: 4 },
+  { id: '9', category: 'Languages', name: 'C++', display_order: 5 },
+  { id: '10', category: 'Languages', name: 'C#', display_order: 6 },
+  { id: '11', category: 'Languages', name: 'HTML / CSS', display_order: 7 },
 
-  // Backend
-  { id: '11', category: 'Backend', name: 'Flask (REST API)', display_order: 1 },
-  { id: '12', category: 'Backend', name: 'Web Service', display_order: 2 },
-  { id: '13', category: 'Backend', name: 'REST API Integration', display_order: 3 },
-  { id: '14', category: 'Backend', name: 'Streamlit', display_order: 4 },
+  // Backend & Web
+  { id: '12', category: 'Backend', name: 'Next.js 16 (App Router)', display_order: 1 },
+  { id: '13', category: 'Backend', name: 'Flask (REST API)', display_order: 2 },
+  { id: '14', category: 'Backend', name: 'REST API Integration', display_order: 3 },
+  { id: '15', category: 'Backend', name: 'Supabase (PostgreSQL)', display_order: 4 },
+  { id: '16', category: 'Backend', name: 'Streamlit', display_order: 5 },
 
-  // ML/NLP
-  { id: '15', category: 'ML/NLP', name: 'NLTK', display_order: 1 },
-  { id: '16', category: 'ML/NLP', name: 'spaCy', display_order: 2 },
-  { id: '17', category: 'ML/NLP', name: 'Scikit-learn', display_order: 3 },
-  { id: '18', category: 'ML/NLP', name: 'VADER', display_order: 4 },
-  { id: '19', category: 'ML/NLP', name: 'TextBlob', display_order: 5 },
-  { id: '20', category: 'ML/NLP', name: 'Naïve Bayes', display_order: 6 },
-  { id: '21', category: 'ML/NLP', name: 'SVM', display_order: 7 },
+  // ML/NLP & Modeling
+  { id: '17', category: 'ML/NLP', name: 'Scikit-learn', display_order: 1 },
+  { id: '18', category: 'ML/NLP', name: 'NLTK & spaCy', display_order: 2 },
+  { id: '19', category: 'ML/NLP', name: 'Statistical Normalization (DOTS / Riegel)', display_order: 3 },
+  { id: '20', category: 'ML/NLP', name: 'Naïve Bayes & SVM', display_order: 4 },
+  { id: '21', category: 'ML/NLP', name: 'VADER & TextBlob', display_order: 5 },
 
   // Data
-  { id: '22', category: 'Data', name: 'Data Mining', display_order: 1 },
-  { id: '23', category: 'Data', name: 'Sentiment Analysis', display_order: 2 },
-  { id: '24', category: 'Data', name: 'Web Scraping', display_order: 3 },
-  { id: '25', category: 'Data', name: 'Pandas', display_order: 4 },
+  { id: '22', category: 'Data', name: 'Pandas & NumPy', display_order: 1 },
+  { id: '23', category: 'Data', name: 'Empirical Percentile Curves', display_order: 2 },
+  { id: '24', category: 'Data', name: 'Sentiment Analysis', display_order: 3 },
+  { id: '25', category: 'Data', name: 'Data Mining & Cleaning', display_order: 4 },
+  { id: '26', category: 'Data', name: 'Web Scraping', display_order: 5 },
 
   // Engineering & Tooling
-  { id: '26', category: 'Engineering & Tooling', name: 'Git (basic)', display_order: 1 },
-  { id: '27', category: 'Engineering & Tooling', name: 'Linux (basic)', display_order: 2 },
-  { id: '28', category: 'Engineering & Tooling', name: 'Black Box & White Box Testing', display_order: 3 },
-  { id: '29', category: 'Engineering & Tooling', name: 'UAT', display_order: 4 },
-  { id: '30', category: 'Engineering & Tooling', name: 'Dashboard Design', display_order: 5 },
+  { id: '27', category: 'Engineering & Tooling', name: 'Tailwind CSS v4', display_order: 1 },
+  { id: '28', category: 'Engineering & Tooling', name: 'Git & GitHub', display_order: 2 },
+  { id: '29', category: 'Engineering & Tooling', name: 'Vercel Deployment', display_order: 3 },
+  { id: '30', category: 'Engineering & Tooling', name: 'Linux (basic)', display_order: 4 },
+  { id: '31', category: 'Engineering & Tooling', name: 'Black Box & White Box Testing', display_order: 5 },
+  { id: '32', category: 'Engineering & Tooling', name: 'UAT & Quality Assurance', display_order: 6 },
+  { id: '33', category: 'Engineering & Tooling', name: 'Dashboard Design', display_order: 7 },
 
   // Soft Skills
-  { id: '31', category: 'Soft Skills', name: 'Analytical Thinking', display_order: 1 },
-  { id: '32', category: 'Soft Skills', name: 'Fast Learner', display_order: 2 },
-  { id: '33', category: 'Soft Skills', name: 'Problem Solving', display_order: 3 },
-  { id: '34', category: 'Soft Skills', name: 'Oral & Written Communication', display_order: 4 }
+  { id: '34', category: 'Soft Skills', name: 'Analytical Thinking', display_order: 1 },
+  { id: '35', category: 'Soft Skills', name: 'Fast Learner', display_order: 2 },
+  { id: '36', category: 'Soft Skills', name: 'Problem Solving', display_order: 3 },
+  { id: '37', category: 'Soft Skills', name: 'Oral & Written Communication', display_order: 4 }
 ];
 
 export const FALLBACK_EXPERIENCE: Experience[] = [
   {
     id: '1',
-    role_title: 'Food & Beverage Service Staff / Banquet Crew',
+    role_title: 'F&B Crew',
     organization: 'Hotel Santika Premiere ICE BSD',
     location: 'BSD City, Indonesia',
     start_date: '2020-07-01',
@@ -120,15 +162,15 @@ export const FALLBACK_EXPERIENCE: Experience[] = [
   },
   {
     id: '2',
-    role_title: 'Crew Member → Operations Leader',
+    role_title: 'Operations Leader',
     organization: 'PT. Foresthree Waralaba Indonesia (Janji Jiwa / Tiger Sugar)',
     location: 'Tangerang, Indonesia',
     start_date: '2022-07-01',
-    end_date: '2024-04-30',
+    end_date: '2025-04-30',
     highlights: [
-      'Promoted from crew member to Operations Leader within four months due to strong performance and leadership potential.',
-      'Managed daily outlet operations, inventory control, team scheduling, workflow coordination, and SOP compliance.',
-      'Supervised 5–8 crew members per shift and maintained service quality, operational efficiency, and customer satisfaction.'
+      'Led daily outlet operations with a focus on service quality, team coordination, and operational efficiency.',
+      'Managed inventory control, workflow execution, shift supervision, and SOP compliance across store operations.',
+      'Supported team performance and customer experience while maintaining smooth and consistent outlet delivery.'
     ],
     display_order: 2
   },
@@ -137,12 +179,12 @@ export const FALLBACK_EXPERIENCE: Experience[] = [
     role_title: 'Freelance Mobile & Web Developer',
     organization: 'Self-Employed / Freelance',
     location: 'Remote, Indonesia',
-    start_date: '2023-01-01',
+    start_date: '2024-01-01',
     end_date: null,
     highlights: [
-      'Built mobile and web solutions for small business and project-based clients using Flutter, Python, and web technologies.',
-      'Developed SentiSight, an NLP-based sentiment analysis system for business review classification with 85% accuracy.',
-      'Designed APIs, integrated third-party services, and deployed projects to production platforms such as Vercel.'
+      'Engineered BEASTINDEX, a high-performance empirical fitness scoring engine built with Next.js 16, TypeScript, and statistical normalization over 2.4M+ benchmark records.',
+      'Developed SentimenAI (SentiSight), an NLP-based sentiment analysis system for business review classification with 85% accuracy.',
+      'Built mobile and web solutions for clients using Flutter, Python, TypeScript, and deployed to production platforms such as Vercel.'
     ],
     display_order: 3
   },
@@ -170,7 +212,7 @@ export const FALLBACK_EDUCATION: Education[] = [
     major_or_focus: null,
     start_date: '2022-01-01',
     end_date: '2026-08-31',
-    score_label: 'GPA 3.80 / 4.00',
+    score_label: 'GPA 3.90 / 4.00',
     honor_note: 'Consistent Dean\'s List — 8 Semesters',
     display_order: 1
   },
@@ -190,66 +232,75 @@ export const FALLBACK_EDUCATION: Education[] = [
 export const FALLBACK_CERTIFICATES: Certificate[] = [
   {
     id: '1',
-    title: 'BNSP Professional Certification - Software Engineering',
-    issuer: 'Badan Nasional Sertifikasi Profesi (BNSP)',
-    issue_date: '2024-06-15',
+    title: 'BNSP Language Certification — English for Office Administrative Assistant',
+    issuer: 'Lembaga Sertifikasi Profesi Pendidikan Bahasa Inggris (BNSP)',
+    issue_date: '2025-06-30',
     document_url: '/assets/certificates/Sertifikat BNSP.pdf',
     category: 'Professional Certifications',
     display_order: 1,
   },
   {
     id: '2',
-    title: 'Academic Transcript - Informatics Engineering',
+    title: 'Academic Transcript (Semesters 1–8) - Informatics Engineering',
     issuer: 'Universitas Cendekia Abditama',
-    issue_date: '2024-12-01',
-    document_url: '/assets/certificates/KHS ARSYA FATURRAHMAN TI 1-6.pdf',
+    issue_date: '2026-08-31',
+    document_url: '/assets/certificates/Kartu Hasil Studi.pdf',
     category: 'Academic Records',
     display_order: 2,
   },
   {
     id: '3',
+    title: 'SENTIK National Seminar - Scientific Paper Presenter',
+    issuer: 'Seminar Nasional Teknologi Informasi & Komunikasi',
+    issue_date: '2024-08-20',
+    document_url: '/assets/certificates/Sertifikat Sentik.pdf',
+    category: 'Academic Records',
+    display_order: 3,
+  },
+  {
+    id: '4',
     title: 'Techling 2 Advanced Training Certificate',
     issuer: 'Techling Indonesia',
     issue_date: '2024-03-20',
     document_url: '/assets/certificates/SERTIFIKAT TECHLING 2_removed.pdf',
     category: 'Training & Workshops',
-    display_order: 3,
+    display_order: 4,
   },
   {
-    id: '4',
+    id: '5',
     title: 'Hotel & Hospitality Industrial Internship Certificate',
     issuer: 'Hotel Professional Partner',
     issue_date: '2023-11-10',
     document_url: '/assets/certificates/Sertifikat magang hotel.pdf',
     category: 'Internship & Industry',
-    display_order: 4,
+    display_order: 5,
   },
   {
-    id: '5',
+    id: '6',
     title: 'PMI First Aid & Organization Skills Certificate',
     issuer: 'Palang Merah Indonesia',
     issue_date: '2023-08-05',
     document_url: '/assets/certificates/Sertifikat_PMI.pdf',
     category: 'Organization & Social',
-    display_order: 5,
+    display_order: 6,
   },
   {
-    id: '6',
+    id: '7',
     title: 'Rindam Leadership & Discipline Certificate',
     issuer: 'Rindam TNI AD',
     issue_date: '2022-10-12',
     document_url: '/assets/certificates/sertifikat rindam.pdf',
     category: 'Training & Workshops',
-    display_order: 6,
+    display_order: 7,
   },
   {
-    id: '7',
-    title: 'Vocational High School Diploma (TKJ)',
+    id: '8',
+    title: 'Vocational High School Diploma — Hospitality Management',
     issuer: 'SMK Negeri 7 Kabupaten Tangerang',
     issue_date: '2021-06-01',
     document_url: '/assets/certificates/ijazah smk (1).pdf',
     category: 'Formal Education',
-    display_order: 7,
+    display_order: 8,
   }
 ];
 

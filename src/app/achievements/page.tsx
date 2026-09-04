@@ -27,7 +27,7 @@ export default async function AchievementsPage() {
 
       <main className="flex-1 pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
-          
+
           {/* Header Section */}
           <div className="space-y-4 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 text-blue-600 dark:text-blue-400 text-xs font-semibold uppercase tracking-wider">

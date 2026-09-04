@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Mail, Sparkles, MapPin, GraduationCap, Award, ShieldCheck, BriefcaseBusiness } from 'lucide-react';
+import { ArrowRight, Mail, Sparkles, MapPin, GraduationCap, ShieldCheck, BriefcaseBusiness } from 'lucide-react';
 
 export function Hero() {
   const [activePhoto, setActivePhoto] = useState<1 | 2>(1);
@@ -52,7 +52,7 @@ export function Hero() {
         >
           <div className="section-eyebrow w-fit">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>Mobile Developer & IT Fresh Graduate</span>
+            <span>Software Engineer & Mobile Developer</span>
           </div>
 
           <div className="space-y-5">
@@ -61,10 +61,10 @@ export function Hero() {
             </h1>
 
             <p className="max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300 sm:text-lg">
-              Mobile Developer with a strong product mindset and hands-on experience building practical, user-friendly
-              digital solutions. I combine technical execution with user-centered thinking to create apps that are
-              functional, scalable, and aligned with real business needs. My portfolio reflects work in mobile product
-              development, problem solving, and thoughtful design focused on measurable impact.
+              Software Engineer and Mobile Developer with a strong product mindset and hands-on experience building
+              practical, high-performance digital systems. From empirical fitness data engines (BEASTINDEX) to NLP
+              sentiment classification (SentimenAI) and responsive web applications, I combine clean architecture with
+              user-centered design for measurable real-world impact.
             </p>
           </div>
 

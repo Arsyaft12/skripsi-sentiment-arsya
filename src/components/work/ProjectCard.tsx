@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ProjectCardData } from '@/types/portfolio';
 import { ProjectPreview } from './ProjectPreview';
-import { ExternalLink, Star, Clock } from 'lucide-react';
+import { ExternalLink, Star, Clock, Sparkles } from 'lucide-react';
 
 interface ProjectCardProps {
   project: ProjectCardData;
@@ -30,7 +30,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   };
 
   // Primary link: prefer live URL, fallback to GitHub
-  const primaryUrl = (project.is_live && project.live_url) ? project.live_url : project.github_url;
+  const primaryUrl = (project.is_live && project.live_url) ? project.live_url : (project.live_url || project.github_url);
 
   return (
     <motion.div
@@ -49,7 +49,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         aria-label={`Open ${project.title}`}
       />
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-5 p-6">
         {/* Project Preview */}
         <ProjectPreview 
           title={project.title} 
@@ -59,32 +59,58 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           language={project.language} 
         />
 
-        {/* Project Content Header */}
-        <div className="space-y-3">
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="text-xl font-bold tracking-tight text-neutral-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              {project.title}
-            </h3>
+        {/* Project Header & Badges */}
+        <div className="space-y-2.5">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              {project.category && (
+                <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-0.5 rounded-full border border-blue-200/60 dark:border-blue-800/60">
+                  {project.category}
+                </span>
+              )}
+              {project.badge && (
+                <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-neutral-600 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded-full">
+                  <Sparkles className="w-2.5 h-2.5 text-amber-500" />
+                  <span>{project.badge}</span>
+                </span>
+              )}
+            </div>
 
             {project.stars > 0 && (
-              <div className="flex items-center gap-1 text-xs font-semibold text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 rounded-full border border-amber-200/60 dark:border-amber-900/60">
-                <Star className="w-3.5 h-3.5 fill-amber-500" />
+              <div className="flex items-center gap-1 text-xs font-semibold text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-0.5 rounded-full border border-amber-200/60 dark:border-amber-900/60">
+                <Star className="w-3 h-3 fill-amber-500" />
                 <span>{project.stars}</span>
               </div>
             )}
           </div>
+
+          <h3 className="text-xl font-bold tracking-tight text-neutral-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
+            {project.title}
+          </h3>
 
           <p className="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed line-clamp-3">
             {project.description}
           </p>
         </div>
 
+        {/* Key Metrics / Highlights (if present) */}
+        {project.metrics && project.metrics.length > 0 && (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+            {project.metrics.map((m, mIdx) => (
+              <div key={mIdx} className="p-2 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200/60 dark:border-neutral-700/60 text-left">
+                <div className="text-xs font-bold text-neutral-900 dark:text-white truncate">{m.value}</div>
+                <div className="text-[10px] text-neutral-500 dark:text-neutral-400 truncate">{m.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Tech Stack Badges */}
-        <div className="flex flex-wrap gap-2 pt-1">
-          {project.tech_stack.slice(0, 5).map((tech, i) => (
+        <div className="flex flex-wrap gap-1.5 pt-1">
+          {project.tech_stack.slice(0, 6).map((tech, i) => (
             <span
               key={i}
-              className="px-3 py-1 text-[11px] font-semibold rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200/60 dark:border-neutral-700/60"
+              className="px-2.5 py-1 text-[11px] font-semibold rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200/60 dark:border-neutral-700/60"
             >
               {tech}
             </span>
@@ -100,8 +126,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           <span>{formatRelativeTime(project.pushed_at)}</span>
         </div>
 
-        {/* Action Links — above z-index so they get their own clicks */}
-        <div className="relative z-20 flex items-center gap-3">
+        {/* Action Links */}
+        <div className="relative z-20 flex items-center gap-2.5">
           <a
             href={project.github_url}
             target="_blank"
@@ -115,7 +141,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             <span>GitHub</span>
           </a>
 
-          {project.is_live && project.live_url && (
+          {project.live_url && (
             <a
               href={project.live_url}
               target="_blank"
@@ -123,7 +149,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               onClick={(e) => e.stopPropagation()}
               className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 px-3.5 py-1.5 rounded-full shadow-xs transition-all hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             >
-              <span>Live Demo</span>
+              <span>Visit App</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           )}
@@ -132,3 +158,4 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     </motion.div>
   );
 }
+

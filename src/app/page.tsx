@@ -11,20 +11,20 @@ import { AboutSection } from '@/components/home/AboutSection';
 import { fetchAchievements, fetchSkills, fetchExperience, fetchEducation } from '@/lib/supabase';
 
 export const metadata: Metadata = {
-  title: 'Arsya Faturrahman | Mobile Developer & IT Graduate',
+  title: 'Arsya Faturrahman | Software Engineer & Mobile Developer',
   description:
-    'Mobile Developer and IT graduate focused on building useful, scalable, and business-aligned digital products. Explore portfolio, certifications, and projects.',
+    'Software Engineer and Mobile Developer building empirical data platforms, NLP sentiment analysis systems, and high-performance digital products. Explore portfolio, certifications, and projects.',
   openGraph: {
-    title: 'Arsya Faturrahman | Mobile Developer & IT Graduate',
+    title: 'Arsya Faturrahman | Software Engineer & Mobile Developer',
     description:
-      'Portfolio of Arsya Faturrahman, a mobile developer and IT graduate with hands-on experience building practical digital solutions and product-focused experiences.',
+      'Portfolio of Arsya Faturrahman, a software engineer and mobile developer with hands-on experience building empirical engines, NLP systems, and practical digital solutions.',
     images: ['/assets/photos/Photo Profile.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Arsya Faturrahman | Mobile Developer & IT Graduate',
+    title: 'Arsya Faturrahman | Software Engineer & Mobile Developer',
     description:
-      'Portfolio of Arsya Faturrahman, a mobile developer and IT graduate focused on business-aligned digital products.',
+      'Portfolio of Arsya Faturrahman, a software engineer and mobile developer focused on empirical engines, AI, and business-aligned products.',
     images: ['/assets/photos/Photo Profile.png'],
   },
 };

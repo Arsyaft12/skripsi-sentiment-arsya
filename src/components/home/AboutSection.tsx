@@ -21,27 +21,27 @@ export function AboutSection() {
         {/* Right Column: Narrative */}
         <div className="lg:col-span-7 space-y-8 text-neutral-700 dark:text-neutral-300 text-base leading-relaxed font-normal">
           <p className="text-lg text-neutral-900 dark:text-white font-medium">
-            IT Fresh Graduate (GPA 3.80/4.00, consistent Dean&apos;s List across 7 semesters) with hands-on experience building an end-to-end NLP system that achieved 85% classification accuracy on real business data. BNSP Certified Software Engineer and fast learner with a track record of rapid promotion, now focused on Mobile Development in the financial technology sector.
+            IT Graduate (GPA 3.90/4.00, consistent Dean&apos;s List across 8 semesters) with proven engineering execution across empirical data platforms (BEASTINDEX, processing 2.4M+ benchmark records), and NLP classification systems (SentimenAI, 85% accuracy). BNSP Certified in English for Office Administrative — combining professional communication competency with modern full-stack development and cross-industry leadership.
           </p>
           <p>
-            By combining technical discipline in software engineering (Python, Flutter, REST API design) with 5+ years of cross-industry leadership and executive stakeholder management, I deliver clean, scalable solutions built for real business impact.
+            By combining technical discipline in software engineering (TypeScript, Next.js, Python, Flutter, REST APIs) with 5+ years of cross-industry leadership and executive stakeholder management, I deliver clean, scalable solutions built for real business impact.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
             <div className="space-y-2">
               <Zap className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <h4 className="text-sm font-bold text-neutral-950 dark:text-white">Empirical & Full-Stack</h4>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">Statistical normalization & performance engines across 2.4M+ benchmark records.</p>
+            </div>
+            <div className="space-y-2">
+              <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               <h4 className="text-sm font-bold text-neutral-950 dark:text-white">85% NLP Accuracy</h4>
               <p className="text-xs text-neutral-500 dark:text-neutral-400">End-to-end sentiment classification on 1,000+ real customer reviews.</p>
             </div>
             <div className="space-y-2">
-              <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <h4 className="text-sm font-bold text-neutral-950 dark:text-white">FinTech Mobile Focus</h4>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">Building intuitive, high-performance Flutter & React Native applications.</p>
-            </div>
-            <div className="space-y-2">
               <ShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               <h4 className="text-sm font-bold text-neutral-950 dark:text-white">BNSP Certified</h4>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">Officially certified in Software Engineering competencies.</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">Nationally certified in English for Office Administrative Assistant (BNSP).</p>
             </div>
           </div>
         </div>

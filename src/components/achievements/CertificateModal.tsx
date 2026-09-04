@@ -99,6 +99,7 @@ export function CertificateModal({ certificate, onClose }: CertificateModalProps
             ) : (
               /* Image Certificate Viewer */
               <div className="relative w-full h-full flex items-center justify-center p-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={certificate.document_url}
                   alt={certificate.title}

@@ -10,6 +10,9 @@ export interface ProjectSetting {
   last_health_check_status?: 'live' | 'dead' | 'unknown' | string | null;
   last_health_check_at?: string | null;
   exclude_from_listing?: boolean;
+  category?: string | null;
+  badge?: string | null;
+  metrics?: Array<{ label: string; value: string }> | null;
   created_at?: string;
 }
 
@@ -42,6 +45,9 @@ export interface ProjectCardData {
   pushed_at: string;
   is_featured: boolean;
   display_order: number;
+  category?: string | null;
+  badge?: string | null;
+  metrics?: Array<{ label: string; value: string }> | null;
 }
 
 export interface SocialContent {

@@ -12,11 +12,11 @@ import { Code2, Share2 } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Projects & Works | Arsya Faturrahman',
   description:
-    'Explore Arsya Faturrahman’s portfolio of mobile app projects, software engineering work, and digital presence across product and technical content.',
+    'Explore Arsya Faturrahman’s portfolio of empirical data engines, software engineering work, NLP sentiment systems, and digital presence.',
   openGraph: {
     title: 'Projects & Works | Arsya Faturrahman',
     description:
-      'Portfolio of software engineering and mobile development projects by Arsya Faturrahman.',
+      'Portfolio of software engineering, empirical data platforms, and mobile development projects by Arsya Faturrahman.',
     images: ['/assets/photos/Photo Profile.png'],
   },
 };
@@ -26,25 +26,6 @@ export default async function WorkPage() {
     getCuratedProjects(),
     fetchSocialContent(),
   ]);
-
-  const groupedSocialContent = socialContent.reduce(
-    (acc, item) => {
-      const platform = item.platform.toLowerCase() === 'instagram' ? 'Instagram' : item.platform.toLowerCase() === 'tiktok' ? 'TikTok' : item.platform;
-      const category = item.category || 'Social Media';
-
-      if (!acc[platform]) {
-        acc[platform] = {} as Record<string, typeof socialContent>;
-      }
-
-      if (!acc[platform][category]) {
-        acc[platform][category] = [];
-      }
-
-      acc[platform][category].push(item);
-      return acc;
-    },
-    {} as Record<string, Record<string, typeof socialContent>>
-  );
 
   return (
     <div className="min-h-screen flex flex-col bg-neutral-50 dark:bg-neutral-950 selection:bg-blue-500 selection:text-white transition-colors">
@@ -63,7 +44,7 @@ export default async function WorkPage() {
               Projects & Works
             </h1>
             <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 font-medium leading-relaxed">
-              Curated and fetched dynamically via GitHub REST API. Featuring clean software architecture, Supabase backend integrations, and responsive UI design.
+              Empirical data engines, machine learning & NLP classification, clinical medical AI, and modern web systems. Featuring clean software architecture, statistical normalisation (DOTS / Riegel), and production-grade UI design.
             </p>
           </div>
 

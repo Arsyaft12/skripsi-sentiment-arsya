@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { SocialContent } from '@/types/portfolio';
-import { ExternalLink, Share2 } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 interface SocialContentCardProps {
   content: SocialContent;

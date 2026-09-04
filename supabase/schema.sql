@@ -15,6 +15,9 @@ CREATE TABLE IF NOT EXISTS public.project_settings (
     custom_description TEXT,
     live_url_override TEXT,
     cached_thumbnail_url TEXT,
+    category TEXT,
+    badge TEXT,
+    metrics JSONB DEFAULT '[]'::jsonb,
     last_health_check_status TEXT DEFAULT 'unknown',
     last_health_check_at TIMESTAMPTZ,
     exclude_from_listing BOOLEAN DEFAULT false,
@@ -125,20 +128,28 @@ CREATE POLICY "Public Read Access education" ON public.education FOR SELECT USIN
 -- ==========================================
 
 -- Seed project_settings
-INSERT INTO public.project_settings (repo_name, is_featured, display_order, custom_title, custom_description, live_url_override, exclude_from_listing)
+INSERT INTO public.project_settings (repo_name, is_featured, display_order, custom_title, custom_description, live_url_override, category, badge, metrics, exclude_from_listing)
 VALUES 
-    ('skripsi-sentiment-arsya', true, 1, 'SentiSight — Sentiment Analysis System', 'End-to-end NLP sentiment analysis system (85% Accuracy) processing 1,000+ real business reviews.', 'https://sentiment-arsya.vercel.app', false),
-    ('toraksai', true, 2, 'ToraksAI — Chest X-Ray Diagnostics', 'Deep Learning Convolutional Neural Network (CNN) built to classify 14 thoracic diseases from chest X-rays with explainable Grad-CAM heatmaps.', 'https://toraksai.vercel.app', false),
-    ('portfolio-arsya', false, 99, 'Interactive Developer Portfolio', 'Source code for this portfolio website.', 'https://portfolio-arsya.vercel.app', true)
+    ('beastindex', true, 1, 'BEASTINDEX — Fitness Scoring & Animal Archetypes', 'Empirical fitness scoring and animal-archetype mapping engine built with Next.js 16 App Router, TypeScript, and Tailwind CSS v4. Analyzes 2.37M+ lifts and 56k+ race splits using DOTS normalization, Riegel race equivalence, and KSPO fitness benchmarks.', 'https://beastindex.com', 'Full-Stack & Data Engine', 'New Flagship Engine', '[{"label":"OPL Dataset","value":"2.37M+ Lifts"},{"label":"NYC Splits","value":"56K+ Finishers"},{"label":"Architecture","value":"Next.js 16"},{"label":"Normalisation","value":"DOTS + Riegel"}]'::jsonb, false),
+    ('skripsi-sentiment-arsya', true, 2, 'SentimenAI — Dashboard Analisis Sentimen', 'End-to-end NLP sentiment analysis system (85% Accuracy) processing 1,000+ real business reviews with Naïve Bayes & SVM models.', 'https://frontend-h4q65ncub-arsyaft12-9212s-projects.vercel.app/', 'NLP & Machine Learning', 'Undergraduate Thesis', '[{"label":"Model Accuracy","value":"85%"},{"label":"Dataset","value":"1,000+ Reviews"},{"label":"Algorithms","value":"NB & SVM"}]'::jsonb, false),
+    ('toraksai', true, 3, 'ToraksAI — Chest X-Ray Diagnostics', 'Deep Learning Convolutional Neural Network (CNN) built to classify 14 thoracic diseases from chest X-rays with explainable Grad-CAM heatmaps.', 'https://frontend-sable-one-90kmisglle.vercel.app', 'Computer Vision & Deep Learning', 'Medical AI Support', '[{"label":"Pathologies","value":"14 Classes"},{"label":"XAI Viz","value":"Grad-CAM"},{"label":"Architecture","value":"CNN + Web"}]'::jsonb, false),
+    ('the-pitch-creative', true, 4, 'The Pitch Creative — Digital Brand & Media Showcase', 'A sleek digital brand website and editorial-style media presence featuring visual storytelling, modern web build, and creative campaign integration.', 'https://www.thepitchcreative.media/', 'Creative Media & Web Platform', 'Client Production', '[{"label":"Performance","value":"100% On-Time"},{"label":"Role","value":"Web Build & BD"},{"label":"Platform","value":"Editorial Web"}]'::jsonb, false),
+    ('portfolio-arsya', false, 99, 'Interactive Developer Portfolio', 'Source code for this portfolio website.', 'https://portfolio-arsya.vercel.app', 'Personal Portfolio', 'Core Portfolio', '[]'::jsonb, true)
 ON CONFLICT (repo_name) DO UPDATE SET 
     is_featured = EXCLUDED.is_featured,
     display_order = EXCLUDED.display_order,
+    custom_title = EXCLUDED.custom_title,
+    custom_description = EXCLUDED.custom_description,
+    live_url_override = EXCLUDED.live_url_override,
+    category = EXCLUDED.category,
+    badge = EXCLUDED.badge,
+    metrics = EXCLUDED.metrics,
     exclude_from_listing = EXCLUDED.exclude_from_listing;
 
 -- Seed achievements
 INSERT INTO public.achievements (label, value, display_order)
 VALUES
-    ('Cumulative GPA (7x Dean''s List)', '3.80 / 4.00', 1),
+    ('Cumulative GPA (8x Dean''s List)', '3.90 / 4.00', 1),
     ('NLP Model Accuracy (SentiSight)', '85%', 2),
     ('Real Business Reviews Processed', '1,000+', 3),
     ('Cross-Industry Experience', '5+ Years', 4)
@@ -245,9 +256,9 @@ VALUES
         'Universitas Cendekia Abditama',
         NULL,
         '2022-01-01',
-        NULL, -- Expected 2026
-        'GPA 3.80 / 4.00',
-        'Consistent Dean''s List — 7 Semesters',
+        '2026-08-31',
+        'GPA 3.90 / 4.00',
+        'Consistent Dean''s List — 8 Semesters',
         1
     ),
     (
@@ -265,12 +276,14 @@ ON CONFLICT DO NOTHING;
 -- Seed certificates
 INSERT INTO public.certificates (title, issuer, issue_date, document_url, category, display_order)
 VALUES
-    ('BNSP Professional Certification - Software Engineering', 'Badan Nasional Sertifikasi Profesi (BNSP)', '2024-06-15', '/assets/certificates/Sertifikat BNSP.pdf', 'Professional Certifications', 1),
-    ('Techling 2 Advanced Training Certificate', 'Techling Indonesia', '2024-03-20', '/assets/certificates/SERTIFIKAT TECHLING 2_removed.pdf', 'Training & Workshops', 2),
-    ('Hotel & Hospitality Industrial Internship Certificate', 'Hotel Professional Partner', '2023-11-10', '/assets/certificates/Sertifikat magang hotel.pdf', 'Internship & Industry', 3),
-    ('PMI First Aid & Organization Skills Certificate', 'Palang Merah Indonesia', '2023-08-05', '/assets/certificates/Sertifikat_PMI.pdf', 'Organization & Social', 4),
-    ('Rindam Leadership & Discipline Certificate', 'Rindam TNI AD', '2022-10-12', '/assets/certificates/sertifikat rindam.pdf', 'Training & Workshops', 5),
-    ('Vocational High School Diploma (TKJ)', 'Ministry of Education & Culture', '2021-06-01', '/assets/certificates/ijazah smk (1).pdf', 'Formal Education', 6)
+    ('BNSP Language Certification — English for Office Administrative Assistant', 'Lembaga Sertifikasi Profesi Pendidikan Bahasa Inggris (BNSP)', '2025-06-30', '/assets/certificates/Sertifikat BNSP.pdf', 'Professional Certifications', 1),
+    ('Academic Transcript (Semesters 1–8) - Informatics Engineering', 'Universitas Cendekia Abditama', '2026-08-31', '/assets/certificates/Kartu Hasil Studi.pdf', 'Academic Records', 2),
+    ('SENTIK National Seminar - Scientific Paper Presenter', 'Seminar Nasional Teknologi Informasi & Komunikasi', '2024-08-20', '/assets/certificates/Sertifikat Sentik.pdf', 'Academic Records', 3),
+    ('Techling 2 Advanced Training Certificate', 'Techling Indonesia', '2024-03-20', '/assets/certificates/SERTIFIKAT TECHLING 2_removed.pdf', 'Training & Workshops', 4),
+    ('Hotel & Hospitality Industrial Internship Certificate', 'Hotel Professional Partner', '2023-11-10', '/assets/certificates/Sertifikat magang hotel.pdf', 'Internship & Industry', 5),
+    ('PMI First Aid & Organization Skills Certificate', 'Palang Merah Indonesia', '2023-08-05', '/assets/certificates/Sertifikat_PMI.pdf', 'Organization & Social', 6),
+    ('Rindam Leadership & Discipline Certificate', 'Rindam TNI AD', '2022-10-12', '/assets/certificates/sertifikat rindam.pdf', 'Training & Workshops', 7),
+    ('Vocational High School Diploma — Hospitality Management', 'Ministry of Education & Culture', '2021-06-01', '/assets/certificates/ijazah smk (1).pdf', 'Formal Education', 8)
 ON CONFLICT DO NOTHING;
 
 -- Seed social_content

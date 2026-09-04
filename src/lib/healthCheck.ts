@@ -28,7 +28,7 @@ export async function validateLiveUrl(url: string | null | undefined): Promise<H
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+    const timeoutId = setTimeout(() => controller.abort(), 2000); // 2s timeout for fast page loads
 
     // Try HEAD request first
     let res: Response;
@@ -67,7 +67,8 @@ export async function validateLiveUrl(url: string | null | undefined): Promise<H
     }
 
     return { isLive: true, statusCode: res.status };
-  } catch (error: any) {
-    return { isLive: false, reason: error?.message || 'Network error / Timeout' };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Network error / Timeout';
+    return { isLive: false, reason: message };
   }
 }
