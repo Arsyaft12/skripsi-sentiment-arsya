@@ -354,6 +354,49 @@ function Result({ r, counter, barsOn, region, onBack, shareLabel, setShareLabel 
   onBack: () => void; shareLabel: string; setShareLabel: (s: string) => void;
 }) {
   const A = ARENAS[r.arena];
+  const downloadCard = () => {
+    const c = document.createElement('canvas');
+    c.width = 1080; c.height = 1350;
+    const x = c.getContext('2d');
+    if (!x) return;
+    const W = 1080, H = 1350, color = A.accent;
+    x.fillStyle='#0B0D10'; x.fillRect(0,0,W,H);
+    x.strokeStyle='rgba(242,240,234,.06)'; x.lineWidth=2;
+    for(let i=90;i<W;i+=90){ x.beginPath();x.moveTo(i,0);x.lineTo(i,H);x.stroke(); }
+    for(let i=90;i<H;i+=90){ x.beginPath();x.moveTo(0,i);x.lineTo(W,i);x.stroke(); }
+    x.fillStyle=color; x.fillRect(64,64,54,54);
+    x.fillStyle='#F2F0EA'; x.font='800 34px Archivo, sans-serif';
+    x.fillText('BEASTINDEX.COM', 140, 104);
+    x.fillStyle=color; x.font='800 150px "Saira Condensed", sans-serif';
+    x.fillText(`TOP ${Math.round(100-r.overall)}%`, 64, 420);
+    x.fillStyle='#F2F0EA'; x.font='800 110px "Saira Condensed", sans-serif';
+    x.fillText(r.animal.toUpperCase(), 64, 560);
+    x.fillStyle='#C3C7CE'; x.font='italic 40px Newsreader, serif';
+    x.fillText(r.binomial, 64, 620);
+    x.fillStyle='#8C9098'; x.font='600 30px Archivo, sans-serif';
+    x.fillText(`${A.verb.toUpperCase()} ${Math.round(r.overall)}% OF ${POOLS[r.pool].name.toUpperCase()}`, 64, 700);
+    let y=820;
+    r.metrics.forEach(row=>{
+      const val = row.display;
+      x.fillStyle='#F2F0EA'; x.font='700 46px "Saira Condensed", sans-serif';
+      x.fillText(row.label.toUpperCase(), 64, y);
+      x.fillStyle='#C3C7CE'; x.textAlign='right'; x.fillText(val, 780, y);
+      x.fillStyle=color; x.fillText(Math.round(row.percentile)+'%', 1016, y);
+      x.textAlign='left';
+      x.fillStyle='#1B1D20'; x.fillRect(64,y+18,952,10);
+      x.fillStyle=color; x.fillRect(64,y+18,952*row.percentile/100,10);
+      y+=110;
+    });
+    x.fillStyle='#4E525A'; x.font='600 24px Archivo, sans-serif';
+    x.fillText('Ranked on measured data · beastindex.com', 64, H-70);
+    c.toBlob(b => {
+      if (!b) return;
+      const u = URL.createObjectURL(b);
+      const a = document.createElement('a');
+      a.href = u; a.download = `beastindex-${r.animal.toLowerCase().replace(/\s+/g,'-')}.png`;
+      a.click(); URL.revokeObjectURL(u);
+    });
+  };
   return (
     <div className="result">
       <div className="res-hero">
@@ -484,6 +527,7 @@ function Result({ r, counter, barsOn, region, onBack, shareLabel, setShareLabel 
                   setShareLabel('Copied'); setTimeout(() => setShareLabel('Copy link'), 1600);
                 } catch { setShareLabel('Copy failed'); }
               }}>{shareLabel}</button>
+              <button className="btn-ghost sm" onClick={downloadCard}>Download Card</button>
             </div>
           </div>
 
