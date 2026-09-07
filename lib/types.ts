@@ -33,6 +33,7 @@ export interface ScoreInput {
   arena: ArenaKey; sex: Sex; age: number; bodyweight: number;
   pool: PoolKey; region?: string | null; country?: string | null;
   values: Record<string, string | number>;
+  skipOther?: boolean;
 }
 export interface MetricResult {
   key: string; label: string; value: number; display: string;

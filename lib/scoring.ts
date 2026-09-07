@@ -224,8 +224,8 @@ export function score(ref: Reference, input: ScoreInput): ScoreResult | null {
   const other = data.pools.find((p) => p !== pool) ?? null;
 
   let otherAnimal: string | null = null;
-  if (other) {
-    const alt = score(ref, { ...input, pool: other });
+  if (!input.skipOther && other) {
+    const alt = score(ref, { ...input, pool: other, skipOther: true });
     otherAnimal = alt ? alt.animal : null;
   }
 
