@@ -1,0 +1,23 @@
+{
+  "model_version": "marathon-regression-v1.0.0",
+  "features": [
+    "age",
+    "is_male",
+    "bodyweight",
+    "squat",
+    "weekly_km",
+    "runs_per_week",
+    "vo2max",
+    "resting_hr",
+    "sleep_hours",
+    "training_consistency"
+  ],
+  "metrics": {
+    "mae": 370.1911026956737,
+    "rmse": 669.5597820513477,
+    "r2": 0.9724253057492507
+  },
+  "uncertainty": {
+    "margin_95_seconds": 928.6190042240264
+  }
+}

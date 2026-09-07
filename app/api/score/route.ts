@@ -3,15 +3,29 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { score } from '@/lib/scoring';
 import { ARENAS } from '@/lib/arenas';
-import type { Reference, ScoreInput, ArenaKey, Sex, PoolKey } from '@/lib/types';
+import type { Reference, ScoreInput, ArenaKey, Sex, PoolKey, MLModels } from '@/lib/types';
 
 let cached: Reference | null = null;
+let cachedModels: MLModels | null = null;
+
 async function reference(): Promise<Reference> {
   if (!cached) {
     const p = path.join(process.cwd(), 'public', 'data', 'reference.json');
     cached = JSON.parse(await fs.readFile(p, 'utf8')) as Reference;
   }
   return cached;
+}
+async function mlModels(): Promise<MLModels> {
+  if (!cachedModels) {
+    const p = path.join(process.cwd(), 'public', 'data', 'ml_models.json');
+    try {
+      cachedModels = JSON.parse(await fs.readFile(p, 'utf8')) as MLModels;
+    } catch {
+      // Fallback if not available
+      return {} as MLModels;
+    }
+  }
+  return cachedModels;
 }
 
 /** Reject anything impossible before it reaches the model (revision doc POIN 2). */
@@ -50,7 +64,7 @@ export async function POST(req: Request) {
   const v = validate(body);
   if (!v.ok) return NextResponse.json({ error: 'invalid input', details: v.errors }, { status: 400 });
 
-  const result = score(await reference(), v.input);
+  const result = score(await reference(), await mlModels(), v.input);
   if (!result) {
     return NextResponse.json(
       { error: 'no scoreable entry', details: ['every value was empty, non-numeric or out of range'] },

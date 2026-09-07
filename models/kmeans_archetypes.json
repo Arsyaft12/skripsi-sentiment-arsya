@@ -1,0 +1,38 @@
+[
+  {
+    "cluster": 0,
+    "label": "Endurance Biased",
+    "centroid": {
+      "strong": -0.1997943557532538,
+      "fast": 1.795210637456676,
+      "fit": 0.7953376940480082
+    }
+  },
+  {
+    "cluster": 1,
+    "label": "Strength Biased",
+    "centroid": {
+      "strong": 0.14967310515249777,
+      "fast": -0.4049685556651269,
+      "fit": -0.07954117226056431
+    }
+  },
+  {
+    "cluster": 2,
+    "label": "Strength Biased",
+    "centroid": {
+      "strong": 1.3002114677903087,
+      "fast": -0.034626445002952186,
+      "fit": 1.0303441879951993
+    }
+  },
+  {
+    "cluster": 3,
+    "label": "Endurance Biased",
+    "centroid": {
+      "strong": -1.0262933484256007,
+      "fast": -0.42755495566698076,
+      "fit": -1.0752953224572182
+    }
+  }
+]

@@ -276,3 +276,12 @@ input:focus{border-color:var(--a);background:var(--steel)}
 .notice{border-left:4px solid var(--a);background:var(--coal);padding:14px 16px;margin-bottom:20px;
   font-weight:500;font-size:13.5px;line-height:1.6;color:#B6BBC3;text-wrap:pretty}
 .notice.warn{border-left-color:#C61F1F;color:var(--bone)}
+
+/* ── stats grid ── */
+.metric-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:14px}
+.stat-box{background:var(--coal);border:1px solid var(--line);padding:12px 14px;display:flex;flex-direction:column;gap:4px;border-left:3px solid var(--line)}
+.stat-box.highlight{border-left-color:#C61F1F}
+.stat-box.primary{border-left-color:var(--a)}
+.stat-lbl{font-weight:600;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F646C}
+.stat-val{font-family:'Saira Condensed';font-weight:700;font-size:20px;color:var(--bone);line-height:1}
+.stat-sub{font-weight:500;font-size:11px;color:var(--dim)}

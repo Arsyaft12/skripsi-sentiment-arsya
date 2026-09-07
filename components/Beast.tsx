@@ -2,16 +2,16 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ARENAS, ORDER, POOLS, ART, regionOfCountry } from '@/lib/arenas';
-import { score, fmtRank, ordinalSuffix, ageBand } from '@/lib/scoring';
+import { score, fmtRank, ordinalSuffix, ageBand, fmtTime } from '@/lib/scoring';
 import type {
-  Reference, Country, ArenaKey, Sex, PoolKey, ScoreResult,
+  Reference, Country, ArenaKey, Sex, PoolKey, ScoreResult, MLModels
 } from '@/lib/types';
 
 const flagOf = (iso: string) =>
   String.fromCodePoint(...iso.split('').map((c) => 127397 + c.charCodeAt(0)));
 
-export default function Beast({ reference, countries }:
-  { reference: Reference; countries: Country[] }) {
+export default function Beast({ reference, countries, mlModels }:
+  { reference: Reference; countries: Country[]; mlModels: MLModels | null }) {
 
   const [arena, setArena] = useState<ArenaKey>('fit');
   const [prev, setPrev] = useState<ArenaKey>('fit');
@@ -60,13 +60,13 @@ export default function Beast({ reference, countries }:
 
   const go = useCallback((next: ArenaKey) => {
     if (next === arena) return;
-    setPrev(arena); setArena(next); setVals({});
+    setPrev(arena); setArena(next);
   }, [arena]);
 
-  const live = useMemo(() => score(reference, {
+  const live = useMemo(() => score(reference, mlModels as MLModels, {
     arena, sex, age: parseFloat(age) || 30, bodyweight: parseFloat(bw) || 75,
     pool, region, country: country?.name ?? null, values: vals,
-  }), [reference, arena, sex, age, bw, pool, region, country, vals]);
+  }), [reference, mlModels, arena, sex, age, bw, pool, region, country, vals]);
 
   const submit = () => {
     if (!live) return;
@@ -254,7 +254,7 @@ export default function Beast({ reference, countries }:
                 <button key={p} className={`pool${p === pool ? ' on' : ''}`} onClick={() => setPool(p)}>
                   <span className="pname">{POOLS[p].name}</span>
                   <span className="pdesc">{POOLS[p].desc}</span>
-                  <span className="pn">{n ? `measured · n = ${n.toLocaleString()}` : 'measured'}</span>
+                  <span className="pn">{n ? `measured · n = ${n.toLocaleString('en-US')}` : 'measured'}</span>
                 </button>
               );
             })}
@@ -275,7 +275,7 @@ export default function Beast({ reference, countries }:
                     <button key={r} className={`region${r === region ? ' on' : ''}`}
                       onClick={() => setRegion(region === r ? null : r)}>
                       <span className="rgn">{r}</span>
-                      <span className="rgc">n = {n?.toLocaleString()}</span>
+                      <span className="rgc">n = {n?.toLocaleString('en-US')}</span>
                     </button>
                   );
                 })}
@@ -312,7 +312,7 @@ export default function Beast({ reference, countries }:
           <button className="btn-primary" onClick={submit}>Rank me</button>
           <p className="note center">
             {live
-              ? `Ranking on ${live.metrics.map((m) => m.label.toLowerCase()).join(', ')} against ${live.n.toLocaleString()} people.`
+              ? `Ranking on ${live.metrics.map((m) => m.label.toLowerCase()).join(', ')} against ${live.n.toLocaleString('en-US')} people.`
               : 'Enter at least one number.'}
           </p>
 
@@ -343,14 +343,14 @@ export default function Beast({ reference, countries }:
         </div>
       </section>
 
-      {result && <Result r={result} counter={counter} barsOn={barsOn} region={region}
+      {result && <Result r={result} counter={counter} barsOn={barsOn} region={region} bw={bw}
         onBack={back} shareLabel={shareLabel} setShareLabel={setShareLabel} />}
     </main>
   );
 }
 
-function Result({ r, counter, barsOn, region, onBack, shareLabel, setShareLabel }: {
-  r: ScoreResult; counter: number; barsOn: boolean; region: string | null;
+function Result({ r, counter, barsOn, region, bw, onBack, shareLabel, setShareLabel }: {
+  r: ScoreResult; counter: number; barsOn: boolean; region: string | null; bw: string;
   onBack: () => void; shareLabel: string; setShareLabel: (s: string) => void;
 }) {
   const A = ARENAS[r.arena];
@@ -444,7 +444,7 @@ function Result({ r, counter, barsOn, region, onBack, shareLabel, setShareLabel 
               </div>
             )}
             <div className="micro op6">
-              {POOLS[r.pool].who} · {r.n.toLocaleString()} people · your sex and age band
+              {POOLS[r.pool].who} · {r.n.toLocaleString('en-US')} people · your sex and age band
             </div>
           </div>
           <div className="verdict-right">
@@ -468,6 +468,27 @@ function Result({ r, counter, barsOn, region, onBack, shareLabel, setShareLabel 
           ))}
 
           <div className="lbl">The numbers</div>
+          
+          {(r.prediction || r.cluster) && (
+            <div className="why-block" style={{ marginBottom: '2rem' }}>
+              <div className="lbl" style={{ color: '#E8A722' }}>Athlete Intelligence (ML V2)</div>
+              <div className="why">
+                {r.cluster && (
+                  <p style={{ paddingBottom: '10px' }}>
+                    <strong>Archetype: {r.cluster.label.toUpperCase()}</strong><br/>
+                    <span className="micro op6">Model: {r.cluster.model} (K-Means Clustering)</span>
+                  </p>
+                )}
+                {r.prediction && (
+                  <p>
+                    <strong>Predicted Marathon Time: {fmtTime(r.prediction.timeSeconds)}</strong><br/>
+                    <span className="micro op6">Model: {r.prediction.model} (Ridge Regression) · Margin: &plusmn;{Math.round(r.prediction.margin95/60)} mins</span>
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+
           <div className="breakdown">
             {r.metrics.map((m, i) => (
               <div className="row" key={m.key}>
@@ -482,21 +503,29 @@ function Result({ r, counter, barsOn, region, onBack, shareLabel, setShareLabel 
                   <i style={{ width: barsOn ? `${m.percentile}%` : 0, transitionDelay: `${i * 90}ms` }} />
                 </div>
                 <div className="expl">{m.explanation}</div>
-                {m.cohort && (
-                  <div className="expl coh">
-                    Among {m.cohort.n.toLocaleString()} real {m.cohort.who}, you would place{' '}
-                    <b>{fmtRank(m.cohort.rank)}</b> — {Math.round(m.cohort.percentile)}
-                    {ordinalSuffix(Math.round(m.cohort.percentile))} percentile on raw numbers,
-                    no bodyweight adjustment.
-                  </div>
-                )}
-                {m.region && region && (
-                  <div className="expl reg">
-                    Within {region}: <b>{fmtRank(m.region.rank)}</b> ·{' '}
-                    {Math.round(m.region.percentile)}
-                    {ordinalSuffix(Math.round(m.region.percentile))} percentile, bodyweight-adjusted.
-                  </div>
-                )}
+                <div className="metric-stats-grid">
+                  {m.cohort && (
+                    <div className="stat-box primary">
+                      <span className="stat-lbl">Global Rank</span>
+                      <span className="stat-val">#{m.cohort.rank.rank.toLocaleString('en-US')}</span>
+                      <span className="stat-sub">of {m.cohort.rank.n.toLocaleString('en-US')} {m.cohort.who}</span>
+                    </div>
+                  )}
+                  {m.region && region && (
+                    <div className="stat-box">
+                      <span className="stat-lbl">{region} Rank</span>
+                      <span className="stat-val">#{m.region.rank.rank.toLocaleString('en-US')}</span>
+                      <span className="stat-sub">Top {Math.round(m.region.percentile)}% (adjusted)</span>
+                    </div>
+                  )}
+                  {bw && (m.key === 'squat' || m.key === 'bench' || m.key === 'deadlift' || m.key === 'press') && m.value ? (
+                    <div className="stat-box highlight">
+                      <span className="stat-lbl">Bodyweight Ratio</span>
+                      <span className="stat-val">{(m.value / parseFloat(bw)).toFixed(2)}x</span>
+                      <span className="stat-sub">{bw} kg BW</span>
+                    </div>
+                  ) : null}
+                </div>
                 <div className="expl src">Source: {m.source}</div>
               </div>
             ))}

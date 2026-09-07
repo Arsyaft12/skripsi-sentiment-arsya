@@ -44,6 +44,25 @@ export interface MetricResult {
   explanation: string;
   source: string;
 }
+
+export interface MLModels {
+  kmeans: {
+    version: string;
+    centroids: number[][];
+    archetypes: { cluster: number; label: string; centroid: Record<string, number> }[];
+    scaler: { mean: number[]; scale: number[] };
+  };
+  regression: {
+    version: string;
+    features: string[];
+    coefficients: number[];
+    intercept: number;
+    metrics: { mae: number; rmse: number; r2: number };
+    uncertainty: { margin_95_seconds: number };
+    scaler: { mean: number[]; scale: number[] };
+  };
+}
+
 export interface ScoreResult {
   arena: ArenaKey; pool: PoolKey; overall: number; n: number;
   rank: { rank: number; n: number } | null;
@@ -54,4 +73,14 @@ export interface ScoreResult {
   why: string[];
   ladder: { rank: number; animal: string; from: number; to: number; you: boolean }[];
   notices: { level: 'info' | 'warn'; text: string }[];
+  prediction?: {
+    timeSeconds: number;
+    margin95: number;
+    model: string;
+    rankText?: string;
+  };
+  cluster?: {
+    label: string;
+    model: string;
+  };
 }

@@ -1,6 +1,6 @@
 import { ARENAS, TIERS, POOLS, MARATHON_CUTOFFS } from './arenas';
 import type {
-  Reference, ScoreInput, ScoreResult, MetricResult, Sex, PoolKey, Curve, Metric,
+  Reference, ScoreInput, ScoreResult, MetricResult, Sex, PoolKey, Curve, Metric, MLModels
 } from './types';
 
 /* ── normalisation ───────────────────────────────────────────────────────────── */
@@ -89,7 +89,7 @@ export function rankIn(pct: number, n: number) {
   return { rank: Math.max(1, Math.min(n, Math.round(((100 - pct) / 100) * n))), n };
 }
 export const fmtRank = (r: { rank: number; n: number }) =>
-  `#${r.rank.toLocaleString()} of ${r.n.toLocaleString()}`;
+  `#${r.rank.toLocaleString('en-US')} of ${r.n.toLocaleString('en-US')}`;
 
 /* ── cutoff awareness ────────────────────────────────────────────────────────── */
 
@@ -125,7 +125,7 @@ function metricValue(m: Metric, values: ScoreInput['values']): number | null {
   return a;
 }
 
-export function score(ref: Reference, input: ScoreInput): ScoreResult | null {
+export function score(ref: Reference, mlModels: MLModels, input: ScoreInput): ScoreResult | null {
   const arena = ARENAS[input.arena];
   const data = ref.arenas[input.arena];
   if (!arena || !data) return null;
@@ -225,7 +225,7 @@ export function score(ref: Reference, input: ScoreInput): ScoreResult | null {
 
   let otherAnimal: string | null = null;
   if (!input.skipOther && other) {
-    const alt = score(ref, { ...input, pool: other, skipOther: true });
+    const alt = score(ref, mlModels, { ...input, pool: other, skipOther: true });
     otherAnimal = alt ? alt.animal : null;
   }
 
@@ -246,6 +246,119 @@ export function score(ref: Reference, input: ScoreInput): ScoreResult | null {
       `You need ${Math.max(1, Math.ceil(hi - overall))} more points for ${arena.ranks[tier + 1][0]}.`);
   }
 
+  let prediction: ScoreResult['prediction'] = undefined;
+  let cluster: ScoreResult['cluster'] = undefined;
+
+  // ML 1: Regression (Marathon Time Prediction)
+  if (mlModels?.regression && Object.keys(mlModels.regression).length > 0 && !input.skipOther) {
+    const r = mlModels.regression;
+    
+    // Core features
+    const sq = metricValue(ARENAS.strong.metrics[0], input.values) || 60;
+    const is_male = input.sex === 'M' ? 1 : 0;
+    
+    // Advanced ML Features with sensible defaults if omitted by user
+    const weekly_km = Number(input.values.weekly_km) || 30;
+    const runs_per_week = Number(input.values.runs_per_week) || 3;
+    const vo2max = Number(input.values.vo2max) || (is_male ? 45 : 38);
+    const resting_hr = Number(input.values.resting_hr) || 60;
+    const sleep_hours = Number(input.values.sleep_hours) || 7.5;
+    const training_consistency = Number(input.values.training_consistency) || 5;
+    
+    // features = ['age', 'is_male', 'bodyweight', 'squat', 'weekly_km', 'runs_per_week', 'vo2max', 'resting_hr', 'sleep_hours', 'training_consistency']
+    const featVec = [
+      input.age, is_male, input.bodyweight, sq,
+      weekly_km, runs_per_week, vo2max, resting_hr, sleep_hours, training_consistency
+    ];
+    
+    const scaled = featVec.map((v, i) => {
+      // Safely access scaler mean and scale
+      if (!r.scaler.mean || !r.scaler.scale || r.scaler.mean[i] === undefined) return 0;
+      return (v - r.scaler.mean[i]) / r.scaler.scale[i];
+    });
+    
+    const predSeconds = scaled.reduce((sum, v, i) => sum + v * r.coefficients[i], r.intercept);
+    
+    // Prevent completely OOD outputs (e.g. negative time)
+    if (predSeconds > 7200 && predSeconds < 36000) {
+      
+      // Calculate rank of predicted time against NYC Marathon dataset
+      let predRankText: string | undefined = undefined;
+      const fastData = ref.arenas['fast']?.metrics['marathon'];
+      if (fastData) {
+        const byPool = fastData.pools?.['everyone']?.[input.sex] || fastData.pools?.[Object.keys(fastData.pools)[0]]?.[input.sex];
+        const band = ageBand(ref, input.age || 30);
+        const curve = byPool?.[band] ?? byPool?.['all'];
+        if (curve) {
+          // Time metrics are reversed for pctOf (lower is better, so 100 - pct)
+          let pct = 100 - pctOf(ref, curve, predSeconds);
+          pct = Math.max(0.6, Math.min(99.4, pct));
+          const r = rankIn(pct, curve.n);
+          if (r) {
+            predRankText = `If you ran this time, you would place #${r.rank.toLocaleString('en-US')} of ${r.n.toLocaleString('en-US')} real marathoners in your sex & age group.`;
+          }
+        }
+      }
+
+      prediction = {
+        timeSeconds: Math.round(predSeconds),
+        margin95: r.uncertainty.margin_95_seconds,
+        model: r.version,
+        rankText: predRankText
+      };
+    }
+  }
+
+  // ML 2: Clustering (Athlete Profile)
+  if (mlModels?.kmeans && Object.keys(mlModels.kmeans).length > 0 && !input.skipOther) {
+    const km = mlModels.kmeans;
+    
+    const sq = metricValue(ARENAS.strong.metrics[0], input.values) || 0;
+    const bn = metricValue(ARENAS.strong.metrics[1], input.values) || 0;
+    const dl = metricValue(ARENAS.strong.metrics[2], input.values) || 0;
+    const ohp = Number(input.values.overhead_press) || 0;
+    const strong_total = sq + bn + dl + ohp;
+    
+    const r5k = metricValue(ARENAS.fast.metrics[0], input.values);
+    const r10k = metricValue(ARENAS.fast.metrics[1], input.values);
+    const rhalf = metricValue(ARENAS.fast.metrics[2], input.values);
+    const rfull = metricValue(ARENAS.fast.metrics[3], input.values);
+    let best_marathon = rfull;
+    if (!best_marathon && rhalf) best_marathon = riegelToMarathon(rhalf, 21097.5);
+    if (!best_marathon && r10k) best_marathon = riegelToMarathon(r10k, 10000);
+    if (!best_marathon && r5k) best_marathon = riegelToMarathon(r5k, 5000);
+    const fast_speed = best_marathon ? 1 / best_marathon : 0;
+    
+    const su = metricValue(ARENAS.fit.metrics[0], input.values) || 0;
+    const jm = metricValue(ARENAS.fit.metrics[1], input.values) || 0;
+    const rc = metricValue(ARENAS.fit.metrics[2], input.values) || 0;
+    // Approximating the z-scores for FIT metrics used during synthetic training
+    const fit_total = ((su - 40)/10) + ((jm - 200)/40) + ((rc - 15)/10);
+    
+    // Only attempt to cluster if we have some data
+    if (strong_total > 0 || best_marathon) {
+      const featVec = [strong_total, fast_speed, fit_total];
+      const scaled = featVec.map((v, i) => (v - km.scaler.mean[i]) / km.scaler.scale[i]);
+      
+      let closestDist = Infinity;
+      let closestIdx = -1;
+      km.centroids.forEach((centroid, i) => {
+        const dist = Math.sqrt(centroid.reduce((sum, c, j) => sum + Math.pow(c - scaled[j], 2), 0));
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestIdx = i;
+        }
+      });
+      
+      if (closestIdx !== -1) {
+        cluster = {
+          label: km.archetypes[closestIdx].label,
+          model: km.version
+        };
+      }
+    }
+  }
+
   return {
     arena: input.arena, pool, overall, n, rank: rankIn(overall, n), tier,
     animal: rank[0],
@@ -259,5 +372,8 @@ export function score(ref: Reference, input: ScoreInput): ScoreResult | null {
       rank: i + 1, animal: rk[0], from: TIERS[i], to: i < 5 ? TIERS[i + 1] : 100, you: i === tier,
     })),
     notices,
+    prediction,
+    cluster,
   };
 }
+
