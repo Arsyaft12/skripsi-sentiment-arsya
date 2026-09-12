@@ -3,133 +3,208 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
-import { Sun, Moon, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Sun, Moon, Menu, X, ArrowUpRight, Sparkles, FolderGit2, Home, User, Mail } from 'lucide-react';
 
 export function Navbar() {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
-  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
+  const navLinks = [
+    { name: 'Home', id: 'home', path: '/#home', icon: <Home className="w-3.5 h-3.5" /> },
+    { name: 'About', id: 'about', path: '/#about', icon: <User className="w-3.5 h-3.5" /> },
+    { name: 'Portfolio', id: 'portfolio', path: '/#portfolio', icon: <FolderGit2 className="w-3.5 h-3.5" /> },
+    { name: 'Contact', id: 'contact', path: '/#contact', icon: <Mail className="w-3.5 h-3.5" /> },
+  ];
+
+  // Active scroll section tracking (ScrollSpy)
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const scrollPosition = window.scrollY + 200;
+      const sections = ['home', 'about', 'portfolio', 'contact'];
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Work', path: '/work' },
-    { name: 'Certifications', path: '/achievements' },
-  ];
+  const handleNavClick = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    setActiveSection(id);
+    setMobileMenuOpen(false);
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = `/#${id}`;
+    }
+  };
+
+  const handleHireMeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    setActiveSection('contact');
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        const input = contactSection.querySelector('input');
+        if (input) input.focus();
+      }, 500);
+    } else {
+      window.location.href = '/#contact';
+    }
+  };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
-        scrolled ? 'glass-header py-3.5' : 'bg-transparent py-5'
-      }`}
-    >
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none">
+      <div className="w-full max-w-4xl rounded-full px-3.5 sm:px-5 py-2 flex items-center justify-between pointer-events-auto transition-all duration-300 bg-white/85 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200/80 dark:border-slate-700/80 shadow-2xl shadow-slate-900/10 dark:shadow-black/40">
+        
+        {/* Brand Logo */}
         <Link
           href="/"
-          className="group flex items-center gap-2.5 text-lg font-bold tracking-tight text-neutral-900 dark:text-white transition-all duration-200 hover:opacity-80"
+          onClick={(e) => handleNavClick(e, 'home')}
+          className="group flex items-center gap-2 text-base font-black tracking-tight text-slate-900 dark:text-white transition-all duration-200 pl-1"
         >
-          <span className="relative flex h-2.5 w-2.5 items-center justify-center rounded-full bg-blue-600 dark:bg-blue-500 transition-transform duration-200 group-hover:scale-125">
-            <span className="absolute h-5 w-5 rounded-full bg-blue-600/20 dark:bg-blue-400/20" />
+          <span className="relative flex h-2.5 w-2.5 items-center justify-center">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500 dark:bg-cyan-400" />
           </span>
-          <span>Arsya F.</span>
+          <span className="text-slate-900 dark:text-white text-sm sm:text-base tracking-tight font-extrabold">
+            Arsya<span className="text-cyan-500 dark:text-cyan-400">.</span>
+          </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Center Desktop Navigation with Fluid Animated Pill Indicator */}
+        <nav className="hidden md:flex items-center gap-1 p-1 rounded-full bg-slate-100/90 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 relative">
           {navLinks.map((link) => {
-            const isActive = pathname === link.path;
+            const isActive = activeSection === link.id;
             return (
-              <Link
-                key={link.path}
+              <a
+                key={link.id}
                 href={link.path}
-                className={`relative text-sm font-medium transition-all duration-200 ${
+                onClick={(e) => handleNavClick(e, link.id)}
+                className={`relative flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold transition-colors duration-200 z-10 ${
                   isActive
-                    ? 'text-blue-600 dark:text-blue-400 font-semibold'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                    ? 'text-white'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white'
                 }`}
               >
-                {link.name}
                 {isActive && (
-                  <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full" />
+                  <motion.div
+                    layoutId="activeNavPill"
+                    transition={{ type: 'spring', stiffness: 450, damping: 35 }}
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 shadow-md -z-10"
+                  />
                 )}
-              </Link>
+                <span>{link.name}</span>
+              </a>
             );
           })}
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        {/* Action Controls & CTA */}
+        <div className="hidden md:flex items-center gap-2.5">
+          {/* Day / Night Theme Switcher */}
           <button
+            type="button"
             onClick={toggleTheme}
-            aria-label="Toggle Theme"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200/80 bg-white/70 text-neutral-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600 dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-blue-700 dark:hover:text-blue-400"
+            aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 transition-all hover:border-cyan-400 hover:text-cyan-600 dark:hover:text-cyan-300 hover:scale-105 cursor-pointer shadow-sm"
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {theme === 'dark' ? (
+              <Sun className="w-3.5 h-3.5 text-amber-400" />
+            ) : (
+              <Moon className="w-3.5 h-3.5 text-indigo-600" />
+            )}
           </button>
 
-          <a
-            href="mailto:arsyaft12@gmail.com"
-            className="relative z-20 inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-lg shadow-blue-600/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          {/* Hire Me CTA Button */}
+          <button
+            type="button"
+            onClick={handleHireMeClick}
+            className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-md shadow-cyan-500/25 transition-all duration-200 hover:scale-105 hover:shadow-cyan-500/40 cursor-pointer"
           >
-            <span>Contact Me</span>
-            <ArrowUpRight className="h-3.5 w-3.5" />
-          </a>
+            <Sparkles className="w-3 h-3 text-cyan-200" />
+            <span>HIRE ME</span>
+            <ArrowUpRight className="h-3 w-3 text-cyan-200" />
+          </button>
         </div>
 
-        <div className="flex items-center gap-3 md:hidden">
+        {/* Mobile Controls */}
+        <div className="flex items-center gap-2 md:hidden">
           <button
+            type="button"
             onClick={toggleTheme}
             aria-label="Toggle Theme"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200/80 bg-white/80 text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-neutral-200"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 cursor-pointer"
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {theme === 'dark' ? (
+              <Sun className="w-3.5 h-3.5 text-amber-400" />
+            ) : (
+              <Moon className="w-3.5 h-3.5 text-indigo-600" />
+            )}
           </button>
 
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Open Mobile Menu"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200/80 bg-white/80 text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-white"
+            aria-label="Toggle Mobile Menu"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white cursor-pointer"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
       </div>
 
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden glass-header border-b border-neutral-200/80 px-6 py-6 dark:border-neutral-800">
-          <div className="flex flex-col gap-3">
+        <div className="absolute top-16 left-4 right-4 rounded-3xl p-5 md:hidden pointer-events-auto shadow-2xl bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-700 backdrop-blur-2xl animate-in fade-in slide-in-from-top-4 duration-200">
+          <div className="flex flex-col gap-2">
             {navLinks.map((link) => {
-              const isActive = pathname === link.path;
+              const isActive = activeSection === link.id;
               return (
-                <Link
-                  key={link.path}
+                <a
+                  key={link.id}
                   href={link.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`rounded-xl px-3 py-2 text-base font-medium transition-colors ${
-                    isActive
-                      ? 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300'
-                      : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-900/80'
+                  onClick={(e) => handleNavClick(e, link.id)}
+                  className={`flex items-center gap-3 rounded-2xl px-4 py-2.5 text-sm font-semibold transition-all ${
+                    isActive 
+                      ? 'bg-cyan-500 text-white shadow-sm'
+                      : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                 >
-                  {link.name}
-                </Link>
+                  <span className={isActive ? 'text-white' : 'text-cyan-500 dark:text-cyan-400'}>{link.icon}</span>
+                  <span>{link.name}</span>
+                </a>
               );
             })}
-            <a
-              href="mailto:arsyaft12@gmail.com"
-              onClick={() => setMobileMenuOpen(false)}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-4 py-3 text-sm font-semibold text-white"
+            
+            <button
+              type="button"
+              onClick={handleHireMeClick}
+              className="mt-2 flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 px-4 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg cursor-pointer"
             >
-              <span>Contact Me</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
+              <Sparkles className="w-3.5 h-3.5 text-cyan-200" />
+              <span>HIRE ME / Contact Me</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       )}

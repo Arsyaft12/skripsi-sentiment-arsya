@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Penawaran Proyek Website - Paket Starter</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+    @page {
+      size: A4;
+      margin: 10mm 12mm 10mm 12mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      line-height: 1.45;
+      font-size: 12px;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 5px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .doc-badge {
+      text-align: right;
+    }
+
+    .doc-type {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 800;
+      color: #2563eb;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .doc-meta {
+      margin-top: 3px;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    /* Parties Section */
+    .parties-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 18px;
+      background: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #f1f5f9;
+    }
+
+    .party-card h4 {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #64748b;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .party-card .name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .party-card .details {
+      font-size: 11px;
+      color: #475569;
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 14px;
+      background: #2563eb;
+      border-radius: 2px;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+      text-align: left;
+      padding: 8px 10px;
+      font-size: 11px;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    td {
+      padding: 10px;
+      font-size: 11.5px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: top;
+    }
+
+    .col-num { width: 5%; text-align: center; }
+    .col-item { width: 68%; }
+    .col-price { width: 27%; text-align: right; }
+
+    .item-name {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+      font-size: 12px;
+    }
+
+    .item-desc {
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.35;
+    }
+
+    .item-features {
+      margin-top: 5px;
+      padding-left: 14px;
+      font-size: 11px;
+      color: #475569;
+    }
+
+    .item-features li {
+      margin-bottom: 3px;
+    }
+
+    .highlight-tag {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 4px;
+    }
+
+    .total-row td {
+      font-weight: 700;
+      font-size: 13px;
+      background: #f8fafc;
+      border-top: 1.5px solid #cbd5e1;
+      border-bottom: 1.5px solid #cbd5e1;
+      color: #0f172a;
+      padding: 10px;
+    }
+
+    /* Terms and Highlights */
+    .grid-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 10px 12px;
+      background: #ffffff;
+    }
+
+    .info-box h5 {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 5px;
+    }
+
+    .info-box ul {
+      padding-left: 14px;
+      font-size: 10.5px;
+      color: #475569;
+      line-height: 1.4;
+    }
+
+    .info-box li {
+      margin-bottom: 2px;
+    }
+
+    /* Signatures */
+    .signatures {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 15px;
+      padding-top: 10px;
+    }
+
+    .sign-box {
+      text-align: center;
+    }
+
+    .sign-role {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 45px;
+    }
+
+    .sign-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+      text-decoration: underline;
+    }
+
+    .sign-company {
+      font-size: 10.5px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <div class="brand-title">Arsya Faturrahman</div>
+        <div class="brand-subtitle">Software Engineer & Web Developer</div>
+        <div style="font-size: 11px; color: #64748b; margin-top: 2px;">
+          Email: arsyaft12@gmail.com | Portfolio: portfolio-arsya.vercel.app
+        </div>
+      </div>
+      <div class="doc-badge">
+        <div class="doc-type">QUOTATION</div>
+        <div class="doc-meta"><strong>No:</strong> QT-2026/09/001</div>
+        <div class="doc-meta"><strong>Tanggal:</strong> 8 September 2026</div>
+        <div class="doc-meta"><strong>Masa Berlaku:</strong> 14 Hari</div>
+      </div>
+    </div>
+
+    <!-- Parties -->
+    <div class="parties-grid">
+      <div class="party-card">
+        <h4>Ditujukan Kepada:</h4>
+        <div class="name">[Nama Klien / Organisasi / Bisnis]</div>
+        <div class="details">
+          PIC: [Nama Kontak Klien]<br>
+          No. WhatsApp / Telp: [Nomor Kontak]<br>
+          Email: [Email Klien]
+        </div>
+      </div>
+      <div class="party-card">
+        <h4>Penyedia Layanan (Developer):</h4>
+        <div class="name">Arsya Faturrahman</div>
+        <div class="details">
+          Role: Fullstack Web Developer<br>
+          Kontak: arsyaft12@gmail.com<br>
+          Status: Freelance Project
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Scope & Pricing -->
+    <div class="section-title">Rincian Paket & Lingkup Pekerjaan</div>
+    <table>
+      <thead>
+        <tr>
+          <th class="col-num">No</th>
+          <th class="col-item">Deskripsi Layanan & Fitur</th>
+          <th class="col-price">Biaya (IDR)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-num">1</td>
+          <td class="col-item">
+            <div class="item-name">
+              Pengembangan Website - Paket Starter (All-in)
+              <span class="highlight-tag">Free Domain & Hosting</span>
+            </div>
+            <div class="item-desc">
+              Pembuatan website profil & showcase profesional yang modern, cepat, dan responsif (Mobile & Desktop).
+            </div>
+            <ul class="item-features">
+              <li><strong>3 Halaman Utama Lengkap:</strong>
+                <br>• <strong>Landing Page:</strong> Hero Section, Profil/Tentang, dan Ringkasan Layanan.
+                <br>• <strong>Portofolio Pekerjaan:</strong> Galeri showcase proyek, studi kasus, & detail hasil karya.
+                <br>• <strong>Penghargaan & Sertifikasi:</strong> Showcase sertifikat, lisensi keahlian, & pencapaian.
+              </li>
+              <li><strong>Integrasi WhatsApp Direct Chat:</strong> Tombol CTA interaktif yang langsung terhubung ke nomor admin/klien.</li>
+              <li><strong>Domain & Cloud Hosting (1 Tahun):</strong> Biaya domain & server hosting tahun pertama <strong>sudah ditanggung developer (All-in)</strong>.</li>
+              <li><strong>Optimasi Kecepatan & SEO Dasar:</strong> Fast-loading performance, SSL Certificate (HTTPS), dan metadata search engine.</li>
+            </ul>
+          </td>
+          <td class="col-price" style="font-weight: 700; color: #0f172a;">Rp 2.000.000</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="2" style="text-align: right;">TOTAL INVESTASI PROYEK (ALL-IN):</td>
+          <td class="col-price" style="color: #2563eb; font-weight: 800;">Rp 2.000.000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Terms and Payment Schedule -->
+    <div class="grid-two">
+      <div class="info-box">
+        <h5>Skema Pembayaran</h5>
+        <ul>
+          <li><strong>Tahap 1 (Down Payment - 50%):</strong> Rp 1.000.000 dibayarkan saat persetujuan penawaran untuk setup domain, hosting, & mulai pengerjaan.</li>
+          <li><strong>Tahap 2 (Pelunasan - 50%):</strong> Rp 1.000.000 dibayarkan setelah website selesai di-review di link preview & siap go-live.</li>
+          <li><strong>Metode:</strong> Transfer Bank (BCA / Mandiri / Jago).</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h5>Ketentuan & Catatan Teknis</h5>
+        <ul>
+          <li><strong>Estimasi Pengerjaan:</strong> 7 – 14 Hari Kerja setelah materi konten (teks, logo, foto) diterima.</li>
+          <li><strong>Domain & Hosting:</strong> Termasuk pendaftaran domain & konfigurasi cloud hosting aktif selama 1 (satu) tahun pertama.</li>
+          <li><strong>Revisi & Garansi:</strong> Maksimal 2x revisi minor dan garansi perbaikan bug selama 14 hari setelah rilis.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Signatures -->
+    <div class="signatures">
+      <div class="sign-box">
+        <div class="sign-role">Diajukan Oleh (Developer),</div>
+        <div class="sign-name">Arsya Faturrahman</div>
+        <div class="sign-company">Web & Software Developer</div>
+      </div>
+      <div class="sign-box">
+        <div class="sign-role">Disetujui Oleh (Klien),</div>
+        <div class="sign-name">( .................................................... )</div>
+        <div class="sign-company">[Nama Klien / Perusahaan]</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

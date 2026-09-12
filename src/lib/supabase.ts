@@ -38,9 +38,9 @@ export const FALLBACK_PROJECT_SETTINGS: ProjectSetting[] = [
     is_featured: true,
     display_order: 2,
     custom_title: 'SentimenAI — Dashboard Analisis Sentimen',
-    custom_description: 'E-commerce sentiment analysis dashboard using NLP and machine learning (Naïve Bayes & SVM) to classify 1,000+ public reviews with 85% accuracy and actionable business insights.',
+    custom_description: 'E-commerce sentiment analysis dashboard using Machine Learning (Naïve Bayes & SVM) to classify 1,000+ public reviews with 85% accuracy and actionable business insights.',
     live_url_override: 'https://frontend-h4q65ncub-arsyaft12-9212s-projects.vercel.app/',
-    category: 'NLP & Machine Learning',
+    category: 'Machine Learning & Predictive AI',
     badge: 'Undergraduate Thesis',
     metrics: [
       { label: 'Model Accuracy', value: '85%' },
@@ -87,7 +87,7 @@ export const FALLBACK_PROJECT_SETTINGS: ProjectSetting[] = [
 
 export const FALLBACK_ACHIEVEMENTS: Achievement[] = [
   { id: '1', label: 'Academic Performance', value: '3.90 / 4.00', display_order: 1 },
-  { id: '2', label: 'AI & Data Interest', value: 'ML & NLP', display_order: 2 },
+  { id: '2', label: 'AI & Data Interest', value: 'Machine Learning', display_order: 2 },
   { id: '3', label: 'Empirical Records', value: '2.4M+ Benchmarks', display_order: 3 },
   { id: '4', label: 'Cross-Industry Experience', value: '5+ Years', display_order: 4 },
 ];
@@ -115,12 +115,12 @@ export const FALLBACK_SKILLS: Skill[] = [
   { id: '15', category: 'Backend', name: 'Supabase (PostgreSQL)', display_order: 4 },
   { id: '16', category: 'Backend', name: 'Streamlit', display_order: 5 },
 
-  // ML/NLP & Modeling
-  { id: '17', category: 'ML/NLP', name: 'Scikit-learn', display_order: 1 },
-  { id: '18', category: 'ML/NLP', name: 'NLTK & spaCy', display_order: 2 },
-  { id: '19', category: 'ML/NLP', name: 'Statistical Normalization (DOTS / Riegel)', display_order: 3 },
-  { id: '20', category: 'ML/NLP', name: 'Naïve Bayes & SVM', display_order: 4 },
-  { id: '21', category: 'ML/NLP', name: 'VADER & TextBlob', display_order: 5 },
+  // Machine Learning & Modeling
+  { id: '17', category: 'Machine Learning', name: 'Scikit-learn', display_order: 1 },
+  { id: '18', category: 'Machine Learning', name: 'NLTK & spaCy', display_order: 2 },
+  { id: '19', category: 'Machine Learning', name: 'Statistical Normalization (DOTS / Riegel)', display_order: 3 },
+  { id: '20', category: 'Machine Learning', name: 'Naïve Bayes & SVM', display_order: 4 },
+  { id: '21', category: 'Machine Learning', name: 'VADER & TextBlob', display_order: 5 },
 
   // Data
   { id: '22', category: 'Data', name: 'Pandas & NumPy', display_order: 1 },
@@ -183,7 +183,7 @@ export const FALLBACK_EXPERIENCE: Experience[] = [
     end_date: null,
     highlights: [
       'Engineered BEASTINDEX, a high-performance empirical fitness scoring engine built with Next.js 16, TypeScript, and statistical normalization over 2.4M+ benchmark records.',
-      'Developed SentimenAI (SentiSight), an NLP-based sentiment analysis system for business review classification with 85% accuracy.',
+      'Developed SentimenAI (SentiSight), a machine learning sentiment analysis system for business review classification with 85% accuracy.',
       'Built mobile and web solutions for clients using Flutter, Python, TypeScript, and deployed to production platforms such as Vercel.'
     ],
     display_order: 3
@@ -250,10 +250,10 @@ export const FALLBACK_CERTIFICATES: Certificate[] = [
   },
   {
     id: '3',
-    title: 'SENTIK National Seminar - Scientific Paper Presenter',
-    issuer: 'Seminar Nasional Teknologi Informasi & Komunikasi',
-    issue_date: '2024-08-20',
-    document_url: '/assets/certificates/Sertifikat Sentik.pdf',
+    title: 'SeNTIK 10 National Seminar - Scientific Paper Author',
+    issuer: 'STMIK Jakarta STI&K & Universitas Cendekia Abditama',
+    issue_date: '2026-08-29',
+    document_url: '/assets/certificates/Sertifikat Sentik Baru.pdf',
     category: 'Academic Records',
     display_order: 3,
   },
@@ -311,7 +311,7 @@ export const FALLBACK_SOCIAL_CONTENT: SocialContent[] = [
     category: 'Social Media',
     title: 'The Pitch Creative — Pitch deck storytelling reel',
     embed_url: 'https://www.instagram.com/reel/DW_sIdiERaD/?igsi=MTZtams2bGVteGJ6Zg==',
-    thumbnail_url: null,
+    thumbnail_url: '/assets/photos/reel_thepitch_storytelling.png',
     metric_label: '92K',
     summary: 'Menyusun narasi visual yang lebih profesional untuk menonjembatani value proposition brand dengan audiens yang lebih luas.',
     stats: [
@@ -327,7 +327,7 @@ export const FALLBACK_SOCIAL_CONTENT: SocialContent[] = [
     category: 'Social Media',
     title: 'The Pitch Creative — agency social proof campaign',
     embed_url: 'https://www.instagram.com/reel/DT_4OBykXBl/?igsi=MTkwbHc4ZjdkZWcwbA==',
-    thumbnail_url: null,
+    thumbnail_url: '/assets/photos/reel_thepitch_socialproof.png',
     metric_label: '68K',
     summary: 'Meningkatkan daya tarik brand agency lewat format konten yang lebih dinamis, ringkas, dan mudah dibagikan.',
     stats: [
@@ -515,18 +515,8 @@ export async function fetchEducation(): Promise<Education[]> {
 }
 
 export async function fetchCertificates(): Promise<Certificate[]> {
-  if (!supabase) return FALLBACK_CERTIFICATES;
-  try {
-    const { data, error } = await supabase
-      .from('certificates')
-      .select('*')
-      .order('display_order', { ascending: true });
-    
-    if (error || !data || data.length === 0) return FALLBACK_CERTIFICATES;
-    return data as Certificate[];
-  } catch {
-    return FALLBACK_CERTIFICATES;
-  }
+  // Force using fallback data to bypass Supabase for now
+  return FALLBACK_CERTIFICATES;
 }
 
 export async function fetchSocialContent(): Promise<SocialContent[]> {

@@ -1,165 +1,356 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Mail, Sparkles, MapPin, GraduationCap, ShieldCheck, BriefcaseBusiness } from 'lucide-react';
+import { 
+  Sparkles, 
+  Play, 
+  Pause, 
+  Music, 
+  Disc, 
+  Send, 
+  FolderGit2, 
+  FileDown,
+  Volume2,
+  VolumeX,
+} from 'lucide-react';
 
 export function Hero() {
-  const [activePhoto, setActivePhoto] = useState<1 | 2>(1);
+  const roles = [
+    'Business Development & Strategy',
+    'Software & Mobile Engineer',
+    'Tech Business & AI Enthusiast',
+    'Machine Learning Practitioner',
+    'Creative Lead & Media Strategist',
+    'Informatics Engineer (GPA 3.90)',
+    'BNSP Certified Professional'
+  ];
+
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(154);
+  const [isMuted, setIsMuted] = useState(false);
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActivePhoto((current) => (current === 1 ? 2 : 1));
-    }, 3500);
+    const roleInterval = setInterval(() => {
+      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 2800);
+    return () => clearInterval(roleInterval);
+  }, [roles.length]);
 
-    return () => window.clearInterval(timer);
-  }, []);
-
-  const highlights = [
-    { label: 'Open to Opportunities', tone: 'emerald', icon: <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" /> },
-    { label: 'Mobile Developer', tone: 'blue', icon: <BriefcaseBusiness className="h-3.5 w-3.5" /> },
-    { label: 'IT Graduate', tone: 'amber', icon: <GraduationCap className="h-3.5 w-3.5" /> },
-    { label: 'BNSP Certified', tone: 'purple', icon: <ShieldCheck className="h-3.5 w-3.5" /> },
-    { label: 'BSD City', tone: 'slate', icon: <MapPin className="h-3.5 w-3.5" /> },
-  ];
-
-  const stats = [
-    { value: 'Product', label: 'Mindset', detail: 'Business-focused execution' },
-    { value: 'Mobile', label: 'Delivery', detail: 'Scalable user solutions' },
-    { value: 'Impact', label: 'Driven', detail: 'Useful, measurable value' },
-  ];
-
-  const toneStyles: Record<string, string> = {
-    emerald: 'bg-emerald-50 text-emerald-700 border-emerald-200/60 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/60',
-    blue: 'bg-blue-50 text-blue-700 border-blue-200/60 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-800/60',
-    amber: 'bg-amber-50 text-amber-700 border-amber-200/60 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800/60',
-    purple: 'bg-purple-50 text-purple-700 border-purple-200/60 dark:bg-purple-950/40 dark:text-purple-400 dark:border-purple-800/60',
-    slate: 'bg-neutral-100 text-neutral-700 border-neutral-200/60 dark:bg-neutral-800/80 dark:text-neutral-300 dark:border-neutral-700/60',
+  const togglePlay = async () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      try {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      } catch (err) {
+        console.warn('Audio play prevented:', err);
+        setIsPlaying(false);
+      }
+    }
   };
 
+  const handleTimeUpdate = () => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime);
+      if (audioRef.current.duration && !isNaN(audioRef.current.duration)) {
+        setDuration(audioRef.current.duration);
+      }
+    }
+  };
+
+  const handleLoadedMetadata = () => {
+    if (audioRef.current && !isNaN(audioRef.current.duration)) {
+      setDuration(audioRef.current.duration);
+    }
+  };
+
+  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!audioRef.current || !duration) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+    const newTime = ratio * duration;
+    audioRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
+  };
+
+  const toggleMute = () => {
+    if (!audioRef.current) return;
+    audioRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
+
+  const formatTime = (secs: number) => {
+    if (isNaN(secs) || secs < 0) return '00:00';
+    const m = Math.floor(secs / 60);
+    const s = Math.floor(secs % 60);
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  };
+
+  const progressPercent = duration > 0 ? Math.min(100, (currentTime / duration) * 100) : 0;
+
   return (
-    <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden pb-20 pt-28 sm:pt-32">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(37,99,235,0.12),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(168,85,247,0.14),_transparent_30%)]" />
-
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-6 md:px-12 lg:grid-cols-12 lg:items-center lg:gap-16">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
+    <section id="home" className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 px-6 md:px-12">
+      
+      {/* Real Background Audio Element */}
+      <audio
+        ref={audioRef}
+        src="/assets/audio/coding-focus.mp3"
+        preload="metadata"
+        loop
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+        onEnded={() => setIsPlaying(false)}
+      />
+      
+      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-14">
+        
+        {/* Left Column: Headline, Role & Actions */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-8 lg:col-span-7"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full lg:w-7/12 space-y-7 text-left"
         >
-          <div className="section-eyebrow w-fit">
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>Software Engineer & Mobile Developer</span>
+          {/* Status Badge */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-semibold shadow-sm">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span>Available for Business Development & Engineering Roles</span>
           </div>
 
-          <div className="space-y-5">
-            <h1 className="text-4xl font-black leading-[0.96] tracking-[-0.06em] text-neutral-950 dark:text-white sm:text-5xl xl:text-7xl">
-              Arsya Faturrahman
+          {/* Main Title - Punchy, Grand & High-Impact */}
+          <div className="space-y-1 sm:space-y-2">
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.06]">
+              Turning Ideas
             </h1>
-
-            <p className="max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300 sm:text-lg">
-              Software Engineer and Mobile Developer with a strong product mindset and hands-on experience building
-              practical, high-performance digital systems. From empirical fitness data engines (BEASTINDEX) to NLP
-              sentiment classification (SentimenAI) and responsive web applications, I combine clean architecture with
-              user-centered design for measurable real-world impact.
-            </p>
+            <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight grad-vi leading-[1.06]">
+              Into Reality.
+            </h2>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            {highlights.map((item) => (
-              <div key={item.label} className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold ${toneStyles[item.tone]}`}>
-                {item.icon}
-                <span>{item.label}</span>
-              </div>
-            ))}
+          {/* Dynamic Role Ticker - Larger & Eye-Catching */}
+          <div className="flex flex-wrap items-center gap-2 text-xl sm:text-2xl lg:text-3xl text-slate-800 dark:text-slate-200 font-medium">
+            <span>I&apos;m Arsya Faturrahman,</span>
+            <span className="font-extrabold text-cyan-600 dark:text-cyan-300 border-b-2 sm:border-b-3 border-cyan-400 pb-0.5 min-w-[260px] transition-all">
+              {roles[currentRoleIndex]}
+            </span>
           </div>
 
-          <div className="grid max-w-xl gap-4 sm:grid-cols-3">
-            {stats.map((stat) => (
-              <div key={stat.label} className="section-shell rounded-2xl p-4 text-left">
-                <div className="text-2xl font-black tracking-tight text-neutral-900 dark:text-white">{stat.value}</div>
-                <div className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-neutral-500 dark:text-neutral-400">{stat.label}</div>
-                <div className="mt-1 text-[11px] text-neutral-500 dark:text-neutral-400">{stat.detail}</div>
-              </div>
-            ))}
-          </div>
+          {/* Narrative - Bigger, More Legible & Highlights Business Dev + Engineering */}
+          <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-normal">
+            <strong>Business Development Strategist & Software Engineer</strong> delivering cross-platform mobile apps (<span className="text-cyan-600 dark:text-cyan-300 font-semibold">Flutter & Next.js 16</span>), large-scale empirical engines (<span className="text-cyan-600 dark:text-cyan-300 font-semibold">BEASTINDEX</span>, 2.4M+ records), Machine Learning intelligence (<span className="text-purple-600 dark:text-purple-300 font-semibold">SentimenAI</span>), and viral creative campaigns.
+          </p>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2.5 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-            >
-              <span>View My Work</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-
+          {/* Action CTAs */}
+          <div className="flex flex-wrap items-center gap-3.5 pt-2">
             <a
-              href="/assets/certificates/Arsya Faturrahman CV.pdf"
-              download="Arsya Faturrahman CV.pdf"
-              className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-neutral-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600 dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-blue-700 dark:hover:text-blue-400"
+              href="#portfolio"
+              className="btn-primary inline-flex items-center gap-2.5 px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-cyan-500/25 hover:scale-105 transition-transform"
             >
-              <span>📄 Download CV</span>
+              <FolderGit2 className="w-4 h-4 text-white" />
+              <span>Explore Portfolio</span>
             </a>
 
             <a
-              href="mailto:arsyaft12@gmail.com"
-              className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white/80 px-6 py-3.5 text-sm font-semibold text-neutral-800 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600 dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-blue-700 dark:hover:text-blue-400"
+              href="/assets/certificates/Arsya Faturrahman CV IT.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary inline-flex items-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform"
             >
-              <Mail className="h-4 w-4" />
-              <span>Contact Me</span>
+              <FileDown className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+              <span>Download CV</span>
             </a>
+
+            <a
+              href="#contact"
+              className="btn-secondary inline-flex items-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform"
+            >
+              <Send className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+              <span>Hire / Contact</span>
+            </a>
+          </div>
+
+          {/* Social Links Dock */}
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            <a
+              href="https://github.com/Arsyaft12"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-950/40 transition-all hover:scale-110 shadow-sm"
+              aria-label="GitHub"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+
+            <a
+              href="https://linkedin.com/in/arsya-faturrahman-a800b429a"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 transition-all hover:scale-110 shadow-sm"
+              aria-label="LinkedIn"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+
+            <a
+              href="https://www.instagram.com/arsyaft/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-purple-400 hover:bg-purple-50 dark:hover:bg-purple-950/40 transition-all hover:scale-110 shadow-sm"
+              aria-label="Instagram"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+
+            <a
+              href="https://www.tiktok.com/@kejususuww"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-all hover:scale-110 shadow-sm"
+              aria-label="TikTok"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-1.14v-3.5a6.37 6.37 0 1 0 6.34 6.37V8.7a8.3 8.3 0 0 0 4.77 1.49V6.69z"/>
+              </svg>
+            </a>
+
+            <span className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 pl-2">Social Channels</span>
           </div>
         </motion.div>
 
+        {/* Right Column: Focus Player Widget */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-center gap-4 lg:col-span-5 lg:items-end"
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full lg:w-5/12 flex justify-center lg:justify-end"
         >
-          <div className="group relative h-[520px] w-full max-w-md overflow-hidden rounded-[2rem] border border-neutral-200/80 bg-neutral-100 shadow-[0_30px_80px_rgba(15,23,42,0.18)] dark:border-neutral-800 dark:bg-neutral-900 sm:h-[580px]">
-            <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-indigo-500/10 to-violet-500/20 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
-
-            <div className={`absolute inset-0 transition-opacity duration-500 ${activePhoto === 1 ? 'opacity-100' : 'opacity-0'}`}>
-              <Image
-                src="/assets/photos/Photo Profile.png"
-                alt="Arsya Faturrahman — Professional Photo"
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 400px"
-                className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-
-            <div className={`absolute inset-0 transition-opacity duration-500 ${activePhoto === 2 ? 'opacity-100' : 'opacity-0'}`}>
-              <Image
-                src="/assets/photos/Photo Profile 2.png"
-                alt="Arsya Faturrahman — Alternative Photo"
-                fill
-                sizes="(max-width: 768px) 100vw, 400px"
-                className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent opacity-90" />
-
-            <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/20 bg-white/80 p-4 backdrop-blur-md dark:border-neutral-700 dark:bg-slate-900/80">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.12em] text-neutral-500 dark:text-neutral-400">Profile</p>
-                  <p className="mt-1 text-base font-semibold text-neutral-900 dark:text-white">Arsya Faturrahman</p>
-                </div>
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300">
-                  <BriefcaseBusiness className="h-3 w-3" />
-                  Available
-                </div>
+          <div className="w-full max-w-[390px] glass-panel p-6 relative border border-slate-200/80 dark:border-slate-700/60 shadow-2xl">
+            
+            {/* Header: Title & Online Status */}
+            <div className="flex items-center justify-between pb-3.5 border-b border-slate-200/80 dark:border-slate-700/60">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">
+                <Music className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+                <span>Coding Playlist</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                {isPlaying ? 'Playing Audio' : 'Available Online'}
               </div>
             </div>
+
+            {/* Visual Disc & Profile Deck */}
+            <div className="py-5 flex items-center justify-center gap-4">
+              
+              {/* Profile Cover Art */}
+              <div className="relative w-28 h-28 rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-600 shadow-lg shrink-0">
+                <Image
+                  src="/assets/photos/Photo Profile.png"
+                  alt="Arsya Faturrahman"
+                  fill
+                  className="object-cover object-center"
+                />
+              </div>
+
+              {/* Rotating Vinyl Disc */}
+              <div className={`relative w-24 h-24 rounded-full bg-gradient-to-tr from-slate-900 via-slate-800 to-slate-950 border border-slate-600 flex items-center justify-center shadow-xl shrink-0 transition-transform ${isPlaying ? 'animate-spin-slow' : ''}`}>
+                <div className="w-9 h-9 rounded-full bg-cyan-500/30 border border-cyan-400 flex items-center justify-center">
+                  <Disc className="w-4 h-4 text-cyan-300" />
+                </div>
+              </div>
+
+            </div>
+
+            {/* Audio Details & Bars */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                    Empirical Focus & Flow
+                  </h4>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 pt-0.5">
+                    Arsya Faturrahman • Software Engineering
+                  </p>
+                </div>
+
+                {/* Animated Equalizer Bars */}
+                <div className="flex items-end gap-1 h-5">
+                  <span className={`w-1 bg-cyan-500 dark:bg-cyan-400 rounded-full transition-all duration-200 ${isPlaying ? 'animate-eq-1' : 'h-1.5'}`} />
+                  <span className={`w-1 bg-blue-500 dark:bg-blue-400 rounded-full transition-all duration-200 ${isPlaying ? 'animate-eq-2' : 'h-3'}`} />
+                  <span className={`w-1 bg-purple-500 dark:bg-purple-400 rounded-full transition-all duration-200 ${isPlaying ? 'animate-eq-3' : 'h-2'}`} />
+                  <span className={`w-1 bg-pink-500 dark:bg-pink-400 rounded-full transition-all duration-200 ${isPlaying ? 'animate-eq-4' : 'h-1'}`} />
+                </div>
+              </div>
+
+              {/* Interactive Duration / Progress Bar */}
+              <div className="space-y-1">
+                <div 
+                  onClick={handleSeek}
+                  className="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden cursor-pointer hover:h-2.5 transition-all relative group"
+                >
+                  <div 
+                    style={{ width: `${progressPercent}%` }}
+                    className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full transition-all duration-100" 
+                  />
+                </div>
+                <div className="flex justify-between text-[10px] text-slate-500 font-mono">
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{formatTime(duration)}</span>
+                </div>
+              </div>
+
+              {/* Controls */}
+              <div className="flex items-center justify-between pt-1">
+                <button
+                  type="button"
+                  onClick={toggleMute}
+                  className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 text-xs font-medium hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors cursor-pointer"
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-3.5 h-3.5 text-rose-500" />
+                  ) : (
+                    <Volume2 className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
+                  )}
+                  <span>{isMuted ? 'Muted' : 'High Focus Mode'}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={togglePlay}
+                  className="p-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md hover:scale-110 active:scale-95 transition-transform cursor-pointer"
+                  aria-label={isPlaying ? 'Pause music' : 'Play coding music'}
+                >
+                  {isPlaying ? (
+                    <Pause className="w-4 h-4 fill-white" />
+                  ) : (
+                    <Play className="w-4 h-4 fill-white ml-0.5" />
+                  )}
+                </button>
+              </div>
+
+            </div>
+
           </div>
         </motion.div>
+
       </div>
     </section>
   );

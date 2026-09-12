@@ -24,8 +24,8 @@ export function CertificateList({ certificates }: CertificateListProps) {
     <div className="space-y-12">
       {/* Category Filter Pills */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-        <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-400 pr-2 shrink-0">
-          <Filter className="w-3.5 h-3.5" />
+        <div className="flex items-center gap-1.5 text-xs font-bold text-neutral-400 pr-2 shrink-0">
+          <Filter className="w-3.5 h-3.5 text-cyan-400" />
           <span>Category:</span>
         </div>
 
@@ -35,10 +35,10 @@ export function CertificateList({ certificates }: CertificateListProps) {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 text-xs font-semibold rounded-full transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+              className={`px-4 py-2 text-xs font-bold rounded-full transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 ${
                 isActive
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700'
+                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/20'
+                  : 'bg-neutral-100/80 dark:bg-white/[0.04] text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-white/[0.08] border border-neutral-200 dark:border-white/10'
               }`}
             >
               {cat}
@@ -60,7 +60,7 @@ export function CertificateList({ certificates }: CertificateListProps) {
       </div>
 
       {filteredCertificates.length === 0 && (
-        <div className="p-12 text-center rounded-3xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-500">
+        <div className="p-12 text-center rounded-3xl glass-card text-neutral-500">
           No certificates available in this category.
         </div>
       )}

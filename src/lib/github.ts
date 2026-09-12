@@ -24,11 +24,11 @@ const FALLBACK_GITHUB_REPOS: GitHubRepo[] = [
     id: 101,
     name: 'skripsi-sentiment-arsya',
     full_name: `${GITHUB_USERNAME}/skripsi-sentiment-arsya`,
-    description: 'SentimenAI — e-commerce review sentiment analysis dashboard with NLP and model comparison.',
+    description: 'SentimenAI — e-commerce review sentiment analysis dashboard with Machine Learning and model comparison.',
     html_url: `https://github.com/${GITHUB_USERNAME}/skripsi-sentiment-arsya`,
     homepage: 'https://frontend-h4q65ncub-arsyaft12-9212s-projects.vercel.app/',
     language: 'Python',
-    topics: ['nlp', 'machine-learning', 'sentiment-analysis', 'flask', 'pandas'],
+    topics: ['machine-learning', 'sentiment-analysis', 'scikit-learn', 'flask', 'pandas'],
     stargazers_count: 14,
     forks_count: 3,
     pushed_at: new Date(Date.now() - 86400000 * 2).toISOString(),
@@ -68,7 +68,7 @@ const DEFAULT_PROJECT_TECH: Record<string, { language: string; stack: string[] }
   },
   'skripsi-sentiment-arsya': {
     language: 'Python',
-    stack: ['Python', 'NLP', 'Scikit-learn', 'Flask', 'Pandas', 'Naïve Bayes', 'SVM']
+    stack: ['Python', 'Machine Learning', 'Scikit-learn', 'Flask', 'Pandas', 'Naïve Bayes', 'SVM']
   },
   'toraksai': {
     language: 'TypeScript',

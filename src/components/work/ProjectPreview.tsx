@@ -177,7 +177,7 @@ function SentimentAiPreviewGraphic() {
       <div className="relative z-10 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="px-2.5 py-1 rounded bg-blue-600/30 border border-blue-400/30 text-[10px] font-bold tracking-wider uppercase text-blue-300">
-            NLP · Sentiment Analysis
+            Machine Learning · Sentiment Analysis
           </div>
           <span className="text-[10px] font-mono text-neutral-400">Skripsi IT</span>
         </div>

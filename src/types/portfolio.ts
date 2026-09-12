@@ -79,7 +79,7 @@ export interface Certificate {
 
 export interface Skill {
   id: string;
-  category: 'Mobile' | 'Languages' | 'Backend' | 'ML/NLP' | 'Data' | 'Engineering & Tooling' | 'Soft Skills' | string;
+  category: 'Mobile' | 'Languages' | 'Backend' | 'Machine Learning' | 'ML/NLP' | 'Data' | 'Engineering & Tooling' | 'Soft Skills' | string;
   name: string;
   display_order: number;
 }

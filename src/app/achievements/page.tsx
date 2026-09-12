@@ -4,7 +4,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { CertificateList } from '@/components/achievements/CertificateList';
 import { fetchCertificates } from '@/lib/supabase';
-import { ShieldCheck } from 'lucide-react';
+import { ShieldCheck, Sparkles } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Certifications & Achievements | Arsya Faturrahman',
@@ -22,7 +22,7 @@ export default async function AchievementsPage() {
   const certificates = await fetchCertificates();
 
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-50 dark:bg-neutral-950 selection:bg-blue-500 selection:text-white transition-colors">
+    <div className="min-h-screen flex flex-col transition-colors">
       <Navbar />
 
       <main className="flex-1 pt-32 pb-24">
@@ -30,15 +30,15 @@ export default async function AchievementsPage() {
 
           {/* Header Section */}
           <div className="space-y-4 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/60 text-blue-600 dark:text-blue-400 text-xs font-semibold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Verified Credibility & Official Documents</span>
+              <span>Verified Credibility & Documents</span>
             </div>
-            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-neutral-950 dark:text-white leading-tight">
-              Certifications & Achievements
+            <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-neutral-950 dark:text-white leading-tight">
+              Certifications & <span className="gradient-text">Achievements</span>
             </h1>
-            <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 font-medium leading-relaxed">
-              Official BNSP professional software engineering certificates, technical workshops, and academic diplomas available for direct interactive document review.
+            <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 font-normal leading-relaxed">
+              Official BNSP professional software engineering certificates, SeNTIK 10 national seminar publications, technical workshops, and verified academic transcripts available for instant interactive document review.
             </p>
           </div>
 

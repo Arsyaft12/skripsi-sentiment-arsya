@@ -1,34 +1,44 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { BackgroundGlow } from "@/components/layout/BackgroundGlow";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio-arsya.vercel.app"),
   title: {
-    default: "Arsya Faturrahman | Mobile Developer & IT Graduate",
+    default: "Arsya Faturrahman | Software Engineer, BD & Creative Lead",
     template: "%s | Arsya Faturrahman",
   },
   description:
-    "Mobile Developer and IT graduate with a product mindset, building scalable and user-centered digital solutions. Portfolio includes mobile app projects, certifications, and technical work.",
+    "Official portfolio of Arsya Faturrahman — Software Engineer, Mobile Developer, Business Development, and Creative Lead with a product mindset.",
   keywords: [
     "Arsya Faturrahman",
     "Mobile Developer",
-    "IT Graduate",
-    "Portfolio",
-    "Flutter",
-    "React Native",
+    "Business Development",
+    "Creative Lead",
     "Software Engineer",
+    "Informatics Graduate",
+    "Flutter",
+    "Next.js",
     "BNSP Certified",
     "Indonesia",
   ],
@@ -42,9 +52,9 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Arsya Faturrahman | Mobile Developer & IT Graduate",
+    title: "Arsya Faturrahman | Software Engineer, BD & Creative Lead",
     description:
-      "Portfolio of Arsya Faturrahman, a Mobile Developer and IT graduate focused on building useful, scalable, and business-aligned digital products.",
+      "Portfolio of Arsya Faturrahman, a Software Engineer, Mobile Developer, Business Development & Creative Lead focused on scalable digital products.",
     url: "https://portfolio-arsya.vercel.app",
     siteName: "Arsya Faturrahman Portfolio",
     locale: "id_ID",
@@ -60,9 +70,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arsya Faturrahman | Mobile Developer & IT Graduate",
+    title: "Arsya Faturrahman | Software Engineer, BD & Creative Lead",
     description:
-      "Portfolio of Arsya Faturrahman, a Mobile Developer and IT graduate focused on scalable, user-centered digital solutions.",
+      "Portfolio of Arsya Faturrahman, specializing in empirical benchmark engines, mobile apps, Machine Learning systems, and creative campaigns.",
     images: ["/assets/photos/Photo Profile.png"],
   },
   robots: {
@@ -80,10 +90,11 @@ export default function RootLayout({
     <html
       lang="id"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`dark ${outfit.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 transition-colors">
+      <body className="min-h-full flex flex-col transition-colors selection:bg-cyan-500/30 selection:text-cyan-200 font-sans">
         <ThemeProvider>
+          <BackgroundGlow />
           {children}
         </ThemeProvider>
       </body>
