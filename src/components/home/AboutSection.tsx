@@ -60,7 +60,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
       tag: 'GPA 3.90 / 4.00',
       tagColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30',
       icon: <GraduationCap className="w-5 h-5 text-blue-500" />,
-      body: 'Informatics Engineering Graduate (Teknik Informatika) from Universitas Cendekia Abditama with a 3.90/4.00 GPA (8 consecutive Dean\'s List honours). Published scientific author at SeNTIK 10 National Conference in Machine Learning & Sentiment Intelligence (SVM & Naïve Bayes), with BNSP English professional certification.',
+      body: 'Informatics Engineering Graduate from Universitas Cendekia Abditama with a 3.90/4.00 GPA (8 consecutive Dean\'s List honours). Published scientific author at SeNTIK 10 National Conference in Machine Learning & Sentiment Intelligence (SVM & Naïve Bayes), with BNSP English professional certification.',
       highlights: ['Top 1% Academic Honour', 'SeNTIK 10 Published Author', 'BNSP Certified Professional'],
     },
     {
@@ -194,7 +194,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
               className="lg:col-span-4 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start"
             >
               <p className="text-lg sm:text-xl text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
-                <strong>Informatics Engineering Graduate (Teknik Informatika)</strong> with <span className="text-cyan-600 dark:text-cyan-300 font-bold">GPA 3.90/4.00</span>, <span className="text-blue-600 dark:text-blue-300 font-bold">SeNTIK 10 Scientific Author</span>, and <span className="text-purple-600 dark:text-purple-300 font-bold">Business Development & Creative Lead</span> at The Pitch Creative Agency.
+                <strong>Informatics Engineering Graduate</strong> with <span className="text-cyan-600 dark:text-cyan-300 font-bold">GPA 3.90/4.00</span>, <span className="text-blue-600 dark:text-blue-300 font-bold">SeNTIK 10 Scientific Author</span>, and <span className="text-purple-600 dark:text-purple-300 font-bold">Business Development & Creative Lead</span> at The Pitch Creative Agency.
               </p>
 
               <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">

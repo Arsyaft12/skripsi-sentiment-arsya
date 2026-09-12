@@ -73,6 +73,7 @@ export interface Certificate {
   issuer: string;
   issue_date: string;
   document_url: string;
+  thumbnail_url?: string | null;
   category: string;
   display_order: number;
 }
