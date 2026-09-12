@@ -493,33 +493,11 @@ export async function fetchSkills(): Promise<Skill[]> {
 }
 
 export async function fetchExperience(): Promise<Experience[]> {
-  if (!supabase) return FALLBACK_EXPERIENCE;
-  try {
-    const { data, error } = await supabase
-      .from('experience')
-      .select('*')
-      .order('display_order', { ascending: true });
-    
-    if (error || !data || data.length === 0) return FALLBACK_EXPERIENCE;
-    return data as Experience[];
-  } catch {
-    return FALLBACK_EXPERIENCE;
-  }
+  return FALLBACK_EXPERIENCE;
 }
 
 export async function fetchEducation(): Promise<Education[]> {
-  if (!supabase) return FALLBACK_EDUCATION;
-  try {
-    const { data, error } = await supabase
-      .from('education')
-      .select('*')
-      .order('display_order', { ascending: true });
-    
-    if (error || !data || data.length === 0) return FALLBACK_EDUCATION;
-    return data as Education[];
-  } catch {
-    return FALLBACK_EDUCATION;
-  }
+  return FALLBACK_EDUCATION;
 }
 
 export async function fetchCertificates(): Promise<Certificate[]> {
