@@ -21,6 +21,8 @@ import {
 } from 'lucide-react';
 import { Experience, Education, Achievement } from '@/types/portfolio';
 
+import { portfolioConfig } from '@/config/portfolio.config';
+
 interface AboutSectionProps {
   experiences: Experience[];
   educationList: Education[];
@@ -53,49 +55,18 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
     }
   };
 
-  const corePillars = [
-    {
-      num: '01',
-      title: 'Informatics Engineering & Research Rigor',
-      tag: 'GPA 3.90 / 4.00',
-      tagColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30',
-      icon: <GraduationCap className="w-5 h-5 text-blue-500" />,
-      body: 'Informatics Engineering Graduate from Universitas Cendekia Abditama with a 3.90/4.00 GPA (8 consecutive Dean\'s List honours). Published scientific author at SeNTIK 10 National Conference in Machine Learning & Sentiment Intelligence (SVM & Naïve Bayes), with BNSP English professional certification.',
-      highlights: ['Top 1% Academic Honour', 'SeNTIK 10 Published Author', 'BNSP Certified Professional'],
-    },
-    {
-      num: '02',
-      title: 'Career Progression & Leadership',
-      tag: '5+ Years Track Record',
-      tagColor: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/30',
-      icon: <Briefcase className="w-5 h-5 text-purple-500" />,
-      body: 'From operational leadership and SOP governance in F&B hospitality to autonomous software engineering (architecting large-scale data engines like BEASTINDEX with 2.4M+ benchmark records), and currently serving as Business Development & Creative Lead at The Pitch Creative Agency.',
-      highlights: ['Agency Leadership', 'High-Scale Engine Architect', 'Operational SOP Governance'],
-    },
-    {
-      num: '03',
-      title: 'Cross-Disciplinary Synergy',
-      tag: 'Rare Engineering Triad',
-      tagColor: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/30',
-      icon: <Lightbulb className="w-5 h-5 text-cyan-500" />,
-      body: 'Connecting software engineering logic (Flutter, Next.js 16, Python ML), commercial business strategy (client pitching, PRD scoping, B2B deal structuring), and creative direction (directing viral short-form storytelling campaigns with 300K+ organic reach).',
-      highlights: ['Engineering Rigor', 'Commercial Acumen', 'Viral Brand Storytelling'],
-    },
-    {
-      num: '04',
-      title: 'Target Industry Sectors',
-      tag: 'High-Impact Focus',
-      tagColor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30',
-      icon: <Building2 className="w-5 h-5 text-emerald-500" />,
-      body: 'Driving measurable value across high-growth industries:',
-      listItems: [
-        { icon: <Cpu className="w-3.5 h-3.5 text-cyan-500 shrink-0" />, label: 'Machine Learning & AI', desc: 'Supervised Learning, Predictive Models, Benchmark Analytics' },
-        { icon: <Smartphone className="w-3.5 h-3.5 text-purple-500 shrink-0" />, label: 'Mobile & Web SaaS', desc: 'Scalable, reactive cross-platform applications' },
-        { icon: <Megaphone className="w-3.5 h-3.5 text-pink-500 shrink-0" />, label: 'Creative Media Strategy', desc: 'Visual direction & high-converting brand campaigns' },
-        { icon: <TrendingUp className="w-3.5 h-3.5 text-emerald-500 shrink-0" />, label: 'Tech Business Development', desc: 'Product scoping, partner relations & commercial scaling' },
-      ],
-    },
-  ];
+  const corePillars = portfolioConfig.aboutPillars.map((p, idx) => {
+    const icons = [
+      <GraduationCap key="1" className="w-5 h-5 text-blue-500" />,
+      <Briefcase key="2" className="w-5 h-5 text-purple-500" />,
+      <Lightbulb key="3" className="w-5 h-5 text-cyan-500" />,
+      <Building2 key="4" className="w-5 h-5 text-emerald-500" />,
+    ];
+    return {
+      ...p,
+      icon: icons[idx % icons.length],
+    };
+  });
 
   return (
     <section id="about" className="py-24 px-6 md:px-12 relative overflow-hidden">
@@ -105,13 +76,13 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
         <div className="text-center space-y-3 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 text-xs sm:text-sm font-bold uppercase tracking-wider">
             <Sparkles className="w-4 h-4" />
-            <span>Profile & Strategic Value Proposition</span>
+            <span>Profile & Value Proposition</span>
           </div>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white tracking-tight">
             About <span className="grad-vi">Me</span>
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-            Informatics Engineering Graduate, Business Development Strategist & Creative Lead.
+            {portfolioConfig.personal.title}
           </p>
         </div>
 
@@ -138,25 +109,26 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
                   Hi, I&apos;m
                 </span>
                 <h3 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
-                  Arsya Faturrahman
+                  {portfolioConfig.personal.name}
                 </h3>
               </div>
 
               <div className="space-y-1.5 text-slate-700 dark:text-slate-300 text-sm sm:text-base font-semibold">
                 <div className="flex items-center justify-center lg:justify-start gap-2.5">
                   <span className="h-2 w-2 rounded-full bg-cyan-500" />
-                  <span>Informatics Engineering Graduate</span>
+                  <span>{portfolioConfig.personal.title}</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start gap-2.5">
                   <span className="h-2 w-2 rounded-full bg-purple-500" />
-                  <span>Business Development & Creative Lead</span>
+                  <span>{portfolioConfig.personal.location}</span>
                 </div>
               </div>
 
               <div className="pt-2 flex flex-wrap gap-3 justify-center lg:justify-start">
                 <a
-                  href="/assets/certificates/Arsya Faturrahman CV IT.pdf"
-                  download="Arsya Faturrahman CV IT.pdf"
+                  href={portfolioConfig.personal.resumePdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider cursor-pointer shadow-md hover:scale-105 transition-transform"
                 >
                   <FileDown className="w-4 h-4" />
@@ -175,8 +147,8 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
             >
               <div className="relative w-72 sm:w-88 h-88 sm:h-[440px] rounded-3xl overflow-hidden shadow-2xl shadow-cyan-500/15 border border-slate-200/80 dark:border-slate-800 bg-gradient-to-b from-slate-100 dark:from-slate-900 to-slate-200 dark:to-slate-950 flex items-end justify-center group">
                 <Image
-                  src="/assets/photos/Photo Profile.png"
-                  alt="Arsya Faturrahman"
+                  src={portfolioConfig.personal.avatarUrl}
+                  alt={portfolioConfig.personal.name}
                   fill
                   priority
                   className="object-cover object-top hover:scale-105 transition-transform duration-500"
@@ -194,11 +166,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
               className="lg:col-span-4 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start"
             >
               <p className="text-lg sm:text-xl text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
-                <strong>Informatics Engineering Graduate</strong> with <span className="text-cyan-600 dark:text-cyan-300 font-bold">GPA 3.90/4.00</span>, <span className="text-blue-600 dark:text-blue-300 font-bold">SeNTIK 10 Scientific Author</span>, and <span className="text-purple-600 dark:text-purple-300 font-bold">Business Development & Creative Lead</span> at The Pitch Creative Agency.
-              </p>
-
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                Focused on developing mobile apps (Flutter, React), full-stack data engines (<span className="text-cyan-500 font-bold">2.4M+ records</span>), Machine Learning classification models, and high-impact commercial digital campaigns.
+                {portfolioConfig.personal.bioLong}
               </p>
 
               <div className="flex items-center gap-3 pt-2">
@@ -274,7 +242,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
                   </p>
                 </div>
 
-                {pillar.highlights && (
+                {pillar.highlights && pillar.highlights.length > 0 && (
                   <div className="flex flex-wrap gap-2 pt-3 border-t border-slate-100 dark:border-slate-800">
                     {pillar.highlights.map((h, i) => (
                       <span key={i} className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/80 px-3 py-1.5 rounded-xl">
@@ -283,20 +251,6 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
                       </span>
                     ))}
                   </div>
-                )}
-
-                {pillar.listItems && (
-                  <ul className="space-y-2.5 pt-3 border-t border-slate-100 dark:border-slate-800">
-                    {pillar.listItems.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-                        {item.icon}
-                        <div>
-                          <strong className="text-slate-900 dark:text-white">{item.label}:</strong>{' '}
-                          <span className="text-slate-500 dark:text-slate-400">{item.desc}</span>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
                 )}
               </motion.div>
             ))}

@@ -1,93 +1,98 @@
 import { GitHubRepo, ProjectCardData } from '@/types/portfolio';
 import { fetchProjectSettings } from '@/lib/supabase';
 import { validateLiveUrl } from '@/lib/healthCheck';
+import { portfolioConfig } from '@/config/portfolio.config';
 
-const GITHUB_USERNAME = process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'Arsyaft12';
-const SELF_REPO_NAME = 'portfolio-arsya'; // Self-exclusion guard for current portfolio repository
+const GITHUB_USERNAME =
+  process.env.NEXT_PUBLIC_GITHUB_USERNAME ||
+  portfolioConfig.socialLinks.github.replace(/^https?:\/\/github\.com\/?/, '') ||
+  'developer';
+const SELF_REPO_NAME = 'portfolio-starter';
 
 // Fallback GitHub repos data if GitHub API is unreachable or rate limited
 const FALLBACK_GITHUB_REPOS: GitHubRepo[] = [
   {
     id: 100,
-    name: 'beastindex',
-    full_name: `${GITHUB_USERNAME}/beastindex`,
-    description: 'BEASTINDEX — Empirical fitness scoring and animal-archetype mapping engine built with Next.js 16 App Router, TypeScript, and statistical normalization (DOTS & Riegel).',
-    html_url: `https://github.com/${GITHUB_USERNAME}/beastindex`,
-    homepage: 'https://beastindex.com',
+    name: 'saas-analytics-engine',
+    full_name: `${GITHUB_USERNAME}/saas-analytics-engine`,
+    description: 'Enterprise Analytics Engine — high-performance metrics aggregation and dashboard engine built with Next.js 16 App Router, TypeScript, and Tailwind CSS.',
+    html_url: `https://github.com/${GITHUB_USERNAME}/saas-analytics-engine`,
+    homepage: 'https://example.com/demo',
     language: 'TypeScript',
-    topics: ['nextjs-16', 'typescript', 'tailwind-css', 'data-science', 'fitness-engine', 'empirical-curves'],
-    stargazers_count: 24,
-    forks_count: 5,
+    topics: ['nextjs-16', 'typescript', 'tailwind-css', 'analytics', 'data-viz'],
+    stargazers_count: 32,
+    forks_count: 6,
     pushed_at: new Date().toISOString(),
   },
   {
     id: 101,
-    name: 'skripsi-sentiment-arsya',
-    full_name: `${GITHUB_USERNAME}/skripsi-sentiment-arsya`,
-    description: 'SentimenAI — e-commerce review sentiment analysis dashboard with Machine Learning and model comparison.',
-    html_url: `https://github.com/${GITHUB_USERNAME}/skripsi-sentiment-arsya`,
-    homepage: 'https://frontend-h4q65ncub-arsyaft12-9212s-projects.vercel.app/',
+    name: 'ecommerce-ai-platform',
+    full_name: `${GITHUB_USERNAME}/ecommerce-ai-platform`,
+    description: 'E-Commerce AI Intelligence — intelligent review sentiment classifier and real-time recommendation system.',
+    html_url: `https://github.com/${GITHUB_USERNAME}/ecommerce-ai-platform`,
+    homepage: 'https://example.com/demo-ai',
     language: 'Python',
-    topics: ['machine-learning', 'sentiment-analysis', 'scikit-learn', 'flask', 'pandas'],
-    stargazers_count: 14,
-    forks_count: 3,
+    topics: ['machine-learning', 'sentiment-analysis', 'scikit-learn', 'fastapi', 'python'],
+    stargazers_count: 18,
+    forks_count: 4,
     pushed_at: new Date(Date.now() - 86400000 * 2).toISOString(),
   },
   {
     id: 102,
-    name: 'toraksai',
-    full_name: `${GITHUB_USERNAME}/toraksai`,
-    description: 'ToraksAI — thoracic X-ray clinical decision support and explainable AI diagnostic dashboard.',
-    html_url: `https://github.com/${GITHUB_USERNAME}/toraksai`,
-    homepage: 'https://frontend-sable-one-90kmisglle.vercel.app',
-    language: 'TypeScript',
-    topics: ['ai', 'dashboard', 'healthcare', 'monitoring', 'nextjs'],
-    stargazers_count: 6,
-    forks_count: 1,
+    name: 'mobile-fitness-tracker',
+    full_name: `${GITHUB_USERNAME}/mobile-fitness-tracker`,
+    description: 'Mobile Fitness & Workout Engine — Cross-platform Flutter mobile application with offline-first local storage and charts.',
+    html_url: `https://github.com/${GITHUB_USERNAME}/mobile-fitness-tracker`,
+    homepage: 'https://example.com/demo-app',
+    language: 'Dart',
+    topics: ['flutter', 'dart', 'mobile-app', 'fitness', 'cross-platform'],
+    stargazers_count: 15,
+    forks_count: 2,
     pushed_at: new Date(Date.now() - 86400000 * 4).toISOString(),
   },
   {
     id: 103,
-    name: 'the-pitch-creative',
-    full_name: 'the-pitch-creative/the-pitch-creative-media',
-    description: 'The Pitch Creative — Digital brand & media showcase with editorial storytelling.',
-    html_url: 'https://www.thepitchcreative.media/',
-    homepage: 'https://www.thepitchcreative.media/',
+    name: 'creative-studio-web',
+    full_name: `${GITHUB_USERNAME}/creative-studio-web`,
+    description: 'Creative Agency Showcase — interactive agency web platform with editorial layouts and smooth animations.',
+    html_url: `https://github.com/${GITHUB_USERNAME}/creative-studio-web`,
+    homepage: 'https://example.com/demo-agency',
     language: 'TypeScript',
-    topics: ['creative', 'media', 'editorial', 'nextjs', 'design'],
-    stargazers_count: 0,
-    forks_count: 0,
+    topics: ['nextjs', 'framer-motion', 'creative', 'design', 'tailwind-css'],
+    stargazers_count: 8,
+    forks_count: 1,
     pushed_at: new Date(Date.now() - 86400000 * 7).toISOString(),
   }
 ];
 
 const DEFAULT_PROJECT_TECH: Record<string, { language: string; stack: string[] }> = {
-  'beastindex': {
+  'saas-analytics-engine': {
     language: 'TypeScript',
-    stack: ['Next.js 16', 'TypeScript', 'Tailwind CSS v4', 'Python', 'DOTS Normalisation', 'Riegel Model']
+    stack: ['Next.js 16', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Charts']
   },
-  'skripsi-sentiment-arsya': {
+  'ecommerce-ai-platform': {
     language: 'Python',
-    stack: ['Python', 'Machine Learning', 'Scikit-learn', 'Flask', 'Pandas', 'Naïve Bayes', 'SVM']
+    stack: ['Python', 'Scikit-learn', 'FastAPI', 'Pandas', 'NLP']
   },
-  'toraksai': {
-    language: 'TypeScript',
-    stack: ['TypeScript', 'Next.js', 'PyTorch / CNN', 'Grad-CAM Heatmaps', 'Medical AI']
+  'mobile-fitness-tracker': {
+    language: 'Dart',
+    stack: ['Flutter', 'Dart', 'Bloc', 'SQLite', 'Clean Architecture']
   },
-  'the-pitch-creative': {
+  'creative-studio-web': {
     language: 'TypeScript',
-    stack: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Framer Motion', 'Editorial Web']
+    stack: ['Next.js', 'Framer Motion', 'Tailwind CSS', 'TypeScript']
   }
 };
 
 export async function getGitHubRepos(): Promise<GitHubRepo[]> {
   try {
+    const headers: Record<string, string> = {
+      'Accept': 'application/vnd.github.v3+json',
+      'User-Agent': 'Portfolio-Template-App'
+    };
     const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`, {
       next: { revalidate: 3600 },
-      headers: {
-        'Accept': 'application/vnd.github.v3+json',
-        'User-Agent': 'Arsya-Portfolio-App'
-      }
+      headers
     });
 
     if (!res.ok) {

@@ -35,7 +35,7 @@ export async function validateLiveUrl(url: string | null | undefined): Promise<H
     try {
       res = await fetch(url, {
         method: 'HEAD',
-        headers: { 'User-Agent': 'Arsya-Portfolio-HealthCheck/1.0' },
+        headers: { 'User-Agent': 'Portfolio-HealthCheck/1.0' },
         signal: controller.signal,
       });
     } catch {
@@ -44,7 +44,7 @@ export async function validateLiveUrl(url: string | null | undefined): Promise<H
       const getTimeoutId = setTimeout(() => getController.abort(), 5000);
       res = await fetch(url, {
         method: 'GET',
-        headers: { 'User-Agent': 'Arsya-Portfolio-HealthCheck/1.0' },
+        headers: { 'User-Agent': 'Portfolio-HealthCheck/1.0' },
         signal: getController.signal,
       });
       clearTimeout(getTimeoutId);

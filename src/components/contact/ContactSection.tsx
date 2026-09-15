@@ -14,6 +14,8 @@ import {
   Pin 
 } from 'lucide-react';
 
+import { portfolioConfig } from '@/config/portfolio.config';
+
 interface Comment {
   id: string;
   name: string;
@@ -22,34 +24,6 @@ interface Comment {
   isPinned?: boolean;
 }
 
-const NATURAL_COMMENTS: Comment[] = [
-  {
-    id: 'pinned-1',
-    name: 'Arsya Faturrahman',
-    message: 'Welcome to my portfolio! Drop a note, collaboration proposal, or just say hi 👋',
-    time: 'Pinned',
-    isPinned: true,
-  },
-  {
-    id: '2',
-    name: 'Dimas Surya',
-    message: 'Clean architecture on BEASTINDEX, and love the smooth UI flow. Solid work bro!',
-    time: '1d ago',
-  },
-  {
-    id: '3',
-    name: 'Jessica Tan',
-    message: 'Great collaboration on the creative campaigns and pitch decks. Looking forward to the next project!',
-    time: '3d ago',
-  },
-  {
-    id: '4',
-    name: 'Fajar Nugraha',
-    message: 'Congrats on the SeNTIK 10 paper publication & graduation with 3.90 GPA! Sukses terus Sya!',
-    time: '5d ago',
-  },
-];
-
 export function ContactSection() {
   // Contact Form State
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -57,7 +31,7 @@ export function ContactSection() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   // Live Guestbook Comments State with LocalStorage persistence
-  const [comments, setComments] = useState<Comment[]>(NATURAL_COMMENTS);
+  const [comments, setComments] = useState<Comment[]>(portfolioConfig.guestbookDefaultComments);
   const [newCommentName, setNewCommentName] = useState('');
   const [newCommentMessage, setNewCommentMessage] = useState('');
   const [isPostingComment, setIsPostingComment] = useState(false);
@@ -148,15 +122,17 @@ export function ContactSection() {
                 <span>Send Direct Inquiry</span>
               </div>
               
-              <a
-                href="https://wa.me/6281283626248?text=Hello%20Arsya,%20I%20am%20interested%20in%20your%20portfolio"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold hover:bg-emerald-500/20 transition-all"
-              >
-                <Phone className="w-3.5 h-3.5" />
-                <span>WhatsApp</span>
-              </a>
+              {portfolioConfig.contact.whatsappLink && (
+                <a
+                  href={portfolioConfig.contact.whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold hover:bg-emerald-500/20 transition-all"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>WhatsApp</span>
+                </a>
+              )}
             </div>
 
             {submitSuccess && (

@@ -6,15 +6,15 @@ import { CertificateList } from '@/components/achievements/CertificateList';
 import { fetchCertificates } from '@/lib/supabase';
 import { ShieldCheck, Sparkles } from 'lucide-react';
 
+import { portfolioConfig } from '@/config/portfolio.config';
+
 export const metadata: Metadata = {
-  title: 'Certifications & Achievements | Arsya Faturrahman',
-  description:
-    'View verified certifications, academic credentials, and professional achievements for Arsya Faturrahman, including BNSP-backed software engineering credentials.',
+  title: `Certifications & Achievements | ${portfolioConfig.personal.name}`,
+  description: `View verified certifications, academic credentials, and professional achievements for ${portfolioConfig.personal.name}.`,
   openGraph: {
-    title: 'Certifications & Achievements | Arsya Faturrahman',
-    description:
-      'Official certifications and achievements for Arsya Faturrahman, including software engineering credentials and academic records.',
-    images: ['/assets/photos/Photo Profile.png'],
+    title: `Certifications & Achievements | ${portfolioConfig.personal.name}`,
+    description: `Official certifications and achievements for ${portfolioConfig.personal.name}.`,
+    images: [portfolioConfig.seo.ogImage],
   },
 };
 

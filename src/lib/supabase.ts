@@ -16,299 +16,210 @@ export const supabase = (supabaseUrl && supabaseAnonKey && supabaseUrl.startsWit
 export const FALLBACK_PROJECT_SETTINGS: ProjectSetting[] = [
   {
     id: '1',
-    repo_name: 'beastindex',
+    repo_name: 'saas-analytics-engine',
     is_featured: true,
     display_order: 1,
-    custom_title: 'BEASTINDEX — Fitness Scoring & Animal Archetypes',
-    custom_description: 'Empirical fitness scoring and animal-archetype mapping engine built with Next.js 16 App Router, TypeScript, and Tailwind CSS v4. Analyzes 2.37M+ lifts and 56k+ race splits using DOTS normalization, Riegel race equivalence, and KSPO fitness benchmarks.',
-    live_url_override: 'https://beastindex.com',
-    category: 'Full-Stack & Data Engine',
-    badge: 'New Flagship Engine',
+    custom_title: 'SaaS Analytics & Data Engine',
+    custom_description: 'High-performance real-time analytics aggregation and data visualization platform built with Next.js 16 App Router, TypeScript, and modern dashboard architecture.',
+    live_url_override: 'https://example.com/demo-analytics',
+    category: 'Full-Stack Web App',
+    badge: 'Featured Project',
     metrics: [
-      { label: 'OPL Dataset', value: '2.37M+ Lifts' },
-      { label: 'NYC Splits', value: '56K+ Finishers' },
-      { label: 'Architecture', value: 'Next.js 16' },
-      { label: 'Normalisation', value: 'DOTS + Riegel' }
+      { label: 'Uptime', value: '99.9%' },
+      { label: 'Latency', value: '<50ms' },
+      { label: 'Stack', value: 'Next.js 16' },
+      { label: 'Database', value: 'PostgreSQL' }
     ],
     exclude_from_listing: false,
   },
   {
     id: '2',
-    repo_name: 'skripsi-sentiment-arsya',
+    repo_name: 'ecommerce-ai-platform',
     is_featured: true,
     display_order: 2,
-    custom_title: 'SentimenAI — Dashboard Analisis Sentimen',
-    custom_description: 'E-commerce sentiment analysis dashboard using Machine Learning (Naïve Bayes & SVM) to classify 1,000+ public reviews with 85% accuracy and actionable business insights.',
-    live_url_override: 'https://frontend-h4q65ncub-arsyaft12-9212s-projects.vercel.app/',
-    category: 'Machine Learning & Predictive AI',
-    badge: 'Undergraduate Thesis',
+    custom_title: 'SentimenAI — E-Commerce Intelligence',
+    custom_description: 'Customer review sentiment analysis system powered by Machine Learning classifiers with real-time insight extraction and actionable business dashboard.',
+    live_url_override: 'https://example.com/demo-ai',
+    category: 'AI & Machine Learning',
+    badge: 'Predictive Model',
     metrics: [
-      { label: 'Model Accuracy', value: '85%' },
-      { label: 'Dataset', value: '1,000+ Reviews' },
-      { label: 'Algorithms', value: 'NB & SVM' }
+      { label: 'Accuracy', value: '92.4%' },
+      { label: 'Data Points', value: '50K+ Reviews' },
+      { label: 'Model', value: 'SVM & Naïve Bayes' }
     ],
     exclude_from_listing: false,
   },
   {
     id: '3',
-    repo_name: 'toraksai',
+    repo_name: 'mobile-fitness-tracker',
     is_featured: true,
     display_order: 3,
-    custom_title: 'ToraksAI — Sistem Deteksi Penyakit Toraks',
-    custom_description: 'Clinical decision support web app for thoracic X-ray analysis with Deep Learning CNN classification across 14 thoracic disease categories and explainable Grad-CAM heatmaps.',
-    live_url_override: 'https://frontend-sable-one-90kmisglle.vercel.app',
-    category: 'Computer Vision & Deep Learning',
-    badge: 'Medical AI Support',
+    custom_title: 'FitPulse — Cross-Platform Mobile App',
+    custom_description: 'Full-featured mobile fitness tracker with workout logs, personalized routine recommendations, offline-first local SQLite sync, and interactive charts.',
+    live_url_override: 'https://example.com/demo-mobile',
+    category: 'Mobile Application',
+    badge: 'iOS & Android',
     metrics: [
-      { label: 'Pathologies', value: '14 Classes' },
-      { label: 'XAI Viz', value: 'Grad-CAM' },
-      { label: 'Architecture', value: 'CNN + Web' }
+      { label: 'Platform', value: 'Flutter' },
+      { label: 'FPS', value: '60 FPS Smooth' },
+      { label: 'Storage', value: 'Offline First' }
     ],
     exclude_from_listing: false,
   },
   {
     id: '4',
-    repo_name: 'the-pitch-creative',
+    repo_name: 'creative-studio-web',
     is_featured: true,
     display_order: 4,
-    custom_title: 'The Pitch Creative — Digital Brand & Media Showcase',
-    custom_description: 'A sleek digital brand website and editorial-style media presence featuring visual storytelling, modern web build, and creative campaign integration.',
-    live_url_override: 'https://www.thepitchcreative.media/',
-    category: 'Creative Media & Web Platform',
+    custom_title: 'Studio Showcase & Editorial Media',
+    custom_description: 'A modern design agency website featuring high-conversion visual storytelling, interactive animations, and dark-mode glassmorphic aesthetics.',
+    live_url_override: 'https://example.com/demo-creative',
+    category: 'Creative Web Platform',
     badge: 'Client Production',
     metrics: [
-      { label: 'Performance', value: '100% On-Time' },
-      { label: 'Role', value: 'Web Build & BD' },
-      { label: 'Platform', value: 'Editorial Web' }
+      { label: 'Performance', value: '100% Score' },
+      { label: 'Animation', value: 'Framer Motion' },
+      { label: 'Design', value: 'Glassmorphism' }
     ],
     exclude_from_listing: false,
   }
 ];
 
 export const FALLBACK_ACHIEVEMENTS: Achievement[] = [
-  { id: '1', label: 'Academic Performance', value: '3.90 / 4.00', display_order: 1 },
-  { id: '2', label: 'AI & Data Interest', value: 'Machine Learning', display_order: 2 },
-  { id: '3', label: 'Empirical Records', value: '2.4M+ Benchmarks', display_order: 3 },
-  { id: '4', label: 'Cross-Industry Experience', value: '5+ Years', display_order: 4 },
+  { id: '1', label: 'Production Projects', value: '15+ Shipped', display_order: 1 },
+  { id: '2', label: 'Engineering Experience', value: '4+ Years', display_order: 2 },
+  { id: '3', label: 'Client Satisfaction', value: '100% Rating', display_order: 3 },
+  { id: '4', label: 'Code Quality Score', value: 'A+ Clean Code', display_order: 4 },
 ];
 
 export const FALLBACK_SKILLS: Skill[] = [
   // Mobile
-  { id: '1', category: 'Mobile', name: 'Flutter', display_order: 1 },
-  { id: '2', category: 'Mobile', name: 'Dart (learning)', display_order: 2 },
-  { id: '3', category: 'Mobile', name: 'React Native (exposure)', display_order: 3 },
-  { id: '4', category: 'Mobile', name: 'Mobile UI/UX Principles', display_order: 4 },
+  { id: '1', category: 'Mobile', name: 'Flutter & Dart', display_order: 1 },
+  { id: '2', category: 'Mobile', name: 'React Native', display_order: 2 },
+  { id: '3', category: 'Mobile', name: 'Mobile UI/UX Design', display_order: 3 },
+  { id: '4', category: 'Mobile', name: 'Offline-First Architecture', display_order: 4 },
 
   // Languages
   { id: '5', category: 'Languages', name: 'TypeScript', display_order: 1 },
-  { id: '6', category: 'Languages', name: 'Python', display_order: 2 },
-  { id: '7', category: 'Languages', name: 'JavaScript', display_order: 3 },
-  { id: '8', category: 'Languages', name: 'SQL', display_order: 4 },
-  { id: '9', category: 'Languages', name: 'C++', display_order: 5 },
-  { id: '10', category: 'Languages', name: 'C#', display_order: 6 },
-  { id: '11', category: 'Languages', name: 'HTML / CSS', display_order: 7 },
+  { id: '6', category: 'Languages', name: 'JavaScript (ES6+)', display_order: 2 },
+  { id: '7', category: 'Languages', name: 'Python', display_order: 3 },
+  { id: '8', category: 'Languages', name: 'SQL & PostgreSQL', display_order: 4 },
+  { id: '9', category: 'Languages', name: 'HTML5 & CSS3', display_order: 5 },
 
   // Backend & Web
-  { id: '12', category: 'Backend', name: 'Next.js 16 (App Router)', display_order: 1 },
-  { id: '13', category: 'Backend', name: 'Flask (REST API)', display_order: 2 },
-  { id: '14', category: 'Backend', name: 'REST API Integration', display_order: 3 },
-  { id: '15', category: 'Backend', name: 'Supabase (PostgreSQL)', display_order: 4 },
-  { id: '16', category: 'Backend', name: 'Streamlit', display_order: 5 },
+  { id: '10', category: 'Backend', name: 'Next.js 16 (App Router)', display_order: 1 },
+  { id: '11', category: 'Backend', name: 'React 19', display_order: 2 },
+  { id: '12', category: 'Backend', name: 'Node.js & Express', display_order: 3 },
+  { id: '13', category: 'Backend', name: 'Supabase & Firebase', display_order: 4 },
+  { id: '14', category: 'Backend', name: 'REST & GraphQL APIs', display_order: 5 },
 
-  // Machine Learning & Modeling
-  { id: '17', category: 'Machine Learning', name: 'Scikit-learn', display_order: 1 },
-  { id: '18', category: 'Machine Learning', name: 'NLTK & spaCy', display_order: 2 },
-  { id: '19', category: 'Machine Learning', name: 'Statistical Normalization (DOTS / Riegel)', display_order: 3 },
-  { id: '20', category: 'Machine Learning', name: 'Naïve Bayes & SVM', display_order: 4 },
-  { id: '21', category: 'Machine Learning', name: 'VADER & TextBlob', display_order: 5 },
-
-  // Data
-  { id: '22', category: 'Data', name: 'Pandas & NumPy', display_order: 1 },
-  { id: '23', category: 'Data', name: 'Empirical Percentile Curves', display_order: 2 },
-  { id: '24', category: 'Data', name: 'Sentiment Analysis', display_order: 3 },
-  { id: '25', category: 'Data', name: 'Data Mining & Cleaning', display_order: 4 },
-  { id: '26', category: 'Data', name: 'Web Scraping', display_order: 5 },
+  // Machine Learning & AI
+  { id: '15', category: 'Machine Learning', name: 'OpenAI API & LLM Integrations', display_order: 1 },
+  { id: '16', category: 'Machine Learning', name: 'Scikit-learn & Python ML', display_order: 2 },
+  { id: '17', category: 'Machine Learning', name: 'Sentiment Analysis & NLP', display_order: 3 },
 
   // Engineering & Tooling
-  { id: '27', category: 'Engineering & Tooling', name: 'Tailwind CSS v4', display_order: 1 },
-  { id: '28', category: 'Engineering & Tooling', name: 'Git & GitHub', display_order: 2 },
-  { id: '29', category: 'Engineering & Tooling', name: 'Vercel Deployment', display_order: 3 },
-  { id: '30', category: 'Engineering & Tooling', name: 'Linux (basic)', display_order: 4 },
-  { id: '31', category: 'Engineering & Tooling', name: 'Black Box & White Box Testing', display_order: 5 },
-  { id: '32', category: 'Engineering & Tooling', name: 'UAT & Quality Assurance', display_order: 6 },
-  { id: '33', category: 'Engineering & Tooling', name: 'Dashboard Design', display_order: 7 },
+  { id: '18', category: 'Engineering & Tooling', name: 'Tailwind CSS', display_order: 1 },
+  { id: '19', category: 'Engineering & Tooling', name: 'Framer Motion', display_order: 2 },
+  { id: '20', category: 'Engineering & Tooling', name: 'Git & GitHub Actions', display_order: 3 },
+  { id: '21', category: 'Engineering & Tooling', name: 'Vercel Deployment', display_order: 4 },
+  { id: '22', category: 'Engineering & Tooling', name: 'Figma to Code', display_order: 5 },
 
   // Soft Skills
-  { id: '34', category: 'Soft Skills', name: 'Analytical Thinking', display_order: 1 },
-  { id: '35', category: 'Soft Skills', name: 'Fast Learner', display_order: 2 },
-  { id: '36', category: 'Soft Skills', name: 'Problem Solving', display_order: 3 },
-  { id: '37', category: 'Soft Skills', name: 'Oral & Written Communication', display_order: 4 }
+  { id: '23', category: 'Soft Skills', name: 'Problem Solving & Critical Thinking', display_order: 1 },
+  { id: '24', category: 'Soft Skills', name: 'Agile & Scrum Workflow', display_order: 2 },
+  { id: '25', category: 'Soft Skills', name: 'Effective Client Communication', display_order: 3 }
 ];
 
 export const FALLBACK_EXPERIENCE: Experience[] = [
   {
     id: '1',
-    role_title: 'F&B Service Crew',
-    organization: 'Hotel Santika Premiere ICE BSD',
-    location: 'BSD City, Indonesia',
-    start_date: '2020-07-01',
-    end_date: '2022-02-28',
+    role_title: 'Senior Full-Stack Engineer',
+    organization: 'Tech Innovations Studio',
+    location: 'Remote',
+    start_date: '2023-06-01',
+    end_date: null,
     highlights: [
-      'Delivered hospitality service for corporate events, gala dinners, and international guest engagements.',
-      'Managed banquet setup, food service, and guest handling for events with 100–500 attendees.',
-      'Built strong communication and adaptability in high-pressure service environments while maintaining service quality.'
+      'Architected and delivered scalable web applications and SaaS platforms using Next.js, TypeScript, and Supabase.',
+      'Improved Core Web Vitals and SEO performance across client web applications by 40%.',
+      'Collaborated closely with product managers and UI designers to ship feature releases on tight deadlines.'
     ],
     display_order: 1
   },
   {
     id: '2',
-    role_title: 'Operations Leader',
-    organization: 'PT. Foresthree Waralaba Indonesia (Janji Jiwa / Tiger Sugar)',
-    location: 'Tangerang, Indonesia',
-    start_date: '2022-07-01',
-    end_date: '2025-04-30',
+    role_title: 'Software Developer & Mobile Specialist',
+    organization: 'Digital Solutions Co.',
+    location: 'Jakarta, Indonesia',
+    start_date: '2021-08-01',
+    end_date: '2023-05-31',
     highlights: [
-      'Led daily outlet operations with a focus on service quality, team coordination, and operational efficiency.',
-      'Managed inventory control, workflow execution, shift supervision, and SOP compliance across store operations.',
-      'Supported team performance and customer experience while maintaining smooth and consistent outlet delivery.'
+      'Built cross-platform mobile applications using Flutter and React Native with native bridge integrations.',
+      'Developed RESTful API microservices with Python and Node.js for high-throughput mobile clients.',
+      'Implemented automated CI/CD pipelines for staging and production app store deployments.'
     ],
     display_order: 2
   },
   {
     id: '3',
-    role_title: 'Freelance Mobile & Web Developer',
-    organization: 'Self-Employed / Freelance',
-    location: 'Remote, Indonesia',
-    start_date: '2024-01-01',
-    end_date: null,
+    role_title: 'Junior Web Developer',
+    organization: 'Creative Agency Inc.',
+    location: 'Jakarta, Indonesia',
+    start_date: '2020-01-01',
+    end_date: '2021-07-31',
     highlights: [
-      'Engineered BEASTINDEX, a high-performance empirical fitness scoring engine built with Next.js 16, TypeScript, and statistical normalization over 2.4M+ benchmark records.',
-      'Developed SentimenAI (SentiSight), a machine learning sentiment analysis system for business review classification with 85% accuracy.',
-      'Built mobile and web solutions for clients using Flutter, Python, TypeScript, and deployed to production platforms such as Vercel.'
+      'Developed responsive landing pages, e-commerce storefronts, and marketing websites.',
+      'Integrated payment gateways and third-party APIs for client commercial portals.',
+      'Ensured cross-browser compatibility and optimized responsive design for mobile devices.'
     ],
     display_order: 3
-  },
-  {
-    id: '4',
-    role_title: 'Business Development & Creative Lead',
-    organization: 'The Pitch Creative Agency',
-    location: 'BSD City, Indonesia',
-    start_date: '2025-11-01',
-    end_date: null,
-    highlights: [
-      'Led business development efforts and client communication for creative and digital projects.',
-      'Translating client goals into technical requirements, creative direction, and project execution plans.',
-      'Bridged business needs with delivery timelines to ensure smooth collaboration and on-time execution.'
-    ],
-    display_order: 4
   }
 ];
 
 export const FALLBACK_EDUCATION: Education[] = [
   {
     id: '1',
-    program: 'S1 Informatics Engineering',
-    institution: 'Universitas Cendekia Abditama',
-    major_or_focus: null,
-    start_date: '2022-01-01',
-    end_date: '2026-08-31',
+    program: 'Bachelor of Computer Science (Informatics)',
+    institution: 'State University of Technology',
+    major_or_focus: 'Software Engineering & Artificial Intelligence',
+    start_date: '2018-09-01',
+    end_date: '2022-07-31',
     score_label: 'GPA 3.90 / 4.00',
-    honor_note: 'Consistent Dean\'s List — 8 Semesters',
+    honor_note: 'Graduated with Highest Distinction / Dean\'s List',
     display_order: 1
-  },
-  {
-    id: '2',
-    program: 'Vocational High School (SMK)',
-    institution: 'SMK Negeri 7 Kab. Tangerang',
-    major_or_focus: 'Hospitality Management',
-    start_date: '2019-01-01',
-    end_date: '2022-01-01',
-    score_label: 'Average Score 83.54',
-    honor_note: 'Graduated with Distinction',
-    display_order: 2
   }
 ];
 
 export const FALLBACK_CERTIFICATES: Certificate[] = [
   {
     id: '1',
-    title: 'BNSP Language Certification — English for Office Administrative Assistant',
-    issuer: 'Lembaga Sertifikasi Profesi Pendidikan Bahasa Inggris (BNSP)',
-    issue_date: '2025-06-30',
-    document_url: '/assets/certificates/Sertifikat BNSP.pdf',
-    thumbnail_url: '/assets/certificates/thumbnails/Sertifikat BNSP.png',
+    title: 'Professional Software Engineer Certification',
+    issuer: 'National Professional Certification Board',
+    issue_date: '2024-06-15',
+    document_url: '#',
+    thumbnail_url: null,
     category: 'Professional Certifications',
     display_order: 1,
   },
   {
     id: '2',
-    title: 'Academic Transcript (Semesters 1–8) - Informatics Engineering',
-    issuer: 'Universitas Cendekia Abditama',
-    issue_date: '2026-08-31',
-    document_url: '/assets/certificates/Kartu Hasil Studi.pdf',
-    thumbnail_url: '/assets/certificates/thumbnails/Kartu Hasil Studi.png',
-    category: 'Academic Records',
+    title: 'Advanced React & Next.js Enterprise Architecture',
+    issuer: 'Tech Academy Global',
+    issue_date: '2023-11-20',
+    document_url: '#',
+    thumbnail_url: null,
+    category: 'Technical Certifications',
     display_order: 2,
   },
   {
     id: '3',
-    title: 'SeNTIK 10 National Seminar - Scientific Paper Author',
-    issuer: 'STMIK Jakarta STI&K & Universitas Cendekia Abditama',
-    issue_date: '2026-08-29',
-    document_url: '/assets/certificates/Sertifikat Sentik Baru.pdf',
-    thumbnail_url: '/assets/certificates/thumbnails/Sertifikat Sentik Baru.png',
-    category: 'Academic Records',
+    title: 'Cloud Solutions & Database Architecture Specialist',
+    issuer: 'Cloud Standards Institute',
+    issue_date: '2023-04-10',
+    document_url: '#',
+    thumbnail_url: null,
+    category: 'Cloud & Infrastructure',
     display_order: 3,
-  },
-  {
-    id: '4',
-    title: 'Techling 2 Advanced Training Certificate',
-    issuer: 'Techling Indonesia',
-    issue_date: '2024-03-20',
-    document_url: '/assets/certificates/SERTIFIKAT TECHLING 2_removed.pdf',
-    thumbnail_url: '/assets/certificates/thumbnails/SERTIFIKAT TECHLING 2_removed.png',
-    category: 'Training & Workshops',
-    display_order: 4,
-  },
-  {
-    id: '5',
-    title: 'Hotel & Hospitality Industrial Internship Certificate',
-    issuer: 'Hotel Professional Partner',
-    issue_date: '2023-11-10',
-    document_url: '/assets/certificates/Sertifikat magang hotel.pdf',
-    thumbnail_url: '/assets/certificates/thumbnails/Sertifikat magang hotel.png',
-    category: 'Internship & Industry',
-    display_order: 5,
-  },
-  {
-    id: '6',
-    title: 'PMI First Aid & Organization Skills Certificate',
-    issuer: 'Palang Merah Indonesia',
-    issue_date: '2023-08-05',
-    document_url: '/assets/certificates/Sertifikat_PMI.pdf',
-    thumbnail_url: '/assets/certificates/thumbnails/Sertifikat_PMI.png',
-    category: 'Organization & Social',
-    display_order: 6,
-  },
-  {
-    id: '7',
-    title: 'Rindam Leadership & Discipline Certificate',
-    issuer: 'Rindam TNI AD',
-    issue_date: '2022-10-12',
-    document_url: '/assets/certificates/sertifikat rindam.pdf',
-    thumbnail_url: '/assets/certificates/thumbnails/sertifikat rindam.png',
-    category: 'Training & Workshops',
-    display_order: 7,
-  },
-  {
-    id: '8',
-    title: 'Vocational High School Diploma — Hospitality Management',
-    issuer: 'SMK Negeri 7 Kabupaten Tangerang',
-    issue_date: '2021-06-01',
-    document_url: '/assets/certificates/ijazah smk (1).pdf',
-    thumbnail_url: '/assets/certificates/thumbnails/ijazah smk (1).png',
-    category: 'Formal Education',
-    display_order: 8,
   }
 ];
 

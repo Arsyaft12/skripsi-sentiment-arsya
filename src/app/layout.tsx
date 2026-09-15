@@ -22,58 +22,46 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+import { portfolioConfig } from "@/config/portfolio.config";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio-arsya.vercel.app"),
+  metadataBase: new URL(portfolioConfig.seo.siteUrl),
   title: {
-    default: "Arsya Faturrahman | Software Engineer, BD & Creative Lead",
-    template: "%s | Arsya Faturrahman",
+    default: portfolioConfig.seo.siteTitle,
+    template: portfolioConfig.seo.titleTemplate,
   },
-  description:
-    "Official portfolio of Arsya Faturrahman — Software Engineer, Mobile Developer, Business Development, and Creative Lead with a product mindset.",
-  keywords: [
-    "Arsya Faturrahman",
-    "Mobile Developer",
-    "Business Development",
-    "Creative Lead",
-    "Software Engineer",
-    "Informatics Graduate",
-    "Flutter",
-    "Next.js",
-    "BNSP Certified",
-    "Indonesia",
-  ],
-  authors: [{ name: "Arsya Faturrahman" }],
-  creator: "Arsya Faturrahman",
-  publisher: "Arsya Faturrahman",
+  description: portfolioConfig.seo.description,
+  keywords: portfolioConfig.seo.keywords,
+  authors: [{ name: portfolioConfig.personal.name }],
+  creator: portfolioConfig.personal.name,
+  publisher: portfolioConfig.personal.name,
   alternates: {
-    canonical: "https://portfolio-arsya.vercel.app",
+    canonical: portfolioConfig.seo.siteUrl,
   },
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Arsya Faturrahman | Software Engineer, BD & Creative Lead",
-    description:
-      "Portfolio of Arsya Faturrahman, a Software Engineer, Mobile Developer, Business Development & Creative Lead focused on scalable digital products.",
-    url: "https://portfolio-arsya.vercel.app",
-    siteName: "Arsya Faturrahman Portfolio",
-    locale: "id_ID",
+    title: portfolioConfig.seo.siteTitle,
+    description: portfolioConfig.seo.description,
+    url: portfolioConfig.seo.siteUrl,
+    siteName: `${portfolioConfig.personal.name} Portfolio`,
+    locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/assets/photos/Photo Profile.png",
+        url: portfolioConfig.seo.ogImage,
         width: 1200,
         height: 630,
-        alt: "Arsya Faturrahman",
+        alt: portfolioConfig.personal.name,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arsya Faturrahman | Software Engineer, BD & Creative Lead",
-    description:
-      "Portfolio of Arsya Faturrahman, specializing in empirical benchmark engines, mobile apps, Machine Learning systems, and creative campaigns.",
-    images: ["/assets/photos/Photo Profile.png"],
+    title: portfolioConfig.seo.siteTitle,
+    description: portfolioConfig.seo.description,
+    images: [portfolioConfig.seo.ogImage],
   },
   robots: {
     index: true,

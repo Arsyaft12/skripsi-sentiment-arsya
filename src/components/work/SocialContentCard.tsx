@@ -45,33 +45,22 @@ function getPlatformConfig(platform: string) {
   }
 }
 
+import { portfolioConfig } from '@/config/portfolio.config';
+
 function getAuthorHandle(content: SocialContent) {
   const url = content.embed_url || '';
 
-  if (content.id === '1' || content.id === '2' || content.id === '5') {
-    return '@arsyaft';
-  }
-
-  if (content.id === '3' || content.id === '4') {
-    return '@foresthreecoffeeofficial';
-  }
-
-  if (content.id === '6' || content.id === '7' || content.id === '8') {
-    return '@media_entertaiment_gen_z';
-  }
-
   if (content.platform.toLowerCase() === 'tiktok') {
     const match = url.match(/tiktok\.com\/@([^/?]+)/i);
-    return match ? `@${match[1]}` : '@media_entertaiment_gen_z';
+    if (match) return `@${match[1]}`;
   }
 
   if (content.platform.toLowerCase() === 'instagram') {
     const match = url.match(/instagram\.com\/(?:reel\/)?@?([^/?]+)/i);
     if (match) return `@${match[1]}`;
-    return '@arsyaft';
   }
 
-  return '@arsyaft';
+  return `@${portfolioConfig.personal.nickname.toLowerCase() || 'creator'}`;
 }
 
 export function SocialContentCard({ content, index }: SocialContentCardProps) {

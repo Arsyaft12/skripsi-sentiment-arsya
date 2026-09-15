@@ -9,15 +9,15 @@ import { getCuratedProjects } from '@/lib/github';
 import { fetchSocialContent } from '@/lib/supabase';
 import { Code2, Share2, Sparkles, Award } from 'lucide-react';
 
+import { portfolioConfig } from '@/config/portfolio.config';
+
 export const metadata: Metadata = {
-  title: 'Projects & Works | Arsya Faturrahman',
-  description:
-    'Explore Arsya Faturrahman’s portfolio of empirical data engines, software engineering work, Machine Learning systems, and digital presence.',
+  title: `Projects & Works | ${portfolioConfig.personal.name}`,
+  description: `Explore ${portfolioConfig.personal.name}’s portfolio of engineering projects, web applications, and software systems.`,
   openGraph: {
-    title: 'Projects & Works | Arsya Faturrahman',
-    description:
-      'Portfolio of software engineering, empirical data platforms, and mobile development projects by Arsya Faturrahman.',
-    images: ['/assets/photos/Photo Profile.png'],
+    title: `Projects & Works | ${portfolioConfig.personal.name}`,
+    description: `Portfolio of software engineering, web apps, and mobile development projects by ${portfolioConfig.personal.name}.`,
+    images: [portfolioConfig.seo.ogImage],
   },
 };
 

@@ -7,6 +7,8 @@ import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
 import { Sun, Moon, Menu, X, ArrowUpRight, Sparkles, FolderGit2, Home, User, Mail } from 'lucide-react';
 
+import { portfolioConfig } from '@/config/portfolio.config';
+
 export function Navbar() {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
@@ -86,7 +88,7 @@ export function Navbar() {
             <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500 dark:bg-cyan-400" />
           </span>
           <span className="text-slate-900 dark:text-white text-sm sm:text-base tracking-tight font-extrabold">
-            Arsya<span className="text-cyan-500 dark:text-cyan-400">.</span>
+            {portfolioConfig.personal.nickname || portfolioConfig.personal.name}<span className="text-cyan-500 dark:text-cyan-400">.</span>
           </span>
         </Link>
 
