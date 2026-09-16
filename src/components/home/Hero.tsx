@@ -10,7 +10,7 @@ import {
   Music, 
   Disc, 
   Send, 
-  FolderGit2, 
+  HeartPulse, 
   FileDown,
   Volume2,
   VolumeX,
@@ -153,8 +153,8 @@ export function Hero() {
               href="#portfolio"
               className="btn-primary inline-flex items-center gap-2.5 px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-cyan-500/25 hover:scale-105 transition-transform"
             >
-              <FolderGit2 className="w-4 h-4 text-white" />
-              <span>Explore Portfolio</span>
+              <HeartPulse className="w-4 h-4 text-white" />
+              <span>Explore Practice</span>
             </a>
 
             <a
@@ -172,7 +172,7 @@ export function Hero() {
               className="btn-secondary inline-flex items-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform"
             >
               <Send className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-              <span>Hire / Contact</span>
+              <span>Consultation / Contact</span>
             </a>
           </div>
 
@@ -337,7 +337,7 @@ export function Hero() {
                   type="button"
                   onClick={togglePlay}
                   className="p-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md hover:scale-110 active:scale-95 transition-transform cursor-pointer"
-                  aria-label={isPlaying ? 'Pause music' : 'Play coding music'}
+                  aria-label={isPlaying ? 'Pause music' : 'Play focus audio'}
                 >
                   {isPlaying ? (
                     <Pause className="w-4 h-4 fill-white" />

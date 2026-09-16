@@ -9,11 +9,11 @@ import { ShieldCheck, Sparkles } from 'lucide-react';
 import { portfolioConfig } from '@/config/portfolio.config';
 
 export const metadata: Metadata = {
-  title: `Certifications & Achievements | ${portfolioConfig.personal.name}`,
-  description: `View verified certifications, academic credentials, and professional achievements for ${portfolioConfig.personal.name}.`,
+  title: `Credentials & Academic Degrees | ${portfolioConfig.personal.name}`,
+  description: `View verified clinical credentials, academic degrees (M.Ft., Ftr., S.Ftr.), and specialized certifications (Cert.DN., SPRC.) for ${portfolioConfig.personal.name}.`,
   openGraph: {
-    title: `Certifications & Achievements | ${portfolioConfig.personal.name}`,
-    description: `Official certifications and achievements for ${portfolioConfig.personal.name}.`,
+    title: `Credentials & Academic Degrees | ${portfolioConfig.personal.name}`,
+    description: `Official credentials and degrees for ${portfolioConfig.personal.name}.`,
     images: [portfolioConfig.seo.ogImage],
   },
 };
@@ -32,13 +32,13 @@ export default async function AchievementsPage() {
           <div className="space-y-4 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Verified Credibility & Documents</span>
+              <span>Verified Clinical Credibility & Documents</span>
             </div>
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-neutral-950 dark:text-white leading-tight">
-              Certifications & <span className="gradient-text">Achievements</span>
+              Credentials & <span className="gradient-text">Degrees</span>
             </h1>
             <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 font-normal leading-relaxed">
-              Official BNSP professional software engineering certificates, SeNTIK 10 national seminar publications, technical workshops, and verified academic transcripts available for instant interactive document review.
+              Official Master of Physical Therapy (M.Ft. GPA 4.00), Professional Physiotherapist (Ftr.), Bachelor (S.Ftr.), Certified Dry Needling (Cert.DN.), and Sports Performance Rehabilitation Specialist (SPRC) credentials available for verification.
             </p>
           </div>
 

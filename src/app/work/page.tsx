@@ -12,11 +12,11 @@ import { Code2, Share2, Sparkles, Award } from 'lucide-react';
 import { portfolioConfig } from '@/config/portfolio.config';
 
 export const metadata: Metadata = {
-  title: `Projects & Works | ${portfolioConfig.personal.name}`,
-  description: `Explore ${portfolioConfig.personal.name}’s portfolio of engineering projects, web applications, and software systems.`,
+  title: `Clinical Practice & Programs | ${portfolioConfig.personal.name}`,
+  description: `Explore ${portfolioConfig.personal.name}’s clinical programs, rehabilitation protocols, and evidence-based case studies.`,
   openGraph: {
-    title: `Projects & Works | ${portfolioConfig.personal.name}`,
-    description: `Portfolio of software engineering, web apps, and mobile development projects by ${portfolioConfig.personal.name}.`,
+    title: `Clinical Practice & Programs | ${portfolioConfig.personal.name}`,
+    description: `Portfolio of physiotherapy, sports injury rehabilitation, and clinical science by ${portfolioConfig.personal.name}.`,
     images: [portfolioConfig.seo.ogImage],
   },
 };
@@ -38,13 +38,13 @@ export default async function WorkPage() {
           <div className="space-y-4 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-wider">
               <Code2 className="w-3.5 h-3.5" />
-              <span>Software Engineering & Systems</span>
+              <span>Evidence-Based Rehabilitation & Clinical Science</span>
             </div>
             <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
-              Featured <span className="grad-vi">Projects & Works</span>
+              Featured <span className="grad-vi">Programs & Cases</span>
             </h1>
             <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
-              Empirical data engines, Machine Learning classification, clinical medical AI, and modern web systems. Built with clean architecture, statistical normalization, and production-ready UX.
+              Musculoskeletal assessment, Return to Sport (RTS) protocols, dry needling clinical applications, and performance rehabilitation. Structured with objective kinematic metrics and patient-centered outcomes.
             </p>
           </div>
 
@@ -59,10 +59,10 @@ export default async function WorkPage() {
             {projects.length === 0 && (
               <div className="p-12 text-center rounded-3xl glass-panel space-y-3">
                 <p className="text-base font-semibold text-slate-200">
-                  No projects are currently marked as featured.
+                  No programs are currently marked as featured.
                 </p>
                 <p className="text-xs text-slate-400">
-                  Add a row in `project_settings` table in Supabase dashboard with `is_featured = true` and `repo_name` matching your GitHub repository.
+                  Add a row in `project_settings` table in Supabase dashboard with `is_featured = true`.
                 </p>
               </div>
             )}
@@ -73,13 +73,13 @@ export default async function WorkPage() {
             <div className="space-y-3 max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider">
                 <Share2 className="w-3.5 h-3.5" />
-                <span>Creative Campaign Portfolio</span>
+                <span>Clinical Media & Education</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
-                Digital Presence & <span className="grad-vi">Social Proof</span>
+                Clinical Media & <span className="grad-vi">Patient Education</span>
               </h2>
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-                Real campaign storytelling, brand visibility, and performance-driven content strategy across Instagram and TikTok as Creative Lead & Business Development.
+                Evidence-based movement education, exercise breakdowns, and rehabilitation insights shared across professional digital platforms.
               </p>
             </div>
 
@@ -100,11 +100,11 @@ export default async function WorkPage() {
             <div className="space-y-2 text-center md:text-left z-10">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold text-cyan-200">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Verified Credentials</span>
+                <span>Verified Clinical Credentials</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Want to Verify My Certifications?</h3>
+              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Want to Verify My Credentials?</h3>
               <p className="text-sm sm:text-base text-blue-100 font-normal max-w-xl">
-                Inspect official BNSP Software Engineering certificates, national seminar publications (SeNTIK 10), and verified transcripts.
+                Inspect official M.Ft. (GPA 4.00), Ftr. (GPA 3.82), S.Ftr., Cert.DN., and SPRC credentials and academic degrees.
               </p>
             </div>
             <Link
@@ -112,7 +112,7 @@ export default async function WorkPage() {
               className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-slate-900 bg-white hover:bg-slate-100 rounded-full transition-all shadow-lg hover:scale-105 active:scale-95 z-10"
             >
               <Award className="w-4 h-4 text-purple-600" />
-              <span>View Certifications →</span>
+              <span>View Credentials →</span>
             </Link>
           </div>
 
