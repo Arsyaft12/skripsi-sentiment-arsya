@@ -17,11 +17,11 @@ export interface PortfolioConfig {
     whatsappLink?: string;
   };
   socialLinks: {
-    github: string;
+    github?: string;
     linkedin: string;
     instagram?: string;
     tiktok?: string;
-    youtube?: string;
+    orcid?: string;
     twitter?: string;
   };
   audioPlayer: {
@@ -55,52 +55,44 @@ export interface PortfolioConfig {
   };
 }
 
-/**
- * =========================================================================
- * 🌟 TEMPLATE CONFIGURATION - GANTI DATA DI BAWAH INI UNTUK KUSTOMISASI 🌟
- * =========================================================================
- * Anda cukup mengubah objek `portfolioConfig` di bawah ini untuk mengganti
- * seluruh identitas, foto, kontak, teks Hero, About, dan SEO.
- */
 export const portfolioConfig: PortfolioConfig = {
   personal: {
-    name: 'Alex Rivera',
-    nickname: 'Alex',
-    title: 'Full-Stack Software Engineer & Product Designer',
+    name: 'Zaez Abdul Mahdi, S.Ftr., Ftr., M.Ft., Cert.DN., SPRC.',
+    nickname: 'Zaez',
+    title: 'Physiotherapist • Sports & Performance Rehabilitation • Researcher',
     roles: [
-      'Full-Stack Software Engineer',
-      'Mobile App Specialist (Flutter & React Native)',
-      'AI & Machine Learning Enthusiast',
-      'UI/UX & Product Design Specialist',
-      'Open Source Contributor',
+      'Clinical Physiotherapist',
+      'Sports & Performance Rehabilitation Specialist',
+      'Musculoskeletal & Movement Optimization',
+      'Return to Sport & Activity Strategist',
+      'Certified Dry Needling (Cert.DN.) Practitioner',
+      'Evidence-Based Clinical Researcher (ORCID Certified)'
     ],
-    statusBadge: 'Available for Full-time Roles & Freelance Projects',
+    statusBadge: 'Available for Clinical Consultation & Sports Rehabilitation',
     bioShort:
-      'Passionate software engineer building high-performance web applications, scalable APIs, and delightful interactive user experiences.',
+      'Fisioterapis yang mengintegrasikan evidence-based practice dan clinical expertise untuk mengoptimalkan gerak, memulihkan fungsi, mengelola kondisi muskuloskeletal, serta mendukung return to activity dan performance secara aman dan terukur.',
     bioLong:
-      'Full-Stack Developer with over 4+ years of experience building modern web and mobile applications using Next.js, TypeScript, Flutter, and cloud architecture. Dedicated to clean code, high aesthetic standards, and measurable business results.',
-    location: 'Jakarta, Indonesia',
+      'Profesional Fisioterapis dengan pendekatan klinis yang berorientasi pada evidence-based practice, clinical reasoning, dan optimalisasi fungsi gerak manusia. Mengintegrasikan pengetahuan ilmiah, asesmen fungsional, dan keterampilan klinis untuk merancang strategi rehabilitasi yang terarah, individual, dan berorientasi pada outcome: “From Clinical Recovery to Optimal Performance.”',
+    location: 'Gading Serpong, Tangerang, Indonesia',
     avatarUrl: '/assets/photos/Photo Profile.png',
-    resumePdfUrl: '/assets/certificates/resume-sample.pdf',
+    resumePdfUrl: '/assets/certificates/CV-Zaez-Abdul-Mahdi.pdf',
   },
 
   contact: {
-    email: 'alex.rivera@example.com',
-    whatsappNumber: '+6281234567890',
-    whatsappLink: 'https://wa.me/6281234567890',
+    email: 'physiozaez@gmail.com',
+    whatsappNumber: '087708577467',
+    whatsappLink: 'https://wa.me/6287708577467?text=Halo%20Zaez,%20saya%20tertarik%20untuk%20konsultasi%20layanan%20fisioterapi',
   },
 
   socialLinks: {
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-    instagram: 'https://instagram.com',
-    tiktok: 'https://tiktok.com',
-    twitter: 'https://twitter.com',
+    linkedin: 'https://www.linkedin.com/in/ftr-zaez-m-70a845385',
+    instagram: 'https://www.instagram.com/fisio_zam',
+    orcid: 'https://orcid.org/0009-0003-4571-3338',
   },
 
   audioPlayer: {
-    title: 'Chill Lofi Focus Beats',
-    artist: 'Alex Rivera • Coding Flow',
+    title: 'Clinical Recovery & Focus',
+    artist: 'Zaez Abdul Mahdi • Movement & Rehab Flow',
     audioUrl: '/assets/audio/coding-focus.mp3',
     coverImageUrl: '/assets/photos/Photo Profile.png',
   },
@@ -108,74 +100,75 @@ export const portfolioConfig: PortfolioConfig = {
   aboutPillars: [
     {
       num: '01',
-      title: 'Full-Stack Architecture & Clean Code',
-      tag: '4+ Years Track Record',
+      title: 'Musculoskeletal & Sports Injury Rehabilitation',
+      tag: 'Pain & Function',
       tagColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30',
-      body: 'Specialized in building resilient, modern web systems using Next.js, React, Node.js, and Supabase/PostgreSQL with rigorous automated testing and type safety.',
-      highlights: ['Scalable Architecture', 'Clean Code & SOLID', 'Type Safety (TypeScript)'],
+      body: 'Focused on comprehensive musculoskeletal rehabilitation, acute & chronic sports injury management, and restoring tissue capacity through structured therapeutic interventions.',
+      highlights: ['Musculoskeletal Physiotherapy', 'Sports Injury Rehab', 'Pain Management Protocols'],
     },
     {
       num: '02',
-      title: 'Cross-Platform Mobile Development',
-      tag: 'iOS & Android',
+      title: 'Movement Assessment & Return to Sport Strategy',
+      tag: 'Progressive Loading',
       tagColor: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/30',
-      body: 'Delivering fluid 60fps mobile experiences using Flutter and React Native with native bridge integrations, offline-first state management, and push notification pipelines.',
-      highlights: ['Flutter & Dart', 'React Native', 'App Store & Play Store Deployment'],
+      body: 'Comprehensive clinical reasoning and functional movement screening to guide objective progression from injury recovery back into athletic performance and daily activities.',
+      highlights: ['Return to Sport (RTS)', 'Functional Movement Screen', 'Objective Monitoring'],
     },
     {
       num: '03',
-      title: 'UI/UX Craftsmanship & Aesthetics',
-      tag: 'Design Systems',
+      title: 'Specialized Clinical & Manual Modalities',
+      tag: 'Certified Techniques',
       tagColor: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/30',
-      body: 'Bridging the gap between engineering logic and world-class interface aesthetics through modern micro-animations (Framer Motion), dark-mode glassmorphism, and responsive design.',
-      highlights: ['Framer Motion Animations', 'Tailwind CSS / Vanilla CSS', 'Figma to Code'],
+      body: 'Hands-on technical clinical skills including Dry Needling (Cert.DN.), joint mobilization manual therapy, and therapeutic aquatic rehabilitation tailored to patient pathology.',
+      highlights: ['Certified Dry Needling', 'Manual Therapy', 'Aquatic Rehabilitation'],
     },
     {
       num: '04',
-      title: 'AI & Machine Learning Integrations',
-      tag: 'Intelligent Systems',
+      title: 'Academic Excellence & Evidence-Based Research',
+      tag: 'GPA 4.00 (M.Ft.)',
       tagColor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30',
-      body: 'Deploying machine learning models, sentiment analytics engines, and LLM-powered API assistants directly into real-time web applications.',
-      highlights: ['LLM & OpenAI APIs', 'Predictive ML Models', 'Real-time Dashboards'],
+      body: 'Master of Physiotherapy (M.Ft.) with a perfect 4.00 GPA from Universitas Esa Unggul, published scientific research tracked on ORCID, and active clinical hospital experience.',
+      highlights: ['S2 Fisioterapi (GPA 4.00)', 'Profesi Fisioterapis (Ftr.)', 'ORCID Researcher (0009-0003-4571-3338)'],
     },
   ],
 
   guestbookDefaultComments: [
     {
       id: 'pinned-1',
-      name: 'Alex Rivera (Owner)',
-      message: 'Welcome to my portfolio template! Drop a note, collaboration proposal, or just say hi 👋',
+      name: 'Zaez Abdul Mahdi, M.Ft. (Owner)',
+      message: 'Welcome to my physiotherapy & rehabilitation portfolio! Drop a consultation inquiry or collaboration note 👋',
       time: 'Pinned',
       isPinned: true,
     },
     {
       id: '2',
-      name: 'Sarah Connor',
-      message: 'Clean and super smooth interface! Great work on this template.',
-      time: '1d ago',
+      name: 'Dr. Hendra Saputra, Sp.OT',
+      message: 'Excellent clinical reasoning and post-operative sports rehabilitation strategy. Highly recommended!',
+      time: '2d ago',
     },
     {
       id: '3',
-      name: 'David Kim',
-      message: 'Impressive animations and lightning-fast page speed. Keep it up!',
-      time: '3d ago',
+      name: 'Rian Pratama (Athlete)',
+      message: 'Great guidance on my ACL return-to-sport progression and dry needling therapy. Back to 100% on the court!',
+      time: '4d ago',
     },
   ],
 
   seo: {
-    siteTitle: 'Alex Rivera — Full-Stack Software Engineer & Product Designer',
-    titleTemplate: '%s | Alex Rivera Portfolio',
+    siteTitle: 'Zaez Abdul Mahdi, M.Ft. — Physiotherapist & Sports Rehabilitation Specialist',
+    titleTemplate: '%s | Zaez Abdul Mahdi Physiotherapist',
     description:
-      'Official portfolio of Alex Rivera — Full-Stack Software Engineer specializing in Next.js, TypeScript, Mobile Apps, and Modern UI Design.',
-    siteUrl: 'https://example-portfolio.vercel.app',
+      'Official portfolio of Zaez Abdul Mahdi, S.Ftr., Ftr., M.Ft., Cert.DN., SPRC. — Evidence-based Physiotherapist specializing in Musculoskeletal, Sports Injury Rehabilitation, and Movement Optimization.',
+    siteUrl: 'https://zaez-physio.vercel.app',
     keywords: [
-      'Alex Rivera',
-      'Software Engineer',
-      'Full Stack Developer',
-      'Next.js Portfolio',
-      'Tailwind CSS',
-      'React Developer',
-      'Web Developer Portfolio',
+      'Zaez Abdul Mahdi',
+      'Physiotherapist',
+      'Fisioterapis Gading Serpong',
+      'Sports Injury Rehabilitation',
+      'Musculoskeletal Physiotherapy',
+      'Dry Needling',
+      'Return to Sport',
+      'Fisioterapi Tangerang'
     ],
     ogImage: '/assets/photos/Photo Profile.png',
   },

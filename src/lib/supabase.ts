@@ -16,210 +16,213 @@ export const supabase = (supabaseUrl && supabaseAnonKey && supabaseUrl.startsWit
 export const FALLBACK_PROJECT_SETTINGS: ProjectSetting[] = [
   {
     id: '1',
-    repo_name: 'saas-analytics-engine',
+    repo_name: 'musculoskeletal-rehab',
     is_featured: true,
     display_order: 1,
-    custom_title: 'SaaS Analytics & Data Engine',
-    custom_description: 'High-performance real-time analytics aggregation and data visualization platform built with Next.js 16 App Router, TypeScript, and modern dashboard architecture.',
-    live_url_override: 'https://example.com/demo-analytics',
-    category: 'Full-Stack Web App',
-    badge: 'Featured Project',
+    custom_title: 'Musculoskeletal Rehabilitation & Pain Management',
+    custom_description: 'Comprehensive evidence-based clinical protocols for spinal, shoulder, and knee musculoskeletal conditions with targeted functional restoration and pain alleviation.',
+    live_url_override: 'https://orcid.org/0009-0003-4571-3338',
+    category: 'Clinical Physiotherapy',
+    badge: 'Core Clinical Focus',
     metrics: [
-      { label: 'Uptime', value: '99.9%' },
-      { label: 'Latency', value: '<50ms' },
-      { label: 'Stack', value: 'Next.js 16' },
-      { label: 'Database', value: 'PostgreSQL' }
+      { label: 'Approach', value: 'Evidence-Based' },
+      { label: 'Focus', value: 'Pain & Function' },
+      { label: 'Method', value: 'Manual + Exercise' },
+      { label: 'Setting', value: 'Hospital / Clinic' }
     ],
     exclude_from_listing: false,
   },
   {
     id: '2',
-    repo_name: 'ecommerce-ai-platform',
+    repo_name: 'sports-injury-rts',
     is_featured: true,
     display_order: 2,
-    custom_title: 'SentimenAI — E-Commerce Intelligence',
-    custom_description: 'Customer review sentiment analysis system powered by Machine Learning classifiers with real-time insight extraction and actionable business dashboard.',
-    live_url_override: 'https://example.com/demo-ai',
-    category: 'AI & Machine Learning',
-    badge: 'Predictive Model',
+    custom_title: 'Sports Injury Rehabilitation & Return to Sport (RTS)',
+    custom_description: 'Structured progressive loading and functional movement analysis designed to safely transition athletes from acute injury recovery back into peak athletic performance.',
+    live_url_override: 'https://orcid.org/0009-0003-4571-3338',
+    category: 'Sports & Performance',
+    badge: 'Performance Protocol',
     metrics: [
-      { label: 'Accuracy', value: '92.4%' },
-      { label: 'Data Points', value: '50K+ Reviews' },
-      { label: 'Model', value: 'SVM & Naïve Bayes' }
+      { label: 'Phase', value: 'Acute to RTS' },
+      { label: 'Monitoring', value: 'Progressive Load' },
+      { label: 'Outcome', value: 'Safe RTS' }
     ],
     exclude_from_listing: false,
   },
   {
     id: '3',
-    repo_name: 'mobile-fitness-tracker',
+    repo_name: 'dry-needling-therapy',
     is_featured: true,
     display_order: 3,
-    custom_title: 'FitPulse — Cross-Platform Mobile App',
-    custom_description: 'Full-featured mobile fitness tracker with workout logs, personalized routine recommendations, offline-first local SQLite sync, and interactive charts.',
-    live_url_override: 'https://example.com/demo-mobile',
-    category: 'Mobile Application',
-    badge: 'iOS & Android',
+    custom_title: 'Dry Needling (Cert.DN.) & Myofascial Trigger Point Therapy',
+    custom_description: 'Targeted invasive neuromuscular modality for myofascial pain syndromes, muscle tone normalization, and rapid neuromusculoskeletal decompression.',
+    live_url_override: 'https://orcid.org/0009-0003-4571-3338',
+    category: 'Specialized Modality',
+    badge: 'Certified Practice',
     metrics: [
-      { label: 'Platform', value: 'Flutter' },
-      { label: 'FPS', value: '60 FPS Smooth' },
-      { label: 'Storage', value: 'Offline First' }
+      { label: 'Certification', value: 'Cert.DN.' },
+      { label: 'Target', value: 'Trigger Points' },
+      { label: 'Effect', value: 'Rapid Relief' }
     ],
     exclude_from_listing: false,
   },
   {
     id: '4',
-    repo_name: 'creative-studio-web',
+    repo_name: 'movement-optimization',
     is_featured: true,
     display_order: 4,
-    custom_title: 'Studio Showcase & Editorial Media',
-    custom_description: 'A modern design agency website featuring high-conversion visual storytelling, interactive animations, and dark-mode glassmorphic aesthetics.',
-    live_url_override: 'https://example.com/demo-creative',
-    category: 'Creative Web Platform',
-    badge: 'Client Production',
+    custom_title: 'Movement & Functional Assessment Protocol',
+    custom_description: 'Biomechanical screening, gait & movement pattern optimization, and individualized therapeutic exercise prescription for sustainable physical capacity.',
+    live_url_override: 'https://orcid.org/0009-0003-4571-3338',
+    category: 'Functional Assessment',
+    badge: 'Movement Screening',
     metrics: [
-      { label: 'Performance', value: '100% Score' },
-      { label: 'Animation', value: 'Framer Motion' },
-      { label: 'Design', value: 'Glassmorphism' }
+      { label: 'Screening', value: 'Biomechanical' },
+      { label: 'Analysis', value: 'Kinematic Flow' },
+      { label: 'Goal', value: 'Peak Function' }
     ],
     exclude_from_listing: false,
   }
 ];
 
 export const FALLBACK_ACHIEVEMENTS: Achievement[] = [
-  { id: '1', label: 'Production Projects', value: '15+ Shipped', display_order: 1 },
-  { id: '2', label: 'Engineering Experience', value: '4+ Years', display_order: 2 },
-  { id: '3', label: 'Client Satisfaction', value: '100% Rating', display_order: 3 },
-  { id: '4', label: 'Code Quality Score', value: 'A+ Clean Code', display_order: 4 },
+  { id: '1', label: 'Master Degree GPA', value: 'IPK 4.00 / 4.00', display_order: 1 },
+  { id: '2', label: 'Clinical Experience', value: 'Hospital & Sports', display_order: 2 },
+  { id: '3', label: 'Professional Certifications', value: 'Cert.DN. & SPRC.', display_order: 3 },
+  { id: '4', label: 'Research Record', value: 'ORCID Indexed', display_order: 4 },
 ];
 
 export const FALLBACK_SKILLS: Skill[] = [
-  // Mobile
-  { id: '1', category: 'Mobile', name: 'Flutter & Dart', display_order: 1 },
-  { id: '2', category: 'Mobile', name: 'React Native', display_order: 2 },
-  { id: '3', category: 'Mobile', name: 'Mobile UI/UX Design', display_order: 3 },
-  { id: '4', category: 'Mobile', name: 'Offline-First Architecture', display_order: 4 },
+  // Clinical Specializations
+  { id: '1', category: 'Clinical Specializations', name: 'Musculoskeletal Physiotherapy', display_order: 1 },
+  { id: '2', category: 'Clinical Specializations', name: 'Sports Injury Rehabilitation', display_order: 2 },
+  { id: '3', category: 'Clinical Specializations', name: 'Return to Sport Strategy (RTS)', display_order: 3 },
+  { id: '4', category: 'Clinical Specializations', name: 'Performance Rehabilitation', display_order: 4 },
 
-  // Languages
-  { id: '5', category: 'Languages', name: 'TypeScript', display_order: 1 },
-  { id: '6', category: 'Languages', name: 'JavaScript (ES6+)', display_order: 2 },
-  { id: '7', category: 'Languages', name: 'Python', display_order: 3 },
-  { id: '8', category: 'Languages', name: 'SQL & PostgreSQL', display_order: 4 },
-  { id: '9', category: 'Languages', name: 'HTML5 & CSS3', display_order: 5 },
+  // Clinical Modalities
+  { id: '5', category: 'Clinical Modalities', name: 'Certified Dry Needling (Cert.DN.)', display_order: 1 },
+  { id: '6', category: 'Clinical Modalities', name: 'Manual Therapy & Joint Mobilization', display_order: 2 },
+  { id: '7', category: 'Clinical Modalities', name: 'Aquatic Rehabilitation', display_order: 3 },
+  { id: '8', category: 'Clinical Modalities', name: 'Therapeutic Exercise Prescription', display_order: 4 },
+  { id: '9', category: 'Clinical Modalities', name: 'Pain Management Protocols', display_order: 5 },
 
-  // Backend & Web
-  { id: '10', category: 'Backend', name: 'Next.js 16 (App Router)', display_order: 1 },
-  { id: '11', category: 'Backend', name: 'React 19', display_order: 2 },
-  { id: '12', category: 'Backend', name: 'Node.js & Express', display_order: 3 },
-  { id: '13', category: 'Backend', name: 'Supabase & Firebase', display_order: 4 },
-  { id: '14', category: 'Backend', name: 'REST & GraphQL APIs', display_order: 5 },
+  // Assessment & Science
+  { id: '10', category: 'Assessment & Science', name: 'Movement & Functional Assessment', display_order: 1 },
+  { id: '11', category: 'Assessment & Science', name: 'Clinical Reasoning & Decision Making', display_order: 2 },
+  { id: '12', category: 'Assessment & Science', name: 'Objective Monitoring & Progressive Loading', display_order: 3 },
+  { id: '13', category: 'Assessment & Science', name: 'Evidence-Based Practice (EBP)', display_order: 4 },
+  { id: '14', category: 'Assessment & Science', name: 'Clinical Health Research', display_order: 5 },
 
-  // Machine Learning & AI
-  { id: '15', category: 'Machine Learning', name: 'OpenAI API & LLM Integrations', display_order: 1 },
-  { id: '16', category: 'Machine Learning', name: 'Scikit-learn & Python ML', display_order: 2 },
-  { id: '17', category: 'Machine Learning', name: 'Sentiment Analysis & NLP', display_order: 3 },
-
-  // Engineering & Tooling
-  { id: '18', category: 'Engineering & Tooling', name: 'Tailwind CSS', display_order: 1 },
-  { id: '19', category: 'Engineering & Tooling', name: 'Framer Motion', display_order: 2 },
-  { id: '20', category: 'Engineering & Tooling', name: 'Git & GitHub Actions', display_order: 3 },
-  { id: '21', category: 'Engineering & Tooling', name: 'Vercel Deployment', display_order: 4 },
-  { id: '22', category: 'Engineering & Tooling', name: 'Figma to Code', display_order: 5 },
-
-  // Soft Skills
-  { id: '23', category: 'Soft Skills', name: 'Problem Solving & Critical Thinking', display_order: 1 },
-  { id: '24', category: 'Soft Skills', name: 'Agile & Scrum Workflow', display_order: 2 },
-  { id: '25', category: 'Soft Skills', name: 'Effective Client Communication', display_order: 3 }
+  // Professional Focus
+  { id: '15', category: 'Professional Focus', name: 'Patient-Centered Physiotherapy', display_order: 1 },
+  { id: '16', category: 'Professional Focus', name: 'Functional Capacity Restoration', display_order: 2 },
+  { id: '17', category: 'Professional Focus', name: 'Interprofessional Collaboration', display_order: 3 }
 ];
 
 export const FALLBACK_EXPERIENCE: Experience[] = [
   {
     id: '1',
-    role_title: 'Senior Full-Stack Engineer',
-    organization: 'Tech Innovations Studio',
-    location: 'Remote',
-    start_date: '2023-06-01',
-    end_date: null,
+    role_title: 'Physiotherapist | Clinical Physiotherapy Services',
+    organization: 'RS Mitra Keluarga Gading Serpong',
+    location: 'Gading Serpong, Tangerang',
+    start_date: '2022-01-01',
+    end_date: '2024-12-31',
     highlights: [
-      'Architected and delivered scalable web applications and SaaS platforms using Next.js, TypeScript, and Supabase.',
-      'Improved Core Web Vitals and SEO performance across client web applications by 40%.',
-      'Collaborated closely with product managers and UI designers to ship feature releases on tight deadlines.'
+      'Delivered clinical physiotherapy services with primary focus on pain management and functional improvement.',
+      'Applied scientific knowledge and clinical technical skills to support restoration and optimization of patient movement capacity.',
+      'Provided patient-centered physiotherapy care tailored to individual clinical conditions and rehabilitation goals.',
+      'Contributed to interdisciplinary patient recovery through structured, clinically-oriented therapeutic protocols.'
     ],
     display_order: 1
-  },
-  {
-    id: '2',
-    role_title: 'Software Developer & Mobile Specialist',
-    organization: 'Digital Solutions Co.',
-    location: 'Jakarta, Indonesia',
-    start_date: '2021-08-01',
-    end_date: '2023-05-31',
-    highlights: [
-      'Built cross-platform mobile applications using Flutter and React Native with native bridge integrations.',
-      'Developed RESTful API microservices with Python and Node.js for high-throughput mobile clients.',
-      'Implemented automated CI/CD pipelines for staging and production app store deployments.'
-    ],
-    display_order: 2
-  },
-  {
-    id: '3',
-    role_title: 'Junior Web Developer',
-    organization: 'Creative Agency Inc.',
-    location: 'Jakarta, Indonesia',
-    start_date: '2020-01-01',
-    end_date: '2021-07-31',
-    highlights: [
-      'Developed responsive landing pages, e-commerce storefronts, and marketing websites.',
-      'Integrated payment gateways and third-party APIs for client commercial portals.',
-      'Ensured cross-browser compatibility and optimized responsive design for mobile devices.'
-    ],
-    display_order: 3
   }
 ];
 
 export const FALLBACK_EDUCATION: Education[] = [
   {
     id: '1',
-    program: 'Bachelor of Computer Science (Informatics)',
-    institution: 'State University of Technology',
-    major_or_focus: 'Software Engineering & Artificial Intelligence',
-    start_date: '2018-09-01',
-    end_date: '2022-07-31',
-    score_label: 'GPA 3.90 / 4.00',
-    honor_note: 'Graduated with Highest Distinction / Dean\'s List',
+    program: 'S2 Fisioterapi (Master of Physiotherapy)',
+    institution: 'Universitas Esa Unggul',
+    major_or_focus: 'Sports & Performance Rehabilitation Focus',
+    start_date: '2024-01-01',
+    end_date: '2026-08-31',
+    score_label: 'IPK 4.00 / 4.00',
+    honor_note: 'Perfect Academic Standing (GPA 4.00)',
     display_order: 1
+  },
+  {
+    id: '2',
+    program: 'Pendidikan Profesi Fisioterapi (Ftr.)',
+    institution: 'Universitas \'Aisyiyah Yogyakarta',
+    major_or_focus: 'Clinical Physiotherapy Professional Practice',
+    start_date: '2020-01-01',
+    end_date: '2022-08-31',
+    score_label: 'IPK 3.82 / 4.00',
+    honor_note: 'Graduated with Distinction',
+    display_order: 2
+  },
+  {
+    id: '3',
+    program: 'S1 Fisioterapi (S.Ftr.)',
+    institution: 'Universitas \'Aisyiyah Yogyakarta',
+    major_or_focus: 'Physiotherapy Science & Clinical Foundations',
+    start_date: '2016-01-01',
+    end_date: '2020-08-31',
+    score_label: 'IPK 3.73 / 4.00',
+    honor_note: 'Bachelor Degree Honours',
+    display_order: 3
   }
 ];
 
 export const FALLBACK_CERTIFICATES: Certificate[] = [
   {
     id: '1',
-    title: 'Professional Software Engineer Certification',
-    issuer: 'National Professional Certification Board',
-    issue_date: '2024-06-15',
+    title: 'M.Ft. — Magister Fisioterapi',
+    issuer: 'Universitas Esa Unggul',
+    issue_date: '2026-08-31',
     document_url: '#',
     thumbnail_url: null,
-    category: 'Professional Certifications',
+    category: 'Academic Degrees',
     display_order: 1,
   },
   {
     id: '2',
-    title: 'Advanced React & Next.js Enterprise Architecture',
-    issuer: 'Tech Academy Global',
-    issue_date: '2023-11-20',
+    title: 'Ftr. — Pendidikan Profesi Fisioterapi',
+    issuer: 'Universitas \'Aisyiyah Yogyakarta',
+    issue_date: '2022-08-31',
     document_url: '#',
     thumbnail_url: null,
-    category: 'Technical Certifications',
+    category: 'Professional Degrees',
     display_order: 2,
   },
   {
     id: '3',
-    title: 'Cloud Solutions & Database Architecture Specialist',
-    issuer: 'Cloud Standards Institute',
-    issue_date: '2023-04-10',
+    title: 'Cert.DN. — Certified Dry Needling Practitioner',
+    issuer: 'Clinical Needling & Myofascial Institute',
+    issue_date: '2023-05-15',
     document_url: '#',
     thumbnail_url: null,
-    category: 'Cloud & Infrastructure',
+    category: 'Clinical Certifications',
     display_order: 3,
+  },
+  {
+    id: '4',
+    title: 'SPRC. — Sports & Performance Rehabilitation Certified',
+    issuer: 'Sports Physical Therapy & Performance Board',
+    issue_date: '2023-10-20',
+    document_url: '#',
+    thumbnail_url: null,
+    category: 'Specialized Credentials',
+    display_order: 4,
+  },
+  {
+    id: '5',
+    title: 'S.Ftr. — Sarjana Fisioterapi',
+    issuer: 'Universitas \'Aisyiyah Yogyakarta',
+    issue_date: '2020-08-31',
+    document_url: '#',
+    thumbnail_url: null,
+    category: 'Academic Degrees',
+    display_order: 5,
   }
 ];
 

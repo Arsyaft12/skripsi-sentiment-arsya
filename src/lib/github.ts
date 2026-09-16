@@ -5,7 +5,7 @@ import { portfolioConfig } from '@/config/portfolio.config';
 
 const GITHUB_USERNAME =
   process.env.NEXT_PUBLIC_GITHUB_USERNAME ||
-  portfolioConfig.socialLinks.github.replace(/^https?:\/\/github\.com\/?/, '') ||
+  portfolioConfig.socialLinks.github?.replace(/^https?:\/\/github\.com\/?/, '') ||
   'developer';
 const SELF_REPO_NAME = 'portfolio-starter';
 

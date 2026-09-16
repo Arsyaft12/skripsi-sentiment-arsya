@@ -220,21 +220,20 @@ export function Hero() {
               </a>
             )}
 
-            {portfolioConfig.socialLinks.tiktok && (
+            {portfolioConfig.socialLinks.orcid && (
               <a
-                href={portfolioConfig.socialLinks.tiktok}
+                href={portfolioConfig.socialLinks.orcid}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-all hover:scale-110 shadow-sm"
-                aria-label="TikTok"
+                className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition-all hover:scale-110 shadow-sm font-bold text-xs flex items-center justify-center min-w-[44px]"
+                aria-label="ORCID"
+                title="ORCID Scientific Record"
               >
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-1.14v-3.5a6.37 6.37 0 1 0 6.34 6.37V8.7a8.3 8.3 0 0 0 4.77 1.49V6.69z"/>
-                </svg>
+                <span className="text-emerald-600 dark:text-emerald-400 font-extrabold text-xs">iD</span>
               </a>
             )}
 
-            <span className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 pl-2">Social Channels</span>
+            <span className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 pl-2">Professional Channels</span>
           </div>
         </motion.div>
 
