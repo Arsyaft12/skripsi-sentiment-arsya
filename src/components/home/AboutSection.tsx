@@ -379,27 +379,31 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
                       className="object-contain p-1"
                     />
                   </div>
-                  <span className="px-3 py-1 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-600 dark:text-purple-400 text-xs font-bold">
-                    Kode Etik Profesi
+                  <span className="px-3 py-1 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-600 dark:text-purple-400 text-xs font-bold font-mono">
+                    Anggota MKEF 2026-2030
                   </span>
                 </div>
 
                 <div className="space-y-1.5">
                   <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 text-[11px] font-bold">
-                    <span>Etika &amp; Tata Kelola</span>
+                    <span>Etika &amp; Tata Kelola Profesi</span>
                   </div>
                   <h4 className="text-lg font-bold text-slate-900 dark:text-white">
-                    Majelis Kehormatan &amp; Etik (MKEF)
+                    Majelis Kehormatan dan Etik Fisioterapi (MKEF)
                   </h4>
                   <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Berkomitmen pada standar etika medis tertinggi, keselamatan pasien, kerahasiaan medik, dan patient-centered care.
+                    Berkomitmen pada standar etika medis tertinggi, keselamatan pasien, kerahasiaan medik, dan penegakan tata kelola profesi fisioterapi nasional.
                   </p>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
-                <p className="text-[11px] font-mono text-purple-600 dark:text-purple-400 font-semibold">
-                  Standar: Kode Etik Nasional IFI
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-1">
+                <p className="text-[11px] font-mono text-purple-600 dark:text-purple-400 font-bold flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-purple-500"></span>
+                  <span>Jabatan: Sekretaris Periode 2026-2027</span>
+                </p>
+                <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                  Keanggotaan: Anggota MKEF 2026-2030
                 </p>
               </div>
             </motion.div>
