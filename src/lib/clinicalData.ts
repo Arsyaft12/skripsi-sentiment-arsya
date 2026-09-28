@@ -444,8 +444,16 @@ export const CLINICAL_CASES: ClinicalCase[] = [
 // ===============================================
 export const PRACTICE_PHILOSOPHY = {
   headline: 'Active Rehabilitation. Clinical Reasoning. Functional Independence.',
-  quote: '“The goal of physiotherapy is not to make patients dependent on treatment, but to build the capacity and confidence to move, function, and manage their condition independently.”',
-  statement: 'Saya percaya bahwa fisioterapi bukan sekadar memberikan treatment, tetapi merupakan proses untuk membantu pasien memahami kondisinya, membangun kapasitas fisik, dan kembali menjalankan aktivitas yang bermakna secara mandiri.',
+  quote: '“The ultimate goal of physiotherapy is not to create dependence on treatment, but to restore the individual’s capacity, confidence, and self-efficacy to move, function, participate, and manage their health independently.”',
+  statement: `Saya memandang fisioterapi sebagai proses klinis yang berorientasi pada pemulihan kapasitas dan pemberdayaan individu, bukan sekadar pemberian intervensi untuk mengurangi gejala.
+
+Praktik fisioterapi harus berangkat dari clinical assessment yang komprehensif, clinical reasoning berbasis bukti, serta pengambilan keputusan yang berpusat pada pasien. Intervensi kemudian diarahkan untuk mengoptimalkan physical capacity, movement quality, functional performance, load tolerance, dan self-management sesuai kebutuhan serta tujuan individual pasien.
+
+Keberhasilan rehabilitasi tidak hanya diukur dari berkurangnya nyeri atau membaiknya impairment, tetapi dari kemampuan seseorang untuk kembali bergerak, berfungsi, berpartisipasi, dan menjalankan aktivitas yang memiliki makna dalam kehidupannya dengan aman, percaya diri, dan mandiri.
+
+Pada akhirnya, fisioterapi bukan tentang seberapa lama pasien membutuhkan treatment, tetapi tentang seberapa jauh pasien mampu membangun kapasitas untuk tidak lagi bergantung pada treatment.`,
+  coreValues: 'ASSESS • UNDERSTAND • RESTORE • EMPOWER • PERFORM',
+  trajectory: 'From symptom management → to capacity development → to functional independence.',
   frameworkSteps: [
     {
       num: '01',

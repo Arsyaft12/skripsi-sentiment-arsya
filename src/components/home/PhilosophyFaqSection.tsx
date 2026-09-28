@@ -56,22 +56,53 @@ export function PhilosophyFaqSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="p-8 sm:p-12 rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-850 to-indigo-950 text-white border border-cyan-500/30 shadow-2xl relative overflow-hidden space-y-8"
+            className="p-8 sm:p-12 lg:p-14 rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-850 to-indigo-950 text-white border border-cyan-500/30 shadow-2xl relative overflow-hidden space-y-10"
           >
-            <Quote className="w-16 h-16 text-cyan-400/20 absolute -top-2 -left-2 pointer-events-none" />
+            <Quote className="w-20 h-20 text-cyan-400/15 absolute -top-3 -left-3 pointer-events-none" />
 
-            <div className="space-y-6 relative z-10 max-w-4xl mx-auto text-center">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-300">
-                Prinsip Klinis Utama • Rehabilitasi Aktif &amp; Kemandirian Gerak
-              </span>
+            <div className="space-y-8 relative z-10 max-w-4xl mx-auto">
+              <div className="text-center space-y-3">
+                <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-xs font-mono font-bold uppercase tracking-widest text-cyan-300">
+                  Prinsip Klinis Utama • Rehabilitasi Aktif &amp; Kemandirian Gerak
+                </span>
 
-              <blockquote className="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug tracking-tight text-white italic">
-                {PRACTICE_PHILOSOPHY.quote}
-              </blockquote>
+                <blockquote className="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug tracking-tight text-white italic pt-2">
+                  {PRACTICE_PHILOSOPHY.quote}
+                </blockquote>
+              </div>
 
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-                {PRACTICE_PHILOSOPHY.statement}
-              </p>
+              <div className="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed font-normal text-left sm:text-justify border-t border-white/10 pt-6">
+                <p>
+                  Saya memandang fisioterapi sebagai proses klinis yang berorientasi pada pemulihan kapasitas dan pemberdayaan individu, bukan sekadar pemberian intervensi untuk mengurangi gejala.
+                </p>
+                <p>
+                  Praktik fisioterapi harus berangkat dari <em>clinical assessment</em> yang komprehensif, <em>clinical reasoning</em> berbasis bukti, serta pengambilan keputusan yang berpusat pada pasien. Intervensi kemudian diarahkan untuk mengoptimalkan <em>physical capacity</em>, <em>movement quality</em>, <em>functional performance</em>, <em>load tolerance</em>, dan <em>self-management</em> sesuai kebutuhan serta tujuan individual pasien.
+                </p>
+                <p>
+                  Keberhasilan rehabilitasi tidak hanya diukur dari berkurangnya nyeri atau membaiknya impairment, tetapi dari kemampuan seseorang untuk kembali bergerak, berfungsi, berpartisipasi, dan menjalankan aktivitas yang memiliki makna dalam kehidupannya dengan aman, percaya diri, dan mandiri.
+                </p>
+                <p className="font-semibold text-white">
+                  Pada akhirnya, fisioterapi bukan tentang seberapa lama pasien membutuhkan treatment, tetapi tentang seberapa jauh pasien mampu membangun kapasitas untuk tidak lagi bergantung pada treatment.
+                </p>
+              </div>
+
+              {/* Core Mantra & Progression Banner */}
+              <div className="pt-2 flex flex-col items-center gap-3 text-center">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 text-xs sm:text-sm font-mono font-black tracking-widest uppercase shadow-inner">
+                  <span>ASSESS</span>
+                  <span className="text-white/40">•</span>
+                  <span>UNDERSTAND</span>
+                  <span className="text-white/40">•</span>
+                  <span>RESTORE</span>
+                  <span className="text-white/40">•</span>
+                  <span>EMPOWER</span>
+                  <span className="text-white/40">•</span>
+                  <span>PERFORM</span>
+                </div>
+                <p className="text-xs sm:text-sm font-mono font-bold text-emerald-400/90 tracking-wide">
+                  From symptom management → to capacity development → to functional independence.
+                </p>
+              </div>
             </div>
 
             {/* 6-Step Clinical Framework Diagram */}
