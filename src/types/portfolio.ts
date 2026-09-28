@@ -53,7 +53,7 @@ export interface ProjectCardData {
 export interface SocialContent {
   id: string;
   platform: 'tiktok' | 'instagram' | 'youtube' | string;
-  category: 'F&B' | 'Health & Lab' | 'Social Media';
+  category: 'F&B' | 'Health & Lab' | 'Social Media' | 'Clinical Education' | string;
   title: string;
   embed_url: string;
   thumbnail_url?: string | null;
