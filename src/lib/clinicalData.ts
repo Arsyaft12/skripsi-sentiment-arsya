@@ -447,12 +447,42 @@ export const PRACTICE_PHILOSOPHY = {
   quote: '“The goal of physiotherapy is not to make patients dependent on treatment, but to build the capacity and confidence to move, function, and manage their condition independently.”',
   statement: 'Saya percaya bahwa fisioterapi bukan sekadar memberikan treatment, tetapi merupakan proses untuk membantu pasien memahami kondisinya, membangun kapasitas fisik, dan kembali menjalankan aktivitas yang bermakna secara mandiri.',
   frameworkSteps: [
-    { num: '01', title: 'Assessment', desc: 'Evaluasi komprehensif struktur & fungsi gerak' },
-    { num: '02', title: 'Clinical Reasoning', desc: 'Analisis patologi, biomekanik, & biopsikososial' },
-    { num: '03', title: 'Education', desc: 'Pemahaman kondisi & demitifikasi nyeri' },
-    { num: '04', title: 'Active Intervention', desc: 'Latihan terapeutik berbasis target terukur' },
-    { num: '05', title: 'Progressive Loading', desc: 'Peningkatan kapasitas beban jaringan bertahap' },
-    { num: '06', title: 'Functional Reintegration', desc: 'Kemandirian penuh kembali ke olahraga & aktivitas' }
+    {
+      num: '01',
+      title: 'Comprehensive Assessment',
+      subtitle: 'Integrated Evaluation of Impairments, Function & Movement',
+      desc: 'Evaluasi sistematis terhadap struktur, fungsi, movement patterns, physical capacity, dan functional limitations untuk mengidentifikasi impairments serta faktor yang berkontribusi terhadap kondisi pasien.'
+    },
+    {
+      num: '02',
+      title: 'Clinical Reasoning & Clinical Impression',
+      subtitle: 'Evidence-Based Analysis of Contributing Factors',
+      desc: 'Integrasi temuan pemeriksaan melalui analisis pathoanatomical, biomechanical, neuromuscular, functional, dan biopsychosocial factors untuk membentuk clinical impression dan menentukan prioritas intervensi.'
+    },
+    {
+      num: '03',
+      title: 'Patient Education & Self-Management',
+      subtitle: 'Understanding, Empowerment & Pain Education',
+      desc: 'Memberikan edukasi berbasis evidence mengenai kondisi, mekanisme gejala, pain experience, prognosis, load management, dan self-management untuk meningkatkan pemahaman serta keterlibatan aktif pasien dalam proses rehabilitasi.'
+    },
+    {
+      num: '04',
+      title: 'Active & Targeted Intervention',
+      subtitle: 'Individualized Therapeutic Exercise & Movement-Based Rehabilitation',
+      desc: 'Implementasi intervensi yang individualized, goal-oriented, dan evidence-based, termasuk therapeutic exercise, neuromuscular training, movement retraining, manual therapy, dan modalitas yang sesuai indikasi klinis.'
+    },
+    {
+      num: '05',
+      title: 'Progressive Loading & Capacity Development',
+      subtitle: 'Systematic Restoration of Physical Capacity',
+      desc: 'Peningkatan beban latihan secara bertahap, terukur, dan terindividualisasi untuk mengembangkan tissue capacity, strength, power, endurance, motor control, dan load tolerance sesuai kebutuhan fungsional pasien.'
+    },
+    {
+      num: '06',
+      title: 'Functional Reintegration & Return to Performance',
+      subtitle: 'Restoration of Function, Participation & Performance',
+      desc: 'Integrasi progresif menuju functional independence, occupational demands, recreational activities, dan sport-specific performance, dengan menggunakan objective criteria, functional testing, dan graded exposure untuk mendukung safe return to activity and sport.'
+    }
   ]
 };
 

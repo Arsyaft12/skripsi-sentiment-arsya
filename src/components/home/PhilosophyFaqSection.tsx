@@ -82,26 +82,34 @@ export function PhilosophyFaqSection() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {PRACTICE_PHILOSOPHY.frameworkSteps.map((step, idx) => (
                   <div
                     key={step.num}
-                    className="p-4 rounded-2xl bg-white/[0.06] border border-white/10 hover:border-cyan-400/50 transition-all flex flex-col justify-between space-y-2 text-left group"
+                    className="p-6 rounded-3xl bg-white/[0.05] border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.08] transition-all flex flex-col justify-between space-y-4 text-left group shadow-lg"
                   >
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono font-bold text-cyan-400">
-                        {step.num}
-                      </span>
-                      {idx < 5 && (
-                        <ArrowRight className="w-3.5 h-3.5 text-white/30 hidden lg:block" />
-                      )}
+                    <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 font-mono text-xs font-black border border-cyan-400/30">
+                          {step.num}
+                        </span>
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                          Tahap {step.num}
+                        </span>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
                     </div>
 
-                    <div className="space-y-1">
-                      <h4 className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">
+                    <div className="space-y-2">
+                      <h4 className="text-base sm:text-lg font-black text-white group-hover:text-cyan-300 transition-colors leading-snug">
                         {step.title}
                       </h4>
-                      <p className="text-[11px] text-slate-400 leading-tight">
+                      {step.subtitle && (
+                        <p className="text-xs font-semibold text-cyan-400/90 leading-tight">
+                          {step.subtitle}
+                        </p>
+                      )}
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pt-1">
                         {step.desc}
                       </p>
                     </div>
