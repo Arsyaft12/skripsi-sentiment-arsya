@@ -127,16 +127,16 @@ export function Hero() {
           {/* Main Title - Punchy, Grand & High-Impact */}
           <div className="space-y-1 sm:space-y-2">
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.06]">
-              Turning Ideas
+              Dari Pemulihan Klinis
             </h1>
             <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight grad-vi leading-[1.06]">
-              Into Reality.
+              Menuju Performa Optimal.
             </h2>
           </div>
 
           {/* Dynamic Role Ticker - Larger & Eye-Catching */}
           <div className="flex flex-wrap items-center gap-2 text-xl sm:text-2xl lg:text-3xl text-slate-800 dark:text-slate-200 font-medium">
-            <span>I&apos;m {portfolioConfig.personal.name},</span>
+            <span>Saya {portfolioConfig.personal.name},</span>
             <span className="font-extrabold text-cyan-600 dark:text-cyan-300 border-b-2 sm:border-b-3 border-cyan-400 pb-0.5 min-w-[260px] transition-all">
               {roles[currentRoleIndex]}
             </span>
@@ -150,29 +150,31 @@ export function Hero() {
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center gap-3.5 pt-2">
             <a
-              href="#portfolio"
+              href="#services"
               className="btn-primary inline-flex items-center gap-2.5 px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-cyan-500/25 hover:scale-105 transition-transform"
             >
               <HeartPulse className="w-4 h-4 text-white" />
-              <span>Explore Practice</span>
+              <span>Jelajahi Layanan</span>
             </a>
 
+            {portfolioConfig.contact.whatsappLink && (
+              <a
+                href={portfolioConfig.contact.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary inline-flex items-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
+              >
+                <Send className="w-4 h-4 text-emerald-500" />
+                <span>Jadwalkan Konsultasi</span>
+              </a>
+            )}
+
             <a
-              href={portfolioConfig.personal.resumePdfUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#about"
               className="btn-secondary inline-flex items-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform"
             >
               <FileDown className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-              <span>Download CV</span>
-            </a>
-
-            <a
-              href="#contact"
-              className="btn-secondary inline-flex items-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform"
-            >
-              <Send className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-              <span>Consultation / Contact</span>
+              <span>STR &amp; Kredensial</span>
             </a>
           </div>
 
@@ -233,122 +235,105 @@ export function Hero() {
               </a>
             )}
 
-            <span className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 pl-2">Professional Channels</span>
+            <span className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 pl-2">Kanal Resmi</span>
           </div>
         </motion.div>
 
-        {/* Right Column: Focus Player Widget */}
+        {/* Right Column: Prominent Portrait & Integrated Focus Player */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full lg:w-5/12 flex justify-center lg:justify-end"
+          className="w-full lg:w-5/12 flex flex-col items-center lg:items-end gap-5"
         >
-          <div className="w-full max-w-[390px] glass-panel p-6 relative border border-slate-200/80 dark:border-slate-700/60 shadow-2xl">
+          {/* Main Hero Portrait Card */}
+          <div className="w-full max-w-[370px] sm:max-w-[400px] rounded-[2.5rem] overflow-hidden bg-gradient-to-b from-slate-100 dark:from-slate-900 to-slate-200 dark:to-slate-950 border border-slate-200/80 dark:border-slate-700/80 shadow-2xl relative group">
             
-            {/* Header: Title & Online Status */}
-            <div className="flex items-center justify-between pb-3.5 border-b border-slate-200/80 dark:border-slate-700/60">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">
-                <Music className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-                <span>Focus Playlist</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                {isPlaying ? 'Playing Audio' : 'Available Online'}
-              </div>
-            </div>
+            {/* Ambient Lighting Behind Portrait */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-transparent to-purple-600/20 pointer-events-none" />
 
-            {/* Visual Disc & Profile Deck */}
-            <div className="py-5 flex items-center justify-center gap-4">
-              
-              {/* Profile Cover Art */}
-              <div className="relative w-28 h-28 rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-600 shadow-lg shrink-0">
-                <Image
-                  src={portfolioConfig.audioPlayer.coverImageUrl || portfolioConfig.personal.avatarUrl}
-                  alt={portfolioConfig.personal.name}
-                  fill
-                  className="object-cover object-center"
-                />
-              </div>
+            {/* Photo Container */}
+            <div className="relative w-full h-[400px] sm:h-[460px] flex items-end justify-center">
+              <Image
+                src="/assets/photos/zaez-portrait.jpg"
+                alt={portfolioConfig.personal.name}
+                fill
+                priority
+                className="object-cover object-top hover:scale-105 transition-transform duration-700"
+              />
 
-              {/* Rotating Vinyl Disc */}
-              <div className={`relative w-24 h-24 rounded-full bg-gradient-to-tr from-slate-900 via-slate-800 to-slate-950 border border-slate-600 flex items-center justify-center shadow-xl shrink-0 transition-transform ${isPlaying ? 'animate-spin-slow' : ''}`}>
-                <div className="w-9 h-9 rounded-full bg-cyan-500/30 border border-cyan-400 flex items-center justify-center">
-                  <Disc className="w-4 h-4 text-cyan-300" />
+              {/* Bottom Gradient Fade */}
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent pointer-events-none" />
+
+              {/* Top Floating Badge: STR License */}
+              <div className="absolute top-4 left-4 z-20">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-md border border-emerald-500/40 text-emerald-300 text-xs font-bold shadow-xl">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>STR Kemenkes Terverifikasi</span>
                 </div>
               </div>
 
-            </div>
-
-            {/* Audio Details & Bars */}
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                    {portfolioConfig.audioPlayer.title}
-                  </h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 pt-0.5">
-                    {portfolioConfig.audioPlayer.artist}
+              {/* Bottom Overlay Text */}
+              <div className="absolute bottom-4 inset-x-4 z-20 flex items-end justify-between gap-2">
+                <div className="space-y-0.5">
+                  <h3 className="text-base sm:text-lg font-black text-white leading-tight">
+                    {portfolioConfig.personal.name}
+                  </h3>
+                  <p className="text-xs text-cyan-300 font-mono font-semibold">
+                    THE BOX PHYSIO • Gading Serpong
                   </p>
                 </div>
 
-                {/* Animated Equalizer Bars */}
-                <div className="flex items-end gap-1 h-5">
-                  <span className={`w-1 bg-cyan-500 dark:bg-cyan-400 rounded-full transition-all duration-200 ${isPlaying ? 'animate-eq-1' : 'h-1.5'}`} />
-                  <span className={`w-1 bg-blue-500 dark:bg-blue-400 rounded-full transition-all duration-200 ${isPlaying ? 'animate-eq-2' : 'h-3'}`} />
-                  <span className={`w-1 bg-purple-500 dark:bg-purple-400 rounded-full transition-all duration-200 ${isPlaying ? 'animate-eq-3' : 'h-2'}`} />
-                  <span className={`w-1 bg-pink-500 dark:bg-pink-400 rounded-full transition-all duration-200 ${isPlaying ? 'animate-eq-4' : 'h-1'}`} />
+                <span className="px-2.5 py-1 rounded-full bg-cyan-500/20 backdrop-blur-md border border-cyan-400/40 text-[11px] font-mono font-bold text-cyan-300 shrink-0">
+                  M.Ft. GPA 4.00
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Docked Streamlined Focus Audio Player */}
+          <div className="w-full max-w-[370px] sm:max-w-[400px] rounded-2xl p-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 shadow-xl space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className={`p-2 rounded-xl bg-cyan-500/10 text-cyan-500 ${isPlaying ? 'animate-pulse' : ''}`}>
+                  <Music className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-slate-900 dark:text-white line-clamp-1">
+                    {portfolioConfig.audioPlayer.title}
+                  </h4>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
+                    {portfolioConfig.audioPlayer.artist}
+                  </p>
                 </div>
               </div>
 
-              {/* Interactive Duration / Progress Bar */}
-              <div className="space-y-1">
-                <div 
-                  onClick={handleSeek}
-                  className="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden cursor-pointer hover:h-2.5 transition-all relative group"
-                >
-                  <div 
-                    style={{ width: `${progressPercent}%` }}
-                    className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full transition-all duration-100" 
-                  />
-                </div>
-                <div className="flex justify-between text-[10px] text-slate-500 font-mono">
-                  <span>{formatTime(currentTime)}</span>
-                  <span>{formatTime(duration)}</span>
-                </div>
-              </div>
-
-              {/* Controls */}
-              <div className="flex items-center justify-between pt-1">
-                <button
-                  type="button"
-                  onClick={toggleMute}
-                  className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 text-xs font-medium hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors cursor-pointer"
-                >
-                  {isMuted ? (
-                    <VolumeX className="w-3.5 h-3.5 text-rose-500" />
-                  ) : (
-                    <Volume2 className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
-                  )}
-                  <span>{isMuted ? 'Muted' : 'High Focus Mode'}</span>
-                </button>
-
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={togglePlay}
-                  className="p-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md hover:scale-110 active:scale-95 transition-transform cursor-pointer"
-                  aria-label={isPlaying ? 'Pause music' : 'Play focus audio'}
+                  className="p-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md hover:scale-110 active:scale-95 transition-transform cursor-pointer"
+                  aria-label={isPlaying ? 'Pause' : 'Play'}
                 >
                   {isPlaying ? (
-                    <Pause className="w-4 h-4 fill-white" />
+                    <Pause className="w-3.5 h-3.5 fill-white" />
                   ) : (
-                    <Play className="w-4 h-4 fill-white ml-0.5" />
+                    <Play className="w-3.5 h-3.5 fill-white ml-0.5" />
                   )}
                 </button>
               </div>
-
             </div>
 
+            {/* Micro Progress Bar */}
+            <div 
+              onClick={handleSeek}
+              className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden cursor-pointer hover:h-2 transition-all relative group"
+            >
+              <div 
+                style={{ width: `${progressPercent}%` }}
+                className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full transition-all duration-100" 
+              />
+            </div>
           </div>
         </motion.div>
 

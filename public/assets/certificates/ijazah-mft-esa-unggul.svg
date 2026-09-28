@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="1200" height="850">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b132b" />
+      <stop offset="50%" stop-color="#1c2541" />
+      <stop offset="100%" stop-color="#0b132b" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6d365" />
+      <stop offset="100%" stop-color="#fda085" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="850" fill="url(#bg)" />
+  
+  <!-- Outer Gold Border -->
+  <rect x="30" y="30" width="1140" height="790" rx="16" fill="none" stroke="url(#gold)" stroke-width="4" stroke-opacity="0.8" />
+  <rect x="45" y="45" width="1110" height="760" rx="12" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="8,6" />
+
+  <!-- Corner Ornaments -->
+  <circle cx="55" cy="55" r="8" fill="#f6d365" />
+  <circle cx="1145" cy="55" r="8" fill="#f6d365" />
+  <circle cx="55" cy="795" r="8" fill="#f6d365" />
+  <circle cx="1145" cy="795" r="8" fill="#f6d365" />
+
+  <!-- University Header -->
+  <text x="600" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="800" fill="#93c5fd" text-anchor="middle" letter-spacing="4">UNIVERSITAS ESA UNGGUL</text>
+  <text x="600" y="155" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#94a3b8" text-anchor="middle" letter-spacing="2">PROGRAM PASCASARJANA MAGISTER FISIOTERAPI (S2)</text>
+  <line x1="400" y1="180" x2="800" y2="180" stroke="url(#cyanGrad)" stroke-width="2" />
+
+  <!-- Title -->
+  <text x="600" y="240" font-family="Georgia, serif" font-size="38" font-weight="bold" fill="url(#gold)" text-anchor="middle">IJAZAH MAGISTER FISIOTERAPI (M.Ft.)</text>
+  <text x="600" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#cbd5e1" text-anchor="middle">Dengan ini menyatakan bahwa:</text>
+
+  <!-- Name -->
+  <text x="600" y="350" font-family="Georgia, serif" font-size="44" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="1">ZAEZ ABDUL MAHDI, S.Ftr., Ftr., M.Ft.</text>
+  <text x="600" y="390" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="bold" fill="#38bdf8" text-anchor="middle" letter-spacing="3">PREDIKAT KELULUSAN: DENGAN PUJIAN (CUM LAUDE) • IPK 4.00 / 4.00</text>
+
+  <!-- Body -->
+  <text x="600" y="450" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#94a3b8" text-anchor="middle">Telah menyelesaikan seluruh persyaratan kurikulum akademik Program Studi Magister Fisioterapi</text>
+  <text x="600" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#94a3b8" text-anchor="middle">dengan fokus peminatan Fisioterapi Olahraga &amp; Rehabilitasi Muskuloskeletal.</text>
+  <text x="600" y="520" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#e2e8f0" text-anchor="middle">Kepadanya diberikan hak untuk menyandang gelar akademis:</text>
+  
+  <text x="600" y="570" font-family="Georgia, serif" font-size="32" font-weight="bold" fill="url(#cyanGrad)" text-anchor="middle">Magister Fisioterapi (M.Ft.)</text>
+
+  <!-- Seal / Badge -->
+  <g transform="translate(600, 680)">
+    <circle cx="0" cy="0" r="55" fill="#0f172a" stroke="url(#gold)" stroke-width="3" />
+    <circle cx="0" cy="0" r="46" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,3" />
+    <text x="0" y="-10" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#f6d365" text-anchor="middle">UNIVERSITAS</text>
+    <text x="0" y="8" font-family="system-ui, sans-serif" font-size="13" font-weight="900" fill="#ffffff" text-anchor="middle">ESA UNGGUL</text>
+    <text x="0" y="24" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#38bdf8" text-anchor="middle">S2 FISIOTERAPI</text>
+  </g>
+
+  <!-- Signatures -->
+  <g transform="translate(250, 690)">
+    <line x1="-120" y1="0" x2="120" y2="0" stroke="#64748b" stroke-width="1.5" />
+    <text x="0" y="25" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Dekan Fakultas Fisioterapi</text>
+    <text x="0" y="45" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Universitas Esa Unggul</text>
+  </g>
+
+  <g transform="translate(950, 690)">
+    <line x1="-120" y1="0" x2="120" y2="0" stroke="#64748b" stroke-width="1.5" />
+    <text x="0" y="25" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Rektor</text>
+    <text x="0" y="45" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Universitas Esa Unggul</text>
+  </g>
+</svg>

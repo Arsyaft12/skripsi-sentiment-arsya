@@ -73,20 +73,20 @@ export const portfolioConfig: PortfolioConfig = {
       'Fisioterapis yang mengintegrasikan evidence-based practice dan clinical expertise untuk mengoptimalkan gerak, memulihkan fungsi, mengelola kondisi muskuloskeletal, serta mendukung return to activity dan performance secara aman dan terukur.',
     bioLong:
       'Profesional Fisioterapis dengan pendekatan klinis yang berorientasi pada evidence-based practice, clinical reasoning, dan optimalisasi fungsi gerak manusia. Mengintegrasikan pengetahuan ilmiah, asesmen fungsional, dan keterampilan klinis untuk merancang strategi rehabilitasi yang terarah, individual, dan berorientasi pada outcome: “From Clinical Recovery to Optimal Performance.”',
-    location: 'Gading Serpong, Tangerang, Indonesia',
-    avatarUrl: '/assets/photos/Photo Profile.png',
+    location: 'Private Practice / THE BOX PHYSIO, Gading Serpong, Tangerang',
+    avatarUrl: '/assets/photos/zaez-portrait.jpg',
     resumePdfUrl: '/assets/certificates/CV-Zaez-Abdul-Mahdi.pdf',
   },
 
   contact: {
     email: 'physiozaez@gmail.com',
-    whatsappNumber: '087708577467',
-    whatsappLink: 'https://wa.me/6287708577467?text=Halo%20Zaez,%20saya%20tertarik%20untuk%20konsultasi%20layanan%20fisioterapi',
+    whatsappNumber: '085716513534',
+    whatsappLink: 'https://wa.me/6285716513534?text=Halo%20Zaez,%20saya%20tertarik%20untuk%20konsultasi%20layanan%20fisioterapi%20THE%20BOX%20PHYSIO',
   },
 
   socialLinks: {
     linkedin: 'https://www.linkedin.com/in/ftr-zaez-m-70a845385',
-    instagram: 'https://www.instagram.com/fisio_zam',
+    instagram: 'https://www.instagram.com/zam_fisio',
     orcid: 'https://orcid.org/0009-0003-4571-3338',
   },
 
@@ -94,7 +94,7 @@ export const portfolioConfig: PortfolioConfig = {
     title: 'Clinical Recovery & Focus',
     artist: 'Zaez Abdul Mahdi • Movement & Rehab Flow',
     audioUrl: '/assets/audio/coding-focus.mp3',
-    coverImageUrl: '/assets/photos/Photo Profile.png',
+    coverImageUrl: '/assets/photos/zaez-portrait.jpg',
   },
 
   aboutPillars: [
@@ -170,6 +170,6 @@ export const portfolioConfig: PortfolioConfig = {
       'Return to Sport',
       'Fisioterapi Tangerang'
     ],
-    ogImage: '/assets/photos/Photo Profile.png',
+    ogImage: '/assets/photos/zaez-portrait.jpg',
   },
 };

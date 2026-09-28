@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 780" width="1100" height="780">
+  <rect width="1100" height="780" fill="#ffffff"/>
+  <rect x="25" y="25" width="1050" height="730" fill="none" stroke="#f43f5e" stroke-width="1.5" stroke-opacity="0.3"/>
+  <rect x="35" y="35" width="1030" height="710" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+
+  <g transform="translate(100, 80)">
+    <text font-family="Arial, sans-serif" font-size="16" font-weight="900" fill="#0284c7">CPD MEMBER</text>
+    <text y="18" font-family="Arial, sans-serif" font-size="10" fill="#64748b">The CPD Certification Service</text>
+  </g>
+
+  <g transform="translate(1000, 75)" text-anchor="end">
+    <text font-family="Courier New, monospace" font-size="12" font-weight="bold" fill="#475569">Reg.No: IPM-IA/ID/06/2026/005</text>
+  </g>
+
+  <text x="550" y="160" font-family="Georgia, serif" font-size="46" font-weight="bold" fill="#0f172a" letter-spacing="8" text-anchor="middle">CERTIFICATE</text>
+  <text x="550" y="195" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#64748b" text-anchor="middle">Of Competence</text>
+
+  <text x="550" y="250" font-family="Georgia, serif" font-size="15" fill="#64748b" text-anchor="middle">This Certificate is awarded to</text>
+  <text x="550" y="300" font-family="Georgia, serif" font-size="38" font-weight="bold" fill="#0f172a" letter-spacing="4" text-anchor="middle">ZAEZ</text>
+  <line x1="420" y1="315" x2="680" y2="315" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <text x="550" y="365" font-family="Georgia, serif" font-size="16" fill="#334155" text-anchor="middle">
+    Has successfully completed Interventional Pain Management Approach
+  </text>
+  <text x="550" y="405" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#dc2626" text-anchor="middle">
+    (Intra-articular infiltration &amp; Soft tissue injection)
+  </text>
+  <text x="550" y="445" font-family="Arial, sans-serif" font-size="15" fill="#475569" text-anchor="middle">
+    course at Jakarta, Indonesia on 22 June-2026. Hosted by Active Rehab Institute -ID.
+  </text>
+
+  <!-- Association details -->
+  <g transform="translate(100, 520)">
+    <text font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#334155">INTERNATIONALLY ASSOCIATED WITH :</text>
+    <text y="22" font-family="Arial, sans-serif" font-size="12" fill="#475569">Monroe Medical-UK &amp; Academy of Physiotherapy-BD</text>
+    <text y="40" font-family="Arial, sans-serif" font-size="11" fill="#64748b">(International registered member of CPD Services London UK)</text>
+  </g>
+
+  <!-- Signature -->
+  <g transform="translate(800, 570)" text-anchor="middle">
+    <text y="-35" font-family="'Brush Script MT', cursive" font-size="28" fill="#003366">S.M. Mustofa Kamal</text>
+    <line x1="-150" y1="-15" x2="150" y2="-15" stroke="#334155" stroke-width="1.5"/>
+    <text y="8" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#0f172a">ASSOC. PROF. S.M.MUSTOFA KAMAL</text>
+    <text y="26" font-family="Arial, sans-serif" font-size="11" fill="#475569">MDMR, MPH, B.Sc.PT</text>
+    <text y="42" font-family="Arial, sans-serif" font-size="10" fill="#64748b">International Course Instructor (MM-UK)</text>
+  </g>
+</svg>

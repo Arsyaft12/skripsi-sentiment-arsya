@@ -3,11 +3,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  HeartPulse, 
   Award, 
   Sparkles, 
-  ChevronDown, 
-  ChevronUp, 
   Share2, 
   Stethoscope, 
   Trophy, 
@@ -25,28 +22,25 @@ import {
   FileCheck2,
   Eye,
   BarChart2,
-  MessageSquareText
+  MessageSquareText,
+  HeartPulse
 } from 'lucide-react';
 import { ProjectCardData, Certificate, SocialContent } from '@/types/portfolio';
 import { ALL_SKILLS_DATA, SKILL_CATEGORIES, SkillCategoryType, SkillItem } from '@/lib/techStackData';
-import { ProjectCard } from '@/components/work/ProjectCard';
 import { CertificateCard } from '@/components/achievements/CertificateCard';
 import { CertificateModal } from '@/components/achievements/CertificateModal';
 import { CoverflowCarousel } from './CoverflowCarousel';
 
 interface PortfolioSectionProps {
-  projects: ProjectCardData[];
+  projects?: ProjectCardData[];
   certificates: Certificate[];
   socialContent: SocialContent[];
 }
 
 export function PortfolioSection({ projects, certificates, socialContent }: PortfolioSectionProps) {
-  const [activeTab, setActiveTab] = useState<'projects' | 'credentials' | 'tech' | 'creative'>('projects');
-  const [showAllProjects, setShowAllProjects] = useState(false);
+  const [activeTab, setActiveTab] = useState<'credentials' | 'tech' | 'creative'>('credentials');
   const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
   const [techCategoryFilter, setTechCategoryFilter] = useState<SkillCategoryType>('all');
-
-  const displayedProjects = showAllProjects ? projects : projects.slice(0, 4);
 
   const filteredSkills = techCategoryFilter === 'all' 
     ? ALL_SKILLS_DATA 
@@ -105,34 +99,21 @@ export function PortfolioSection({ projects, certificates, socialContent }: Port
         <div className="text-center space-y-3 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 text-xs sm:text-sm font-bold uppercase tracking-wider">
             <Sparkles className="w-4 h-4" />
-            <span>Clinical Practice & Verified Record</span>
+            <span>Praktik Klinis &amp; Rekam Jejak Terverifikasi</span>
           </div>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white tracking-tight">
-            Specializations & <span className="grad-vi">Clinical Practice</span>
+            Spesialisasi &amp; <span className="grad-vi">Praktik Klinis</span>
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto">
-            Evidence-based rehabilitation protocols, accredited clinical degrees (M.Ft., Ftr., S.Ftr.), certified modalities (Cert.DN., SPRC.), and scientific research.
+            Protokol rehabilitasi berbasis bukti, ijazah profesi dan magister terakreditasi (M.Ft., Ftr., S.Ftr.), modalitas bersertifikasi (Cert.DN., SPRC.), serta riset ilmiah.
           </p>
         </div>
 
-        {/* Unified 4 Sub-Tabs Navigation - Grand & Interactive */}
+        {/* Unified Sub-Tabs Navigation - Grand & Interactive */}
         <div className="flex justify-center">
           <div className="inline-flex flex-wrap justify-center p-2 gap-1.5 rounded-full bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 backdrop-blur-xl shadow-xl">
-            
-            {/* 1. Clinical Cases & Protocols */}
-            <button
-              onClick={() => setActiveTab('projects')}
-              className={`flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm md:text-base font-bold transition-all cursor-pointer ${
-                activeTab === 'projects'
-                  ? 'bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 text-white shadow-lg scale-105'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white'
-              }`}
-            >
-              <HeartPulse className="w-4 h-4" />
-              <span>Clinical Programs ({projects.length})</span>
-            </button>
 
-            {/* 2. Unified Certificates & Degrees */}
+            {/* 1. Unified Certificates & Degrees */}
             <button
               onClick={() => setActiveTab('credentials')}
               className={`flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm md:text-base font-bold transition-all cursor-pointer ${
@@ -142,10 +123,10 @@ export function PortfolioSection({ projects, certificates, socialContent }: Port
               }`}
             >
               <Award className="w-4 h-4" />
-              <span>Credentials & Degrees ({certificates.length})</span>
+              <span>Kredensial &amp; Ijazah ({certificates.length})</span>
             </button>
 
-            {/* 3. Clinical Focus & Modalities */}
+            {/* 2. Clinical Focus & Modalities */}
             <button
               onClick={() => setActiveTab('tech')}
               className={`flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm md:text-base font-bold transition-all cursor-pointer ${
@@ -155,10 +136,10 @@ export function PortfolioSection({ projects, certificates, socialContent }: Port
               }`}
             >
               <Stethoscope className="w-4 h-4 text-cyan-400" />
-              <span>Clinical Competencies</span>
+              <span>Kompetensi Klinis</span>
             </button>
 
-            {/* 4. Clinical Media & Cases */}
+            {/* 3. Clinical Media & Cases */}
             <button
               onClick={() => setActiveTab('creative')}
               className={`flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm md:text-base font-bold transition-all cursor-pointer ${
@@ -168,7 +149,7 @@ export function PortfolioSection({ projects, certificates, socialContent }: Port
               }`}
             >
               <Share2 className="w-4 h-4 text-purple-400" />
-              <span>Clinical Media & Cases ({socialContent.length})</span>
+              <span>Media Edukasi &amp; Kasus ({socialContent.length})</span>
             </button>
 
           </div>
@@ -176,36 +157,6 @@ export function PortfolioSection({ projects, certificates, socialContent }: Port
 
         {/* Tab Content Display */}
         <AnimatePresence mode="wait">
-          
-          {/* TAB 1: FEATURED CLINICAL PROGRAMS */}
-          {activeTab === 'projects' && (
-            <motion.div
-              key="projects"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-              className="space-y-8"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-                {displayedProjects.map((project, idx) => (
-                  <ProjectCard key={project.id} project={project} index={idx} />
-                ))}
-              </div>
-
-              {projects.length > 4 && (
-                <div className="flex justify-center pt-4">
-                  <button
-                    onClick={() => setShowAllProjects(!showAllProjects)}
-                    className="btn-secondary px-8 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer shadow-md hover:scale-105 transition-transform"
-                  >
-                    <span>{showAllProjects ? 'Show Less' : `View All Programs (${projects.length})`}</span>
-                    {showAllProjects ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                  </button>
-                </div>
-              )}
-            </motion.div>
-          )}
 
           {/* TAB 2: VERIFIED CREDENTIALS & DEGREES */}
           {activeTab === 'credentials' && (
@@ -225,17 +176,17 @@ export function PortfolioSection({ projects, certificates, socialContent }: Port
                   </div>
                   <div>
                     <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
-                      Verified Credentials & Academic Degrees ({certificates.length})
+                      Kredensial Terverifikasi &amp; Ijazah Akademik ({certificates.length})
                     </h3>
                     <p className="text-xs text-slate-500 dark:text-slate-400">
-                      Click any credential card to view official verification, institution details, and competencies
+                      Klik salah satu kartu dokumen untuk membuka pratinjau verifikasi resmi, rincian institusi, dan surat tanda registrasi
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-300 text-xs font-bold border border-cyan-500/20">
-                    {certificates.length} Verified Documents
+                    {certificates.length} Dokumen Resmi
                   </span>
                 </div>
               </div>
@@ -332,10 +283,10 @@ export function PortfolioSection({ projects, certificates, socialContent }: Port
             >
               <div className="text-center space-y-1">
                 <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                  Clinical Media, Case Studies & Education Showcase
+                  Media Klinis, Studi Kasus &amp; Edukasi Pasien
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Interactive case presentations, patient education videos, and clinical insights
+                  Presentasi kasus interaktif, video edukasi pemulihan gerak, dan wawasan klinis fisioterapi
                 </p>
               </div>
 

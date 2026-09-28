@@ -99,13 +99,13 @@ export const ALL_SKILLS_DATA: SkillItem[] = [
   },
   {
     id: 'manual_therapy',
-    name: 'Manual Therapy & Joint Mobilization',
+    name: 'Manual Therapy, Joint Mobilization & HVLA',
     category: 'modalities',
     categoryLabel: 'Hands-On Clinical',
     color: '#D97706',
     lucideIconName: 'Hand',
-    description: 'Maitland, Mulligan, and Kaltenborn joint mobilization and soft-tissue release techniques.',
-    badge: 'Hands-On Specialist',
+    description: 'HVLA thrust manipulation (Spine, Shoulder, SIJ) alongside Maitland, Cyriax, Kaltenborn & Mulligan mobilization.',
+    badge: 'HVLA & Mobilization',
   },
   {
     id: 'aquatic_therapy',

@@ -96,13 +96,13 @@ export function ContactSection() {
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Connect & Collaborate</span>
+            <span>Konsultasi &amp; Reservasi Jadwal</span>
           </div>
           <h2 className="text-4xl sm:text-6xl font-black text-slate-900 dark:text-white tracking-tight">
-            Get In <span className="grad-vi">Touch</span>
+            Jadwal &amp; <span className="grad-vi">Konsultasi Klinis</span>
           </h2>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-            Have an engineering role, freelance project, partnership opportunity, or want to connect? Send a direct message or leave a public note.
+            Jadwalkan asesmen klinis, program sports rehabilitation, dry needling, atau workshop korporat di Private Practice / THE BOX PHYSIO Gading Serpong.
           </p>
         </div>
 
@@ -119,7 +119,7 @@ export function ContactSection() {
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
               <div className="flex items-center gap-2.5 text-slate-900 dark:text-white font-bold text-base sm:text-lg">
                 <Mail className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
-                <span>Send Direct Inquiry</span>
+                <span>Kirim Pesan / Konsultasi</span>
               </div>
               
               {portfolioConfig.contact.whatsappLink && (
@@ -130,7 +130,7 @@ export function ContactSection() {
                   className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold hover:bg-emerald-500/20 transition-all"
                 >
                   <Phone className="w-3.5 h-3.5" />
-                  <span>WhatsApp</span>
+                  <span>WhatsApp Langsung</span>
                 </a>
               )}
             </div>
@@ -138,17 +138,17 @@ export function ContactSection() {
             {submitSuccess && (
               <div className="p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs font-semibold flex items-center gap-2.5">
                 <CheckCircle className="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0" />
-                <span>Your message has been sent successfully! I will get back to you promptly via email.</span>
+                <span>Pesan konsultasi Anda berhasil dikirim! Saya akan segera merespons via email atau WhatsApp.</span>
               </div>
             )}
 
             <form onSubmit={handleContactSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Your Full Name</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Nama Lengkap</label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Alex Morgan"
+                  placeholder="Contoh: Budi Santoso"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs sm:text-sm placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-cyan-400 transition-all"
@@ -156,11 +156,11 @@ export function ContactSection() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Email Address</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Email / Nomor WhatsApp</label>
                 <input
-                  type="email"
+                  type="text"
                   required
-                  placeholder="name@company.com"
+                  placeholder="nama@email.com atau 0812xxxx"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs sm:text-sm placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-cyan-400 transition-all"
@@ -168,11 +168,11 @@ export function ContactSection() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Project Details or Inquiries</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Keluhan Klinis / Kebutuhan Terapi</label>
                 <textarea
                   required
                   rows={4}
-                  placeholder="Tell me about your opportunity, timeline, or scope..."
+                  placeholder="Jelaskan keluhan nyeri, riwayat cedera, kondisi pascaoperasi, atau tujuan rehabilitasi Anda..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs sm:text-sm placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-cyan-400 transition-all resize-none"
@@ -182,10 +182,10 @@ export function ContactSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn-primary w-full py-3.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+                className="btn-primary w-full py-3.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer shadow-md hover:scale-[1.01] transition-transform"
               >
                 <Send className="w-4 h-4" />
-                <span>{isSubmitting ? 'Sending Message...' : 'Send Message'}</span>
+                <span>{isSubmitting ? 'Mengirim Pesan...' : 'Kirim Pesan Konsultasi'}</span>
               </button>
             </form>
           </motion.div>
@@ -202,9 +202,9 @@ export function ContactSection() {
               <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4 mb-4">
                 <div className="flex items-center gap-2.5 text-slate-900 dark:text-white font-bold text-base sm:text-lg">
                   <MessageSquare className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-                  <span>Public Guestbook & Feedback</span>
+                  <span>Buku Tamu &amp; Testimoni Publik</span>
                 </div>
-                <span className="text-xs font-mono text-slate-500 dark:text-slate-400">{comments.length} Notes</span>
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400">{comments.length} Catatan</span>
               </div>
 
               {/* Comment Input Form */}
@@ -216,7 +216,7 @@ export function ContactSection() {
                   <input
                     type="text"
                     required
-                    placeholder="Your Name / Organization"
+                    placeholder="Nama Anda / Organisasi"
                     value={newCommentName}
                     onChange={(e) => setNewCommentName(e.target.value)}
                     className="flex-1 px-3 py-2 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-purple-400"
@@ -227,7 +227,7 @@ export function ContactSection() {
                   <input
                     type="text"
                     required
-                    placeholder="Leave a short note or feedback..."
+                    placeholder="Tulis catatan singkat atau testimoni..."
                     value={newCommentMessage}
                     onChange={(e) => setNewCommentMessage(e.target.value)}
                     className="flex-1 px-3 py-2 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-purple-400"
@@ -238,7 +238,7 @@ export function ContactSection() {
                     className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-purple-600 hover:bg-purple-500 transition-all shrink-0 flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
                   >
                     <Send className="w-3.5 h-3.5" />
-                    <span>Post</span>
+                    <span>Kirim</span>
                   </button>
                 </div>
               </form>
@@ -260,13 +260,13 @@ export function ContactSection() {
                         {item.isPinned && (
                           <span className="inline-flex items-center gap-0.5 px-2 py-0.2 rounded-full bg-purple-500/20 text-purple-700 dark:text-purple-300 text-[10px] font-semibold">
                             <Pin className="w-2.5 h-2.5" />
-                            Pinned
+                            Disematkan
                           </span>
                         )}
                       </div>
                       <div className="flex items-center gap-1 text-[10px] text-slate-500 dark:text-slate-400">
                         <Clock className="w-3.5 h-3.5" />
-                        <span>{item.time}</span>
+                        <span>{item.time === 'Pinned' ? 'Disematkan' : item.time === 'Just now' ? 'Baru saja' : item.time}</span>
                       </div>
                     </div>
                     <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{item.message}</p>
@@ -276,7 +276,7 @@ export function ContactSection() {
             </div>
 
             <div className="pt-3 text-center border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
-              Live interactive guestbook persisted across visitor sessions.
+              Buku tamu interaktif tersimpan otomatis pada sesi pengunjung.
             </div>
           </motion.div>
 

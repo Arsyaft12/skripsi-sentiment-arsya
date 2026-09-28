@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     description: portfolioConfig.seo.description,
     url: portfolioConfig.seo.siteUrl,
     siteName: `${portfolioConfig.personal.name} Portfolio`,
-    locale: "en_US",
+    locale: "id_ID",
     type: "website",
     images: [
       {

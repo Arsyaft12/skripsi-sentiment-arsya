@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 780" width="1100" height="780">
+  <defs>
+    <linearGradient id="goldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cf9e38"/>
+      <stop offset="50%" stop-color="#ffd56b"/>
+      <stop offset="100%" stop-color="#b28020"/>
+    </linearGradient>
+  </defs>
+  <rect width="1100" height="780" fill="#fffdf9"/>
+  <rect x="25" y="25" width="1050" height="730" fill="none" stroke="url(#goldBorder)" stroke-width="4"/>
+  <rect x="35" y="35" width="1030" height="710" fill="none" stroke="#222" stroke-width="1"/>
+
+  <!-- Headers & Logos -->
+  <g transform="translate(100, 80)">
+    <text font-family="Arial, sans-serif" font-size="22" font-weight="900" fill="#006699">Monroe</text>
+    <text y="22" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#111">Medical</text>
+  </g>
+
+  <g transform="translate(1000, 70)" text-anchor="end">
+    <text font-family="Courier New, monospace" font-size="11" font-weight="bold" fill="#555">Cert.Reg.No: CMSKuS/ID/B-3/06.2026/010</text>
+  </g>
+
+  <!-- Main Certificate Title -->
+  <text x="550" y="160" font-family="Georgia, serif" font-size="46" font-weight="bold" fill="#111" letter-spacing="10" text-anchor="middle">CERTIFICATE</text>
+  <text x="550" y="200" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#b28020" letter-spacing="6" text-anchor="middle">OF ACHIEVEMENT</text>
+
+  <text x="550" y="260" font-family="Arial, sans-serif" font-size="14" fill="#666" text-anchor="middle">Proudly Presented To</text>
+  <text x="550" y="315" font-family="'Brush Script MT', 'Times New Roman', cursive, serif" font-size="46" font-style="italic" fill="#0f172a" text-anchor="middle">Zaez A. M.</text>
+  <line x1="350" y1="335" x2="750" y2="335" stroke="#ccc" stroke-width="1.5"/>
+
+  <!-- Body -->
+  <text x="550" y="380" font-family="Georgia, serif" font-size="16" fill="#333" text-anchor="middle">
+    Has completed 3 days long (24 C.hours) course and competence exam entitle of
+  </text>
+  <text x="550" y="420" font-family="Georgia, serif" font-size="21" font-weight="900" fill="#003366" letter-spacing="1" text-anchor="middle">
+    &quot;CERTIFICATE IN MUSCULOSKELETAL ULTRASOUND (CMSKuS)&quot;
+  </text>
+  <text x="550" y="460" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#444" text-anchor="middle">
+    there in the Jakarta - Indonesia from 19 to 21 June 2026.
+  </text>
+
+  <!-- Association note -->
+  <text x="550" y="515" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#990000" text-anchor="middle">
+    Course is internationally associated with:
+  </text>
+  <text x="550" y="538" font-family="Arial, sans-serif" font-size="13" fill="#333" text-anchor="middle">
+    Academy of Physiotherapy-BD &amp; Monroe Medical-UK • Local host: Active Rehab Institute - ID
+  </text>
+
+  <!-- Instructor / Signatures -->
+  <g transform="translate(250, 640)" text-anchor="center">
+    <rect x="-10" y="-30" width="160" height="55" rx="4" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="70" y="-8" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0284c7" text-anchor="middle">CPD MEMBER</text>
+    <text x="70" y="12" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">The CPD Certification Service</text>
+  </g>
+
+  <g transform="translate(750, 630)" text-anchor="middle">
+    <text y="-25" font-family="'Brush Script MT', cursive" font-size="28" fill="#003366">S.M. Mustofa Kamal</text>
+    <line x1="-120" y1="-10" x2="120" y2="-10" stroke="#333" stroke-width="1.5"/>
+    <text y="12" font-family="Georgia, serif" font-size="15" font-weight="bold" fill="#111">S.M. Mustofa Kamal</text>
+    <text y="30" font-family="Arial, sans-serif" font-size="11" fill="#555">MDMR, MPH, B.Sc.PT, DMSKuS, CMSKuS</text>
+    <text y="46" font-family="Arial, sans-serif" font-size="10" fill="#777">Associate Professor &amp; International Course Instructor (MM-UK)</text>
+  </g>
+</svg>

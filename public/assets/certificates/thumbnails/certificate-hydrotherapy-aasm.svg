@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" width="800" height="1100">
+  <defs>
+    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1100" fill="#ffffff"/>
+  <rect x="25" y="25" width="750" height="1050" fill="none" stroke="#0284c7" stroke-width="2"/>
+
+  <!-- Logo Top -->
+  <g transform="translate(400, 80)" text-anchor="middle">
+    <circle cx="0" cy="0" r="30" fill="#f59e0b"/>
+    <text y="45" font-family="Georgia, serif" font-size="32" font-weight="900" fill="#0f172a" letter-spacing="4">AASM</text>
+    <text y="68" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0284c7">Association Aquatic of Sport Medicine</text>
+  </g>
+
+  <text x="400" y="200" font-family="Georgia, serif" font-size="24" font-weight="900" fill="#0f172a" letter-spacing="3" text-anchor="middle">INTERNATIONAL CERTIFICATION</text>
+  <text x="400" y="225" font-family="Courier New, monospace" font-size="15" font-weight="bold" fill="#0284c7" text-anchor="middle">600327/NSI/AASM/ND/2024</text>
+
+  <text x="400" y="280" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#0369a1" text-anchor="middle">
+    HYDROTHERAPY FOR REHABILITATION
+  </text>
+  <text x="400" y="310" font-family="Georgia, serif" font-size="16" font-weight="bold" fill="#334155" text-anchor="middle">
+    based on Neurosensory System
+  </text>
+
+  <!-- Clinical Scopes -->
+  <g transform="translate(400, 350)" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#475569">
+    <text y="0">Herniated Nucleus Pulposus • Recovery Stroke • Osteoarthritis • Scoliosis</text>
+    <text y="22" fill="#0284c7">WATSU METHOD • HALLIWICK METHOD • MNRI METHOD • BAD RAGAZ RING METHOD</text>
+  </g>
+
+  <!-- Presentation -->
+  <text x="400" y="440" font-family="Arial, sans-serif" font-size="13" fill="#64748b" text-anchor="middle">Proudly presented to :</text>
+  <text x="400" y="480" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#0f172a" text-anchor="middle">
+    Zaez Abdul Mahdi, Ftr., Cert.DN. ,C.HydroT
+  </text>
+  <line x1="180" y1="495" x2="620" y2="495" stroke="#0284c7" stroke-width="1.5"/>
+
+  <text x="400" y="535" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#334155" text-anchor="middle">
+    Jakarta, 7-8 September, 2024
+  </text>
+
+  <!-- Authorized Seal -->
+  <g transform="translate(400, 640)" text-anchor="middle">
+    <circle cx="0" cy="0" r="45" fill="#f59e0b" stroke="#b45309" stroke-width="3"/>
+    <text y="-8" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#ffffff">CERTIFIED</text>
+    <text y="8" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#ffffff">AUTHORIZED</text>
+    <text y="22" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#ffffff">PROFESSIONAL</text>
+  </g>
+
+  <!-- Signatures -->
+  <g transform="translate(200, 780)" text-anchor="middle">
+    <text y="-25" font-family="'Brush Script MT', cursive" font-size="24" fill="#003366">Dr. Richard Loren</text>
+    <line x1="-90" y1="-10" x2="90" y2="-10" stroke="#333" stroke-width="1"/>
+    <text y="10" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#0f172a">DR. Richard Loren, MPT</text>
+    <text y="28" font-family="Arial, sans-serif" font-size="11" fill="#64748b">DIRECTOR AASM</text>
+  </g>
+
+  <g transform="translate(600, 780)" text-anchor="middle">
+    <text y="-25" font-family="'Brush Script MT', cursive" font-size="24" fill="#003366">Ms Rose</text>
+    <line x1="-90" y1="-10" x2="90" y2="-10" stroke="#333" stroke-width="1"/>
+    <text y="10" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#0f172a">Ms Rose, M.Sc., M.HydroT., PsyD</text>
+    <text y="28" font-family="Arial, sans-serif" font-size="11" fill="#64748b">NEUROSENSORY INSTITUTE</text>
+  </g>
+
+  <!-- Indonesian Flag ribbon at base -->
+  <rect x="375" y="860" width="50" height="15" fill="#ef4444"/>
+  <rect x="375" y="875" width="50" height="15" fill="#ffffff" stroke="#e2e8f0"/>
+</svg>

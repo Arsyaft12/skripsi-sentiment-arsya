@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1050" width="800" height="1050">
+  <rect width="800" height="1050" fill="#ffffff"/>
+  <rect x="30" y="30" width="740" height="990" fill="none" stroke="#ddd" stroke-width="1"/>
+
+  <!-- Letterhead -->
+  <g transform="translate(60, 80)">
+    <text font-family="Georgia, serif" font-size="24" font-weight="bold" fill="#111">PRIMEPHYSIO</text>
+    <text y="20" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#666">TRAINING FOR PHYSIOTHERAPISTS</text>
+    <text y="36" font-family="Arial, sans-serif" font-size="9" fill="#999">EST. 2006</text>
+  </g>
+  <g transform="translate(740, 75)" text-anchor="end">
+    <text font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#222">Primephysio Training UK Ltd</text>
+    <text y="18" font-family="Arial, sans-serif" font-size="10" fill="#666">Registration number: 14316529</text>
+    <text y="34" font-family="Arial, sans-serif" font-size="10" fill="#666">Email: uk@primephysio.com</text>
+    <text y="50" font-family="Arial, sans-serif" font-size="10" fill="#666">Website: primephysio.com</text>
+  </g>
+  <line x1="60" y1="150" x2="740" y2="150" stroke="#111" stroke-width="2"/>
+
+  <!-- Content -->
+  <g transform="translate(60, 200)">
+    <text font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">August 25th, 2026</text>
+    <text y="40" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#111">To Whom It May Concern:</text>
+    
+    <text y="85" font-family="Georgia, serif" font-size="16" font-weight="bold" fill="#111">Ftr. Zaez A.M</text>
+    <text y="105" font-family="Arial, sans-serif" font-size="13" fill="#555">Physiotherapist</text>
+
+    <!-- Notification Highlight Box -->
+    <rect x="-10" y="130" width="700" height="40" rx="4" fill="#f0f4f8" stroke="#cbd5e1"/>
+    <text x="340" y="155" font-family="Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#0f172a" text-anchor="middle">
+      Primephysio Training UK in conjunction with Reframing Physiotherapy Indonesia
+    </text>
+
+    <text y="210" font-family="Georgia, serif" font-size="14" fill="#333" line-height="1.6">
+      <tspan x="0" dy="0">We welcome you to this group of sports physiotherapists who are committed to delivering</tspan>
+      <tspan x="0" dy="24">high value care for sports injury prevention, rehabilitation, and performance enhancement</tspan>
+      <tspan x="0" dy="24">in your community and clinical practice aligned with the latest evidence-based practice.</tspan>
+    </text>
+
+    <text y="310" font-family="Georgia, serif" font-size="14" fill="#333">
+      <tspan x="0" dy="0">Please use this letter as your official notification that you are Sports Physiotherapy &amp; Rehabilitation</tspan>
+      <tspan x="0" dy="24">Certified, and are permitted to use the post-nominal <tspan font-weight="bold" fill="#0369a1">SPRC.</tspan></tspan>
+    </text>
+
+    <rect x="-10" y="380" width="700" height="45" rx="6" fill="#e0f2fe" stroke="#38bdf8"/>
+    <text x="340" y="408" font-family="Georgia, serif" font-size="16" font-weight="bold" fill="#0369a1" text-anchor="middle">
+      Name: Ftr. Zaez A.M, SPRC.
+    </text>
+
+    <text y="475" font-family="Georgia, serif" font-size="14" fill="#333">
+      <tspan x="0" dy="0">Again, we congratulate you for successfully earning the Sports Physiotherapy &amp; Rehabilitation</tspan>
+      <tspan x="0" dy="24">Certificate and hope it serves as a valuable addition to your practice as a sports physiotherapist.</tspan>
+    </text>
+
+    <!-- Sign-off -->
+    <g transform="translate(0, 570)">
+      <text font-family="Arial, sans-serif" font-size="13" fill="#333">Sincerely,</text>
+      <text y="35" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#111">PRIMEPHYSIO TRAINING UK</text>
+      <text y="65" font-family="'Brush Script MT', cursive" font-size="28" fill="#003366">Firmansyah Purwanto</text>
+      <text y="95" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#111">Firmansyah Purwanto</text>
+      <text y="115" font-family="Arial, sans-serif" font-size="12" fill="#666">Program Coordinator Primephysio Training UK-Indonesia</text>
+    </g>
+  </g>
+</svg>

@@ -124,22 +124,25 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
                     </span>
                     {item.metric_label && (
                       <span className="px-2.5 py-1 rounded-full bg-pink-500/20 backdrop-blur-md text-[10px] font-mono font-bold text-pink-300 border border-pink-500/30">
-                        {item.metric_label} Reach
+                        {item.metric_label}
                       </span>
                     )}
                   </div>
 
                   {/* Center Play Icon if Active */}
                   {isCurrent && (
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <div className="w-14 h-14 rounded-full bg-cyan-500/80 backdrop-blur-md flex items-center justify-center shadow-lg shadow-cyan-500/50 text-white animate-pulse">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gap-2">
+                      <div className="w-14 h-14 rounded-full bg-cyan-500/90 backdrop-blur-md flex items-center justify-center shadow-lg shadow-cyan-500/50 text-white group-hover:scale-110 transition-transform">
                         <Play className="w-6 h-6 fill-white ml-1" />
                       </div>
+                      <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-[11px] font-bold text-cyan-300 border border-cyan-400/30">
+                        Klik untuk Buka Konten ↗
+                      </span>
                     </div>
                   )}
 
                   {/* Bottom Text Overlay */}
-                  <div className="absolute bottom-0 inset-x-0 p-4 space-y-1.5 z-10 text-left">
+                  <div className="absolute bottom-0 inset-x-0 p-4 space-y-1.5 z-10 text-left bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
                     <h4 className="text-sm font-bold text-white line-clamp-2 drop-shadow">
                       {item.title}
                     </h4>
@@ -160,8 +163,8 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
           <button
             type="button"
             onClick={prevSlide}
-            aria-label="Previous Slide"
-            className="p-3 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white shadow-xl hover:scale-110 hover:border-cyan-400 transition-all pointer-events-auto cursor-pointer"
+            aria-label="Slide Sebelumnya"
+            className="p-3 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white shadow-xl hover:scale-110 hover:border-cyan-400 transition-all pointer-events-auto cursor-pointer"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -169,8 +172,8 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
           <button
             type="button"
             onClick={nextSlide}
-            aria-label="Next Slide"
-            className="p-3 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white shadow-xl hover:scale-110 hover:border-cyan-400 transition-all pointer-events-auto cursor-pointer"
+            aria-label="Slide Berikutnya"
+            className="p-3 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white shadow-xl hover:scale-110 hover:border-cyan-400 transition-all pointer-events-auto cursor-pointer"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -184,14 +187,14 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="glass-panel p-6 max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left"
+          className="glass-panel p-6 max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl"
         >
           <div className="space-y-1.5 flex-1">
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
               <span className="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">
                 {activeItem.category} • {activeItem.platform}
               </span>
-              <span className="text-xs text-slate-400">• Slide {activeIndex + 1} of {total}</span>
+              <span className="text-xs text-slate-400">• Konten {activeIndex + 1} dari {total}</span>
             </div>
             <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
               {activeItem.title}
@@ -216,9 +219,9 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
             href={activeItem.embed_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider shrink-0 cursor-pointer"
+            className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider shrink-0 cursor-pointer shadow-md hover:scale-105 transition-transform"
           >
-            <span>Watch Reel</span>
+            <span>Buka di Instagram</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </motion.div>
@@ -230,7 +233,7 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
           <button
             key={i}
             onClick={() => setActiveIndex(i)}
-            aria-label={`Go to slide ${i + 1}`}
+            aria-label={`Buka slide ${i + 1}`}
             className={`h-2 rounded-full transition-all cursor-pointer ${
               activeIndex === i 
                 ? 'w-8 bg-cyan-500' 

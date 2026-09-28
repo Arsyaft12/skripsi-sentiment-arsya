@@ -22,14 +22,17 @@ export function Footer() {
 
         {/* Navigation Quick Links */}
         <div className="flex items-center gap-6 text-xs font-semibold text-neutral-600 dark:text-neutral-400">
-          <Link href="/" className="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">
-            Home
+          <Link href="/#home" className="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">
+            Beranda
           </Link>
-          <Link href="/work" className="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">
-            Projects
+          <Link href="/#services" className="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">
+            Layanan
           </Link>
-          <Link href="/achievements" className="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">
-            Certifications
+          <Link href="/#cases" className="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">
+            Studi Kasus
+          </Link>
+          <Link href="/#portfolio" className="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">
+            Kredensial &amp; STR
           </Link>
         </div>
 
@@ -45,6 +48,19 @@ export function Footer() {
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+          )}
+          {portfolioConfig.socialLinks.instagram && (
+            <a
+              href={portfolioConfig.socialLinks.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram @zam_fisio"
+              className="p-2.5 rounded-full text-neutral-600 dark:text-neutral-300 hover:text-white hover:bg-gradient-to-tr hover:from-amber-500 hover:via-pink-500 hover:to-purple-600 hover:scale-110 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
+            >
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
             </a>
           )}
@@ -71,6 +87,19 @@ export function Footer() {
               title="ORCID Profile"
             >
               iD
+            </a>
+          )}
+          {portfolioConfig.contact.whatsappLink && (
+            <a
+              href={portfolioConfig.contact.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp Appointment"
+              className="p-2.5 rounded-full text-neutral-600 dark:text-neutral-300 hover:text-white hover:bg-emerald-600 dark:hover:bg-emerald-500/20 dark:hover:text-emerald-300 hover:scale-110 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
+            >
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.584 1.961.949 3.226.949 3.181 0 5.768-2.586 5.769-5.766.001-3.18-2.585-5.766-5.766-5.766zm9.969 5.766c0 5.503-4.477 9.98-9.98 9.98-1.748 0-3.385-.45-4.819-1.241l-5.201 1.363 1.388-5.074c-.879-1.488-1.368-3.218-1.368-5.028 0-5.503 4.477-9.98 9.98-9.98 5.503 0 9.98 4.477 9.98 9.98z"/>
+              </svg>
             </a>
           )}
           {portfolioConfig.contact.email && (

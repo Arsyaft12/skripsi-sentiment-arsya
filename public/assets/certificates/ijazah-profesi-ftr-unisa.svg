@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="1200" height="850">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+    <linearGradient id="gold2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="850" fill="url(#bg2)" />
+  <rect x="30" y="30" width="1140" height="790" rx="16" fill="none" stroke="url(#gold2)" stroke-width="4" stroke-opacity="0.8" />
+  <rect x="45" y="45" width="1110" height="760" rx="12" fill="none" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="8,6" />
+
+  <!-- University Header -->
+  <text x="600" y="120" font-family="system-ui, sans-serif" font-size="28" font-weight="800" fill="#a7f3d0" text-anchor="middle" letter-spacing="4">UNIVERSITAS &apos;AISYIYAH YOGYAKARTA</text>
+  <text x="600" y="155" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#94a3b8" text-anchor="middle" letter-spacing="2">FAKULTAS ILMU KESEHATAN • PROGRAM PENDIDIKAN PROFESI FISIOTERAPI</text>
+  <line x1="400" y1="180" x2="800" y2="180" stroke="#10b981" stroke-width="2" />
+
+  <!-- Title -->
+  <text x="600" y="240" font-family="Georgia, serif" font-size="38" font-weight="bold" fill="url(#gold2)" text-anchor="middle">SERTIFIKAT PROFESI FISIOTERAPIS (Ftr.)</text>
+  <text x="600" y="280" font-family="system-ui, sans-serif" font-size="18" fill="#cbd5e1" text-anchor="middle">Nomor: 0024.03-SERPROF/PP-IFI/L-VII/I/2022</text>
+
+  <!-- Name -->
+  <text x="600" y="350" font-family="Georgia, serif" font-size="44" font-weight="bold" fill="#ffffff" text-anchor="middle">ZAEZ ABDUL MAHDI, S.Ftr., Ftr.</text>
+  <text x="600" y="390" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#34d399" text-anchor="middle" letter-spacing="2">LULUS DENGAN PREDIKAT: CUMLAUDE (DENGAN PUJIAN) • IPK 3.82</text>
+
+  <!-- Body -->
+  <text x="600" y="450" font-family="system-ui, sans-serif" font-size="18" fill="#94a3b8" text-anchor="middle">Telah dinyatakan lulus Uji Kompetensi Profesi Fisioterapi Indonesia</text>
+  <text x="600" y="480" font-family="system-ui, sans-serif" font-size="18" fill="#94a3b8" text-anchor="middle">dan berhak menyandang sebutan Profesi serta kewenangan praktik klinis:</text>
+  
+  <text x="600" y="550" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#6ee7b7" text-anchor="middle">Fisioterapis (Ftr.)</text>
+
+  <!-- Seal -->
+  <g transform="translate(600, 680)">
+    <circle cx="0" cy="0" r="55" fill="#064e3b" stroke="url(#gold2)" stroke-width="3" />
+    <text x="0" y="-8" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#fde047" text-anchor="middle">UNISA</text>
+    <text x="0" y="10" font-family="system-ui, sans-serif" font-size="13" font-weight="900" fill="#ffffff" text-anchor="middle">YOGYAKARTA</text>
+    <text x="0" y="26" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#6ee7b7" text-anchor="middle">PROFESI FISIOTERAPI</text>
+  </g>
+
+  <!-- Signatures -->
+  <g transform="translate(250, 690)">
+    <line x1="-120" y1="0" x2="120" y2="0" stroke="#64748b" stroke-width="1.5" />
+    <text x="0" y="25" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Dekan FIKES UNISA</text>
+  </g>
+
+  <g transform="translate(950, 690)">
+    <line x1="-120" y1="0" x2="120" y2="0" stroke="#64748b" stroke-width="1.5" />
+    <text x="0" y="25" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" fill="#e2e8f0" text-anchor="middle">Ketua Umum IFI</text>
+  </g>
+</svg>

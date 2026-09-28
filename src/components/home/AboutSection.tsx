@@ -18,6 +18,7 @@ import {
   TrendingUp,
   Lightbulb,
   Building2,
+  ShieldCheck,
 } from 'lucide-react';
 import { Experience, Education, Achievement } from '@/types/portfolio';
 
@@ -76,10 +77,10 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
         <div className="text-center space-y-3 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 text-xs sm:text-sm font-bold uppercase tracking-wider">
             <Sparkles className="w-4 h-4" />
-            <span>Profile & Value Proposition</span>
+            <span>Profil &amp; Filosofi Klinis</span>
           </div>
           <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white tracking-tight">
-            About <span className="grad-vi">Me</span>
+            Tentang <span className="grad-vi">Fisioterapis</span>
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
             {portfolioConfig.personal.title}
@@ -106,7 +107,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
             >
               <div className="space-y-2">
                 <span className="text-lg sm:text-xl font-bold uppercase tracking-widest text-cyan-600 dark:text-cyan-400">
-                  Hi, I&apos;m
+                  Halo, Saya
                 </span>
                 <h3 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
                   {portfolioConfig.personal.name}
@@ -132,7 +133,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
                   className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider cursor-pointer shadow-md hover:scale-105 transition-transform"
                 >
                   <FileDown className="w-4 h-4" />
-                  <span>View Resume / CV</span>
+                  <span>Unduh Resume / CV</span>
                 </a>
               </div>
             </motion.div>
@@ -171,18 +172,18 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
 
               <div className="flex items-center gap-3 pt-2">
                 <a
-                  href="#portfolio"
+                  href="#services"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-cyan-500/50 bg-cyan-500/10 hover:bg-cyan-500 text-cyan-600 dark:text-cyan-300 hover:text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-sm hover:scale-105"
                 >
                   <FolderGit2 className="w-4 h-4" />
-                  <span>View Projects</span>
+                  <span>Lihat Layanan</span>
                 </a>
 
                 <a
                   href="#contact"
                   className="btn-secondary px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform"
                 >
-                  <span>Get in Touch</span>
+                  <span>Hubungi Saya</span>
                 </a>
               </div>
             </motion.div>
@@ -197,14 +198,14 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800 pb-4">
             <div>
               <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-cyan-600 dark:text-cyan-400">
-                Core Competencies & Synthesis
+                Pilar &amp; Sintesis Kompetensi Klinis
               </span>
               <h3 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
-                Executive Profile & Qualifications
+                Profil &amp; Kualifikasi Praktik
               </h3>
             </div>
             <span className="text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400">
-              Verified Academic, Commercial & Technical Highlights
+              Sorotan Akademik, Pengalaman Klinis &amp; Keterampilan Teknis
             </span>
           </div>
 
@@ -258,6 +259,154 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
         </div>
 
         {/* ========================================================================= */}
+        {/* PROFESSIONAL REGISTRATION, AFFILIATIONS & REGULATORY BODIES (STR, IFI, MKEF) */}
+        {/* ========================================================================= */}
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800 pb-4">
+            <div>
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-cyan-600 dark:text-cyan-400">
+                Badan Regulasi &amp; Legalitas Resmi
+              </span>
+              <h3 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+                Surat Tanda Registrasi (STR), Afiliasi &amp; Etik
+              </h3>
+            </div>
+            <span className="text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400">
+              Registrasi Legal Kemenkes RI &amp; Pengakuan Ikatan Profesi Nasional
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* STR Kemenkes Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="p-6 sm:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-500/50 transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between space-y-4"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                    <ShieldCheck className="w-8 h-8" />
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold font-mono">
+                    Berlaku Seumur Hidup
+                  </span>
+                </div>
+
+                <div className="space-y-1.5">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold">
+                    <span>Surat Tanda Registrasi (STR)</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-slate-900 dark:text-white">
+                    KTKI — Kemenkes RI
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Registrasi resmi praktik fisioterapi dari Konsil Tenaga Kesehatan Indonesia (KTKI - Kemenkes RI).
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-1">
+                <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                  No Reg: <strong className="text-slate-800 dark:text-slate-200">TD00001081657778</strong>
+                </p>
+                <p className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+                  Kompetensi: Fisioterapis (Ftr.)
+                </p>
+              </div>
+            </motion.div>
+
+            {/* IFI Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="p-6 sm:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-cyan-500/50 transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between space-y-4"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="relative w-14 h-16 rounded-2xl overflow-hidden bg-white dark:bg-slate-950 p-1 flex items-center justify-center border border-slate-200 dark:border-slate-700/50 shadow-sm">
+                    <Image
+                      src="/assets/photos/logo-ifi.jpg"
+                      alt="Ikatan Fisioterapi Indonesia (IFI)"
+                      fill
+                      className="object-contain p-1"
+                    />
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 text-xs font-bold">
+                    Anggota PP IFI
+                  </span>
+                </div>
+
+                <div className="space-y-1.5">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-[11px] font-bold">
+                    <span>Asosiasi Profesi</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-slate-900 dark:text-white">
+                    Ikatan Fisioterapi Indonesia (IFI)
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Anggota teregistrasi Pengurus Pusat IFI, aktif terakreditasi dalam pengembangan keprofesian berkelanjutan (SKP).
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
+                <p className="text-[11px] font-mono text-cyan-600 dark:text-cyan-400 font-semibold">
+                  Akreditasi: Tervalidasi SKP IFI
+                </p>
+              </div>
+            </motion.div>
+
+            {/* MKEF Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="p-6 sm:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-purple-500/50 transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between space-y-4"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="relative w-14 h-16 rounded-2xl overflow-hidden bg-white dark:bg-slate-950 p-1 flex items-center justify-center border border-slate-200 dark:border-slate-700/50 shadow-sm">
+                    <Image
+                      src="/assets/photos/logo-mkef.jpg"
+                      alt="Majelis Kehormatan dan Etik Fisioterapi (MKEF)"
+                      fill
+                      className="object-contain p-1"
+                    />
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-600 dark:text-purple-400 text-xs font-bold">
+                    Kode Etik Profesi
+                  </span>
+                </div>
+
+                <div className="space-y-1.5">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 text-[11px] font-bold">
+                    <span>Etika &amp; Tata Kelola</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-slate-900 dark:text-white">
+                    Majelis Kehormatan &amp; Etik (MKEF)
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Berkomitmen pada standar etika medis tertinggi, keselamatan pasien, kerahasiaan medik, dan patient-centered care.
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
+                <p className="text-[11px] font-mono text-purple-600 dark:text-purple-400 font-semibold">
+                  Standar: Kode Etik Nasional IFI
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
         {/* CAREER TIMELINE & EDUCATION SECTION */}
         {/* ========================================================================= */}
         <div className="space-y-8 pt-4">
@@ -272,7 +421,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
                 }`}
               >
                 <Briefcase className="w-4 h-4" />
-                <span>Professional Experience</span>
+                <span>Pengalaman Profesional</span>
               </button>
 
               <button
@@ -284,7 +433,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
                 }`}
               >
                 <GraduationCap className="w-4 h-4" />
-                <span>Academic Milestones</span>
+                <span>Jejak Pendidikan &amp; Gelar</span>
               </button>
             </div>
           </div>

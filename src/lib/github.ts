@@ -9,78 +9,77 @@ const GITHUB_USERNAME =
   'developer';
 const SELF_REPO_NAME = 'portfolio-starter';
 
-// Fallback GitHub repos data if GitHub API is unreachable or rate limited
 const FALLBACK_GITHUB_REPOS: GitHubRepo[] = [
   {
     id: 100,
-    name: 'saas-analytics-engine',
-    full_name: `${GITHUB_USERNAME}/saas-analytics-engine`,
-    description: 'Enterprise Analytics Engine — high-performance metrics aggregation and dashboard engine built with Next.js 16 App Router, TypeScript, and Tailwind CSS.',
-    html_url: `https://github.com/${GITHUB_USERNAME}/saas-analytics-engine`,
-    homepage: 'https://example.com/demo',
-    language: 'TypeScript',
-    topics: ['nextjs-16', 'typescript', 'tailwind-css', 'analytics', 'data-viz'],
+    name: 'musculoskeletal-rehab',
+    full_name: `${GITHUB_USERNAME}/musculoskeletal-rehab`,
+    description: 'Evidence-based clinical protocols for spinal, shoulder, and knee musculoskeletal conditions with targeted functional restoration and pain alleviation.',
+    html_url: `https://orcid.org/0009-0003-4571-3338`,
+    homepage: 'https://orcid.org/0009-0003-4571-3338',
+    language: 'Clinical Physiotherapy',
+    topics: ['evidence-based', 'pain-management', 'manual-therapy', 'exercise-prescription'],
     stargazers_count: 32,
     forks_count: 6,
     pushed_at: new Date().toISOString(),
   },
   {
     id: 101,
-    name: 'ecommerce-ai-platform',
-    full_name: `${GITHUB_USERNAME}/ecommerce-ai-platform`,
-    description: 'E-Commerce AI Intelligence — intelligent review sentiment classifier and real-time recommendation system.',
-    html_url: `https://github.com/${GITHUB_USERNAME}/ecommerce-ai-platform`,
-    homepage: 'https://example.com/demo-ai',
-    language: 'Python',
-    topics: ['machine-learning', 'sentiment-analysis', 'scikit-learn', 'fastapi', 'python'],
-    stargazers_count: 18,
+    name: 'sports-injury-rts',
+    full_name: `${GITHUB_USERNAME}/sports-injury-rts`,
+    description: 'Structured progressive loading and functional movement analysis designed to safely transition athletes from acute injury recovery back into peak athletic performance.',
+    html_url: `https://orcid.org/0009-0003-4571-3338`,
+    homepage: 'https://orcid.org/0009-0003-4571-3338',
+    language: 'Sports Rehabilitation',
+    topics: ['sports-injury', 'return-to-sport', 'progressive-loading', 'kinematics'],
+    stargazers_count: 28,
     forks_count: 4,
     pushed_at: new Date(Date.now() - 86400000 * 2).toISOString(),
   },
   {
     id: 102,
-    name: 'mobile-fitness-tracker',
-    full_name: `${GITHUB_USERNAME}/mobile-fitness-tracker`,
-    description: 'Mobile Fitness & Workout Engine — Cross-platform Flutter mobile application with offline-first local storage and charts.',
-    html_url: `https://github.com/${GITHUB_USERNAME}/mobile-fitness-tracker`,
-    homepage: 'https://example.com/demo-app',
-    language: 'Dart',
-    topics: ['flutter', 'dart', 'mobile-app', 'fitness', 'cross-platform'],
-    stargazers_count: 15,
-    forks_count: 2,
+    name: 'dry-needling-therapy',
+    full_name: `${GITHUB_USERNAME}/dry-needling-therapy`,
+    description: 'Targeted invasive neuromuscular modality for myofascial pain syndromes, muscle tone normalization, and rapid neuromusculoskeletal decompression.',
+    html_url: `https://orcid.org/0009-0003-4571-3338`,
+    homepage: 'https://orcid.org/0009-0003-4571-3338',
+    language: 'Specialized Modality',
+    topics: ['dry-needling', 'cert-dn', 'trigger-points', 'neuromuscular'],
+    stargazers_count: 24,
+    forks_count: 3,
     pushed_at: new Date(Date.now() - 86400000 * 4).toISOString(),
   },
   {
     id: 103,
-    name: 'creative-studio-web',
-    full_name: `${GITHUB_USERNAME}/creative-studio-web`,
-    description: 'Creative Agency Showcase — interactive agency web platform with editorial layouts and smooth animations.',
-    html_url: `https://github.com/${GITHUB_USERNAME}/creative-studio-web`,
-    homepage: 'https://example.com/demo-agency',
-    language: 'TypeScript',
-    topics: ['nextjs', 'framer-motion', 'creative', 'design', 'tailwind-css'],
-    stargazers_count: 8,
-    forks_count: 1,
+    name: 'movement-optimization',
+    full_name: `${GITHUB_USERNAME}/movement-optimization`,
+    description: 'Biomechanical screening, gait & movement pattern optimization, and individualized therapeutic exercise prescription for sustainable physical capacity.',
+    html_url: `https://orcid.org/0009-0003-4571-3338`,
+    homepage: 'https://orcid.org/0009-0003-4571-3338',
+    language: 'Functional Assessment',
+    topics: ['biomechanics', 'functional-screening', 'movement-analysis', 'rehab'],
+    stargazers_count: 19,
+    forks_count: 2,
     pushed_at: new Date(Date.now() - 86400000 * 7).toISOString(),
   }
 ];
 
 const DEFAULT_PROJECT_TECH: Record<string, { language: string; stack: string[] }> = {
-  'saas-analytics-engine': {
-    language: 'TypeScript',
-    stack: ['Next.js 16', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Charts']
+  'musculoskeletal-rehab': {
+    language: 'Clinical Practice',
+    stack: ['Evidence-Based Practice', 'Joint Mobilization', 'Pain Management', 'Therapeutic Exercise']
   },
-  'ecommerce-ai-platform': {
-    language: 'Python',
-    stack: ['Python', 'Scikit-learn', 'FastAPI', 'Pandas', 'NLP']
+  'sports-injury-rts': {
+    language: 'Sports Science',
+    stack: ['Return to Sport (RTS)', 'Progressive Overload', 'Kinematic Analysis', 'Injury Prevention']
   },
-  'mobile-fitness-tracker': {
-    language: 'Dart',
-    stack: ['Flutter', 'Dart', 'Bloc', 'SQLite', 'Clean Architecture']
+  'dry-needling-therapy': {
+    language: 'Certified Modality',
+    stack: ['Cert.DN.', 'Myofascial Trigger Points', 'Neuromuscular Reset', 'Pain Alleviation']
   },
-  'creative-studio-web': {
-    language: 'TypeScript',
-    stack: ['Next.js', 'Framer Motion', 'Tailwind CSS', 'TypeScript']
+  'movement-optimization': {
+    language: 'Kinematic Screening',
+    stack: ['Functional Movement Screening', 'Gait Analysis', 'Postural Correction', 'Core Stability']
   }
 };
 

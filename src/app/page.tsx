@@ -4,7 +4,11 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/home/Hero';
 import { AboutSection } from '@/components/home/AboutSection';
+import { ServicesSection } from '@/components/home/ServicesSection';
+import { ClinicalToolsSection } from '@/components/home/ClinicalToolsSection';
+import { ClinicalCasesSection } from '@/components/home/ClinicalCasesSection';
 import { PortfolioSection } from '@/components/portfolio/PortfolioSection';
+import { PhilosophyFaqSection } from '@/components/home/PhilosophyFaqSection';
 import { ContactSection } from '@/components/contact/ContactSection';
 import { 
   fetchAchievements, 
@@ -61,11 +65,15 @@ export default async function HomePage() {
           educationList={educationList} 
           achievements={achievements} 
         />
+        <ServicesSection />
+        <ClinicalToolsSection />
+        <ClinicalCasesSection />
         <PortfolioSection 
           projects={projects} 
           certificates={certificates} 
           socialContent={socialContent}
         />
+        <PhilosophyFaqSection />
         <ContactSection />
       </main>
 

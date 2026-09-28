@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="gDn" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#180b26" />
+      <stop offset="50%" stop-color="#2e1065" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="purpleG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c084fc" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="800" fill="url(#gDn)" />
+  <circle cx="300" cy="300" r="160" fill="#a855f7" fill-opacity="0.12" />
+
+  <!-- Muscle Fiber Diagram -->
+  <g stroke="#9333ea" stroke-width="2" stroke-opacity="0.3">
+    <path d="M 120 220 C 200 210, 400 210, 480 220" />
+    <path d="M 110 250 C 200 240, 400 240, 490 250" />
+    <path d="M 100 280 C 200 260, 400 260, 500 280" />
+    <path d="M 100 310 C 200 330, 400 330, 500 310" />
+    <path d="M 110 340 C 200 350, 400 350, 490 340" />
+    <path d="M 120 370 C 200 380, 400 380, 480 370" />
+  </g>
+
+  <!-- Myofascial Trigger Point Knot -->
+  <circle cx="300" cy="295" r="32" fill="#e11d48" fill-opacity="0.3" stroke="#f43f5e" stroke-width="3" stroke-dasharray="6,4" />
+  <circle cx="300" cy="295" r="16" fill="#f43f5e" />
+
+  <!-- Radiating Pain Pulse Waves -->
+  <circle cx="300" cy="295" r="55" fill="none" stroke="#fb7185" stroke-width="1.5" stroke-opacity="0.6" stroke-dasharray="3,3" />
+  <circle cx="300" cy="295" r="80" fill="none" stroke="#fb7185" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,4" />
+
+  <!-- Dry Needling Needle Insertion Graphic -->
+  <line x1="200" y1="90" x2="295" y2="285" stroke="#f8fafc" stroke-width="3" stroke-linecap="round" />
+  <!-- Needle Handle -->
+  <rect x="170" y="60" width="40" height="12" rx="4" transform="rotate(64, 190, 66)" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+  
+  <rect x="330" y="240" width="160" height="28" rx="14" fill="#0f172a" stroke="#a855f7" stroke-width="1.5" />
+  <text x="410" y="258" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#e9d5ff" text-anchor="middle">Trigger Point Decompression</text>
+
+  <!-- Bottom Card Details -->
+  <rect x="30" y="580" width="540" height="180" rx="20" fill="#0b1120" stroke="#1e293b" stroke-width="1.5" />
+  <text x="60" y="625" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#c084fc" letter-spacing="2">MODALITAS KHUSUS TERAKREDITASI</text>
+  <text x="60" y="660" font-family="system-ui, sans-serif" font-size="22" font-weight="800" fill="#ffffff">Certified Dry Needling (Cert.DN.)</text>
+  <text x="60" y="695" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">Targeted release titik picu miofasial, reduksi nyeri &amp; spasme.</text>
+  <text x="60" y="730" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#38bdf8">✓ Neuromuscular Tone Normalization</text>
+</svg>
