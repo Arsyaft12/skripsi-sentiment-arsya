@@ -515,6 +515,41 @@ export const FAQ_ITEMS: FaqItem[] = [
     question: 'Berapa kali saya perlu fisioterapi?',
     answer: 'Tidak ada jumlah sesi kaku yang berlaku seragam untuk semua orang. Kebutuhan terapi dipengaruhi oleh jenis dan kompleksitas kondisi, durasi keluhan, keparahan (severity), fase penyembuhan jaringan, kapasitas fisik, dan respons terhadap program latihan.\n\nPerkembangan dievaluasi secara berkala menggunakan parameter klinis objektif (Pain ↓, ROM ↑, Strength ↑, Functional Capacity ↑). Frekuensi sesi akan disesuaikan seiring tercapainya target kemandirian.',
     keyHighlight: '“The goal is not more sessions. The goal is better function.”'
+  },
+  {
+    id: 'faq-4',
+    num: '04',
+    question: 'Apakah fisioterapi hanya untuk mengurangi nyeri?',
+    answer: 'Tidak. Nyeri merupakan salah satu aspek yang dapat ditangani, tetapi rehabilitasi juga bertujuan untuk mengoptimalkan range of motion (ROM), strength, motor control, endurance, load tolerance, functional capacity, dan participation dalam aktivitas sehari-hari maupun olahraga.',
+    keyHighlight: 'Rehabilitasi komprehensif mengembalikan fungsi gerak seutuhnya, bukan hanya meredakan nyeri sesaat.'
+  },
+  {
+    id: 'faq-5',
+    num: '05',
+    question: 'Apakah fisioterapi harus selalu menggunakan alat atau mesin?',
+    answer: 'Tidak. Intervensi dipilih berdasarkan hasil assessment dan kebutuhan klinis, bukan semata-mata berdasarkan modalitas yang tersedia. Therapeutic exercise, education, activity modification, dan progressive loading dapat menjadi komponen penting dalam rehabilitasi.',
+    keyHighlight: 'Clinical reasoning menentukan intervensi terbaik — latihan aktif dan pemulihan kapasitas fisik adalah kunci.'
+  },
+  {
+    id: 'faq-6',
+    num: '06',
+    question: 'Apakah saya tetap perlu berolahraga selama menjalani fisioterapi?',
+    answer: 'Dalam banyak kondisi, aktivitas dan latihan dapat tetap dilakukan dengan modifikasi yang sesuai terhadap kapasitas dan toleransi individu. Tujuannya bukan sekadar menghindari aktivitas, tetapi mengembangkan kapasitas secara bertahap dan aman.',
+    keyHighlight: 'Modifikasi beban terukur (relative rest & graded activity) jauh lebih efektif dibanding istirahat total.'
+  },
+  {
+    id: 'faq-7',
+    num: '07',
+    question: 'Kapan saya boleh kembali berolahraga setelah cedera?',
+    answer: 'Return to sport sebaiknya tidak hanya berdasarkan waktu atau hilangnya nyeri. Keputusan mempertimbangkan healing status, physical capacity, strength, movement quality, sport-specific demands, functional testing, dan kesiapan psikologis, sesuai jenis cedera dan tuntutan olahraga.',
+    keyHighlight: 'Kriteria objektif dan functional clearance memastikan kembali bertanding dengan aman tanpa risiko re-injury.'
+  },
+  {
+    id: 'faq-8',
+    num: '08',
+    question: 'Apakah fisioterapi dapat mencegah cedera berulang?',
+    answer: 'Program rehabilitasi dapat mencakup progressive loading, strength and conditioning, neuromuscular training, movement retraining, education, serta modifikasi faktor risiko untuk membantu meningkatkan kapasitas dan mengurangi risiko masalah berulang.',
+    keyHighlight: 'Peningkatan kapasitas beban jaringan dan biomekanik yang efisien membentuk proteksi jangka panjang.'
   }
 ];
 

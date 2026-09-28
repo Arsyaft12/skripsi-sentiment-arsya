@@ -167,7 +167,7 @@ export function PhilosophyFaqSection() {
               Pertanyaan yang <span className="grad-vi">Sering Diajukan (FAQ)</span>
             </h3>
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300">
-              Jawaban berbasis bukti klinis seputar waktu konsultasi, modalitas jarum (dry needling), dan frekuensi program terapi.
+              Jawaban berbasis bukti klinis seputar waktu konsultasi, modalitas terapi, return to sport, pencegahan cedera, dan program rehabilitasi.
             </p>
           </div>
 
