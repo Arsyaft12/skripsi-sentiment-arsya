@@ -300,6 +300,22 @@ export const FALLBACK_SOCIAL_CONTENT: SocialContent[] = [
   {
     id: '1',
     platform: 'instagram',
+    category: 'Clinical Education',
+    title: 'Clinical Practice & Evidence-Based Movement Rehabilitation',
+    embed_url: 'https://www.instagram.com/p/DdRVjf_GBzu/?stkn=MXExeGJlcmpmbHBmcQ==',
+    thumbnail_url: '/assets/photos/instagram-reel-ddrvjf.svg',
+    metric_label: 'Instagram Reel',
+    summary: 'Dokumentasi intervensi klinis aktif, analisis biomekanik gerak, dan edukasi rehabilitasi muskuloskeletal berbasis bukti ilmiah.',
+    stats: [
+      { label: 'Platform', value: 'Instagram Reel' },
+      { label: 'Pendekatan', value: 'Evidence-Based' },
+      { label: 'Kategori', value: 'Clinical Case' },
+    ],
+    display_order: 1,
+  },
+  {
+    id: '2',
+    platform: 'instagram',
     category: 'Health & Lab',
     title: 'Alina Bramanto (F45 Athlete) — Shoulder Recovery & Hybrid Race Prep',
     embed_url: 'https://www.instagram.com/zam_fisio',
@@ -311,10 +327,10 @@ export const FALLBACK_SOCIAL_CONTENT: SocialContent[] = [
       { label: 'Ajang', value: 'F45 Hybrid Race' },
       { label: 'Intervensi', value: 'Shoulder Recovery' },
     ],
-    display_order: 1,
+    display_order: 2,
   },
   {
-    id: '2',
+    id: '3',
     platform: 'instagram',
     category: 'Health & Lab',
     title: 'Kasus Klinis: Skrining Gerak Fungsional & Optimasi Biomekanik',
@@ -327,10 +343,10 @@ export const FALLBACK_SOCIAL_CONTENT: SocialContent[] = [
       { label: 'Metode', value: 'Kinematik & FMS' },
       { label: 'Lokasi', value: 'Gading Serpong' },
     ],
-    display_order: 2,
+    display_order: 3,
   },
   {
-    id: '3',
+    id: '4',
     platform: 'instagram',
     category: 'Health & Lab',
     title: 'Dry Needling (Cert.DN.) & Dekompresi Myofascial Trigger Point',
@@ -343,7 +359,7 @@ export const FALLBACK_SOCIAL_CONTENT: SocialContent[] = [
       { label: 'Sasaran', value: 'Trigger Points' },
       { label: 'Hasil', value: 'Meredakan Nyeri Cepat' },
     ],
-    display_order: 3,
+    display_order: 4,
   }
 ];
 
