@@ -10,7 +10,7 @@ import { portfolioConfig } from '@/config/portfolio.config';
 
 export const metadata: Metadata = {
   title: `Credentials & Academic Degrees | ${portfolioConfig.personal.name}`,
-  description: `View verified clinical credentials, academic degrees (M.Ft., Ftr., S.Ftr.), and specialized certifications (Cert.DN., SPRC.) for ${portfolioConfig.personal.name}.`,
+  description: `View verified clinical credentials, academic degrees (M.Ft., Ftr., S.Ftr.), and specialized certifications (Cert.DN., SPRC., CMSKuS.) for ${portfolioConfig.personal.name}.`,
   openGraph: {
     title: `Credentials & Academic Degrees | ${portfolioConfig.personal.name}`,
     description: `Official credentials and degrees for ${portfolioConfig.personal.name}.`,
@@ -38,7 +38,7 @@ export default async function AchievementsPage() {
               Credentials & <span className="gradient-text">Degrees</span>
             </h1>
             <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 font-normal leading-relaxed">
-              Official Master of Physical Therapy (M.Ft. GPA 4.00), Professional Physiotherapist (Ftr.), Bachelor (S.Ftr.), Certified Dry Needling (Cert.DN.), and Sports Performance Rehabilitation Specialist (SPRC) credentials available for verification.
+              Official Master of Physical Therapy (M.Ft. GPA 4.00), Professional Physiotherapist (Ftr.), Bachelor (S.Ftr.), Certified Dry Needling (Cert.DN.), and Sports Performance Rehabilitation Specialist (SPRC), and Musculoskeletal Ultrasound (CMSKuS) credentials available for verification.
             </p>
           </div>
 

@@ -105,7 +105,7 @@ export function PortfolioSection({ projects, certificates, socialContent }: Port
             Spesialisasi &amp; <span className="grad-vi">Praktik Klinis</span>
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto">
-            Protokol rehabilitasi berbasis bukti, ijazah profesi dan magister terakreditasi (M.Ft., Ftr., S.Ftr.), modalitas bersertifikasi (Cert.DN., SPRC.), serta riset ilmiah.
+            Protokol rehabilitasi berbasis bukti, ijazah profesi dan magister terakreditasi (M.Ft., Ftr., S.Ftr.), modalitas bersertifikasi (Cert.DN., SPRC., CMSKuS.), serta riset ilmiah.
           </p>
         </div>
 

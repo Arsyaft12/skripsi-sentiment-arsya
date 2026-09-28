@@ -57,7 +57,7 @@ export interface PortfolioConfig {
 
 export const portfolioConfig: PortfolioConfig = {
   personal: {
-    name: 'Zaez Abdul Mahdi, S.Ftr., Ftr., M.Ft., Cert.DN., SPRC.',
+    name: 'Zaez Abdul Mahdi, S.Ftr., Ftr., M.Ft., Cert.DN., SPRC., CMSKuS.',
     nickname: 'Zaez',
     title: 'Physiotherapist • Sports & Performance Rehabilitation • Researcher',
     roles: [
@@ -66,6 +66,7 @@ export const portfolioConfig: PortfolioConfig = {
       'Musculoskeletal & Movement Optimization',
       'Return to Sport & Activity Strategist',
       'Certified Dry Needling (Cert.DN.) Practitioner',
+      'Certified Musculoskeletal Ultrasound (CMSKuS)',
       'Evidence-Based Clinical Researcher (ORCID Certified)'
     ],
     statusBadge: 'Available for Clinical Consultation & Sports Rehabilitation',
