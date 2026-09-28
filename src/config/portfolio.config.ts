@@ -72,7 +72,7 @@ export const portfolioConfig: PortfolioConfig = {
     bioShort:
       'Fisioterapis dengan pendekatan evidence-based practice, advanced clinical reasoning, dan individualized rehabilitation, berfokus pada optimalisasi movement, function, performance, dan recovery.\n\nMengintegrasikan clinical assessment, therapeutic exercise, manual therapy, dry needling, serta performance-based rehabilitation untuk mendukung pemulihan yang presisi, terukur, dan berorientasi pada hasil, dari pain management hingga safe return to activity and sport.',
     bioLong:
-      'Profesional Fisioterapis dengan pendekatan klinis yang berorientasi pada evidence-based practice, clinical reasoning, dan optimalisasi fungsi gerak manusia. Mengintegrasikan pengetahuan ilmiah, asesmen fungsional, dan keterampilan klinis untuk merancang strategi rehabilitasi yang terarah, individual, dan berorientasi pada outcome: “From Clinical Recovery to Optimal Performance.”',
+      `Fisioterapis profesional dengan pendekatan klinis berbasis evidence-based practice, advanced clinical reasoning, dan patient-centered care, berfokus pada optimalisasi movement, function, physical capacity, dan human performance.\n\nMengintegrasikan scientific knowledge, comprehensive functional assessment, dan clinical expertise untuk merancang strategi rehabilitasi yang individualized, measurable, progressive, dan outcome-oriented.\n\nFrom Clinical Recovery to Optimal Performance.`,
     location: 'Private Practice / THE BOX PHYSIO, Gading Serpong, Tangerang',
     avatarUrl: '/assets/photos/zaez-portrait.jpg',
     resumePdfUrl: '/assets/certificates/CV-Zaez-Abdul-Mahdi.pdf',

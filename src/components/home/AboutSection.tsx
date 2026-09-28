@@ -166,7 +166,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
               transition={{ duration: 0.5 }}
               className="lg:col-span-4 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start"
             >
-              <p className="text-lg sm:text-xl text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
+              <p className="text-base sm:text-lg lg:text-xl text-slate-800 dark:text-slate-200 leading-relaxed font-normal whitespace-pre-line space-y-3">
                 {portfolioConfig.personal.bioLong}
               </p>
 
