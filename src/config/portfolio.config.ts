@@ -70,7 +70,7 @@ export const portfolioConfig: PortfolioConfig = {
     ],
     statusBadge: 'Available for Clinical Consultation & Sports Rehabilitation',
     bioShort:
-      'Fisioterapis yang mengintegrasikan evidence-based practice dan clinical expertise untuk mengoptimalkan gerak, memulihkan fungsi, mengelola kondisi muskuloskeletal, serta mendukung return to activity dan performance secara aman dan terukur.',
+      'Fisioterapis dengan pendekatan evidence-based practice, advanced clinical reasoning, dan individualized rehabilitation, berfokus pada optimalisasi movement, function, performance, dan recovery.\n\nMengintegrasikan clinical assessment, therapeutic exercise, manual therapy, dry needling, serta performance-based rehabilitation untuk mendukung pemulihan yang presisi, terukur, dan berorientasi pada hasil, dari pain management hingga safe return to activity and sport.',
     bioLong:
       'Profesional Fisioterapis dengan pendekatan klinis yang berorientasi pada evidence-based practice, clinical reasoning, dan optimalisasi fungsi gerak manusia. Mengintegrasikan pengetahuan ilmiah, asesmen fungsional, dan keterampilan klinis untuk merancang strategi rehabilitasi yang terarah, individual, dan berorientasi pada outcome: “From Clinical Recovery to Optimal Performance.”',
     location: 'Private Practice / THE BOX PHYSIO, Gading Serpong, Tangerang',

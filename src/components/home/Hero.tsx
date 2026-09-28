@@ -143,7 +143,7 @@ export function Hero() {
           </div>
 
           {/* Narrative / Short Bio */}
-          <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-normal">
+          <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-normal whitespace-pre-line">
             {portfolioConfig.personal.bioShort}
           </p>
 
