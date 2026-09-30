@@ -44,18 +44,25 @@ export function Navbar() {
 
   // Scroll Spy for active section
   useEffect(() => {
+    let isScrolling = false;
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 200;
-      for (const link of navLinks) {
-        const el = document.getElementById(link.id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(link.id);
-            break;
+      if (!isScrolling) {
+        isScrolling = true;
+        requestAnimationFrame(() => {
+          const scrollPos = window.scrollY + 200;
+          for (const link of navLinks) {
+            const el = document.getElementById(link.id);
+            if (el) {
+              const top = el.offsetTop;
+              const height = el.offsetHeight;
+              if (scrollPos >= top && scrollPos < top + height) {
+                setActiveSection(link.id);
+                break;
+              }
+            }
           }
-        }
+          isScrolling = false;
+        });
       }
     };
 

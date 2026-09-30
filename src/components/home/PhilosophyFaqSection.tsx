@@ -27,7 +27,7 @@ export function PhilosophyFaqSection() {
     <section id="philosophy" className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden">
       
       {/* Background Decorative Glow */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-cyan-500/10 via-blue-600/10 to-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-cyan-500/10 via-blue-600/10 to-purple-600/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto space-y-20 relative z-10">
         

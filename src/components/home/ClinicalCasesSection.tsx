@@ -26,7 +26,7 @@ export function ClinicalCasesSection() {
     <section id="cases" className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden">
       
       {/* Ambient background glow */}
-      <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-gradient-to-bl from-purple-600/10 via-blue-600/5 to-cyan-500/10 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-gradient-to-bl from-purple-600/10 via-blue-600/5 to-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         

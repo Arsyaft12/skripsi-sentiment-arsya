@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ExternalLink, Play, Sparkles } from 'lucide-react';
 import { SocialContent } from '@/types/portfolio';
 
@@ -35,10 +35,10 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchStartX - touchEndX;
 
-    if (diff > 45) {
-      nextSlide(); // Swiped left -> Next
-    } else if (diff < -45) {
-      prevSlide(); // Swiped right -> Prev
+    if (diff > 40) {
+      nextSlide();
+    } else if (diff < -40) {
+      prevSlide();
     }
     setTouchStartX(null);
   };
@@ -66,14 +66,14 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
   return (
     <div className="space-y-6 sm:space-y-8 select-none">
       
-      {/* 3D Perspective Coverflow Stage with Touch Support */}
+      {/* iOS-Safe Fluid Card Stage */}
       <div 
         ref={containerRef}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className="relative h-[360px] sm:h-[460px] w-full flex items-center justify-center overflow-hidden [perspective:1200px]"
+        className="relative h-[360px] sm:h-[440px] w-full flex items-center justify-center overflow-hidden"
       >
-        <div className="relative w-full max-w-5xl h-full flex items-center justify-center [transform-style:preserve-3d]">
+        <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
           {items.map((item, index) => {
             let offset = index - activeIndex;
             if (offset > total / 2) offset -= total;
@@ -81,17 +81,15 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
 
             const isCurrent = offset === 0;
             const absOffset = Math.abs(offset);
-            const isVisible = absOffset <= 2; // Render center + 2 on sides for clean mobile spacing
+            const isVisible = absOffset <= 2;
 
             if (!isVisible) return null;
 
-            // Responsive 3D Transforms: Tighter spacing on mobile
-            const translateX = offset * 135;
-            const translateZ = -absOffset * 100;
-            const rotateY = offset * -22;
-            const scale = isCurrent ? 1.02 : Math.max(0.75, 1 - absOffset * 0.15);
+            // Highly performant 2.5D transformations (GPU efficient, zero iOS crash)
+            const translateX = offset * (typeof window !== 'undefined' && window.innerWidth < 640 ? 120 : 160);
+            const scale = isCurrent ? 1 : Math.max(0.78, 1 - absOffset * 0.14);
             const zIndex = 30 - absOffset * 5;
-            const opacity = isCurrent ? 1 : Math.max(0.4, 1 - absOffset * 0.28);
+            const opacity = isCurrent ? 1 : Math.max(0.35, 1 - absOffset * 0.3);
 
             return (
               <motion.div
@@ -99,21 +97,19 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
                 onClick={() => handleCardClick(index, item.embed_url)}
                 animate={{
                   x: translateX,
-                  z: translateZ,
-                  rotateY: rotateY,
                   scale: scale,
                   opacity: opacity,
                 }}
                 transition={{
                   type: 'spring',
-                  stiffness: 300,
-                  damping: 28,
-                  mass: 0.8,
+                  stiffness: 320,
+                  damping: 30,
+                  mass: 0.7,
                 }}
                 style={{
                   zIndex: zIndex,
                 }}
-                className={`absolute w-60 sm:w-72 h-[320px] sm:h-[390px] rounded-3xl overflow-hidden cursor-pointer shadow-2xl transition-all ${
+                className={`absolute w-[250px] sm:w-[290px] h-[320px] sm:h-[380px] rounded-3xl overflow-hidden cursor-pointer shadow-2xl transition-all ${
                   isCurrent 
                     ? 'ring-2 ring-cyan-400 shadow-cyan-500/30' 
                     : 'hover:brightness-110'
@@ -126,7 +122,7 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
                       src={item.thumbnail_url}
                       alt={item.title}
                       fill
-                      sizes="(max-width: 640px) 240px, 300px"
+                      sizes="(max-width: 640px) 250px, 300px"
                       className="object-cover"
                     />
                   ) : (
@@ -139,15 +135,15 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
                   )}
 
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent pointer-events-none" />
 
                   {/* Top Badges */}
                   <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10">
-                    <span className="px-2.5 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-cyan-300 border border-white/15">
+                    <span className="px-2.5 py-0.5 rounded-full bg-black/70 text-[10px] font-bold uppercase tracking-wider text-cyan-300 border border-white/15">
                       {item.platform}
                     </span>
                     {item.metric_label && (
-                      <span className="px-2.5 py-0.5 rounded-full bg-pink-500/20 backdrop-blur-md text-[10px] font-mono font-bold text-pink-300 border border-pink-500/30">
+                      <span className="px-2.5 py-0.5 rounded-full bg-pink-500/30 text-[10px] font-mono font-bold text-pink-200 border border-pink-500/40">
                         {item.metric_label}
                       </span>
                     )}
@@ -156,10 +152,10 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
                   {/* Center Play Indicator on Active Card */}
                   {isCurrent && (
                     <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gap-2">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-cyan-500/90 backdrop-blur-md flex items-center justify-center shadow-lg shadow-cyan-500/50 text-white">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/50 text-white">
                         <Play className="w-5 h-5 fill-white ml-0.5" />
                       </div>
-                      <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-[10px] sm:text-[11px] font-bold text-cyan-300 border border-cyan-400/40">
+                      <span className="px-3 py-1 rounded-full bg-black/80 text-[10px] sm:text-[11px] font-bold text-cyan-300 border border-cyan-400/40">
                         Buka Konten ↗
                       </span>
                     </div>
@@ -183,7 +179,7 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
             type="button"
             onClick={prevSlide}
             aria-label="Slide Sebelumnya"
-            className="p-2.5 sm:p-3 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white shadow-xl hover:scale-110 hover:border-cyan-400 transition-all pointer-events-auto cursor-pointer"
+            className="p-2.5 sm:p-3 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white shadow-xl hover:scale-110 hover:border-cyan-400 transition-all pointer-events-auto cursor-pointer"
           >
             <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
@@ -192,7 +188,7 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
             type="button"
             onClick={nextSlide}
             aria-label="Slide Berikutnya"
-            className="p-2.5 sm:p-3 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white shadow-xl hover:scale-110 hover:border-cyan-400 transition-all pointer-events-auto cursor-pointer"
+            className="p-2.5 sm:p-3 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white shadow-xl hover:scale-110 hover:border-cyan-400 transition-all pointer-events-auto cursor-pointer"
           >
             <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
@@ -203,10 +199,10 @@ export function CoverflowCarousel({ items }: CoverflowCarouselProps) {
       {activeItem && (
         <motion.div
           key={activeItem.id}
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35 }}
-          className="p-4 sm:p-6 max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-xl"
+          transition={{ duration: 0.25 }}
+          className="p-4 sm:p-6 max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-xl"
         >
           <div className="space-y-1.5 flex-1">
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
