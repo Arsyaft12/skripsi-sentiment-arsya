@@ -24,7 +24,7 @@ export function PhilosophyFaqSection() {
   };
 
   return (
-    <section id="philosophy" className="py-24 px-6 md:px-12 relative overflow-hidden">
+    <section id="philosophy" className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden">
       
       {/* Background Decorative Glow */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-cyan-500/10 via-blue-600/10 to-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
@@ -88,7 +88,7 @@ export function PhilosophyFaqSection() {
 
               {/* Core Mantra & Progression Banner */}
               <div className="pt-2 flex flex-col items-center gap-3 text-center">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 text-xs sm:text-sm font-mono font-black tracking-widest uppercase shadow-inner">
+                <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-2xl bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-sm font-mono font-black tracking-widest uppercase shadow-inner text-center">
                   <span>ASSESS</span>
                   <span className="text-white/40">•</span>
                   <span>UNDERSTAND</span>
@@ -189,9 +189,9 @@ export function PhilosophyFaqSection() {
                 >
                   <button
                     onClick={() => toggleFaq(idx)}
-                    className="w-full p-6 sm:p-7 flex items-center justify-between gap-4 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
+                    className="w-full p-4 sm:p-6 md:p-7 flex items-start justify-between gap-3 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-start gap-3 sm:gap-4">
                       <span className="text-sm font-mono font-bold text-cyan-600 dark:text-cyan-400 px-3 py-1 rounded-xl bg-cyan-500/10">
                         {faq.num}
                       </span>

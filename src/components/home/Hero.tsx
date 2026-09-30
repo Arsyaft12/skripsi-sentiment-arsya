@@ -83,17 +83,10 @@ export function Hero() {
     setIsMuted(!isMuted);
   };
 
-  const formatTime = (secs: number) => {
-    if (isNaN(secs) || secs < 0) return '00:00';
-    const m = Math.floor(secs / 60);
-    const s = Math.floor(secs % 60);
-    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-  };
-
   const progressPercent = duration > 0 ? Math.min(100, (currentTime / duration) * 100) : 0;
 
   return (
-    <section id="home" className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 px-6 md:px-12">
+    <section id="home" className="relative min-h-[90vh] flex items-center justify-center pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 md:px-12 overflow-hidden">
       
       {/* Real Background Audio Element */}
       <audio
@@ -106,17 +99,17 @@ export function Hero() {
         onEnded={() => setIsPlaying(false)}
       />
       
-      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-14">
+      <div className="w-full max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-14">
         
         {/* Left Column: Headline, Role & Actions */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full lg:w-7/12 space-y-7 text-left"
+          className="w-full lg:w-7/12 space-y-5 sm:space-y-7 text-left"
         >
           {/* Status Badge */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-semibold shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-semibold shadow-sm">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
@@ -124,34 +117,34 @@ export function Hero() {
             <span>{portfolioConfig.personal.statusBadge}</span>
           </div>
 
-          {/* Main Title - Punchy, Grand & High-Impact */}
-          <div className="space-y-1 sm:space-y-2">
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.06]">
+          {/* Main Title - Responsive & Readable on Mobile */}
+          <div className="space-y-1">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
               Dari Pemulihan Klinis
             </h1>
-            <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight grad-vi leading-[1.06]">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight grad-vi leading-[1.1]">
               Menuju Performa Optimal.
             </h2>
           </div>
 
-          {/* Dynamic Role Ticker - Larger & Eye-Catching */}
-          <div className="flex flex-wrap items-center gap-2 text-xl sm:text-2xl lg:text-3xl text-slate-800 dark:text-slate-200 font-medium">
-            <span>Saya {portfolioConfig.personal.name},</span>
-            <span className="font-extrabold text-cyan-600 dark:text-cyan-300 border-b-2 sm:border-b-3 border-cyan-400 pb-0.5 min-w-[260px] transition-all">
+          {/* Dynamic Role Ticker - Flexible wrap */}
+          <div className="flex flex-wrap items-baseline gap-1.5 sm:gap-2 text-base sm:text-xl md:text-2xl lg:text-3xl text-slate-800 dark:text-slate-200 font-medium">
+            <span>Saya {portfolioConfig.personal.nickname || portfolioConfig.personal.name},</span>
+            <span className="font-extrabold text-cyan-600 dark:text-cyan-300 border-b-2 sm:border-b-3 border-cyan-400 pb-0.5 transition-all">
               {roles[currentRoleIndex]}
             </span>
           </div>
 
           {/* Narrative / Short Bio */}
-          <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-normal whitespace-pre-line">
+          <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-normal whitespace-pre-line">
             {portfolioConfig.personal.bioShort}
           </p>
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-3.5 pt-2">
+          {/* Action CTAs: Full touch targets on mobile */}
+          <div className="grid grid-cols-1 sm:flex sm:flex-wrap items-center gap-3 pt-1">
             <a
               href="#services"
-              className="btn-primary inline-flex items-center gap-2.5 px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-cyan-500/25 hover:scale-105 transition-transform"
+              className="btn-primary flex items-center justify-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg shadow-cyan-500/25 hover:scale-105 transition-transform"
             >
               <HeartPulse className="w-4 h-4 text-white" />
               <span>Jelajahi Layanan</span>
@@ -162,7 +155,7 @@ export function Hero() {
                 href={portfolioConfig.contact.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-secondary inline-flex items-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
+                className="btn-secondary flex items-center justify-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
               >
                 <Send className="w-4 h-4 text-emerald-500" />
                 <span>Jadwalkan Konsultasi</span>
@@ -171,7 +164,7 @@ export function Hero() {
 
             <a
               href="#about"
-              className="btn-secondary inline-flex items-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform"
+              className="btn-secondary flex items-center justify-center gap-2.5 px-6 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform"
             >
               <FileDown className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
               <span>STR &amp; Kredensial</span>
@@ -179,35 +172,7 @@ export function Hero() {
           </div>
 
           {/* Social Links Dock */}
-          <div className="flex flex-wrap items-center gap-3 pt-1">
-            {portfolioConfig.socialLinks.github && (
-              <a
-                href={portfolioConfig.socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-950/40 transition-all hover:scale-110 shadow-sm"
-                aria-label="GitHub"
-              >
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-              </a>
-            )}
-
-            {portfolioConfig.socialLinks.linkedin && (
-              <a
-                href={portfolioConfig.socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 transition-all hover:scale-110 shadow-sm"
-                aria-label="LinkedIn"
-              >
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </a>
-            )}
-
+          <div className="flex flex-wrap items-center gap-2.5 pt-2">
             {portfolioConfig.socialLinks.instagram && (
               <a
                 href={portfolioConfig.socialLinks.instagram}
@@ -235,7 +200,21 @@ export function Hero() {
               </a>
             )}
 
-            <span className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 pl-2">Kanal Resmi</span>
+            {portfolioConfig.socialLinks.linkedin && (
+              <a
+                href={portfolioConfig.socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 transition-all hover:scale-110 shadow-sm"
+                aria-label="LinkedIn"
+              >
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+            )}
+
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 pl-1">Kanal Resmi</span>
           </div>
         </motion.div>
 
@@ -244,16 +223,16 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full lg:w-5/12 flex flex-col items-center lg:items-end gap-5"
+          className="w-full lg:w-5/12 flex flex-col items-center lg:items-end gap-4 sm:gap-5"
         >
           {/* Main Hero Portrait Card */}
-          <div className="w-full max-w-[370px] sm:max-w-[400px] rounded-[2.5rem] overflow-hidden bg-gradient-to-b from-slate-100 dark:from-slate-900 to-slate-200 dark:to-slate-950 border border-slate-200/80 dark:border-slate-700/80 shadow-2xl relative group">
+          <div className="w-full max-w-[340px] sm:max-w-[400px] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden bg-gradient-to-b from-slate-100 dark:from-slate-900 to-slate-200 dark:to-slate-950 border border-slate-200/80 dark:border-slate-700/80 shadow-2xl relative group">
             
             {/* Ambient Lighting Behind Portrait */}
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-transparent to-purple-600/20 pointer-events-none" />
 
             {/* Photo Container */}
-            <div className="relative w-full h-[400px] sm:h-[460px] flex items-end justify-center">
+            <div className="relative w-full h-[360px] sm:h-[440px] flex items-end justify-center">
               <Image
                 src="/assets/photos/zaez-portrait.jpg"
                 alt={portfolioConfig.personal.name}
@@ -263,28 +242,28 @@ export function Hero() {
               />
 
               {/* Bottom Gradient Fade */}
-              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-28 sm:h-32 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent pointer-events-none" />
 
               {/* Top Floating Badge: STR License */}
-              <div className="absolute top-4 left-4 z-20">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/85 backdrop-blur-md border border-emerald-500/40 text-emerald-300 text-xs font-bold shadow-xl">
+              <div className="absolute top-3 sm:top-4 left-3 sm:left-4 z-20">
+                <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900/85 backdrop-blur-md border border-emerald-500/40 text-emerald-300 text-[11px] sm:text-xs font-bold shadow-xl">
                   <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
                   <span>STR Kemenkes Terverifikasi</span>
                 </div>
               </div>
 
               {/* Bottom Overlay Text */}
-              <div className="absolute bottom-4 inset-x-4 z-20 flex items-end justify-between gap-2">
+              <div className="absolute bottom-3 sm:bottom-4 inset-x-3 sm:inset-x-4 z-20 flex items-end justify-between gap-2">
                 <div className="space-y-0.5">
-                  <h3 className="text-base sm:text-lg font-black text-white leading-tight">
+                  <h3 className="text-sm sm:text-base font-black text-white leading-tight">
                     {portfolioConfig.personal.name}
                   </h3>
-                  <p className="text-xs text-cyan-300 font-mono font-semibold">
+                  <p className="text-[11px] text-cyan-300 font-mono font-semibold">
                     THE BOX PHYSIO • Gading Serpong
                   </p>
                 </div>
 
-                <span className="px-2.5 py-1 rounded-full bg-cyan-500/20 backdrop-blur-md border border-cyan-400/40 text-[11px] font-mono font-bold text-cyan-300 shrink-0">
+                <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-cyan-500/20 backdrop-blur-md border border-cyan-400/40 text-[10px] sm:text-[11px] font-mono font-bold text-cyan-300 shrink-0">
                   M.Ft. GPA 4.00
                 </span>
               </div>
@@ -292,7 +271,7 @@ export function Hero() {
           </div>
 
           {/* Docked Streamlined Focus Audio Player */}
-          <div className="w-full max-w-[370px] sm:max-w-[400px] rounded-2xl p-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 shadow-xl space-y-3">
+          <div className="w-full max-w-[340px] sm:max-w-[400px] rounded-2xl p-3.5 sm:p-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/80 dark:border-slate-800 shadow-xl space-y-2.5 sm:space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <div className={`p-2 rounded-xl bg-cyan-500/10 text-cyan-500 ${isPlaying ? 'animate-pulse' : ''}`}>

@@ -57,7 +57,7 @@ export function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-24 px-6 md:px-12 relative overflow-hidden">
+    <section id="services" className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden">
       
       {/* Background Decorative Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-br from-cyan-500/10 via-blue-600/5 to-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
@@ -144,7 +144,7 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: (idx % 6) * 0.05 }}
-              className="p-7 rounded-3xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 hover:border-cyan-500/60 transition-all duration-300 space-y-4 shadow-sm hover:shadow-2xl hover:-translate-y-1 group flex flex-col justify-between"
+              className="p-5 sm:p-7 rounded-3xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 hover:border-cyan-500/60 transition-all duration-300 space-y-4 shadow-sm hover:shadow-2xl hover:-translate-y-1 group flex flex-col justify-between"
             >
               <div className="space-y-4">
                 {/* Header: Num, Icon & Badge */}

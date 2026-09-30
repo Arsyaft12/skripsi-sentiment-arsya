@@ -283,7 +283,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
-              className="p-6 sm:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-500/50 transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between space-y-4"
+              className="p-4 sm:p-6 md:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-500/50 transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between space-y-4"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between gap-3">
@@ -324,7 +324,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="p-6 sm:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-cyan-500/50 transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between space-y-4"
+              className="p-4 sm:p-6 md:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-cyan-500/50 transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between space-y-4"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between gap-3">
@@ -367,7 +367,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="p-6 sm:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-purple-500/50 transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between space-y-4"
+              className="p-4 sm:p-6 md:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-purple-500/50 transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between space-y-4"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between gap-3">
@@ -415,10 +415,10 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
         {/* ========================================================================= */}
         <div className="space-y-8 pt-4">
           <div className="flex justify-center">
-            <div className="inline-flex p-1.5 rounded-full bg-slate-100/90 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 backdrop-blur-xl gap-1">
+            <div className="w-full sm:w-auto grid grid-cols-2 sm:inline-flex p-1.5 rounded-2xl sm:rounded-full bg-slate-100/90 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 backdrop-blur-xl gap-1">
               <button
                 onClick={() => setActiveTab('journey')}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   activeTab === 'journey'
                     ? 'bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 text-white shadow-md'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white'
@@ -430,7 +430,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
 
               <button
                 onClick={() => setActiveTab('education')}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   activeTab === 'education'
                     ? 'bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 text-white shadow-md'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white'
@@ -455,7 +455,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
                 {sortedExperiences.map((exp, idx) => {
                   const isCurrent = !exp.end_date;
                   return (
-                    <div key={exp.id || idx} className="p-6 sm:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-purple-400/50 transition-all space-y-3.5 shadow-sm">
+                    <div key={exp.id || idx} className="p-4 sm:p-6 md:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-purple-400/50 transition-all space-y-3.5 shadow-sm">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
                         <div>
                           <div className="flex items-center gap-2">
@@ -499,7 +499,7 @@ export function AboutSection({ experiences, educationList }: AboutSectionProps) 
                 className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto"
               >
                 {educationList.map((edu, idx) => (
-                  <div key={edu.id || idx} className="p-6 sm:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-blue-400/50 transition-all space-y-4 shadow-sm">
+                  <div key={edu.id || idx} className="p-4 sm:p-6 md:p-7 rounded-3xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-blue-400/50 transition-all space-y-4 shadow-sm">
                     <div className="flex items-center justify-between gap-4">
                       <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
                         <BookOpen className="w-5 h-5" />

@@ -23,7 +23,7 @@ export function ClinicalCasesSection() {
   const activeCase = CLINICAL_CASES.find((c) => c.id === selectedCaseId) || CLINICAL_CASES[0];
 
   return (
-    <section id="cases" className="py-24 px-6 md:px-12 relative overflow-hidden">
+    <section id="cases" className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 relative overflow-hidden">
       
       {/* Ambient background glow */}
       <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-gradient-to-bl from-purple-600/10 via-blue-600/5 to-cyan-500/10 rounded-full blur-[130px] pointer-events-none" />
@@ -117,7 +117,7 @@ export function ClinicalCasesSection() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               
               {/* Column 1: Initial Condition */}
-              <div className="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/50 space-y-3">
+              <div className="p-4 sm:p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/50 space-y-3">
                 <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 font-bold text-sm">
                   <Flame className="w-4 h-4" />
                   <span>Kondisi Awal Pasien</span>
@@ -128,7 +128,7 @@ export function ClinicalCasesSection() {
               </div>
 
               {/* Column 2: Clinical Assessment */}
-              <div className="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/50 space-y-3">
+              <div className="p-4 sm:p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/50 space-y-3">
                 <div className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-bold text-sm">
                   <ClipboardList className="w-4 h-4" />
                   <span>Asesmen &amp; Pemeriksaan Klinis</span>
@@ -144,7 +144,7 @@ export function ClinicalCasesSection() {
               </div>
 
               {/* Column 3: Progressive Rehabilitation Program */}
-              <div className="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/50 space-y-3">
+              <div className="p-4 sm:p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/50 space-y-3">
                 <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-sm">
                   <Target className="w-4 h-4" />
                   <span>Program Rehabilitasi Progresif</span>

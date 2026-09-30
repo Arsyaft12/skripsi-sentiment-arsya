@@ -32,7 +32,7 @@ export default async function WorkPage() {
       <Navbar />
 
       <main className="flex-1 pt-32 pb-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-24">
           
           {/* Page Header */}
           <div className="space-y-4 max-w-3xl">
